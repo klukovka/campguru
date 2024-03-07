@@ -6,4 +6,6 @@ class CampguruRouter extends BaseRouter {
   CampguruRouter(AppAutoRouter super.stackRouter);
 
   Future<void> replaceToHomePage() => pushAndClearStack(const HomeRoute());
+
+  Future<void> replaceToStartPage() => pushAndClearStack(const StartRoute());
 }
