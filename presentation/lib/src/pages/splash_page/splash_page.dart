@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,14 +23,21 @@ class SplashPage extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  late final Timer _exitTimer;
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
-      if (mounted) {
-        context.locator<SplashPageController>()();
-      }
-    });
+    _exitTimer = Timer(
+      const Duration(seconds: 1),
+      () => context.locator<SplashPageController>()(),
+    );
+  }
+
+  @override
+  void dispose() {
+    _exitTimer.cancel();
+    super.dispose();
   }
 
   void _onStateChanged(BuildContext context, SplashPageState state) {
