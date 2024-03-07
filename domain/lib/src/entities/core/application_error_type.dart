@@ -1,0 +1,4 @@
+enum ApplicationErrorType {
+  noInternetConnection,
+  general,
+}
