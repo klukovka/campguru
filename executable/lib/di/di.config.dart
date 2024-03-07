@@ -15,12 +15,14 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:presentation/presentation.dart' as _i3;
 
 import 'data_modules/auth_repository_module.dart' as _i7;
-import 'data_modules/data_source_module.dart' as _i9;
-import 'data_modules/preferences_repository_module.dart' as _i10;
+import 'data_modules/data_source_module.dart' as _i8;
+import 'data_modules/preferences_repository_module.dart' as _i9;
 import 'data_modules/users_repository_module.dart' as _i11;
-import 'domain_modules/use_cases_module.dart' as _i12;
+import 'domain_modules/use_cases_module.dart' as _i13;
 import 'presentation_modules/auto_router_module.dart' as _i6;
-import 'presentation_modules/presenters_module.dart' as _i8;
+import 'presentation_modules/bloc_module.dart' as _i10;
+import 'presentation_modules/controllers_module.dart' as _i14;
+import 'presentation_modules/presenters_module.dart' as _i12;
 
 const String _test = 'test';
 
@@ -37,11 +39,13 @@ Future<_i1.GetIt> $configureDependencies(
   );
   final autoRouterModule = _$AutoRouterModule();
   final authRepositoryModule = _$AuthRepositoryModule();
-  final presentersModule = _$PresentersModule();
   final dataSourceModule = _$DataSourceModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
+  final blocModule = _$BlocModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
+  final presentersModule = _$PresentersModule();
   final useCasesModule = _$UseCasesModule();
+  final controllersModule = _$ControllersModule();
   gh.lazySingleton<_i3.AppAutoRouter>(
       () => autoRouterModule.getAppAutoRouter());
   gh.lazySingleton<_i4.AuthRepository>(
@@ -50,8 +54,6 @@ Future<_i1.GetIt> $configureDependencies(
   );
   gh.lazySingleton<_i3.CampguruRouter>(
       () => autoRouterModule.router(gh<_i3.AppAutoRouter>()));
-  gh.lazySingleton<_i4.CurrentUserOutputPort>(
-      () => presentersModule.currentUserOutputPort);
   await gh.lazySingletonAsync<_i5.HiveDataSource>(
     () => dataSourceModule.hiveDataSource,
     preResolve: true,
@@ -61,10 +63,13 @@ Future<_i1.GetIt> $configureDependencies(
         .testPreferencesRepository(gh<_i5.HiveDataSource>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i3.SplashPageCubit>(() => blocModule.splashPageCubit);
   gh.lazySingleton<_i4.UsersRepository>(
     () => usersRepositoryModule.testUsersRepository,
     registerFor: {_test},
   );
+  gh.lazySingleton<_i4.CurrentUserOutputPort>(() =>
+      presentersModule.getCurrentUserOutputPort(gh<_i3.SplashPageCubit>()));
   gh.lazySingleton<_i4.IsAuthorizedUseCase>(
       () => useCasesModule.getIsAuthorizedUseCase(
             gh<_i4.PreferencesRepository>(),
@@ -72,6 +77,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.UsersRepository>(),
             gh<_i4.CurrentUserOutputPort>(),
           ));
+  gh.lazySingleton<_i3.SplashPageController>(() =>
+      controllersModule.getSplashPageController(gh<_i4.IsAuthorizedUseCase>()));
   return getIt;
 }
 
@@ -79,12 +86,16 @@ class _$AutoRouterModule extends _i6.AutoRouterModule {}
 
 class _$AuthRepositoryModule extends _i7.AuthRepositoryModule {}
 
-class _$PresentersModule extends _i8.PresentersModule {}
+class _$DataSourceModule extends _i8.DataSourceModule {}
 
-class _$DataSourceModule extends _i9.DataSourceModule {}
+class _$PreferencesRepositoryModule extends _i9.PreferencesRepositoryModule {}
 
-class _$PreferencesRepositoryModule extends _i10.PreferencesRepositoryModule {}
+class _$BlocModule extends _i10.BlocModule {}
 
 class _$UsersRepositoryModule extends _i11.UsersRepositoryModule {}
 
-class _$UseCasesModule extends _i12.UseCasesModule {}
+class _$PresentersModule extends _i12.PresentersModule {}
+
+class _$UseCasesModule extends _i13.UseCasesModule {}
+
+class _$ControllersModule extends _i14.ControllersModule {}

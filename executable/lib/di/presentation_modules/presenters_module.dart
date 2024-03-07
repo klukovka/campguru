@@ -5,5 +5,10 @@ import 'package:presentation/presentation.dart';
 @module
 abstract class PresentersModule {
   @lazySingleton
-  CurrentUserOutputPort get currentUserOutputPort => CurrentUserPresenter();
+  CurrentUserOutputPort getCurrentUserOutputPort(
+    SplashPageCubit splashPageCubit,
+  ) =>
+      CurrentUserPresenter(
+        splashPageCubit: splashPageCubit,
+      );
 }
