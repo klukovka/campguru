@@ -5,6 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:presentation/presentation.dart';
 
 void main() {
-  configureDependencies(mock.name);
+  configureDependencies(test.name);
   runApp(CampguruApp(locator: locator));
 }
