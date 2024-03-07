@@ -15,10 +15,11 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:presentation/presentation.dart' as _i3;
 
 import 'data_modules/auth_repository_module.dart' as _i7;
-import 'data_modules/data_source_module.dart' as _i8;
-import 'data_modules/preferences_repository_module.dart' as _i9;
-import 'data_modules/users_repository_module.dart' as _i10;
+import 'data_modules/data_source_module.dart' as _i9;
+import 'data_modules/preferences_repository_module.dart' as _i10;
+import 'data_modules/users_repository_module.dart' as _i11;
 import 'presentation_modules/auto_router_module.dart' as _i6;
+import 'presentation_modules/presenters_module.dart' as _i8;
 
 const String _test = 'test';
 
@@ -35,19 +36,22 @@ Future<_i1.GetIt> $configureDependencies(
   );
   final autoRouterModule = _$AutoRouterModule();
   final authRepositoryModule = _$AuthRepositoryModule();
+  final presentersModule = _$PresentersModule();
   final dataSourceModule = _$DataSourceModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
   gh.lazySingleton<_i3.AppAutoRouter>(
       () => autoRouterModule.getAppAutoRouter());
   gh.lazySingleton<_i4.AuthRepository>(
-    () => authRepositoryModule.getTestAuthRepository(),
+    () => authRepositoryModule.testAuthRepository,
     registerFor: {_test},
   );
   gh.lazySingleton<_i3.CampguruRouter>(
       () => autoRouterModule.router(gh<_i3.AppAutoRouter>()));
+  gh.lazySingleton<_i4.CurrentUserOutputPort>(
+      () => presentersModule.currentUserOutputPort);
   await gh.lazySingletonAsync<_i5.HiveDataSource>(
-    () => dataSourceModule.getHiveDataSource(),
+    () => dataSourceModule.hiveDataSource,
     preResolve: true,
   );
   gh.lazySingleton<_i4.PreferencesRepository>(
@@ -56,7 +60,7 @@ Future<_i1.GetIt> $configureDependencies(
     registerFor: {_test},
   );
   gh.lazySingleton<_i4.UsersRepository>(
-    () => usersRepositoryModule.getTestUsersRepository(),
+    () => usersRepositoryModule.testUsersRepository,
     registerFor: {_test},
   );
   return getIt;
@@ -66,8 +70,10 @@ class _$AutoRouterModule extends _i6.AutoRouterModule {}
 
 class _$AuthRepositoryModule extends _i7.AuthRepositoryModule {}
 
-class _$DataSourceModule extends _i8.DataSourceModule {}
+class _$PresentersModule extends _i8.PresentersModule {}
 
-class _$PreferencesRepositoryModule extends _i9.PreferencesRepositoryModule {}
+class _$DataSourceModule extends _i9.DataSourceModule {}
 
-class _$UsersRepositoryModule extends _i10.UsersRepositoryModule {}
+class _$PreferencesRepositoryModule extends _i10.PreferencesRepositoryModule {}
+
+class _$UsersRepositoryModule extends _i11.UsersRepositoryModule {}

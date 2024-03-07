@@ -5,6 +5,6 @@ import 'package:injectable/injectable.dart';
 abstract class DataSourceModule {
   @lazySingleton
   @preResolve
-  Future<HiveDataSource> getHiveDataSource() async =>
+  Future<HiveDataSource> get hiveDataSource async =>
       await HiveDataSource.getInstance();
 }
