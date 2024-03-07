@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "domain"
+		},
+		{
+			"path": "executable"
+		},
+		{
+			"path": "data"
+		},
+		{
+			"path": "presentation"
+		},
+		{
+			"path": "components"
+		}
+	],
+	"settings": {}
+}
