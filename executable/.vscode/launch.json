@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Campguru: Device (Debug)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug",
+      "args": [
+        "--dart-define=LOCAL=true",
+        "--debug"
+      ]
+    },
+    {
+      "name": "Campguru: Device (Release)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "args": [
+        "--dart-define=LOCAL=true",
+        "--release"
+      ]
+    },
+  ]
+}
