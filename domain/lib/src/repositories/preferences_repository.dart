@@ -11,7 +11,7 @@ abstract class PreferencesRepository {
   bool get isLoggedIn;
   String get accessToken;
   String get refreshToken;
-  String get userId;
+  int get userId;
   Future<void> setAuthDetails(AuthenticationDetails details);
   Future<void> clearTokens();
 }
