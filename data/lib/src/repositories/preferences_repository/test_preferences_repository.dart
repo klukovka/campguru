@@ -1,31 +1,16 @@
+import 'package:data/src/data_source/hive_data_source.dart';
 import 'package:domain/domain.dart';
-import 'package:hive/hive.dart';
 
 class TestPreferencesRepository implements PreferencesRepository {
-  static const _preferencesBox = '_testPreferencesBox';
+  final HiveDataSource _dataSource;
 
-  static const _userIdKey = '_userIdKey';
-  static const _accessTokenKey = '_accessTokenKey';
-  static const _refreshTokenKey = '_refreshTokenKey';
-
-  final Box<dynamic> _box;
-
-  TestPreferencesRepository(this._box);
-
-  static Future<TestPreferencesRepository> getInstance() async {
-    final box = await Hive.openBox<dynamic>(_preferencesBox);
-    return TestPreferencesRepository(box);
-  }
+  TestPreferencesRepository(this._dataSource);
 
   @override
-  String get accessToken => _box.get(_accessTokenKey, defaultValue: '');
+  String get accessToken => _dataSource.accessToken;
 
   @override
-  Future<void> clearTokens() async {
-    await _box.delete(_accessTokenKey);
-    await _box.delete(_refreshTokenKey);
-    await _box.delete(_userIdKey);
-  }
+  Future<void> clearTokens() async => await _dataSource.clearTokens();
 
   @override
   bool get hasRefreshToken => refreshToken.isNotEmpty;
@@ -40,15 +25,12 @@ class TestPreferencesRepository implements PreferencesRepository {
   bool get isTokenExpired => accessToken.isEmpty;
 
   @override
-  String get refreshToken => _box.get(_refreshTokenKey, defaultValue: '');
+  String get refreshToken => _dataSource.refreshToken;
 
   @override
-  Future<void> setAuthDetails(AuthenticationDetails details) async {
-    await _box.put(_accessTokenKey, details.accessJwtToken);
-    await _box.put(_userIdKey, details.userId);
-    await _box.put(_refreshTokenKey, details.refreshJwtToken);
-  }
+  Future<void> setAuthDetails(AuthenticationDetails details) async =>
+      await _dataSource.setAuthDetails(details);
 
   @override
-  int get userId => _box.get(_userIdKey, defaultValue: -1);
+  int get userId => _dataSource.userId;
 }

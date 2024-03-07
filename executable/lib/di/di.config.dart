@@ -8,28 +8,66 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:data/data.dart' as _i5;
+import 'package:domain/domain.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:presentation/presentation.dart' as _i3;
 
-import 'presentation_modules/auto_router_module.dart' as _i4;
+import 'data_modules/auth_repository_module.dart' as _i7;
+import 'data_modules/data_source_module.dart' as _i8;
+import 'data_modules/preferences_repository_module.dart' as _i9;
+import 'data_modules/users_repository_module.dart' as _i10;
+import 'presentation_modules/auto_router_module.dart' as _i6;
+
+const String _test = 'test';
 
 // initializes the registration of main-scope dependencies inside of GetIt
-_i1.GetIt $configureDependencies(
+Future<_i1.GetIt> $configureDependencies(
   _i1.GetIt getIt, {
   String? environment,
   _i2.EnvironmentFilter? environmentFilter,
-}) {
+}) async {
   final gh = _i2.GetItHelper(
     getIt,
     environment,
     environmentFilter,
   );
   final autoRouterModule = _$AutoRouterModule();
-  gh.singleton<_i3.AppAutoRouter>(autoRouterModule.appAutoRouter);
-  gh.singleton<_i3.CampguruRouter>(
-      autoRouterModule.router(gh<_i3.AppAutoRouter>()));
+  final authRepositoryModule = _$AuthRepositoryModule();
+  final dataSourceModule = _$DataSourceModule();
+  final preferencesRepositoryModule = _$PreferencesRepositoryModule();
+  final usersRepositoryModule = _$UsersRepositoryModule();
+  gh.lazySingleton<_i3.AppAutoRouter>(
+      () => autoRouterModule.getAppAutoRouter());
+  gh.lazySingleton<_i4.AuthRepository>(
+    () => authRepositoryModule.getTestAuthRepository(),
+    registerFor: {_test},
+  );
+  gh.lazySingleton<_i3.CampguruRouter>(
+      () => autoRouterModule.router(gh<_i3.AppAutoRouter>()));
+  await gh.lazySingletonAsync<_i5.HiveDataSource>(
+    () => dataSourceModule.getHiveDataSource(),
+    preResolve: true,
+  );
+  gh.lazySingleton<_i4.PreferencesRepository>(
+    () => preferencesRepositoryModule
+        .testPreferencesRepository(gh<_i5.HiveDataSource>()),
+    registerFor: {_test},
+  );
+  gh.lazySingleton<_i4.UsersRepository>(
+    () => usersRepositoryModule.getTestUsersRepository(),
+    registerFor: {_test},
+  );
   return getIt;
 }
 
-class _$AutoRouterModule extends _i4.AutoRouterModule {}
+class _$AutoRouterModule extends _i6.AutoRouterModule {}
+
+class _$AuthRepositoryModule extends _i7.AuthRepositoryModule {}
+
+class _$DataSourceModule extends _i8.DataSourceModule {}
+
+class _$PreferencesRepositoryModule extends _i9.PreferencesRepositoryModule {}
+
+class _$UsersRepositoryModule extends _i10.UsersRepositoryModule {}

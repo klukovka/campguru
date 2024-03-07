@@ -3,10 +3,10 @@ import 'package:presentation/presentation.dart';
 
 @module
 abstract class AutoRouterModule {
-  @singleton
-  AppAutoRouter get appAutoRouter => AppAutoRouter();
+  @lazySingleton
+  AppAutoRouter getAppAutoRouter() => AppAutoRouter();
 
-  @singleton
+  @lazySingleton
   CampguruRouter router(AppAutoRouter stackRouter) => CampguruRouter(
         stackRouter,
       );

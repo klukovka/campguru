@@ -8,5 +8,5 @@ import 'package:injectable/injectable.dart';
   asExtension: false,
 )
 Future<void> configureDependencies(String env) async {
-  $configureDependencies(locator, environment: env);
+  await $configureDependencies(locator, environment: env);
 }
