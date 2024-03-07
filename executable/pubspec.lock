@@ -41,6 +41,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  components:
+    dependency: transitive
+    description:
+      path: "../components"
+      relative: true
+    source: path
+    version: "0.0.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -49,6 +56,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  data:
+    dependency: "direct main"
+    description:
+      path: "../data"
+      relative: true
+    source: path
+    version: "0.0.1"
+  domain:
+    dependency: "direct main"
+    description:
+      path: "../domain"
+      relative: true
+    source: path
+    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -139,6 +160,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
+  presentation:
+    dependency: "direct main"
+    description:
+      path: "../presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -210,3 +238,4 @@ packages:
     version: "13.0.0"
 sdks:
   dart: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
