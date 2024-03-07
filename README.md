@@ -1,3 +1,3 @@
 # campguru
 
-<img src="campguru.jpg" width="400"/>
+<img src="campguru.jpg"/>
