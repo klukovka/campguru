@@ -4,7 +4,7 @@ class IsAuthorizedUseCase {
   final PreferencesRepository preferencesRepository;
   final AuthRepository authRepository;
   final UsersRepository usersRepository;
-  final AuthOutputPort authOutputPort;
+  final CurrentUserOutputPort authOutputPort;
 
   IsAuthorizedUseCase({
     required this.preferencesRepository,

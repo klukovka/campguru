@@ -1,5 +1,5 @@
 import 'package:domain/domain.dart';
 
-abstract class AuthOutputPort {
+abstract class CurrentUserOutputPort {
   void setCurrentUser(User? user);
 }
