@@ -17,7 +17,16 @@ class AppAutoRouter extends $AppAutoRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(page: SplashRoute.page, path: '/splash', initial: true),
-    AutoRoute(page: HomeRoute.page, path: '/home'),
+    AutoRoute(page: HomeRoute.page, path: '/home/', children: [
+      AutoRoute(
+        page: LocationsRoute.page,
+        path: 'locations',
+        initial: true,
+      ),
+      AutoRoute(page: RoutesRoute.page, path: 'routes'),
+      AutoRoute(page: TripsRoute.page, path: 'trips'),
+      AutoRoute(page: ProfileRoute.page, path: 'profile'),
+    ]),
     AutoRoute(page: StartRoute.page, path: '/start'),
   ];
 }
