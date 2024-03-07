@@ -9,3 +9,4 @@ export 'src/output_ports/current_user_output_port.dart';
 export 'src/repositories/auth_repository.dart';
 export 'src/repositories/preferences_repository.dart';
 export 'src/repositories/users_repository.dart';
+export 'src/use_cases/is_authorized_use_case.dart';

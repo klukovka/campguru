@@ -18,6 +18,7 @@ import 'data_modules/auth_repository_module.dart' as _i7;
 import 'data_modules/data_source_module.dart' as _i9;
 import 'data_modules/preferences_repository_module.dart' as _i10;
 import 'data_modules/users_repository_module.dart' as _i11;
+import 'domain_modules/use_cases_module.dart' as _i12;
 import 'presentation_modules/auto_router_module.dart' as _i6;
 import 'presentation_modules/presenters_module.dart' as _i8;
 
@@ -40,6 +41,7 @@ Future<_i1.GetIt> $configureDependencies(
   final dataSourceModule = _$DataSourceModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
+  final useCasesModule = _$UseCasesModule();
   gh.lazySingleton<_i3.AppAutoRouter>(
       () => autoRouterModule.getAppAutoRouter());
   gh.lazySingleton<_i4.AuthRepository>(
@@ -63,6 +65,13 @@ Future<_i1.GetIt> $configureDependencies(
     () => usersRepositoryModule.testUsersRepository,
     registerFor: {_test},
   );
+  gh.lazySingleton<_i4.IsAuthorizedUseCase>(
+      () => useCasesModule.getIsAuthorizedUseCase(
+            gh<_i4.PreferencesRepository>(),
+            gh<_i4.AuthRepository>(),
+            gh<_i4.UsersRepository>(),
+            gh<_i4.CurrentUserOutputPort>(),
+          ));
   return getIt;
 }
 
@@ -77,3 +86,5 @@ class _$DataSourceModule extends _i9.DataSourceModule {}
 class _$PreferencesRepositoryModule extends _i10.PreferencesRepositoryModule {}
 
 class _$UsersRepositoryModule extends _i11.UsersRepositoryModule {}
+
+class _$UseCasesModule extends _i12.UseCasesModule {}

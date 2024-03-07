@@ -4,13 +4,13 @@ class IsAuthorizedUseCase {
   final PreferencesRepository preferencesRepository;
   final AuthRepository authRepository;
   final UsersRepository usersRepository;
-  final CurrentUserOutputPort authOutputPort;
+  final CurrentUserOutputPort currentUserOutputPort;
 
   IsAuthorizedUseCase({
     required this.preferencesRepository,
     required this.authRepository,
     required this.usersRepository,
-    required this.authOutputPort,
+    required this.currentUserOutputPort,
   });
 
   Future<void> call() async {
@@ -20,7 +20,7 @@ class IsAuthorizedUseCase {
       if (authDetails.wasSuccessful) {
         preferencesRepository.setAuthDetails(authDetails.result!);
       } else {
-        authOutputPort.setCurrentUser(null);
+        currentUserOutputPort.setCurrentUser(null);
         return;
       }
     }
@@ -28,9 +28,9 @@ class IsAuthorizedUseCase {
     final user = await usersRepository.getCurrentUser();
 
     if (user.wasSuccessful) {
-      authOutputPort.setCurrentUser(user.result);
+      currentUserOutputPort.setCurrentUser(user.result);
     } else {
-      authOutputPort.setCurrentUser(null);
+      currentUserOutputPort.setCurrentUser(null);
     }
   }
 }
