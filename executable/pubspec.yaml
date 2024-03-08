@@ -29,6 +29,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   build_runner: ^2.4.8
   injectable_generator: ^2.4.1
+  package_rename_plus: ^1.0.1
 
 flutter:
   uses-material-design: true

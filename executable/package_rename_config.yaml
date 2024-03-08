@@ -1,0 +1,12 @@
+package_rename_config:
+  android:
+    app_name: Campguru
+    package_name: com.example.campguru
+    override_old_package: com.example.executable
+    lang: kotlin
+
+  ios:
+    app_name: Campguru
+    bundle_name: campguru
+    override_old_package: com.example.executable
+    package_name: com.example.campguru
