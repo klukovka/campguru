@@ -1,18 +1,17 @@
-import 'dart:developer';
-
 import 'package:domain/domain.dart';
 import 'package:presentation/presentation.dart';
 
 class CurrentUserPresenter implements CurrentUserOutputPort {
   final SplashPageCubit splashPageCubit;
+  final HomePageCubit homePageCubit;
 
   CurrentUserPresenter({
     required this.splashPageCubit,
+    required this.homePageCubit,
   });
   @override
   void setCurrentUser(User? user) {
-    //TODO: Update user over the app
     splashPageCubit.checkIsAuthorized(user != null);
-    log(user.toString());
+    homePageCubit.updateAvatar(user?.photo);
   }
 }

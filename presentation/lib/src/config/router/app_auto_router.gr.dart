@@ -29,7 +29,7 @@ abstract class $AppAutoRouter extends _i8.RootStackRouter {
     HomeRoute.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.HomePage(),
+        child: _i8.WrappedRoute(child: const _i1.HomePage()),
       );
     },
     LocationsRoute.name: (routeData) {

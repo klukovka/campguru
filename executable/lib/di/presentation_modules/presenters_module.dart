@@ -7,8 +7,10 @@ abstract class PresentersModule {
   @lazySingleton
   CurrentUserOutputPort getCurrentUserOutputPort(
     SplashPageCubit splashPageCubit,
+    HomePageCubit homePageCubit,
   ) =>
       CurrentUserPresenter(
         splashPageCubit: splashPageCubit,
+        homePageCubit: homePageCubit,
       );
 }

@@ -5,4 +5,7 @@ import 'package:presentation/presentation.dart';
 abstract class BlocModule {
   @lazySingleton
   SplashPageCubit get splashPageCubit => SplashPageCubit();
+
+  @lazySingleton
+  HomePageCubit get homePageCubit => HomePageCubit();
 }
