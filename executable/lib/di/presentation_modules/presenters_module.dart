@@ -13,4 +13,7 @@ abstract class PresentersModule {
         splashPageCubit: splashPageCubit,
         homePageCubit: homePageCubit,
       );
+
+  @lazySingleton
+  ErrorHandlerOutputPort getErrorHandlerOutputPort() => ErrorHandlerPresenter();
 }
