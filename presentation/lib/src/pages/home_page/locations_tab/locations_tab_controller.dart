@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:domain/domain.dart';
 
 class LocationsTabController {
@@ -6,6 +8,7 @@ class LocationsTabController {
   LocationsTabController(this.getAllLocationsUseCase);
 
   void uploadNextPage(Filter filter) {
-    getAllLocationsUseCase(filter.copyWith(page: filter.page));
+    log('LocationsTabController');
+    getAllLocationsUseCase(filter.copyWith(page: filter.page + 1));
   }
 }

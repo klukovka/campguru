@@ -16,18 +16,16 @@ class TestLocationsRepository implements LocationsRepository {
     'https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_640.jpg',
     'https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg',
   ];
-  int _allUploadedLocations = 0;
 
   @override
   Future<FailureOrResult<Chunk<Location>>> getAllLocations(
     Filter filter,
   ) async {
-    await Future.delayed(const Duration(milliseconds: 1000));
-    if (!filter.append) {
-      _allUploadedLocations = 0;
-    }
+    int allUploadedLocations = filter.page * filter.size;
 
-    if (_allUploadedLocations >= _maxLocations) {
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    if (allUploadedLocations >= _maxLocations) {
       return FailureOrResult.success(Chunk(
         fullCount: _maxLocations,
         values: const [],
@@ -37,9 +35,9 @@ class TestLocationsRepository implements LocationsRepository {
     final locations = List.generate(
       filter.size,
       (index) {
-        final id = _allUploadedLocations + index;
+        final id = allUploadedLocations + index;
         return Location(
-          id: _allUploadedLocations + index,
+          id: allUploadedLocations + index,
           images: _images.take(Random().nextInt(10) + 1).toList()..shuffle(),
           name: 'Location $id',
           mark: Random().nextDouble() * 5,
