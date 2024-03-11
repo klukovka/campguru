@@ -8,4 +8,11 @@ class LocationsTabController {
   void uploadNextPage(Filter filter) {
     getAllLocationsUseCase(filter.copyWith(page: filter.page + 1));
   }
+
+  void search(Filter currentFilter, String searchValue) {
+    getAllLocationsUseCase(currentFilter.copyWith(
+      search: searchValue,
+      page: 0,
+    ));
+  }
 }

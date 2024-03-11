@@ -13,6 +13,10 @@ final themeExtensions = <ThemeExtension<dynamic>>[
     icon: MdiIcons.filterOutline,
     selectedIcon: MdiIcons.filter,
   ),
+  SearchFieldThemeData(
+    magnify: MdiIcons.magnify,
+    clear: MdiIcons.closeCircle,
+  ),
 ];
 
 final lightTheme = FlexThemeData.light(

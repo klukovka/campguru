@@ -21,20 +21,46 @@ class LocationsTab extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.locator<LocationsTabController>();
     return BlocBuilder<LocationsTabCubit, LocationsTabState>(
       builder: (context, state) {
-        if (state.isFirstLoading) {
-          return const SkeletonListView();
-        }
-        return LoadMoreScrollListener(
-          loadMore: () => context
-              .locator<LocationsTabController>()
-              .uploadNextPage(state.filter),
-          child: ListView.builder(
-            itemBuilder: (context, index) => LocationTile(
-              location: state.locations[index],
-            ),
-            itemCount: state.locations.length,
+        return SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SearchField(
+                        search: (value) => controller.search(
+                          state.filter,
+                          value,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    FilterButton(
+                      isNotEmpty: state.filter.isNotEmpty,
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: state.isFirstLoading
+                    ? const SkeletonListView()
+                    : LoadMoreScrollListener(
+                        loadMore: () => controller.uploadNextPage(state.filter),
+                        child: ListView.builder(
+                          itemBuilder: (context, index) => LocationTile(
+                            location: state.locations[index],
+                          ),
+                          itemCount: state.locations.length,
+                        ),
+                      ),
+              ),
+            ],
           ),
         );
       },
