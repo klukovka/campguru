@@ -99,6 +99,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.LocationsOutputPort>(),
           ));
+  gh.lazySingleton<_i3.LocationsTabController>(() => controllersModule
+      .getLocationsTabController(gh<_i4.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i3.SplashPageController>(
       () => controllersModule.getSplashPageController(
             gh<_i4.IsAuthorizedUseCase>(),

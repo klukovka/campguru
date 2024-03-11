@@ -31,4 +31,22 @@ class Filter extends Equatable {
       labels,
     ];
   }
+
+  Filter copyWith({
+    int? page,
+    int? size,
+    String? search,
+    SortBy? sortBy,
+    Direction? direction,
+    List<FilterLabel>? labels,
+  }) {
+    return Filter(
+      page: page ?? this.page,
+      size: size ?? this.size,
+      search: search ?? this.search,
+      sortBy: sortBy ?? this.sortBy,
+      direction: direction ?? this.direction,
+      labels: labels ?? this.labels,
+    );
+  }
 }

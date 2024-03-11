@@ -13,4 +13,11 @@ abstract class ControllersModule {
         isAuthorizedUseCase: isAuthorizedUseCase,
         getAllLocationsUseCase: getAllLocationsUseCase,
       );
+
+  @lazySingleton
+  LocationsTabController getLocationsTabController(
+          GetAllLocationsUseCase getAllLocationsUseCase) =>
+      LocationsTabController(
+        getAllLocationsUseCase,
+      );
 }
