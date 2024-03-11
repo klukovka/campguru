@@ -18,4 +18,16 @@ abstract class UseCasesModule {
         currentUserOutputPort: currentUserOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
       );
+
+  @lazySingleton
+  GetAllLocationsUseCase getAllLocationsUseCase(
+    LocationsRepository locationsRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    LocationsOutputPort locationsOutputPort,
+  ) =>
+      GetAllLocationsUseCase(
+        locationsRepository: locationsRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        locationsOutputPort: locationsOutputPort,
+      );
 }

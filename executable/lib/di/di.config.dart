@@ -16,12 +16,13 @@ import 'package:presentation/presentation.dart' as _i3;
 
 import 'data_modules/auth_repository_module.dart' as _i7;
 import 'data_modules/data_source_module.dart' as _i9;
-import 'data_modules/preferences_repository_module.dart' as _i11;
-import 'data_modules/users_repository_module.dart' as _i12;
-import 'domain_modules/use_cases_module.dart' as _i13;
+import 'data_modules/locations_repository_module.dart' as _i11;
+import 'data_modules/preferences_repository_module.dart' as _i12;
+import 'data_modules/users_repository_module.dart' as _i13;
+import 'domain_modules/use_cases_module.dart' as _i14;
 import 'presentation_modules/auto_router_module.dart' as _i6;
 import 'presentation_modules/bloc_module.dart' as _i10;
-import 'presentation_modules/controllers_module.dart' as _i14;
+import 'presentation_modules/controllers_module.dart' as _i15;
 import 'presentation_modules/presenters_module.dart' as _i8;
 
 const String _test = 'test';
@@ -42,6 +43,7 @@ Future<_i1.GetIt> $configureDependencies(
   final presentersModule = _$PresentersModule();
   final dataSourceModule = _$DataSourceModule();
   final blocModule = _$BlocModule();
+  final locationsRepositoryModule = _$LocationsRepositoryModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
   final useCasesModule = _$UseCasesModule();
@@ -61,6 +63,11 @@ Future<_i1.GetIt> $configureDependencies(
     preResolve: true,
   );
   gh.lazySingleton<_i3.HomePageCubit>(() => blocModule.homePageCubit);
+  gh.lazySingleton<_i4.LocationsRepository>(
+    () => locationsRepositoryModule.testLocationsRepository,
+    registerFor: {_test},
+  );
+  gh.lazySingleton<_i3.LocationsTabCubit>(() => blocModule.locationsTabCubit);
   gh.lazySingleton<_i4.PreferencesRepository>(
     () => preferencesRepositoryModule
         .testPreferencesRepository(gh<_i5.HiveDataSource>()),
@@ -84,8 +91,16 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.CurrentUserOutputPort>(),
             gh<_i4.ErrorHandlerOutputPort>(),
           ));
+  gh.lazySingleton<_i4.LocationsOutputPort>(() =>
+      presentersModule.getLocationsOutputPort(gh<_i3.LocationsTabCubit>()));
   gh.lazySingleton<_i3.SplashPageController>(() =>
       controllersModule.getSplashPageController(gh<_i4.IsAuthorizedUseCase>()));
+  gh.lazySingleton<_i4.GetAllLocationsUseCase>(
+      () => useCasesModule.getAllLocationsUseCase(
+            gh<_i4.LocationsRepository>(),
+            gh<_i4.ErrorHandlerOutputPort>(),
+            gh<_i4.LocationsOutputPort>(),
+          ));
   return getIt;
 }
 
@@ -99,10 +114,12 @@ class _$DataSourceModule extends _i9.DataSourceModule {}
 
 class _$BlocModule extends _i10.BlocModule {}
 
-class _$PreferencesRepositoryModule extends _i11.PreferencesRepositoryModule {}
+class _$LocationsRepositoryModule extends _i11.LocationsRepositoryModule {}
 
-class _$UsersRepositoryModule extends _i12.UsersRepositoryModule {}
+class _$PreferencesRepositoryModule extends _i12.PreferencesRepositoryModule {}
 
-class _$UseCasesModule extends _i13.UseCasesModule {}
+class _$UsersRepositoryModule extends _i13.UsersRepositoryModule {}
 
-class _$ControllersModule extends _i14.ControllersModule {}
+class _$UseCasesModule extends _i14.UseCasesModule {}
+
+class _$ControllersModule extends _i15.ControllersModule {}
