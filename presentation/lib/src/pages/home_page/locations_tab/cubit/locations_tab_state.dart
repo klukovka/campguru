@@ -13,6 +13,8 @@ class LocationsTabState extends Equatable {
     this.locations = const [],
   });
 
+  bool get isFirstLoading => isLoading && locations.isEmpty;
+
   LocationsTabState copyWith({
     Filter? filter,
     bool? isLoading,

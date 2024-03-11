@@ -23,6 +23,9 @@ class LocationsTab extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return BlocBuilder<LocationsTabCubit, LocationsTabState>(
       builder: (context, state) {
+        if (state.isFirstLoading) {
+          return const SkeletonListView();
+        }
         return LoadMoreScrollListener(
           loadMore: () => context
               .locator<LocationsTabController>()
