@@ -32,6 +32,7 @@ class IsAuthorizedUseCase {
 
     if (user.wasSuccessful) {
       currentUserOutputPort.setCurrentUser(user.result);
+      //TODO: Preload all data
     } else {
       currentUserOutputPort.setCurrentUser(null);
       errorHandlerOutputPort.setError(user.failure!);

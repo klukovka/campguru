@@ -8,4 +8,7 @@ abstract class BlocModule {
 
   @lazySingleton
   HomePageCubit get homePageCubit => HomePageCubit();
+
+  @lazySingleton
+  LocationsTabCubit get locationsTabCubit => LocationsTabCubit();
 }

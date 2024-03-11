@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class Chunk<T> extends Equatable {
   final int fullCount;
-  final Set<T> values;
+  final List<T> values;
 
   Chunk({
     required this.fullCount,
