@@ -20,10 +20,14 @@ class CampguruApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = locator<AppAutoRouter>();
 
-    final themeExtensions = [
+    final themeExtensions = <ThemeExtension<dynamic>>[
       FavoriteButtonThemeData(
         icon: MdiIcons.heartOutline,
         selectedIcon: MdiIcons.heart,
+      ),
+      FilterButtonThemeData(
+        icon: MdiIcons.filterOutline,
+        selectedIcon: MdiIcons.filter,
       ),
     ];
 

@@ -20,6 +20,9 @@ class Filter extends Equatable {
 
   bool get append => page > 0;
 
+  bool get isNotEmpty =>
+      sortBy != null || direction != null || (labels?.isNotEmpty ?? false);
+
   @override
   List<Object?> get props {
     return [
