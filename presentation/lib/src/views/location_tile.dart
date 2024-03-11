@@ -36,8 +36,13 @@ class LocationTile extends StatelessWidget {
       ),
       favoriteButton: FavoriteButton(
         isFavorite: location.isFavorite,
-        onPressed: () {},
+        onPressed: () {
+          //TODO: Like
+        },
       ),
+      onPressed: () {
+        //TODO: Open details
+      },
     );
   }
 }

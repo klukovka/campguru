@@ -1,15 +1,18 @@
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
   final String imageUrl;
   final Widget content;
   final Widget favoriteButton;
+  final VoidCallback onPressed;
 
   const ItemCard({
     super.key,
     required this.imageUrl,
     required this.content,
     required this.favoriteButton,
+    required this.onPressed,
   });
 
   @override
@@ -36,7 +39,10 @@ class ItemCard extends StatelessWidget {
               const SizedBox(width: 16),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [favoriteButton, favoriteButton],
+                children: [
+                  ArrowButton.forward(onPressed: onPressed),
+                  favoriteButton
+                ],
               ),
             ],
           ),
