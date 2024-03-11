@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:components/components.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/config/di/get_it_data.dart';
 
@@ -17,6 +19,13 @@ class CampguruApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appRouter = locator<AppAutoRouter>();
+
+    final themeExtensions = [
+      FavoriteButtonThemeData(
+        icon: MdiIcons.heartOutline,
+        selectedIcon: MdiIcons.heart,
+      ),
+    ];
 
     return GetItData(
       locator: locator,
@@ -52,6 +61,7 @@ class CampguruApp extends StatelessWidget {
           useMaterial3: true,
           swapLegacyOnMaterial3: true,
           fontFamily: GoogleFonts.rubik().fontFamily,
+          extensions: themeExtensions,
         ),
         darkTheme: FlexThemeData.dark(
           scheme: FlexScheme.materialBaseline,
@@ -81,6 +91,7 @@ class CampguruApp extends StatelessWidget {
           useMaterial3: true,
           swapLegacyOnMaterial3: true,
           fontFamily: GoogleFonts.rubik().fontFamily,
+          extensions: themeExtensions,
         ),
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,

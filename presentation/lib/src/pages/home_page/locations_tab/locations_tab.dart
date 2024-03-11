@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/src/bloc.dart';
 import 'package:presentation/src/controllers.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
+import 'package:presentation/src/views/location_tile.dart';
 
 @RoutePage()
 class LocationsTab extends StatelessWidget implements AutoRouteWrapper {
@@ -27,37 +28,9 @@ class LocationsTab extends StatelessWidget implements AutoRouteWrapper {
               .locator<LocationsTabController>()
               .uploadNextPage(state.filter),
           child: ListView.builder(
-            itemBuilder: (context, index) {
-              final location = state.locations[index];
-              return ItemCard(
-                imageUrl: location.images.first,
-                content: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      location.name,
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                    const SizedBox(height: 8),
-                    IconTheme(
-                      data: const IconThemeData(size: 20),
-                      child: DefaultTextStyle(
-                        style: Theme.of(context).textTheme.bodyLarge!,
-                        child: RatingView(rate: location.mark),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    //TODO: Add localization
-                    Text('${location.reviewsAmount} Reviews'),
-                  ],
-                ),
-                favoriteButton: Container(
-                  width: 20,
-                  height: 20,
-                  color: Colors.amber,
-                ),
-              );
-            },
+            itemBuilder: (context, index) => LocationTile(
+              location: state.locations[index],
+            ),
             itemCount: state.locations.length,
           ),
         );
