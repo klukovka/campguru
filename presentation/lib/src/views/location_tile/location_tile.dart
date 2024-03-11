@@ -47,9 +47,7 @@ class LocationTile extends StatelessWidget {
           }
         },
       ),
-      onPressed: () {
-        //TODO: Open details
-      },
+      onPressed: () => context.appRouter.pushLocationDetails(location.id),
     );
   }
 }

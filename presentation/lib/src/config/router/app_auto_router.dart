@@ -28,5 +28,9 @@ class AppAutoRouter extends $AppAutoRouter {
       AutoRoute(page: ProfileRoute.page, path: 'profile'),
     ]),
     AutoRoute(page: StartRoute.page, path: '/start'),
+    AutoRoute(
+      page: LocationDetailsRoute.page,
+      path: '/home/locations/:id',
+    ),
   ];
 }

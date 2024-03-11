@@ -8,4 +8,7 @@ class CampguruRouter extends BaseRouter {
   Future<void> replaceToHomePage() => pushAndClearStack(const HomeRoute());
 
   Future<void> replaceToStartPage() => pushAndClearStack(const StartRoute());
+
+  Future<void> pushLocationDetails(int id) =>
+      push(LocationDetailsRoute(locationId: id));
 }
