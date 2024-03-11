@@ -63,6 +63,8 @@ Future<_i1.GetIt> $configureDependencies(
     preResolve: true,
   );
   gh.lazySingleton<_i3.HomePageCubit>(() => blocModule.homePageCubit);
+  gh.lazySingleton<_i3.LocationDetailsPageCubit>(
+      () => blocModule.locationDetailsPageCubit);
   gh.lazySingleton<_i4.LocationsRepository>(
     () => locationsRepositoryModule.testLocationsRepository,
     registerFor: {_test},
@@ -91,8 +93,11 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.CurrentUserOutputPort>(),
             gh<_i4.ErrorHandlerOutputPort>(),
           ));
-  gh.lazySingleton<_i4.LocationsOutputPort>(() =>
-      presentersModule.getLocationsOutputPort(gh<_i3.LocationsTabCubit>()));
+  gh.lazySingleton<_i4.LocationsOutputPort>(
+      () => presentersModule.getLocationsOutputPort(
+            gh<_i3.LocationsTabCubit>(),
+            gh<_i3.LocationDetailsPageCubit>(),
+          ));
   gh.lazySingleton<_i4.UpdateLocationFavoriteStatusUseCase>(
       () => useCasesModule.getUpdateLocationFavoriteStatusUseCase(
             gh<_i4.LocationsRepository>(),

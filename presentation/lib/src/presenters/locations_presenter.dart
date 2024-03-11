@@ -1,10 +1,14 @@
 import 'package:domain/domain.dart';
-import 'package:presentation/src/pages/home_page/locations_tab/cubit/locations_tab_cubit.dart';
+import 'package:presentation/src/bloc.dart';
 
 class LocationsPresenter extends LocationsOutputPort {
   final LocationsTabCubit locationsTabCubit;
+  final LocationDetailsPageCubit locationDetailsPageCubit;
 
-  LocationsPresenter({required this.locationsTabCubit});
+  LocationsPresenter({
+    required this.locationsTabCubit,
+    required this.locationDetailsPageCubit,
+  });
 
   @override
   void setAllLocationsFilter(Filter filter) {
@@ -36,5 +40,11 @@ class LocationsPresenter extends LocationsOutputPort {
     }).toList();
 
     locationsTabCubit.setLocations(allLocations);
+
+    if (locationDetailsPageCubit.state.location.id == locationId) {
+      locationDetailsPageCubit.updateLocationFavoriteStatus(
+        isFavorite,
+      );
+    }
   }
 }

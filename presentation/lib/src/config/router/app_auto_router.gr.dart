@@ -42,10 +42,11 @@ abstract class $AppAutoRouter extends _i9.RootStackRouter {
               LocationDetailsRouteArgs(locationId: pathParams.getInt('id')));
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i2.LocationDetailsPage(
+        child: _i9.WrappedRoute(
+            child: _i2.LocationDetailsPage(
           key: args.key,
           locationId: args.locationId,
-        ),
+        )),
       );
     },
     LocationsRoute.name: (routeData) {

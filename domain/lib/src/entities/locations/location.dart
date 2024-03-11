@@ -10,7 +10,7 @@ class Location extends Equatable with TableItem<Location> {
   final int reviewsAmount;
   final bool isFavorite;
 
-  Location({
+  const Location({
     required this.id,
     required this.images,
     required this.name,
