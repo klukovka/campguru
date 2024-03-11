@@ -93,12 +93,21 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i4.LocationsOutputPort>(() =>
       presentersModule.getLocationsOutputPort(gh<_i3.LocationsTabCubit>()));
+  gh.lazySingleton<_i4.UpdateLocationFavoriteStatusUseCase>(
+      () => useCasesModule.getUpdateLocationFavoriteStatusUseCase(
+            gh<_i4.LocationsRepository>(),
+            gh<_i4.ErrorHandlerOutputPort>(),
+            gh<_i4.LocationsOutputPort>(),
+          ));
   gh.lazySingleton<_i4.GetAllLocationsUseCase>(
       () => useCasesModule.getAllLocationsUseCase(
             gh<_i4.LocationsRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.LocationsOutputPort>(),
           ));
+  gh.factory<_i3.LocationTileController>(() =>
+      controllersModule.getLocationTileController(
+          gh<_i4.UpdateLocationFavoriteStatusUseCase>()));
   gh.lazySingleton<_i3.LocationsTabController>(() => controllersModule
       .getLocationsTabController(gh<_i4.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i3.SplashPageController>(

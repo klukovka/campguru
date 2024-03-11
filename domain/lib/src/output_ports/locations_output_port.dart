@@ -4,4 +4,5 @@ abstract class LocationsOutputPort {
   void setAllLocationsFilter(Filter filter);
   void updateAllLocations(List<Location> locations, int amount);
   void stopAllLocationsLoading();
+  void updateLocationFavoriteStatus(int locationId, bool isFavorite);
 }

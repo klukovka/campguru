@@ -12,18 +12,16 @@ class LocationsTabCubit extends Cubit<LocationsTabState> {
         isLoading: true,
       ));
 
-  void setLocations(List<Location> locations, int amount) =>
+  void setLocations(List<Location> locations, {int? amount}) =>
       emit(state.copyWith(
         locations: locations,
         isLoading: false,
-        locationsAmount: amount,
+        totslLocationsAmount: amount,
       ));
 
-  void appendLocations(List<Location> locations, int amount) =>
-      emit(state.copyWith(
+  void appendLocations(List<Location> locations) => emit(state.copyWith(
         locations: [...state.locations, ...locations],
         isLoading: false,
-        locationsAmount: amount,
       ));
 
   void stopLoading() => emit(state.copyWith(isLoading: false));

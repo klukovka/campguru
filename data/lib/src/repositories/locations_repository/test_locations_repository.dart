@@ -52,4 +52,16 @@ class TestLocationsRepository implements LocationsRepository {
       values: locations,
     ));
   }
+
+  @override
+  Future<FailureOrResult<void>> addLocationToFavorites(int id) async {
+    await Future.delayed(const Duration(milliseconds: 200));
+    return FailureOrResult.success(null);
+  }
+
+  @override
+  Future<FailureOrResult<void>> removeLocationFromFavorites(int id) async {
+    await Future.delayed(const Duration(milliseconds: 200));
+    return FailureOrResult.success(null);
+  }
 }

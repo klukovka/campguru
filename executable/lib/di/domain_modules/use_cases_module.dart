@@ -30,4 +30,16 @@ abstract class UseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         locationsOutputPort: locationsOutputPort,
       );
+
+  @lazySingleton
+  UpdateLocationFavoriteStatusUseCase getUpdateLocationFavoriteStatusUseCase(
+    LocationsRepository locationsRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    LocationsOutputPort locationsOutputPort,
+  ) =>
+      UpdateLocationFavoriteStatusUseCase(
+        locationsRepository: locationsRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        locationsOutputPort: locationsOutputPort,
+      );
 }

@@ -21,9 +21,20 @@ class LocationsPresenter extends LocationsOutputPort {
     final append = locationsTabCubit.state.filter.append;
 
     if (append) {
-      locationsTabCubit.appendLocations(locations, amount);
+      locationsTabCubit.appendLocations(locations);
     } else {
-      locationsTabCubit.setLocations(locations, amount);
+      locationsTabCubit.setLocations(locations, amount: amount);
     }
+  }
+
+  @override
+  void updateLocationFavoriteStatus(int locationId, bool isFavorite) {
+    final allLocations = locationsTabCubit.state.locations.map((item) {
+      return item.id == locationId
+          ? item.copyWith(isFavorite: isFavorite)
+          : item;
+    }).toList();
+
+    locationsTabCubit.setLocations(allLocations);
   }
 }

@@ -16,8 +16,14 @@ abstract class ControllersModule {
 
   @lazySingleton
   LocationsTabController getLocationsTabController(
-          GetAllLocationsUseCase getAllLocationsUseCase) =>
+    GetAllLocationsUseCase getAllLocationsUseCase,
+  ) =>
       LocationsTabController(
         getAllLocationsUseCase,
       );
+
+  LocationTileController getLocationTileController(
+    UpdateLocationFavoriteStatusUseCase updateLocationFavoriteStatusUseCase,
+  ) =>
+      LocationTileController(updateLocationFavoriteStatusUseCase);
 }

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/src/bloc.dart';
 import 'package:presentation/src/controllers.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
-import 'package:presentation/src/views/location_tile.dart';
+import 'package:presentation/src/views/location_tile/location_tile.dart';
 
 @RoutePage()
 class LocationsTab extends StatelessWidget implements AutoRouteWrapper {
