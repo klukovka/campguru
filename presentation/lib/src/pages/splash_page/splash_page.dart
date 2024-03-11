@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     _exitTimer = Timer(
       const Duration(seconds: 1),
-      () => context.locator<SplashPageController>()(),
+      () => context.locator<SplashPageController>().checkIfAuthorized(),
     );
   }
 
@@ -43,6 +43,7 @@ class _SplashPageState extends State<SplashPage> {
   void _onStateChanged(BuildContext context, SplashPageState state) {
     switch (state) {
       case SplashPageState.authorized:
+        context.locator<SplashPageController>().preloadData();
         context.appRouter.replaceToHomePage();
         break;
       case SplashPageState.nonAuthorized:

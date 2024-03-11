@@ -2,8 +2,16 @@ import 'package:domain/domain.dart';
 
 class SplashPageController {
   final IsAuthorizedUseCase isAuthorizedUseCase;
+  final GetAllLocationsUseCase getAllLocationsUseCase;
 
-  SplashPageController(this.isAuthorizedUseCase);
+  SplashPageController({
+    required this.isAuthorizedUseCase,
+    required this.getAllLocationsUseCase,
+  });
 
-  void call() => isAuthorizedUseCase();
+  void checkIfAuthorized() => isAuthorizedUseCase();
+
+  void preloadData() {
+    getAllLocationsUseCase(const Filter());
+  }
 }

@@ -7,6 +7,10 @@ abstract class ControllersModule {
   @lazySingleton
   SplashPageController getSplashPageController(
     IsAuthorizedUseCase isAuthorizedUseCase,
+    GetAllLocationsUseCase getAllLocationsUseCase,
   ) =>
-      SplashPageController(isAuthorizedUseCase);
+      SplashPageController(
+        isAuthorizedUseCase: isAuthorizedUseCase,
+        getAllLocationsUseCase: getAllLocationsUseCase,
+      );
 }

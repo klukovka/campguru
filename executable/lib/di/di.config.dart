@@ -93,13 +93,16 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i4.LocationsOutputPort>(() =>
       presentersModule.getLocationsOutputPort(gh<_i3.LocationsTabCubit>()));
-  gh.lazySingleton<_i3.SplashPageController>(() =>
-      controllersModule.getSplashPageController(gh<_i4.IsAuthorizedUseCase>()));
   gh.lazySingleton<_i4.GetAllLocationsUseCase>(
       () => useCasesModule.getAllLocationsUseCase(
             gh<_i4.LocationsRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.LocationsOutputPort>(),
+          ));
+  gh.lazySingleton<_i3.SplashPageController>(
+      () => controllersModule.getSplashPageController(
+            gh<_i4.IsAuthorizedUseCase>(),
+            gh<_i4.GetAllLocationsUseCase>(),
           ));
   return getIt;
 }
