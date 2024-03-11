@@ -110,7 +110,7 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.LocationsOutputPort>(),
           ));
-  gh.factory<_i3.LocationTileController>(() =>
+  gh.factory<_i3.LocationFavoriteButtonController>(() =>
       controllersModule.getLocationTileController(
           gh<_i4.UpdateLocationFavoriteStatusUseCase>()));
   gh.lazySingleton<_i3.LocationsTabController>(() => controllersModule

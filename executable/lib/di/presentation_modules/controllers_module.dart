@@ -22,8 +22,8 @@ abstract class ControllersModule {
         getAllLocationsUseCase,
       );
 
-  LocationTileController getLocationTileController(
+  LocationFavoriteButtonController getLocationTileController(
     UpdateLocationFavoriteStatusUseCase updateLocationFavoriteStatusUseCase,
   ) =>
-      LocationTileController(updateLocationFavoriteStatusUseCase);
+      LocationFavoriteButtonController(updateLocationFavoriteStatusUseCase);
 }

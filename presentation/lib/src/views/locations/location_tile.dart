@@ -1,8 +1,8 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/presentation.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
+import 'package:presentation/src/views/locations/location_favorite_button/location_favorite_button.dart';
 
 class LocationTile extends StatelessWidget {
   final Location location;
@@ -36,17 +36,7 @@ class LocationTile extends StatelessWidget {
           Text('${location.reviewsAmount} Reviews'),
         ],
       ),
-      favoriteButton: FavoriteButton(
-        isFavorite: location.isFavorite,
-        onPressed: () {
-          final controller = context.locator<LocationTileController>();
-          if (location.isFavorite) {
-            controller.removeFromFavorites(location.id);
-          } else {
-            controller.addToFavorites(location.id);
-          }
-        },
-      ),
+      favoriteButton: LocationFavoriteButton(location: location),
       onPressed: () => context.appRouter.pushLocationDetails(location.id),
     );
   }

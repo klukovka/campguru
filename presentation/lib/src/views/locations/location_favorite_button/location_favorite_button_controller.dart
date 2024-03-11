@@ -1,9 +1,9 @@
 import 'package:domain/domain.dart';
 
-class LocationTileController {
+class LocationFavoriteButtonController {
   final UpdateLocationFavoriteStatusUseCase updateLocationFavoriteStatusUseCase;
 
-  LocationTileController(this.updateLocationFavoriteStatusUseCase);
+  LocationFavoriteButtonController(this.updateLocationFavoriteStatusUseCase);
 
   void addToFavorites(int locationId) {
     updateLocationFavoriteStatusUseCase(locationId, true);
