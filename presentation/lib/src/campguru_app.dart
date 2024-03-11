@@ -82,7 +82,7 @@ class CampguruApp extends StatelessWidget {
           swapLegacyOnMaterial3: true,
           fontFamily: GoogleFonts.rubik().fontFamily,
         ),
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
         routeInformationParser: appRouter.defaultRouteParser(),
         routeInformationProvider: appRouter.routeInfoProvider(),

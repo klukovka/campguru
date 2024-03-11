@@ -27,7 +27,37 @@ class LocationsTab extends StatelessWidget implements AutoRouteWrapper {
               .locator<LocationsTabController>()
               .uploadNextPage(state.filter),
           child: ListView.builder(
-            itemBuilder: (context, index) => Text(state.locations[index].name),
+            itemBuilder: (context, index) {
+              final location = state.locations[index];
+              return ItemCard(
+                imageUrl: location.images.first,
+                content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      location.name,
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    const SizedBox(height: 8),
+                    IconTheme(
+                      data: const IconThemeData(size: 20),
+                      child: DefaultTextStyle(
+                        style: Theme.of(context).textTheme.bodyLarge!,
+                        child: RatingView(rate: location.mark),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    //TODO: Add localization
+                    Text('${location.reviewsAmount} Reviews'),
+                  ],
+                ),
+                favoriteButton: Container(
+                  width: 20,
+                  height: 20,
+                  color: Colors.amber,
+                ),
+              );
+            },
             itemCount: state.locations.length,
           ),
         );
