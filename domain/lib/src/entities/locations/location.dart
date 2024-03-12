@@ -1,4 +1,4 @@
-import 'package:domain/src/entities/core/table_item.dart';
+import 'package:domain/domain.dart';
 import 'package:equatable/equatable.dart';
 
 class Location extends Equatable with TableItem<Location> {
@@ -9,6 +9,9 @@ class Location extends Equatable with TableItem<Location> {
   final double mark;
   final int reviewsAmount;
   final bool isFavorite;
+  final String? description;
+  final List<String>? labels;
+  final List<Review>? reviews;
 
   const Location({
     required this.id,
@@ -17,6 +20,9 @@ class Location extends Equatable with TableItem<Location> {
     required this.mark,
     required this.reviewsAmount,
     required this.isFavorite,
+    this.description,
+    this.labels,
+    this.reviews,
   });
 
   Location copyWith({
@@ -26,6 +32,9 @@ class Location extends Equatable with TableItem<Location> {
     double? mark,
     int? reviewsAmount,
     bool? isFavorite,
+    String? description,
+    List<String>? labels,
+    List<Review>? reviews,
   }) {
     return Location(
       id: id ?? this.id,
@@ -34,11 +43,14 @@ class Location extends Equatable with TableItem<Location> {
       mark: mark ?? this.mark,
       reviewsAmount: reviewsAmount ?? this.reviewsAmount,
       isFavorite: isFavorite ?? this.isFavorite,
+      description: description ?? this.description,
+      labels: labels ?? this.labels,
+      reviews: reviews ?? this.reviews,
     );
   }
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       id,
       images,
@@ -46,6 +58,9 @@ class Location extends Equatable with TableItem<Location> {
       mark,
       reviewsAmount,
       isFavorite,
+      description,
+      labels,
+      reviews,
     ];
   }
 
@@ -57,5 +72,8 @@ class Location extends Equatable with TableItem<Location> {
         mark: another.mark,
         reviewsAmount: another.reviewsAmount,
         isFavorite: another.isFavorite,
+        description: another.description,
+        labels: another.labels,
+        reviews: another.reviews,
       );
 }

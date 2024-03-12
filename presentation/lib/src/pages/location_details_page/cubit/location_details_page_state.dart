@@ -7,7 +7,7 @@ class LocationDetailsPageState extends Equatable {
   const LocationDetailsPageState({
     this.location = const Location(
       id: -1,
-      images: [],
+      images: [''],
       name: '',
       mark: 0,
       reviewsAmount: 0,

@@ -64,4 +64,49 @@ class TestLocationsRepository implements LocationsRepository {
     await Future.delayed(const Duration(milliseconds: 200));
     return FailureOrResult.success(null);
   }
+
+  @override
+  Future<FailureOrResult<Location>> getLocationDetails(int id) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    final reviews = List.generate(
+      5,
+      (index) => Review(
+        id: index,
+        user: User(
+          id: index,
+          email: 'mock.email@gmail.com',
+          name: index % 2 == 0 ? 'Oli Sykes' : 'Chris Motionless',
+          photo: index % 2 == 0
+              ? 'https://townsquare.media/site/366/files/2022/02/attachment-oli_sykes_bmth_2022_red_carpet_photo.jpg'
+              : index == 3
+                  ? null
+                  : 'https://pbs.twimg.com/profile_images/1700188099366580224/le9XC-fH_400x400.jpg',
+        ),
+        mark: Random().nextInt(5).toDouble(),
+        review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
+            'sed do eiusmod tempor incididunt ut labore et dolore magna '
+            'aliqua. Ut enim ad minim veniam, quis nostrud exercitation '
+            'ullamco laboris nisi ut aliquip ex ea commodo consequat. '
+            'Duis aute irure dolor in reprehenderit in voluptate velit '
+            'esse cillum dolore eu fugiat nulla pariatur. '
+            'Excepteur sint occaecat cupidatat non proident, '
+            'sunt in culpa qui officia deserunt mollit anim id est laborum',
+        createdAt: DateTime.now().toUtc().subtract(Duration(days: index)),
+        photos: _images.take(index).toList(),
+      ),
+    );
+    return FailureOrResult.success(Location(
+      id: id,
+      images: _images,
+      name: 'Location $id',
+      mark: Random().nextDouble() * 5,
+      reviewsAmount: Random().nextInt(100) + 5,
+      isFavorite: Random().nextInt(4) % 2 == 0,
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      labels: const ['Nature', 'River', 'Mountains', 'Forest'],
+      reviews: reviews,
+    ));
+  }
 }

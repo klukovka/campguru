@@ -11,6 +11,7 @@ export 'src/entities/core/filter_label.dart';
 export 'src/entities/core/sort_by.dart';
 export 'src/entities/core/table_item.dart';
 export 'src/entities/locations/location.dart';
+export 'src/entities/reviews/review.dart';
 export 'src/entities/users/user.dart';
 export 'src/output_ports/current_user_output_port.dart';
 export 'src/output_ports/error_handler_output_port.dart';
