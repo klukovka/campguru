@@ -28,6 +28,14 @@ class LocationDetailsPage extends StatefulWidget implements AutoRouteWrapper {
 
 class _LocationDetailsPageState extends State<LocationDetailsPage> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.locator<LocationDetailsPageController>()(widget.locationId);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<LocationDetailsPageCubit, LocationDetailsPageState>(
       builder: (context, state) {
