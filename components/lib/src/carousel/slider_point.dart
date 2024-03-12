@@ -29,7 +29,7 @@ class SliderPoint extends StatelessWidget {
           color: color ??
               Theme.of(context)
                   .colorScheme
-                  .onPrimary
+                  .primary
                   .withOpacity(isCurrent ? 1 : 0.5),
         ),
       ),

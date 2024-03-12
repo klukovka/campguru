@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 class RatingView extends StatelessWidget {
   static const _starCount = 5;
   final double rate;
+  final MainAxisAlignment mainAxisAlignment;
 
   const RatingView({
     super.key,
     required this.rate,
+    this.mainAxisAlignment = MainAxisAlignment.start,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: mainAxisAlignment,
       children: [
         ...List.generate(_starCount, (index) {
           return Icon(

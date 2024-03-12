@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
+import 'package:presentation/src/pages/home_page/locations_tab/views/location_photos_carousel.dart';
 
 @RoutePage()
 class LocationDetailsPage extends StatefulWidget implements AutoRouteWrapper {
@@ -43,7 +44,15 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
           appBar: AppBar(
             leading: ArrowButton.back(onPressed: context.appRouter.pop),
           ),
-          body: const CustomScrollView(),
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: LocationPhotosCarousel(
+                  location: state.location,
+                ),
+              )
+            ],
+          ),
         );
       },
     );
