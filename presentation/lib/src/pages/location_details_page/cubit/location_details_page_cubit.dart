@@ -7,7 +7,10 @@ part 'location_details_page_state.dart';
 class LocationDetailsPageCubit extends Cubit<LocationDetailsPageState> {
   LocationDetailsPageCubit() : super(const LocationDetailsPageState());
 
-  void startLoading() => emit(state.copyWith(isLoading: true));
+  void startLoading() => emit(state.copyWith(
+        isLoading: true,
+        hasError: false,
+      ));
 
   void updateLocation(Location location) => emit(state.copyWith(
         location: location,
@@ -18,5 +21,5 @@ class LocationDetailsPageCubit extends Cubit<LocationDetailsPageState> {
         location: state.location.copyWith(isFavorite: isFavorite),
       ));
 
-  void stopLoading() => emit(state.copyWith(isLoading: false));
+  void setHasError() => emit(state.copyWith(hasError: false));
 }

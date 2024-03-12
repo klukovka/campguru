@@ -47,4 +47,34 @@ class LocationsPresenter extends LocationsOutputPort {
       );
     }
   }
+
+  @override
+  void updateLocationDetails(Location location) {
+    final allLocations = locationsTabCubit.state.locations.map((item) {
+      return item.id == location.id ? item.merge(location) : item;
+    }).toList();
+
+    locationsTabCubit.setLocations(allLocations);
+    locationDetailsPageCubit.updateLocation(location);
+  }
+
+  @override
+  void startLocationDetailsLoading() {
+    locationDetailsPageCubit.startLoading();
+  }
+
+  @override
+  void updateLocationDetailsBriefly(int locationId) {
+    final location =
+        locationsTabCubit.state.locations.cast<Location?>().firstWhere(
+              (location) => location?.id == locationId,
+              orElse: () => null,
+            );
+
+    if (location != null) {
+      locationDetailsPageCubit.updateLocation(location);
+    } else {
+      locationDetailsPageCubit.setHasError();
+    }
+  }
 }

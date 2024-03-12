@@ -5,4 +5,7 @@ abstract class LocationsOutputPort {
   void updateAllLocations(List<Location> locations, int amount);
   void stopAllLocationsLoading();
   void updateLocationFavoriteStatus(int locationId, bool isFavorite);
+  void startLocationDetailsLoading();
+  void updateLocationDetails(Location location);
+  void updateLocationDetailsBriefly(int locationId);
 }
