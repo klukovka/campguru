@@ -22,8 +22,15 @@ abstract class ControllersModule {
         getAllLocationsUseCase,
       );
 
+  @lazySingleton
   LocationFavoriteButtonController getLocationTileController(
     UpdateLocationFavoriteStatusUseCase updateLocationFavoriteStatusUseCase,
   ) =>
       LocationFavoriteButtonController(updateLocationFavoriteStatusUseCase);
+
+  @lazySingleton
+  LocationDetailsPageController getLocationDetailsPageController(
+    GetLocationDetailsUseCase getLocationDetailsUseCase,
+  ) =>
+      LocationDetailsPageController(getLocationDetailsUseCase);
 }
