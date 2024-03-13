@@ -3,6 +3,8 @@
         android:label="Campguru"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+         <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyB8a2PNU5nCuDkWsJn1o5Q7tdjG-xybI7A"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
