@@ -7,4 +7,8 @@ abstract class DataSourceModule {
   @preResolve
   Future<HiveDataSource> get hiveDataSource async =>
       await HiveDataSource.getInstance();
+
+  @lazySingleton
+  @test
+  TestDataSource get testDataSource => TestDataSource();
 }

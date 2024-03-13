@@ -16,10 +16,10 @@ import 'package:presentation/presentation.dart' as _i3;
 
 import 'data_modules/auth_repository_module.dart' as _i7;
 import 'data_modules/data_source_module.dart' as _i9;
-import 'data_modules/locations_repository_module.dart' as _i11;
-import 'data_modules/preferences_repository_module.dart' as _i12;
-import 'data_modules/users_repository_module.dart' as _i13;
-import 'domain_modules/use_cases_module.dart' as _i14;
+import 'data_modules/locations_repository_module.dart' as _i14;
+import 'data_modules/preferences_repository_module.dart' as _i11;
+import 'data_modules/users_repository_module.dart' as _i12;
+import 'domain_modules/use_cases_module.dart' as _i13;
 import 'presentation_modules/auto_router_module.dart' as _i6;
 import 'presentation_modules/bloc_module.dart' as _i10;
 import 'presentation_modules/controllers_module.dart' as _i15;
@@ -43,10 +43,10 @@ Future<_i1.GetIt> $configureDependencies(
   final presentersModule = _$PresentersModule();
   final dataSourceModule = _$DataSourceModule();
   final blocModule = _$BlocModule();
-  final locationsRepositoryModule = _$LocationsRepositoryModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
   final useCasesModule = _$UseCasesModule();
+  final locationsRepositoryModule = _$LocationsRepositoryModule();
   final controllersModule = _$ControllersModule();
   gh.lazySingleton<_i3.AppAutoRouter>(
       () => autoRouterModule.getAppAutoRouter());
@@ -65,10 +65,6 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i3.HomePageCubit>(() => blocModule.homePageCubit);
   gh.lazySingleton<_i3.LocationDetailsPageCubit>(
       () => blocModule.locationDetailsPageCubit);
-  gh.lazySingleton<_i4.LocationsRepository>(
-    () => locationsRepositoryModule.testLocationsRepository,
-    registerFor: {_test},
-  );
   gh.lazySingleton<_i3.LocationsTabCubit>(() => blocModule.locationsTabCubit);
   gh.lazySingleton<_i4.PreferencesRepository>(
     () => preferencesRepositoryModule
@@ -76,6 +72,10 @@ Future<_i1.GetIt> $configureDependencies(
     registerFor: {_test},
   );
   gh.lazySingleton<_i3.SplashPageCubit>(() => blocModule.splashPageCubit);
+  gh.lazySingleton<_i5.TestDataSource>(
+    () => dataSourceModule.testDataSource,
+    registerFor: {_test},
+  );
   gh.lazySingleton<_i4.UsersRepository>(
     () => usersRepositoryModule.testUsersRepository,
     registerFor: {_test},
@@ -98,6 +98,11 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i3.LocationsTabCubit>(),
             gh<_i3.LocationDetailsPageCubit>(),
           ));
+  gh.lazySingleton<_i4.LocationsRepository>(
+    () => locationsRepositoryModule
+        .getTestLocationsRepository(gh<_i5.TestDataSource>()),
+    registerFor: {_test},
+  );
   gh.lazySingleton<_i4.UpdateLocationFavoriteStatusUseCase>(
       () => useCasesModule.getUpdateLocationFavoriteStatusUseCase(
             gh<_i4.LocationsRepository>(),
@@ -141,12 +146,12 @@ class _$DataSourceModule extends _i9.DataSourceModule {}
 
 class _$BlocModule extends _i10.BlocModule {}
 
-class _$LocationsRepositoryModule extends _i11.LocationsRepositoryModule {}
+class _$PreferencesRepositoryModule extends _i11.PreferencesRepositoryModule {}
 
-class _$PreferencesRepositoryModule extends _i12.PreferencesRepositoryModule {}
+class _$UsersRepositoryModule extends _i12.UsersRepositoryModule {}
 
-class _$UsersRepositoryModule extends _i13.UsersRepositoryModule {}
+class _$UseCasesModule extends _i13.UseCasesModule {}
 
-class _$UseCasesModule extends _i14.UseCasesModule {}
+class _$LocationsRepositoryModule extends _i14.LocationsRepositoryModule {}
 
 class _$ControllersModule extends _i15.ControllersModule {}
