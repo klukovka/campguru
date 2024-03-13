@@ -43,6 +43,7 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
       builder: (context, state) {
         final description = state.location.description ?? '';
         final labels = state.location.labels ?? [];
+        final reviews = state.location.reviews ?? [];
         return Scaffold(
           body: Skeletonizer(
             enabled: state.isLoading,
@@ -58,16 +59,19 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                 ),
                 if (description.isNotEmpty)
                   SliverPadding(
-                    padding: const EdgeInsets.all(16),
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, top: 16),
                     sliver: SliverToBoxAdapter(
                       child: Text(description),
                     ),
                   ),
                 SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
                     child: ArrowButton.large(
-                      onPressed: () {},
+                      onPressed: () {
+                        //TODO: Open map
+                      },
                       //TODO: Add localization
                       child: const Text('View on Map'),
                     ),
@@ -75,7 +79,8 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                 ),
                 if (labels.isNotEmpty)
                   SliverPadding(
-                    padding: const EdgeInsets.all(16),
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, top: 16),
                     sliver: SliverToBoxAdapter(
                       child: Wrap(
                         spacing: 12,
@@ -83,6 +88,31 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                         children: labels
                             .map((label) => Chip(label: Text(label)))
                             .toList(),
+                      ),
+                    ),
+                  ),
+                if (state.location.reviewsAmount != 0)
+                  SliverPadding(
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, top: 16),
+                    sliver: SliverToBoxAdapter(
+                      child: Row(
+                        //TODO: Add localization
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Reviews (${state.location.reviewsAmount})',
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                          ArrowButton.small(
+                            onPressed: () {
+                              //TODO: Open map
+                            },
+                            //TODO: Add localization
+                            child: const Text('more'),
+                          )
+                        ],
                       ),
                     ),
                   ),

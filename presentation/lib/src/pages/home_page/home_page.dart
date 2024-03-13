@@ -36,9 +36,9 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
                 onTap: (index) => tabsRouter.setActiveIndex(index),
                 currentIndex: tabsRouter.activeIndex,
                 items: HomePageTabType.values.map((item) {
-                  if (item == HomePageTabType.profile && userAvatar != null) {
+                  if (item == HomePageTabType.profile) {
                     return BottomNavigationBarItem(
-                      icon: BottomNavigationBarAvarar(
+                      icon: BottomNavigationBarAvatar(
                         imageUrl: userAvatar,
                         isCurrent: tabsRouter.activeIndex ==
                             HomePageTabType.profile.index,

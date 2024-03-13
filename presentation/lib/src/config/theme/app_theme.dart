@@ -3,6 +3,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:presentation/src/pages/home_page/home_page_tab_type.dart';
 
 final themeExtensions = <ThemeExtension<dynamic>>[
   FavoriteButtonThemeData(
@@ -16,6 +17,9 @@ final themeExtensions = <ThemeExtension<dynamic>>[
   SearchFieldThemeData(
     magnify: MdiIcons.magnify,
     clear: MdiIcons.closeCircle,
+  ),
+  CircleIconPreviewThemeData(
+    user: HomePageTabType.profile.iconData,
   ),
 ];
 

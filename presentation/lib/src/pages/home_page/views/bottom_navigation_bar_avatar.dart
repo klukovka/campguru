@@ -1,10 +1,11 @@
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 
-class BottomNavigationBarAvarar extends StatelessWidget {
-  final String imageUrl;
+class BottomNavigationBarAvatar extends StatelessWidget {
+  final String? imageUrl;
   final bool isCurrent;
 
-  const BottomNavigationBarAvarar({
+  const BottomNavigationBarAvatar({
     super.key,
     required this.imageUrl,
     required this.isCurrent,
@@ -12,17 +13,20 @@ class BottomNavigationBarAvarar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = isCurrent
+        ? Theme.of(context).bottomNavigationBarTheme.selectedItemColor
+        : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor;
     return Container(
-      padding: const EdgeInsets.all(2),
+      // padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
-        color: isCurrent
-            ? Theme.of(context).bottomNavigationBarTheme.selectedItemColor
-            : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+        // color: color,
         shape: BoxShape.circle,
+        border: Border.all(color: color!, width: 2),
       ),
-      child: CircleAvatar(
+      child: CircleIconPreview.user(
         radius: 16,
-        backgroundImage: NetworkImage(imageUrl),
+        imageUrl: imageUrl,
+        color: color,
       ),
     );
   }
