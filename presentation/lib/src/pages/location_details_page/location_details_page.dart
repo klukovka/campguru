@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/location_details_page/views/location_details_header_delegate.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
 class LocationDetailsPage extends StatefulWidget implements AutoRouteWrapper {
@@ -39,23 +40,34 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<LocationDetailsPageCubit, LocationDetailsPageState>(
       builder: (context, state) {
+        final description = state.location.description ?? '';
         return Scaffold(
-          body: CustomScrollView(
-            slivers: [
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: LocationDetailsHeaderDelegate(
-                  location: state.location,
-                  maxExtent: MediaQuery.sizeOf(context).width,
-                  safeTopPadding: MediaQuery.paddingOf(context).top,
+          body: Skeletonizer(
+            enabled: state.isLoading,
+            child: CustomScrollView(
+              slivers: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: LocationDetailsHeaderDelegate(
+                    location: state.location,
+                    maxExtent: MediaQuery.sizeOf(context).width,
+                    safeTopPadding: MediaQuery.paddingOf(context).top,
+                  ),
                 ),
-              ),
-              const SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 1200,
+                if (description.isNotEmpty)
+                  SliverPadding(
+                    padding: const EdgeInsets.all(16),
+                    sliver: SliverToBoxAdapter(
+                      child: Text(description),
+                    ),
+                  ),
+                const SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 1200,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
