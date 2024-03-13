@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/location_details_page/views/location_details_header_delegate.dart';
-import 'package:presentation/src/views/reviews/review_tile.dart';
+import 'package:presentation/src/views/reviews/reviews_list.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
@@ -117,15 +117,7 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                       ),
                     ),
                   ),
-                if (reviews.isNotEmpty)
-                  SliverList.separated(
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: ReviewTile(review: reviews[index]),
-                    ),
-                    separatorBuilder: (context, index) => const Divider(),
-                    itemCount: reviews.length,
-                  ),
+                if (reviews.isNotEmpty) ReviewsList.sliver(reviews: reviews),
               ],
             ),
           ),
