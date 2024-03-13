@@ -15,6 +15,7 @@ class RatingNameInfoBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
+      width: MediaQuery.sizeOf(context).width,
       padding: const EdgeInsets.symmetric(
         vertical: 12,
         horizontal: 16,
@@ -26,12 +27,17 @@ class RatingNameInfoBar extends StatelessWidget {
         ),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            name,
-            style: Theme.of(context).textTheme.headlineMedium,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+          SkeletonReplacement(
+            height: 24,
+            width: 200,
+            child: Text(
+              name,
+              style: Theme.of(context).textTheme.headlineMedium,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           const SizedBox(height: 12),
           IconTheme(

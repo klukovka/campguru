@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ArrowButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget child;
   final bool _isLarge;
 
   const ArrowButton.large({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     required this.child,
   }) : _isLarge = true;
 
   const ArrowButton.small({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     required this.child,
   }) : _isLarge = false;
 
@@ -41,15 +42,17 @@ class ArrowButton extends StatelessWidget {
           return Theme.of(context).colorScheme.primary;
         }),
       ),
-      child: Row(
-        children: [
-          child,
-          const SizedBox(width: 4),
-          Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: _isLarge ? 20 : 16,
-          ),
-        ],
+      child: Skeleton.unite(
+        child: Row(
+          children: [
+            child,
+            const SizedBox(width: 4),
+            Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: _isLarge ? 20 : 16,
+            ),
+          ],
+        ),
       ),
     );
   }

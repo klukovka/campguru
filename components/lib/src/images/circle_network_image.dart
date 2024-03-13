@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CircleNetworkImage extends StatefulWidget {
   final double radius;
@@ -48,20 +49,22 @@ class _CircleNetworkImageState extends State<CircleNetworkImage> {
   Widget build(BuildContext context) {
     final hasForegroundImage = _image != null && !_hasError;
 
-    return CircleAvatar(
-      radius: widget.radius,
-      backgroundColor: widget.backgroundColor ?? Colors.transparent,
-      foregroundImage: hasForegroundImage ? _image : null,
-      onForegroundImageError: hasForegroundImage
-          ? (error, stackTrace) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                if (mounted) {
-                  setState(() => _hasError = true);
-                }
-              });
-            }
-          : null,
-      child: widget.imageUrl == null || _hasError ? widget.placeholder : null,
+    return Skeleton.leaf(
+      child: CircleAvatar(
+        radius: widget.radius,
+        backgroundColor: widget.backgroundColor ?? Colors.transparent,
+        foregroundImage: hasForegroundImage ? _image : null,
+        onForegroundImageError: hasForegroundImage
+            ? (error, stackTrace) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (mounted) {
+                    setState(() => _hasError = true);
+                  }
+                });
+              }
+            : null,
+        child: widget.imageUrl == null || _hasError ? widget.placeholder : null,
+      ),
     );
   }
 }

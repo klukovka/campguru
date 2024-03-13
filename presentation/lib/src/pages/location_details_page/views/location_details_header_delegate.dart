@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/location_details_page/views/location_photos_carousel.dart';
 import 'package:presentation/src/views/locations/location_favorite_button/location_favorite_button.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class LocationDetailsHeaderDelegate extends SliverPersistentHeaderDelegate {
   final Location location;
@@ -38,8 +39,14 @@ class LocationDetailsHeaderDelegate extends SliverPersistentHeaderDelegate {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ArrowCircleButton.back(onPressed: context.appRouter.pop),
-                LocationFavoriteButton(location: location),
+                Skeleton.ignore(
+                  child: ArrowCircleButton.back(
+                    onPressed: context.appRouter.pop,
+                  ),
+                ),
+                Skeleton.ignore(
+                  child: LocationFavoriteButton(location: location),
+                ),
               ],
             ),
           ),

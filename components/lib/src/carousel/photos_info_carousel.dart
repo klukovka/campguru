@@ -15,16 +15,20 @@ class PhotosInfoCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dimension = MediaQuery.sizeOf(context).width;
     return Carousel.builder(
       itemCount: images.length,
-      itemBuilder: (index) => Image.network(
-        images[index],
-        fit: BoxFit.cover,
+      itemBuilder: (index) => SkeletonReplacement(
+        borderRadius: BorderRadius.zero,
+        child: Image.network(
+          images[index],
+          fit: BoxFit.cover,
+        ),
       ),
       decorator: CarouselDecorator(
         itemConstraints: BoxConstraints.tightFor(
-          width: MediaQuery.sizeOf(context).width,
-          height: MediaQuery.sizeOf(context).width,
+          width: dimension,
+          height: dimension,
         ),
       ),
       builder: (context, carousel, points) => Stack(

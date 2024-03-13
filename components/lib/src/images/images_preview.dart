@@ -1,5 +1,7 @@
+import 'package:components/components.dart';
 import 'package:components/src/core/widget_list_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ImagesPreview extends StatelessWidget {
   final List<String> images;
@@ -23,7 +25,12 @@ class ImagesPreview extends StatelessWidget {
         children: [
           ...images
               .take(maxAmount - 1)
-              .map<Widget>((url) => Container(
+              .map<Widget>(
+                (url) => SkeletonReplacement(
+                  width: size,
+                  height: size,
+                  borderRadius: borderRadius,
+                  child: Container(
                     width: size,
                     height: size,
                     decoration: BoxDecoration(
@@ -33,26 +40,31 @@ class ImagesPreview extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                  ))
+                  ),
+                ),
+              )
               .toList()
               .insertSeparator(
                 () => SizedBox(width: separator),
                 hasEndSeparator: true,
               ),
           if (images.length >= maxAmount)
-            FilledButton.tonal(
-              onPressed: () {
-                //TODO: Open all images gallery
-              },
-              style: ButtonStyle(
-                fixedSize: MaterialStatePropertyAll(
-                  Size(size, size),
+            Skeleton.unite(
+              borderRadius: borderRadius,
+              child: FilledButton.tonal(
+                onPressed: () {
+                  //TODO: Open all images gallery
+                },
+                style: ButtonStyle(
+                  fixedSize: MaterialStatePropertyAll(
+                    Size(size, size),
+                  ),
+                  shape: MaterialStatePropertyAll(
+                    RoundedRectangleBorder(borderRadius: borderRadius),
+                  ),
                 ),
-                shape: MaterialStatePropertyAll(
-                  RoundedRectangleBorder(borderRadius: borderRadius),
-                ),
+                child: Icon(Icons.more_horiz, size: size / 3),
               ),
-              child: Icon(Icons.more_horiz, size: size / 3),
             ),
         ],
       );
