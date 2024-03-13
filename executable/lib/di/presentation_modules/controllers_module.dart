@@ -33,4 +33,10 @@ abstract class ControllersModule {
     GetLocationDetailsUseCase getLocationDetailsUseCase,
   ) =>
       LocationDetailsPageController(getLocationDetailsUseCase);
+
+  @lazySingleton
+  LocationReviewsPageController getLocationReviewsPageController(
+    GetLocationReviewsUseCase getLocationReviewsUseCase,
+  ) =>
+      LocationReviewsPageController(getLocationReviewsUseCase);
 }

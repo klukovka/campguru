@@ -143,6 +143,8 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i3.LocationFavoriteButtonController>(() =>
       controllersModule.getLocationTileController(
           gh<_i4.UpdateLocationFavoriteStatusUseCase>()));
+  gh.lazySingleton<_i3.LocationReviewsPageController>(() => controllersModule
+      .getLocationReviewsPageController(gh<_i4.GetLocationReviewsUseCase>()));
   gh.lazySingleton<_i3.LocationsTabController>(() => controllersModule
       .getLocationsTabController(gh<_i4.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i3.SplashPageController>(
