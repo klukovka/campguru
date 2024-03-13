@@ -18,11 +18,12 @@ import 'data_modules/auth_repository_module.dart' as _i7;
 import 'data_modules/data_source_module.dart' as _i9;
 import 'data_modules/locations_repository_module.dart' as _i14;
 import 'data_modules/preferences_repository_module.dart' as _i11;
+import 'data_modules/reviews_repository_module.dart' as _i15;
 import 'data_modules/users_repository_module.dart' as _i12;
 import 'domain_modules/use_cases_module.dart' as _i13;
 import 'presentation_modules/auto_router_module.dart' as _i6;
 import 'presentation_modules/bloc_module.dart' as _i10;
-import 'presentation_modules/controllers_module.dart' as _i15;
+import 'presentation_modules/controllers_module.dart' as _i16;
 import 'presentation_modules/presenters_module.dart' as _i8;
 
 const String _test = 'test';
@@ -47,6 +48,7 @@ Future<_i1.GetIt> $configureDependencies(
   final usersRepositoryModule = _$UsersRepositoryModule();
   final useCasesModule = _$UseCasesModule();
   final locationsRepositoryModule = _$LocationsRepositoryModule();
+  final reviewsRepositoryModule = _$ReviewsRepositoryModule();
   final controllersModule = _$ControllersModule();
   gh.lazySingleton<_i3.AppAutoRouter>(
       () => autoRouterModule.getAppAutoRouter());
@@ -103,6 +105,11 @@ Future<_i1.GetIt> $configureDependencies(
         .getTestLocationsRepository(gh<_i5.TestDataSource>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i4.ReviewsRepository>(
+    () => reviewsRepositoryModule
+        .getTestReviewsRepository(gh<_i5.TestDataSource>()),
+    registerFor: {_test},
+  );
   gh.lazySingleton<_i4.UpdateLocationFavoriteStatusUseCase>(
       () => useCasesModule.getUpdateLocationFavoriteStatusUseCase(
             gh<_i4.LocationsRepository>(),
@@ -154,4 +161,6 @@ class _$UseCasesModule extends _i13.UseCasesModule {}
 
 class _$LocationsRepositoryModule extends _i14.LocationsRepositoryModule {}
 
-class _$ControllersModule extends _i15.ControllersModule {}
+class _$ReviewsRepositoryModule extends _i15.ReviewsRepositoryModule {}
+
+class _$ControllersModule extends _i16.ControllersModule {}
