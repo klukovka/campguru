@@ -4,12 +4,14 @@ class CircleNetworkImage extends StatefulWidget {
   final double radius;
   final String? imageUrl;
   final Widget placeholder;
+  final Color? backgroundColor;
 
   const CircleNetworkImage({
     super.key,
     required this.placeholder,
     this.radius = 24,
     this.imageUrl,
+    this.backgroundColor,
   });
 
   @override
@@ -48,7 +50,7 @@ class _CircleNetworkImageState extends State<CircleNetworkImage> {
 
     return CircleAvatar(
       radius: widget.radius,
-      backgroundColor: Colors.transparent,
+      backgroundColor: widget.backgroundColor ?? Colors.transparent,
       foregroundImage: hasForegroundImage ? _image : null,
       onForegroundImageError: hasForegroundImage
           ? (error, stackTrace) {

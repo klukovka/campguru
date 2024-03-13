@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class CircleIconPreview extends StatelessWidget {
   final Widget Function(BuildContext context) placeholder;
+  final Color Function(BuildContext context)? backgroundColor;
   final String? imageUrl;
   final double radius;
 
@@ -11,6 +12,7 @@ class CircleIconPreview extends StatelessWidget {
     required this.placeholder,
     this.imageUrl,
     required this.radius,
+    this.backgroundColor,
   });
 
   factory CircleIconPreview.user({
@@ -25,9 +27,11 @@ class CircleIconPreview extends StatelessWidget {
         placeholder: (context) => Icon(
           Theme.of(context).extension<CircleIconPreviewThemeData>()?.user,
           size: radius * 2,
-          color: color ?? Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
         radius: radius,
+        backgroundColor: (context) =>
+            color ?? Theme.of(context).colorScheme.primary,
       );
 
   @override
@@ -36,6 +40,7 @@ class CircleIconPreview extends StatelessWidget {
       placeholder: placeholder(context),
       radius: radius,
       imageUrl: imageUrl,
+      backgroundColor: backgroundColor?.call(context),
     );
   }
 }

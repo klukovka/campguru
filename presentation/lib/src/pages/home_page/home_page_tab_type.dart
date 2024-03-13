@@ -18,7 +18,7 @@ enum HomePageTabType {
   IconData get iconData => switch (this) {
         HomePageTabType.routes => MdiIcons.routes,
         HomePageTabType.trips => MdiIcons.campfire,
-        HomePageTabType.profile => MdiIcons.accountCircleOutline,
+        HomePageTabType.profile => MdiIcons.accountCircle,
         HomePageTabType.locations => MdiIcons.mapMarker,
       };
 

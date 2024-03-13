@@ -16,10 +16,9 @@ class BottomNavigationBarAvatar extends StatelessWidget {
     final color = isCurrent
         ? Theme.of(context).bottomNavigationBarTheme.selectedItemColor
         : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor;
+
     return Container(
-      // padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
-        // color: color,
         shape: BoxShape.circle,
         border: Border.all(color: color!, width: 2),
       ),
