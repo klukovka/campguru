@@ -12,6 +12,8 @@ class Location extends Equatable with TableItem<Location> {
   final String? description;
   final List<String>? labels;
   final List<Review>? reviews;
+  final double? lng;
+  final double? lat;
 
   const Location({
     required this.id,
@@ -23,6 +25,8 @@ class Location extends Equatable with TableItem<Location> {
     this.description,
     this.labels,
     this.reviews,
+    this.lat,
+    this.lng,
   });
 
   Location copyWith({
@@ -35,6 +39,8 @@ class Location extends Equatable with TableItem<Location> {
     String? description,
     List<String>? labels,
     List<Review>? reviews,
+    double? lat,
+    double? lng,
   }) {
     return Location(
       id: id ?? this.id,
@@ -46,6 +52,8 @@ class Location extends Equatable with TableItem<Location> {
       description: description ?? this.description,
       labels: labels ?? this.labels,
       reviews: reviews ?? this.reviews,
+      lat: lat ?? this.lat,
+      lng: lng ?? this.lng,
     );
   }
 
@@ -61,6 +69,8 @@ class Location extends Equatable with TableItem<Location> {
       description,
       labels,
       reviews,
+      lat,
+      lng,
     ];
   }
 
@@ -75,5 +85,7 @@ class Location extends Equatable with TableItem<Location> {
         description: another.description,
         labels: another.labels,
         reviews: another.reviews,
+        lat: another.lat,
+        lng: another.lng,
       );
 }

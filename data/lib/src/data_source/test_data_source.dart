@@ -70,6 +70,8 @@ class TestDataSource {
         'Animals',
       ],
       reviews: generateReviews(size: 5, page: 0).values,
+      lat: 50,
+      lng: 50,
     );
   }
 
