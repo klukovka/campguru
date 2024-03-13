@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
-import 'package:presentation/src/pages/home_page/locations_tab/views/location_photos_carousel.dart';
+import 'package:presentation/src/pages/location_details_page/views/location_details_header_delegate.dart';
 
 @RoutePage()
 class LocationDetailsPage extends StatefulWidget implements AutoRouteWrapper {
@@ -41,16 +40,21 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
     return BlocBuilder<LocationDetailsPageCubit, LocationDetailsPageState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            leading: ArrowButton.back(onPressed: context.appRouter.pop),
-          ),
           body: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
-                child: LocationPhotosCarousel(
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: LocationDetailsHeaderDelegate(
                   location: state.location,
+                  maxExtent: MediaQuery.sizeOf(context).width,
+                  safeTopPadding: MediaQuery.paddingOf(context).top,
                 ),
-              )
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 1200,
+                ),
+              ),
             ],
           ),
         );

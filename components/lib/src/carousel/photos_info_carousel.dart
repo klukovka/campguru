@@ -1,5 +1,6 @@
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class PhotosInfoCarousel extends StatelessWidget {
   final List<String> images;
@@ -31,13 +32,18 @@ class PhotosInfoCarousel extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           carousel,
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              points,
-              const SizedBox(height: 12),
-              RatingNameInfoBar(name: name, mark: mark),
-            ],
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                points,
+                const SizedBox(height: 12),
+                RatingNameInfoBar(name: name, mark: mark),
+              ],
+            ),
           ),
         ],
       ),
