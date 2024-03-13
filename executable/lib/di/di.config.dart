@@ -67,12 +67,16 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i3.HomePageCubit>(() => blocModule.homePageCubit);
   gh.lazySingleton<_i3.LocationDetailsPageCubit>(
       () => blocModule.locationDetailsPageCubit);
+  gh.lazySingleton<_i3.LocationReviewsPageCubit>(
+      () => blocModule.locationReviewsPageCubit);
   gh.lazySingleton<_i3.LocationsTabCubit>(() => blocModule.locationsTabCubit);
   gh.lazySingleton<_i4.PreferencesRepository>(
     () => preferencesRepositoryModule
         .testPreferencesRepository(gh<_i5.HiveDataSource>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i4.ReviewsOutputPort>(() => presentersModule
+      .getReviewsOutputPort(gh<_i3.LocationReviewsPageCubit>()));
   gh.lazySingleton<_i3.SplashPageCubit>(() => blocModule.splashPageCubit);
   gh.lazySingleton<_i5.TestDataSource>(
     () => dataSourceModule.testDataSource,
@@ -127,6 +131,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.LocationsRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.LocationsOutputPort>(),
+          ));
+  gh.lazySingleton<_i4.GetLocationReviewsUseCase>(
+      () => useCasesModule.getLocationReviewssUseCase(
+            gh<_i4.ReviewsRepository>(),
+            gh<_i4.ErrorHandlerOutputPort>(),
+            gh<_i4.ReviewsOutputPort>(),
           ));
   gh.lazySingleton<_i3.LocationDetailsPageController>(() => controllersModule
       .getLocationDetailsPageController(gh<_i4.GetLocationDetailsUseCase>()));
