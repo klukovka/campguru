@@ -5,6 +5,10 @@ class LocationReviewsPageController {
 
   LocationReviewsPageController(this.getLocationReviewsUseCase);
 
+  void initalLoading(int locationId) {
+    getLocationReviewsUseCase(locationId, const Filter());
+  }
+
   void uploadNextPage(int locationId, Filter filter) {
     getLocationReviewsUseCase(
       locationId,

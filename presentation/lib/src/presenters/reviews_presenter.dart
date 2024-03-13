@@ -8,16 +8,21 @@ class ReviewsPresenter extends ReviewsOutputPort {
 
   @override
   void setLocationReviewsFilter(Filter filter) {
-    // TODO: implement setLocationReviewsFilter
+    locationReviewsPageCubit.setFilter(filter);
   }
 
   @override
   void stopLocationReviewsLoading() {
-    // TODO: implement stopLocationReviewsLoading
+    locationReviewsPageCubit.stopLoading();
   }
 
   @override
   void updateLocationReviews(List<Review> reviews, int amount) {
-    // TODO: implement updateLocationReviews
+    final append = locationReviewsPageCubit.state.filter.append;
+    if (append) {
+      locationReviewsPageCubit.appendReview(reviews);
+    } else {
+      locationReviewsPageCubit.setReviews(reviews, amount: amount);
+    }
   }
 }

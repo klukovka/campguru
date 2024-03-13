@@ -37,7 +37,7 @@ class LocationTile extends StatelessWidget {
         ],
       ),
       favoriteButton: LocationFavoriteButton(location: location),
-      onPressed: () => context.appRouter.pushLocationDetails(location.id),
+      onPressed: () => context.appRouter.pushLocationDetailsPage(location.id),
     );
   }
 }

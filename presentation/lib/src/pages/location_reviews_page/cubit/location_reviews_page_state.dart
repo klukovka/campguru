@@ -13,7 +13,7 @@ class LocationReviewsPageState extends Equatable {
     this.reviews = const [],
   });
 
-  bool get isFirstLoading => isLoading && reviews.isEmpty;
+  bool get isFirstLoading => isLoading && filter.page == 0;
 
   LocationReviewsPageState copyWith({
     Filter? filter,

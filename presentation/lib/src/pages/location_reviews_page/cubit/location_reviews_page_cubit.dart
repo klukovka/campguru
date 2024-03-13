@@ -12,13 +12,13 @@ class LocationReviewsPageCubit extends Cubit<LocationReviewsPageState> {
         isLoading: true,
       ));
 
-  void setLocations(List<Review> reviews, {int? amount}) => emit(state.copyWith(
+  void setReviews(List<Review> reviews, {int? amount}) => emit(state.copyWith(
         reviews: reviews,
         isLoading: false,
         totslReviewsAmount: amount,
       ));
 
-  void appendLocations(List<Review> reviews) => emit(state.copyWith(
+  void appendReview(List<Review> reviews) => emit(state.copyWith(
         reviews: [...state.reviews, ...reviews],
         isLoading: false,
       ));

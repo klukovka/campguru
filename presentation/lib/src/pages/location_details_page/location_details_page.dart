@@ -106,9 +106,10 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                           ),
                         ),
                         ArrowButton.small(
-                          onPressed: () {
-                            //TODO: Open map
-                          },
+                          onPressed: () =>
+                              context.appRouter.pushLocationReviewsPage(
+                            widget.locationId,
+                          ),
                           //TODO: Add localization
                           child: const Text('more'),
                         )

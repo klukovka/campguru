@@ -13,18 +13,18 @@ class GetLocationReviewsUseCase {
 
   Future<void> call(int locationId, Filter filter) async {
     reviewsOutputPort.setLocationReviewsFilter(filter);
-    final locations =
+    final reviews =
         await reviewsRepository.getLocationReviews(locationId, filter);
 
-    if (locations.wasSuccessful) {
+    if (reviews.wasSuccessful) {
       reviewsOutputPort.updateLocationReviews(
-        locations.result!.values,
-        locations.result!.fullCount,
+        reviews.result!.values,
+        reviews.result!.fullCount,
       );
       return;
     }
 
-    errorHandlerOutputPort.setError(locations.failure!);
+    errorHandlerOutputPort.setError(reviews.failure!);
     reviewsOutputPort.stopLocationReviewsLoading();
   }
 }
