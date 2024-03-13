@@ -36,6 +36,11 @@ class ReviewTile extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Text(review.review),
               ),
+              if (review.photos.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: ImagesPreview(images: review.photos),
+                ),
               Text(
                 review.createdAt.dayAbbreviatedMonthYear,
                 style: Theme.of(context).textTheme.labelSmall,

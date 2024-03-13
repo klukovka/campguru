@@ -20,7 +20,7 @@ class RatingNameInfoBar extends StatelessWidget {
         horizontal: 16,
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(20),
         ),

@@ -18,7 +18,7 @@ class CampguruApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = locator<AppAutoRouter>();
 
-    const themeMode = ThemeMode.dark;
+    const themeMode = ThemeMode.system;
 
     return GetItData(
       locator: locator,

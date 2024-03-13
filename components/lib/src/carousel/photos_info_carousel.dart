@@ -1,6 +1,5 @@
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class PhotosInfoCarousel extends StatelessWidget {
   final List<String> images;
@@ -31,7 +30,10 @@ class PhotosInfoCarousel extends StatelessWidget {
       builder: (context, carousel, points) => Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          carousel,
+          Container(
+            color: Theme.of(context).colorScheme.onPrimary,
+            child: carousel,
+          ),
           Positioned(
             bottom: 0,
             left: 0,
