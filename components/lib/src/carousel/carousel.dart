@@ -108,19 +108,22 @@ class _CarouselState extends State<Carousel> {
         children: widget.children,
       ),
     );
-    final points = widget.itemCount > 4
-        ? SlideAnimatedCarouselPoints(
-            controller: _controller,
-            itemCount: widget.itemCount,
-            selectedColor: widget.decorator?.selectedColor,
-            uselectedColor: widget.decorator?.uselectedColor,
-          )
-        : SwapAnimatedCarouselPoints(
-            controller: _controller,
-            itemCount: widget.itemCount,
-            selectedColor: widget.decorator?.selectedColor,
-            uselectedColor: widget.decorator?.uselectedColor,
-          );
+    final points = Visibility.maintain(
+      visible: widget.children.length > 1,
+      child: widget.itemCount > 4
+          ? SlideAnimatedCarouselPoints(
+              controller: _controller,
+              itemCount: widget.itemCount,
+              selectedColor: widget.decorator?.selectedColor,
+              uselectedColor: widget.decorator?.uselectedColor,
+            )
+          : SwapAnimatedCarouselPoints(
+              controller: _controller,
+              itemCount: widget.itemCount,
+              selectedColor: widget.decorator?.selectedColor,
+              uselectedColor: widget.decorator?.uselectedColor,
+            ),
+    );
     return widget.builder?.call(context, carousel, points) ??
         Column(
           mainAxisSize: MainAxisSize.min,
