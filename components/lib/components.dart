@@ -1,6 +1,7 @@
 library components;
 
 export 'src/buttons/arrow_button.dart';
+export 'src/buttons/arrow_circle_button.dart';
 export 'src/buttons/favorite_button.dart';
 export 'src/buttons/filter_button.dart';
 export 'src/cards/item_card.dart';

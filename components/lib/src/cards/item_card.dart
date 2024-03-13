@@ -40,7 +40,7 @@ class ItemCard extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ArrowButton.forward(onPressed: onPressed),
+                  ArrowCircleButton.forward(onPressed: onPressed),
                   favoriteButton
                 ],
               ),

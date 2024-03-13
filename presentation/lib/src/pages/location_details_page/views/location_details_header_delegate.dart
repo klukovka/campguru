@@ -38,7 +38,7 @@ class LocationDetailsHeaderDelegate extends SliverPersistentHeaderDelegate {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ArrowButton.back(onPressed: context.appRouter.pop),
+                ArrowCircleButton.back(onPressed: context.appRouter.pop),
                 LocationFavoriteButton(location: location),
               ],
             ),

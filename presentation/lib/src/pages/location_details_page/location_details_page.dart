@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
@@ -41,6 +42,7 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
     return BlocBuilder<LocationDetailsPageCubit, LocationDetailsPageState>(
       builder: (context, state) {
         final description = state.location.description ?? '';
+        final labels = state.location.labels ?? [];
         return Scaffold(
           body: Skeletonizer(
             enabled: state.isLoading,
@@ -59,6 +61,29 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                     padding: const EdgeInsets.all(16),
                     sliver: SliverToBoxAdapter(
                       child: Text(description),
+                    ),
+                  ),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  sliver: SliverToBoxAdapter(
+                    child: ArrowButton.large(
+                      onPressed: () {},
+                      //TODO: Add localization
+                      child: const Text('View on Map'),
+                    ),
+                  ),
+                ),
+                if (labels.isNotEmpty)
+                  SliverPadding(
+                    padding: const EdgeInsets.all(16),
+                    sliver: SliverToBoxAdapter(
+                      child: Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: labels
+                            .map((label) => Chip(label: Text(label)))
+                            .toList(),
+                      ),
                     ),
                   ),
                 const SliverToBoxAdapter(
