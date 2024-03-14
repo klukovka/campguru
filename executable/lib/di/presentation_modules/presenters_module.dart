@@ -34,4 +34,14 @@ abstract class PresentersModule {
       ReviewsPresenter(
         locationReviewsPageCubit: locationReviewsPageCubit,
       );
+
+  @lazySingleton
+  RoutesOutputPort getRoutesOutputPort(
+    RoutesTabCubit routesTabCubit,
+    RouteDetailsPageCubit routeDetailsPageCubit,
+  ) =>
+      RoutesPresenter(
+        routesTabCubit: routesTabCubit,
+        routeDetailsPageCubit: routeDetailsPageCubit,
+      );
 }
