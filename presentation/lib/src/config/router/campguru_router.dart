@@ -21,4 +21,8 @@ class CampguruRouter extends BaseRouter {
           lng: lng ?? 0,
         ),
       );
+
+  Future<void> pushRouteDetailsPage(int id) async {
+    //TODO: Implement
+  }
 }
