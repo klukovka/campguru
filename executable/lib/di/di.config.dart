@@ -183,6 +183,7 @@ Future<_i1.GetIt> $configureDependencies(
       () => controllersModule.getSplashPageController(
             gh<_i4.IsAuthorizedUseCase>(),
             gh<_i4.GetAllLocationsUseCase>(),
+            gh<_i4.GetAllRoutesUseCase>(),
           ));
   return getIt;
 }
