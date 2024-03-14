@@ -78,4 +78,16 @@ abstract class UseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         routesOutputPort: routesOutputPort,
       );
+
+  @lazySingleton
+  UpdateRouteFavoriteStatusUseCase getUpdateRouteFavoriteStatusUseCase(
+    RoutesRepository routesRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    RoutesOutputPort routesOutputPort,
+  ) =>
+      UpdateRouteFavoriteStatusUseCase(
+        routesRepository: routesRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        routesOutputPort: routesOutputPort,
+      );
 }

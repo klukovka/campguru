@@ -31,3 +31,4 @@ export 'src/use_cases/get_location_details_use_case.dart';
 export 'src/use_cases/get_location_reviews_use_case.dart';
 export 'src/use_cases/is_authorized_use_case.dart';
 export 'src/use_cases/update_location_favorite_status_use_case.dart';
+export 'src/use_cases/update_route_favorite_status_use_case.dart';

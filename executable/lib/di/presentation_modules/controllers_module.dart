@@ -23,7 +23,7 @@ abstract class ControllersModule {
       );
 
   @lazySingleton
-  LocationFavoriteButtonController getLocationTileController(
+  LocationFavoriteButtonController getLocationFavoriteButtonController(
     UpdateLocationFavoriteStatusUseCase updateLocationFavoriteStatusUseCase,
   ) =>
       LocationFavoriteButtonController(updateLocationFavoriteStatusUseCase);
@@ -39,4 +39,18 @@ abstract class ControllersModule {
     GetLocationReviewsUseCase getLocationReviewsUseCase,
   ) =>
       LocationReviewsPageController(getLocationReviewsUseCase);
+
+  @lazySingleton
+  RoutesTabController getRoutesTabController(
+    GetAllRoutesUseCase getAllRoutesUseCase,
+  ) =>
+      RoutesTabController(
+        getAllRoutesUseCase,
+      );
+
+  @lazySingleton
+  RouteFavoriteButtonController getRouteFavoriteButtonController(
+    UpdateRouteFavoriteStatusUseCase updateRouteFavoriteStatusUseCase,
+  ) =>
+      RouteFavoriteButtonController(updateRouteFavoriteStatusUseCase);
 }
