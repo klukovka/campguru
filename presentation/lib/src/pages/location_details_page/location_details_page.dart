@@ -71,9 +71,10 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                 sliver: SliverToBoxAdapter(
                   child: ArrowButton.large(
-                    onPressed: () {
-                      //TODO: Open map
-                    },
+                    onPressed: () => context.appRouter.pushLocationMap(
+                      lat: state.location.lat,
+                      lng: state.location.lng,
+                    ),
                     //TODO: Add localization
                     child: const Text('View on Map'),
                   ),

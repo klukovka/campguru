@@ -14,4 +14,11 @@ class CampguruRouter extends BaseRouter {
 
   Future<void> pushLocationReviewsPage(int id) =>
       push(LocationReviewsRoute(locationId: id));
+
+  Future<void> pushLocationMap({double? lat, double? lng}) => push(
+        LocationMapRoute(
+          lat: lat ?? 0,
+          lng: lng ?? 0,
+        ),
+      );
 }
