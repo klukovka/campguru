@@ -6,6 +6,9 @@ class TestDataSource {
   static const _maxLocations = 50;
   static const _maxReviews = 50;
 
+  static const _map =
+      'https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyA3kg7YWugGl1lTXmAmaBGPNhDW9pEh5bo&signature=GJnbP6sQrFY1ce8IsvG2WR2P0Jw=';
+
   static const _images = [
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Altja_j%C3%B5gi_Lahemaal.jpg/1200px-Altja_j%C3%B5gi_Lahemaal.jpg',
     'https://picjumbo.com/wp-content/uploads/beautiful-nature-mountain-scenery-with-flowers-free-photo.jpg',
@@ -118,5 +121,37 @@ class TestDataSource {
     );
 
     return Chunk(fullCount: _maxReviews, values: reviews);
+  }
+
+  Chunk<Route> generateRoutes({required int size, required int page}) {
+    int allUploadedLocations = page * size;
+    if (allUploadedLocations >= _maxLocations) {
+      return Chunk(
+        fullCount: _maxLocations,
+        values: const [],
+      );
+    }
+
+    final routes = List.generate(
+      size,
+      (index) {
+        final id = allUploadedLocations + index;
+        return Route(
+          id: allUploadedLocations + index,
+          name: 'Route $id',
+          mark: Random().nextDouble() * 5,
+          reviewsAmount: Random().nextInt(100),
+          isFavorite: Random().nextInt(4) % 2 == 0,
+          mapUrl: _map,
+          distance: Random().nextDouble() * 5000,
+          duration: Random().nextDouble() * 5,
+        );
+      },
+    );
+
+    return Chunk(
+      fullCount: _maxLocations,
+      values: routes,
+    );
   }
 }
