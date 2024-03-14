@@ -66,4 +66,16 @@ abstract class UseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         reviewsOutputPort: reviewsOutputPort,
       );
+
+  @lazySingleton
+  GetAllRoutesUseCase getAllRoutesUseCase(
+    RoutesRepository routesRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    RoutesOutputPort routesOutputPort,
+  ) =>
+      GetAllRoutesUseCase(
+        routesRepository: routesRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        routesOutputPort: routesOutputPort,
+      );
 }
