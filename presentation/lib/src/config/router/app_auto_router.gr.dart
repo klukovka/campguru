@@ -104,7 +104,7 @@ abstract class $AppAutoRouter extends _i11.RootStackRouter {
     RoutesRoute.name: (routeData) {
       return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.RoutesTab(),
+        child: _i11.WrappedRoute(child: const _i7.RoutesTab()),
       );
     },
     SplashRoute.name: (routeData) {

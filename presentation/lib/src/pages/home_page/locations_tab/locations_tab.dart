@@ -33,6 +33,8 @@ class LocationsTab extends StatelessWidget implements AutoRouteWrapper {
                   children: [
                     Expanded(
                       child: SearchField(
+                        //TODO: Localizations
+                        hintText: 'Search Locations',
                         search: (value) => controller.search(
                           state.filter,
                           value,

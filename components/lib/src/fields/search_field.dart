@@ -3,8 +3,13 @@ import 'package:rxdart/rxdart.dart';
 
 class SearchField extends StatefulWidget {
   final ValueSetter<String> search;
+  final String hintText;
 
-  const SearchField({super.key, required this.search});
+  const SearchField({
+    super.key,
+    required this.search,
+    required this.hintText,
+  });
 
   @override
   State<SearchField> createState() => _SearchFieldState();
@@ -32,8 +37,7 @@ class _SearchFieldState extends State<SearchField> {
       decoration: InputDecoration(
         prefixIcon:
             Icon(Theme.of(context).extension<SearchFieldThemeData>()?.magnify),
-        //TODO: Localizations
-        hintText: 'Search Locations',
+        hintText: widget.hintText,
         suffixIcon: IconButton(
           onPressed: () => _controller.text = '',
           icon: Icon(
