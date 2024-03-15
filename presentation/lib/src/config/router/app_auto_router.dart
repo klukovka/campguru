@@ -40,5 +40,9 @@ class AppAutoRouter extends $AppAutoRouter {
       page: LocationMapRoute.page,
       path: '/home/locations?lng={lng}&&lat={lat}',
     ),
+    AutoRoute(
+      page: RouteDetailsRoute.page,
+      path: '/home/routes/:id',
+    ),
   ];
 }
