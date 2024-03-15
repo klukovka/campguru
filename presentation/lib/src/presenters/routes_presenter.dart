@@ -38,12 +38,11 @@ class RoutesPresenter extends RoutesOutputPort {
     }).toList();
 
     routesTabCubit.setRoutes(allRoutes);
-//TODO: Uncomment when page is completed
-    // if (routeDetailsPageCubit.state.route.id == routeId) {
-    //   routeDetailsPageCubit.updateRouteFavoriteStatus(
-    //     isFavorite,
-    //   );
-    // }
+    if (routeDetailsPageCubit.state.route.id == routeId) {
+      routeDetailsPageCubit.updateRouteFavoriteStatus(
+        isFavorite,
+      );
+    }
   }
 
   @override
@@ -53,15 +52,12 @@ class RoutesPresenter extends RoutesOutputPort {
     }).toList();
 
     routesTabCubit.setRoutes(allRoutes);
-//TODO: Uncomment when page is completed
-    // routeDetailsPageCubit.updateRoute(route);
+    routeDetailsPageCubit.updateRoute(route);
   }
 
   @override
   void startRouteDetailsLoading() {
-//TODO: Uncomment when page is completed
-
-    // routeDetailsPageCubit.startLoading();
+    routeDetailsPageCubit.startLoading();
   }
 
   @override
@@ -71,12 +67,10 @@ class RoutesPresenter extends RoutesOutputPort {
           orElse: () => null,
         );
 
-//TODO: Uncomment when page is completed
-
-    // if (route != null) {
-    //   routeDetailsPageCubit.updateRoute(route);
-    // } else {
-    //   routeDetailsPageCubit.setHasError();
-    // }
+    if (route != null) {
+      routeDetailsPageCubit.updateRoute(route);
+    } else {
+      routeDetailsPageCubit.setHasError();
+    }
   }
 }

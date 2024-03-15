@@ -12,7 +12,7 @@ class Route extends Equatable with TableItem<Route> {
   final int reviewsAmount;
   final bool isFavorite;
 
-  Route({
+  const Route({
     required this.id,
     required this.name,
     required this.mark,

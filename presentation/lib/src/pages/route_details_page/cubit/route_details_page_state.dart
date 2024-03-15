@@ -1,10 +1,37 @@
 part of 'route_details_page_cubit.dart';
 
-sealed class RouteDetailsPageState extends Equatable {
-  const RouteDetailsPageState();
+class RouteDetailsPageState extends Equatable {
+  final Route route;
+  final bool isLoading;
+  final bool hasError;
+
+  const RouteDetailsPageState({
+    this.route = const Route(
+      id: -1,
+      name: '',
+      mark: 0,
+      reviewsAmount: 0,
+      isFavorite: false,
+      mapUrl: '',
+      distance: 0,
+      duration: 0,
+    ),
+    this.isLoading = true,
+    this.hasError = false,
+  });
 
   @override
-  List<Object> get props => [];
-}
+  List<Object> get props => [route, isLoading, hasError];
 
-final class RouteDetailsPageInitial extends RouteDetailsPageState {}
+  RouteDetailsPageState copyWith({
+    Route? route,
+    bool? isLoading,
+    bool? hasError,
+  }) {
+    return RouteDetailsPageState(
+      route: route ?? this.route,
+      isLoading: isLoading ?? this.isLoading,
+      hasError: hasError ?? this.hasError,
+    );
+  }
+}
