@@ -14,7 +14,7 @@ class TestRoutesRepository extends RoutesRepository {
 
   @override
   Future<FailureOrResult<Chunk<Route>>> getAllRoutes(Filter filter) async {
-    await Future.delayed(const Duration(milliseconds: 200));
+    await Future.delayed(const Duration(milliseconds: 1000));
     return FailureOrResult.success(
       _dataSource.generateRoutes(
         size: filter.size,
@@ -24,9 +24,9 @@ class TestRoutesRepository extends RoutesRepository {
   }
 
   @override
-  Future<FailureOrResult<Route>> getRouteDetails(int id) {
-    // TODO: implement getRouteDetails
-    throw UnimplementedError();
+  Future<FailureOrResult<Route>> getRouteDetails(int id) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(_dataSource.getRouteDetails(id));
   }
 
   @override

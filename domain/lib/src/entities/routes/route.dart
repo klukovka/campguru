@@ -11,6 +11,10 @@ class Route extends Equatable with TableItem<Route> {
   final double duration;
   final int reviewsAmount;
   final bool isFavorite;
+  final int? locationsAmount;
+  final String? description;
+  final List<String>? labels;
+  final List<Review>? reviews;
 
   const Route({
     required this.id,
@@ -21,6 +25,10 @@ class Route extends Equatable with TableItem<Route> {
     required this.duration,
     required this.isFavorite,
     required this.reviewsAmount,
+    this.description,
+    this.labels,
+    this.locationsAmount,
+    this.reviews,
   });
 
   @override
@@ -46,6 +54,10 @@ class Route extends Equatable with TableItem<Route> {
     double? duration,
     bool? isFavorite,
     int? reviewsAmount,
+    int? locationsAmount,
+    String? description,
+    List<String>? labels,
+    List<Review>? reviews,
   }) {
     return Route(
       id: id ?? this.id,
@@ -56,6 +68,10 @@ class Route extends Equatable with TableItem<Route> {
       duration: duration ?? this.duration,
       isFavorite: isFavorite ?? this.isFavorite,
       reviewsAmount: reviewsAmount ?? this.reviewsAmount,
+      locationsAmount: locationsAmount ?? this.locationsAmount,
+      description: description ?? this.description,
+      labels: labels ?? this.labels,
+      reviews: reviews ?? this.reviews,
     );
   }
 
@@ -69,5 +85,9 @@ class Route extends Equatable with TableItem<Route> {
         duration: another.duration,
         isFavorite: another.isFavorite,
         reviewsAmount: another.reviewsAmount,
+        locationsAmount: another.locationsAmount,
+        description: another.description,
+        labels: another.labels,
+        reviews: another.reviews,
       );
 }

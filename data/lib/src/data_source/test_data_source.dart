@@ -154,4 +154,31 @@ class TestDataSource {
       values: routes,
     );
   }
+
+  Route getRouteDetails(int id) {
+    return Route(
+      id: id,
+      name: 'Route $id',
+      mark: Random().nextDouble() * 5,
+      reviewsAmount: Random().nextInt(100),
+      isFavorite: Random().nextInt(4) % 2 == 0,
+      mapUrl: _map,
+      distance: Random().nextDouble() * 5000,
+      duration: Random().nextDouble() * 5,
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      labels: const [
+        'Nature',
+        'River',
+        'Mountains',
+        'Forest',
+        'Random',
+        'Trees',
+        'Wildlife',
+        'Animals',
+      ],
+      reviews: generateReviews(size: 5, page: 0).values,
+      locationsAmount: 3,
+    );
+  }
 }
