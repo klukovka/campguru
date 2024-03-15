@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
+import 'package:presentation/src/pages/route_details_page/views/loading_location_details_page.dart';
 import 'package:presentation/src/pages/route_details_page/views/route_details_header_delegate.dart';
 import 'package:presentation/src/views/reviews/reviews_list.dart';
 
@@ -41,9 +42,9 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<RouteDetailsPageCubit, RouteDetailsPageState>(
       builder: (context, state) {
-        // if (state.isLoading) {
-        //   return LoadingRouteDetailsPage(route: state.route);
-        // }
+        if (state.isLoading) {
+          return LoadingRouteDetailsPage(route: state.route);
+        }
 
         final description = state.route.description ?? '';
         final labels = state.route.labels ?? [];
