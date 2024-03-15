@@ -55,4 +55,16 @@ abstract class ControllersModule {
     UpdateRouteFavoriteStatusUseCase updateRouteFavoriteStatusUseCase,
   ) =>
       RouteFavoriteButtonController(updateRouteFavoriteStatusUseCase);
+
+  @lazySingleton
+  RouteDetailsPageController getRouteDetailsPageController(
+    GetRouteDetailsUseCase getRouteDetailsUseCase,
+  ) =>
+      RouteDetailsPageController(getRouteDetailsUseCase);
+
+  // @lazySingleton
+  // RouteReviewsPageController getRouteReviewsPageController(
+  //   GetRouteReviewsUseCase getRouteReviewsUseCase,
+  // ) =>
+  //     RouteReviewsPageController(getRouteReviewsUseCase);
 }

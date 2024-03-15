@@ -90,4 +90,28 @@ abstract class UseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         routesOutputPort: routesOutputPort,
       );
+
+  @lazySingleton
+  GetRouteDetailsUseCase getRouteDetailsUseCase(
+    RoutesRepository routesRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    RoutesOutputPort routesOutputPort,
+  ) =>
+      GetRouteDetailsUseCase(
+        routesRepository: routesRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        routesOutputPort: routesOutputPort,
+      );
+
+  // @lazySingleton
+  // GetRouteReviewsUseCase getRouteReviewssUseCase(
+  //   ReviewsRepository reviewsRepository,
+  //   ErrorHandlerOutputPort errorHandlerOutputPort,
+  //   ReviewsOutputPort reviewsOutputPort,
+  // ) =>
+  //     GetRouteReviewsUseCase(
+  //       reviewsRepository: reviewsRepository,
+  //       errorHandlerOutputPort: errorHandlerOutputPort,
+  //       reviewsOutputPort: reviewsOutputPort,
+  //     );
 }
