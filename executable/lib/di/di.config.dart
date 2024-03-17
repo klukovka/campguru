@@ -81,6 +81,8 @@ Future<_i1.GetIt> $configureDependencies(
       .getReviewsOutputPort(gh<_i3.LocationReviewsPageCubit>()));
   gh.lazySingleton<_i3.RouteDetailsPageCubit>(
       () => blocModule.routeDetailsPageCubit);
+  gh.lazySingleton<_i3.RouteLocationsPageCubit>(
+      () => blocModule.routeLocationsPageCubit);
   gh.lazySingleton<_i3.RoutesTabCubit>(() => blocModule.routesTabCubit);
   gh.lazySingleton<_i3.SplashPageCubit>(() => blocModule.splashPageCubit);
   gh.lazySingleton<_i5.TestDataSource>(
@@ -108,6 +110,7 @@ Future<_i1.GetIt> $configureDependencies(
       () => presentersModule.getLocationsOutputPort(
             gh<_i3.LocationsTabCubit>(),
             gh<_i3.LocationDetailsPageCubit>(),
+            gh<_i3.RouteLocationsPageCubit>(),
           ));
   gh.lazySingleton<_i4.LocationsRepository>(
     () => locationsRepositoryModule
@@ -171,6 +174,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.RoutesOutputPort>(),
           ));
+  gh.lazySingleton<_i4.GetRouteLocationsUseCase>(
+      () => useCasesModule.getRouteLocationsUseCase(
+            gh<_i4.LocationsRepository>(),
+            gh<_i4.ErrorHandlerOutputPort>(),
+            gh<_i4.LocationsOutputPort>(),
+          ));
   gh.lazySingleton<_i3.LocationDetailsPageController>(() => controllersModule
       .getLocationDetailsPageController(gh<_i4.GetLocationDetailsUseCase>()));
   gh.lazySingleton<_i3.LocationFavoriteButtonController>(() =>
@@ -185,6 +194,8 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i3.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
           gh<_i4.UpdateRouteFavoriteStatusUseCase>()));
+  gh.lazySingleton<_i3.RouteLocationsController>(() => controllersModule
+      .getRouteLocationsController(gh<_i4.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i3.RoutesTabController>(() =>
       controllersModule.getRoutesTabController(gh<_i4.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i3.SplashPageController>(

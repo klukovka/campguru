@@ -35,4 +35,16 @@ class TestLocationsRepository implements LocationsRepository {
 
     return FailureOrResult.success(_dataSource.getLocationDetails(id));
   }
+
+  @override
+  Future<FailureOrResult<Chunk<Location>>> getRouteLocations(
+    int routeId,
+    Filter filter,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    return FailureOrResult.success(
+      _dataSource.generateLocations(size: filter.size, page: filter.page),
+    );
+  }
 }
