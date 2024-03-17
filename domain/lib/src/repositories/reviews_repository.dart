@@ -5,4 +5,9 @@ abstract class ReviewsRepository {
     int locationId,
     Filter filter,
   );
+
+  Future<FailureOrResult<Chunk<Review>>> getRouteReviews(
+    int routeId,
+    Filter filter,
+  );
 }

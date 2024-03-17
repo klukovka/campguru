@@ -16,4 +16,15 @@ class TestReviewsRepository implements ReviewsRepository {
       _dataSource.generateReviews(size: filter.size, page: filter.page),
     );
   }
+
+  @override
+  Future<FailureOrResult<Chunk<Review>>> getRouteReviews(
+    int routeId,
+    Filter filter,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(
+      _dataSource.generateReviews(size: filter.size, page: filter.page),
+    );
+  }
 }

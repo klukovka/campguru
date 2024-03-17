@@ -25,4 +25,19 @@ class ReviewsPresenter extends ReviewsOutputPort {
       locationReviewsPageCubit.setReviews(reviews, amount: amount);
     }
   }
+
+  @override
+  void setRouteReviewsFilter(Filter filter) {
+    // TODO: implement setRouteReviewsFilter
+  }
+
+  @override
+  void stopRouteReviewsLoading() {
+    // TODO: implement stopRouteReviewsLoading
+  }
+
+  @override
+  void updateRouteReviews(List<Review> reviews, int amount) {
+    // TODO: implement updateRouteReviews
+  }
 }
