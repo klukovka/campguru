@@ -21,10 +21,13 @@ import 'data_modules/preferences_repository_module.dart' as _i11;
 import 'data_modules/reviews_repository_module.dart' as _i15;
 import 'data_modules/routes_repository_module.dart' as _i16;
 import 'data_modules/users_repository_module.dart' as _i12;
-import 'domain_modules/use_cases_module.dart' as _i13;
+import 'domain_modules/location_use_cases_module.dart' as _i17;
+import 'domain_modules/review_use_cases_module.dart' as _i19;
+import 'domain_modules/route_use_cases_module.dart' as _i18;
+import 'domain_modules/user_use_cases_module.dart' as _i13;
 import 'presentation_modules/auto_router_module.dart' as _i6;
 import 'presentation_modules/bloc_module.dart' as _i10;
-import 'presentation_modules/controllers_module.dart' as _i17;
+import 'presentation_modules/controllers_module.dart' as _i20;
 import 'presentation_modules/presenters_module.dart' as _i8;
 
 const String _test = 'test';
@@ -47,10 +50,13 @@ Future<_i1.GetIt> $configureDependencies(
   final blocModule = _$BlocModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
-  final useCasesModule = _$UseCasesModule();
+  final userUseCasesModule = _$UserUseCasesModule();
   final locationsRepositoryModule = _$LocationsRepositoryModule();
   final reviewsRepositoryModule = _$ReviewsRepositoryModule();
   final routesRepositoryModule = _$RoutesRepositoryModule();
+  final locationUseCasesCasesModule = _$LocationUseCasesCasesModule();
+  final routeUseCasesModule = _$RouteUseCasesModule();
+  final reviewUseCasesModule = _$ReviewUseCasesModule();
   final controllersModule = _$ControllersModule();
   gh.lazySingleton<_i3.AppAutoRouter>(
       () => autoRouterModule.getAppAutoRouter());
@@ -77,12 +83,12 @@ Future<_i1.GetIt> $configureDependencies(
         .testPreferencesRepository(gh<_i5.HiveDataSource>()),
     registerFor: {_test},
   );
-  gh.lazySingleton<_i4.ReviewsOutputPort>(() => presentersModule
-      .getReviewsOutputPort(gh<_i3.LocationReviewsPageCubit>()));
   gh.lazySingleton<_i3.RouteDetailsPageCubit>(
       () => blocModule.routeDetailsPageCubit);
   gh.lazySingleton<_i3.RouteLocationsPageCubit>(
       () => blocModule.routeLocationsPageCubit);
+  gh.lazySingleton<_i3.RouteReviewsPageCubit>(
+      () => blocModule.routeReviewsPageCubit);
   gh.lazySingleton<_i3.RoutesTabCubit>(() => blocModule.routesTabCubit);
   gh.lazySingleton<_i3.SplashPageCubit>(() => blocModule.splashPageCubit);
   gh.lazySingleton<_i5.TestDataSource>(
@@ -99,7 +105,7 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i3.HomePageCubit>(),
           ));
   gh.lazySingleton<_i4.IsAuthorizedUseCase>(
-      () => useCasesModule.getIsAuthorizedUseCase(
+      () => userUseCasesModule.getIsAuthorizedUseCase(
             gh<_i4.PreferencesRepository>(),
             gh<_i4.AuthRepository>(),
             gh<_i4.UsersRepository>(),
@@ -117,6 +123,11 @@ Future<_i1.GetIt> $configureDependencies(
         .getTestLocationsRepository(gh<_i5.TestDataSource>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i4.ReviewsOutputPort>(
+      () => presentersModule.getReviewsOutputPort(
+            gh<_i3.LocationReviewsPageCubit>(),
+            gh<_i3.RouteReviewsPageCubit>(),
+          ));
   gh.lazySingleton<_i4.ReviewsRepository>(
     () => reviewsRepositoryModule
         .getTestReviewsRepository(gh<_i5.TestDataSource>()),
@@ -133,52 +144,58 @@ Future<_i1.GetIt> $configureDependencies(
     registerFor: {_test},
   );
   gh.lazySingleton<_i4.UpdateLocationFavoriteStatusUseCase>(
-      () => useCasesModule.getUpdateLocationFavoriteStatusUseCase(
+      () => locationUseCasesCasesModule.getUpdateLocationFavoriteStatusUseCase(
             gh<_i4.LocationsRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.LocationsOutputPort>(),
           ));
   gh.lazySingleton<_i4.UpdateRouteFavoriteStatusUseCase>(
-      () => useCasesModule.getUpdateRouteFavoriteStatusUseCase(
+      () => routeUseCasesModule.getUpdateRouteFavoriteStatusUseCase(
             gh<_i4.RoutesRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.RoutesOutputPort>(),
           ));
   gh.lazySingleton<_i4.GetAllLocationsUseCase>(
-      () => useCasesModule.getAllLocationsUseCase(
+      () => locationUseCasesCasesModule.getAllLocationsUseCase(
             gh<_i4.LocationsRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.LocationsOutputPort>(),
           ));
   gh.lazySingleton<_i4.GetAllRoutesUseCase>(
-      () => useCasesModule.getAllRoutesUseCase(
+      () => routeUseCasesModule.getAllRoutesUseCase(
             gh<_i4.RoutesRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.RoutesOutputPort>(),
           ));
   gh.lazySingleton<_i4.GetLocationDetailsUseCase>(
-      () => useCasesModule.getLocationDetailsUseCase(
+      () => locationUseCasesCasesModule.getLocationDetailsUseCase(
             gh<_i4.LocationsRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.LocationsOutputPort>(),
           ));
   gh.lazySingleton<_i4.GetLocationReviewsUseCase>(
-      () => useCasesModule.getLocationReviewssUseCase(
+      () => reviewUseCasesModule.getLocationReviewsUseCase(
             gh<_i4.ReviewsRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.ReviewsOutputPort>(),
           ));
   gh.lazySingleton<_i4.GetRouteDetailsUseCase>(
-      () => useCasesModule.getRouteDetailsUseCase(
+      () => routeUseCasesModule.getRouteDetailsUseCase(
             gh<_i4.RoutesRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.RoutesOutputPort>(),
           ));
   gh.lazySingleton<_i4.GetRouteLocationsUseCase>(
-      () => useCasesModule.getRouteLocationsUseCase(
+      () => locationUseCasesCasesModule.getRouteLocationsUseCase(
             gh<_i4.LocationsRepository>(),
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.LocationsOutputPort>(),
+          ));
+  gh.lazySingleton<_i4.GetRouteReviewsUseCase>(
+      () => reviewUseCasesModule.getRouteReviewsUseCase(
+            gh<_i4.ReviewsRepository>(),
+            gh<_i4.ErrorHandlerOutputPort>(),
+            gh<_i4.ReviewsOutputPort>(),
           ));
   gh.lazySingleton<_i3.LocationDetailsPageController>(() => controllersModule
       .getLocationDetailsPageController(gh<_i4.GetLocationDetailsUseCase>()));
@@ -196,6 +213,8 @@ Future<_i1.GetIt> $configureDependencies(
           gh<_i4.UpdateRouteFavoriteStatusUseCase>()));
   gh.lazySingleton<_i3.RouteLocationsPageController>(() => controllersModule
       .getRouteLocationsController(gh<_i4.GetRouteLocationsUseCase>()));
+  gh.lazySingleton<_i3.RouteReviewsPageController>(() => controllersModule
+      .getRouteReviewsPageController(gh<_i4.GetRouteReviewsUseCase>()));
   gh.lazySingleton<_i3.RoutesTabController>(() =>
       controllersModule.getRoutesTabController(gh<_i4.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i3.SplashPageController>(
@@ -221,7 +240,7 @@ class _$PreferencesRepositoryModule extends _i11.PreferencesRepositoryModule {}
 
 class _$UsersRepositoryModule extends _i12.UsersRepositoryModule {}
 
-class _$UseCasesModule extends _i13.UseCasesModule {}
+class _$UserUseCasesModule extends _i13.UserUseCasesModule {}
 
 class _$LocationsRepositoryModule extends _i14.LocationsRepositoryModule {}
 
@@ -229,4 +248,10 @@ class _$ReviewsRepositoryModule extends _i15.ReviewsRepositoryModule {}
 
 class _$RoutesRepositoryModule extends _i16.RoutesRepositoryModule {}
 
-class _$ControllersModule extends _i17.ControllersModule {}
+class _$LocationUseCasesCasesModule extends _i17.LocationUseCasesCasesModule {}
+
+class _$RouteUseCasesModule extends _i18.RouteUseCasesModule {}
+
+class _$ReviewUseCasesModule extends _i19.ReviewUseCasesModule {}
+
+class _$ControllersModule extends _i20.ControllersModule {}
