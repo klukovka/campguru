@@ -84,13 +84,7 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                 SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
-                    child: Wrap(
-                      spacing: 12,
-                      runSpacing: 12,
-                      children: labels
-                          .map((label) => Chip(label: Text(label)))
-                          .toList(),
-                    ),
+                    child: StyledChips(labels: labels),
                   ),
                 ),
               if (state.location.reviewsAmount != 0)

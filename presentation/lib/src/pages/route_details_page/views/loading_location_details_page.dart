@@ -58,18 +58,11 @@ class LoadingRouteDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Skeletonizer.sliver(
+              const Skeletonizer.sliver(
                 child: SliverPadding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                  padding: EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
-                    child: Wrap(
-                      spacing: 12,
-                      runSpacing: 12,
-                      children: SkeletonUtils.shortTextList
-                          .map((label) =>
-                              Skeleton.unite(child: Chip(label: Text(label))))
-                          .toList(),
-                    ),
+                    child: StyledChips(labels: SkeletonUtils.shortTextList),
                   ),
                 ),
               ),

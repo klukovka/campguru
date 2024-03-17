@@ -18,3 +18,4 @@ export 'src/scrollable/load_more_scroll_listener.dart';
 export 'src/scrollable/skeleton_list_view.dart';
 export 'src/skeleton/skeleton_replacement.dart';
 export 'src/skeleton/skeleton_utils.dart';
+export 'src/styled_chips.dart';
