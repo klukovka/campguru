@@ -83,37 +83,49 @@ class _RouteMapPageState extends State<RouteMapPage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () async {
-        // final visibleRegion = await _controller.getVisibleRegion();
-        // log(visibleRegion.toString());
-        // _controller.moveCamera(CameraUpdate.newLatLngZoom(
-        //   locations.first,
-        //   100,
-        // ));
-        // final width =
-        //     visibleRegion.northeast.latitude - visibleRegion.southwest.latitude;
-        // final height = visibleRegion.northeast.longitude -
-        //     visibleRegion.southwest.longitude;
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          FloatingActionButton(onPressed: () async {
+            // final visibleRegion = await _controller.getVisibleRegion();
+            // log(visibleRegion.toString());
+            // _controller.moveCamera(CameraUpdate.newLatLngZoom(
+            //   locations.first,
+            //   100,
+            // ));
+            // final width =
+            //     visibleRegion.northeast.latitude - visibleRegion.southwest.latitude;
+            // final height = visibleRegion.northeast.longitude -
+            //     visibleRegion.southwest.longitude;
 
-        // log('width $width; height $height');
+            // log('width $width; height $height');
 
-        final visibleRegion = await _controller.getVisibleRegion();
-        log(visibleRegion.toString());
+            final visibleRegion = await _controller.getVisibleRegion();
+            log(visibleRegion.toString());
 
-        setState(() {
-          border = [
-            polyline.northeast,
-            polyline.southeast,
-            polyline.southwest,
-            polyline.northwest,
-            polyline.northeast,
-          ];
-        });
+            setState(() {
+              border = [
+                polyline.northeast,
+                polyline.southeast,
+                polyline.southwest,
+                polyline.northwest,
+                polyline.northeast,
+              ];
+            });
 
-        _controller.moveCamera(
-          CameraUpdate.newLatLngZoom(polyline.northwest, 25),
-        );
-      }),
+            _controller.moveCamera(
+              CameraUpdate.newLatLngZoom(polyline.northwest, 25),
+            );
+          }),
+          FloatingActionButton(
+            onPressed: () {
+              _controller.moveCamera(
+                  CameraUpdate.newLatLngBounds(polyline.getBounds(), 0));
+            },
+            child: const Icon(Icons.back_hand),
+          ),
+        ],
+      ),
     );
   }
 }

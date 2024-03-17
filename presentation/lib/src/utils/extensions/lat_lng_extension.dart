@@ -67,6 +67,18 @@ extension GoogleListLatLngExtension on List<google.LatLng> {
   }
 }
 
+extension LatLngBoundsExtension on google.LatLngBounds {
+  google.LatLng get northwest => google.LatLng(
+        northeast.latitude,
+        southwest.longitude,
+      );
+
+  google.LatLng get southeast => google.LatLng(
+        southwest.latitude,
+        northeast.longitude,
+      );
+}
+
 extension StringLatLngExtension on String {
   List<google.LatLng> toGoogleParams() => split(';').map((item) {
         final latLng = item.split(',');
