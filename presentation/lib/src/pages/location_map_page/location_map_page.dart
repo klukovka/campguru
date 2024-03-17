@@ -38,6 +38,7 @@ class LocationMapPageState extends State<LocationMapPage> {
             children: [
               GoogleMap(
                 mapType: MapType.normal,
+                compassEnabled: false,
                 initialCameraPosition: CameraPosition(
                   zoom: 12,
                   target: _initialPosition,

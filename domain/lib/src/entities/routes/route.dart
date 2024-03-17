@@ -11,6 +11,7 @@ class Route extends FavoriteTableItem<Route> {
   final String? description;
   final List<String>? labels;
   final List<Review>? reviews;
+  final List<LatLng>? polyline;
 
   const Route({
     required super.id,
@@ -25,10 +26,11 @@ class Route extends FavoriteTableItem<Route> {
     this.labels,
     this.locationsAmount,
     this.reviews,
+    this.polyline,
   });
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       id,
       name,
@@ -38,6 +40,11 @@ class Route extends FavoriteTableItem<Route> {
       duration,
       isFavorite,
       reviewsAmount,
+      locationsAmount,
+      description,
+      labels,
+      reviews,
+      polyline,
     ];
   }
 
@@ -55,6 +62,7 @@ class Route extends FavoriteTableItem<Route> {
     String? description,
     List<String>? labels,
     List<Review>? reviews,
+    List<LatLng>? polyline,
   }) {
     return Route(
       id: id ?? this.id,
@@ -69,6 +77,7 @@ class Route extends FavoriteTableItem<Route> {
       description: description ?? this.description,
       labels: labels ?? this.labels,
       reviews: reviews ?? this.reviews,
+      polyline: polyline ?? this.polyline,
     );
   }
 
@@ -86,5 +95,6 @@ class Route extends FavoriteTableItem<Route> {
         description: another.description,
         labels: another.labels,
         reviews: another.reviews,
+        polyline: another.polyline,
       );
 }

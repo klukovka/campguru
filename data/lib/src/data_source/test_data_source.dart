@@ -179,6 +179,11 @@ class TestDataSource {
       ],
       reviews: generateReviews(size: 5, page: 0).values,
       locationsAmount: 3,
+      polyline: [
+        LatLng(40.702147, -74.015794),
+        LatLng(40.711614, -74.012318),
+        LatLng(40.718217, -73.998284),
+      ],
     );
   }
 }
