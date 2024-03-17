@@ -1,14 +1,10 @@
 import 'package:domain/domain.dart';
-import 'package:equatable/equatable.dart';
 
-class Location extends Equatable with TableItem<Location> {
-  @override
-  final int id;
+class Location extends FavoriteTableItem<Location> {
   final List<String> images;
   final String name;
   final double mark;
   final int reviewsAmount;
-  final bool isFavorite;
   final String? description;
   final List<String>? labels;
   final List<Review>? reviews;
@@ -16,12 +12,12 @@ class Location extends Equatable with TableItem<Location> {
   final double? lat;
 
   const Location({
-    required this.id,
+    required super.id,
     required this.images,
     required this.name,
     required this.mark,
     required this.reviewsAmount,
-    required this.isFavorite,
+    required super.isFavorite,
     this.description,
     this.labels,
     this.reviews,

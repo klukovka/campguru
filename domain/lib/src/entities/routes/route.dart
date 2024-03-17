@@ -1,29 +1,25 @@
 import 'package:domain/domain.dart';
-import 'package:equatable/equatable.dart';
 
-class Route extends Equatable with TableItem<Route> {
-  @override
-  final int id;
+class Route extends FavoriteTableItem<Route> {
   final String name;
   final double mark;
   final String mapUrl;
   final double distance;
   final double duration;
   final int reviewsAmount;
-  final bool isFavorite;
   final int? locationsAmount;
   final String? description;
   final List<String>? labels;
   final List<Review>? reviews;
 
   const Route({
-    required this.id,
+    required super.id,
     required this.name,
     required this.mark,
     required this.mapUrl,
     required this.distance,
     required this.duration,
-    required this.isFavorite,
+    required super.isFavorite,
     required this.reviewsAmount,
     this.description,
     this.labels,

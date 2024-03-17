@@ -6,6 +6,7 @@ export 'src/entities/core/chunk.dart';
 export 'src/entities/core/direction.dart';
 export 'src/entities/core/failure.dart';
 export 'src/entities/core/failure_or_result.dart';
+export 'src/entities/core/favorite_table_item.dart';
 export 'src/entities/core/filter.dart';
 export 'src/entities/core/filter_label.dart';
 export 'src/entities/core/sort_by.dart';
