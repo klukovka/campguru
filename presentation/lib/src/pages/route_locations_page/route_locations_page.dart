@@ -42,8 +42,20 @@ class _RouteLocationsPageState extends State<RouteLocationsPage> {
     final controller = context.locator<RouteLocationsPageController>();
     return BlocBuilder<RouteLocationsPageCubit, RouteLocationsPageState>(
       builder: (context, state) {
-        return SafeArea(
-          child: Column(
+        return Scaffold(
+          appBar: AppBar(
+            leadingWidth: 64,
+            toolbarHeight: 48,
+            backgroundColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: ArrowCircleButton.back(
+                onPressed: context.appRouter.pop,
+              ),
+            ),
+          ),
+          body: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),

@@ -81,9 +81,9 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                 sliver: SliverToBoxAdapter(
                   child: ArrowButton.large(
-                    onPressed: () {
-                      //TODO: Push locations
-                    },
+                    onPressed: () => context.appRouter.pushRouteLocationsPage(
+                      widget.routeId,
+                    ),
                     //TODO: Add localization
                     child: Text('Locations (${state.route.locationsAmount})'),
                   ),
