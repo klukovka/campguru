@@ -11,4 +11,6 @@ abstract class FavoriteTableItem<T extends TableItem<T>> extends Equatable
     required this.id,
     required this.isFavorite,
   });
+
+  T copyWith({int? id, bool? isFavorite});
 }

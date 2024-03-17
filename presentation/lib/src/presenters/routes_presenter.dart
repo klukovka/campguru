@@ -33,9 +33,10 @@ class RoutesPresenter extends RoutesOutputPort {
 
   @override
   void updateRouteFavoriteStatus(int routeId, bool isFavorite) {
-    final allRoutes = routesTabCubit.state.routes.map((item) {
-      return item.id == routeId ? item.copyWith(isFavorite: isFavorite) : item;
-    }).toList();
+    final allRoutes = routesTabCubit.state.routes.updateFavoriteStatus(
+      routeId,
+      isFavorite,
+    );
 
     routesTabCubit.setRoutes(allRoutes);
     if (routeDetailsPageCubit.state.route.id == routeId) {

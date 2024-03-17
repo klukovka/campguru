@@ -41,6 +41,7 @@ class Route extends FavoriteTableItem<Route> {
     ];
   }
 
+  @override
   Route copyWith({
     int? id,
     double? mark,

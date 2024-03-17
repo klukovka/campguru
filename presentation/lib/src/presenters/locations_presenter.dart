@@ -35,16 +35,16 @@ class LocationsPresenter extends LocationsOutputPort {
 
   @override
   void updateLocationFavoriteStatus(int locationId, bool isFavorite) {
-    final allLocations = locationsTabCubit.state.locations.map((item) {
-      return item.id == locationId
-          ? item.copyWith(isFavorite: isFavorite)
-          : item;
-    }).toList();
-    final routeLocations = routeLocationsPageCubit.state.locations.map((item) {
-      return item.id == locationId
-          ? item.copyWith(isFavorite: isFavorite)
-          : item;
-    }).toList();
+    final allLocations = locationsTabCubit.state.locations.updateFavoriteStatus(
+      locationId,
+      isFavorite,
+    );
+
+    final routeLocations =
+        routeLocationsPageCubit.state.locations.updateFavoriteStatus(
+      locationId,
+      isFavorite,
+    );
 
     locationsTabCubit.setLocations(allLocations);
     routeLocationsPageCubit.setLocations(routeLocations);

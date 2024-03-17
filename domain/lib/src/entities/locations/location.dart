@@ -25,6 +25,7 @@ class Location extends FavoriteTableItem<Location> {
     this.lng,
   });
 
+  @override
   Location copyWith({
     int? id,
     List<String>? images,

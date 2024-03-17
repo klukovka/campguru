@@ -38,3 +38,4 @@ export 'src/use_cases/routes/update_route_favorite_status_use_case.dart';
 export 'src/use_cases/users/is_authorized_use_case.dart';
 export 'src/utils/list_extension.dart';
 export 'src/utils/merge_details_extension.dart';
+export 'src/utils/update_favorite_status_extension.dart';
