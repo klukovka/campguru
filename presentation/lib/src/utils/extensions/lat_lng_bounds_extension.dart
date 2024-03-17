@@ -24,4 +24,20 @@ extension LatLngBoundsExtension on LatLngBounds {
         southwest: southwest.getShiftedLng(shift),
         northeast: northeast.getShiftedLng(shift),
       );
+
+  List<List<LatLngBounds>> splitBounds(LatLngBounds initialBounds) {
+    final height = (latitudeDiff / initialBounds.latitudeDiff).ceil();
+    final width = (longitudeDiff / initialBounds.longitudeDiff).ceil();
+
+    return List.generate(
+      height,
+      (i) {
+        return List.generate(width, (j) {
+          return initialBounds
+              .getShiftedLng(j * longitudeDiff)
+              .getShiftedLat(-i * latitudeDiff);
+        });
+      },
+    );
+  }
 }

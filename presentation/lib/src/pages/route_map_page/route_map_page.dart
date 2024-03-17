@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:auto_route/auto_route.dart';
@@ -32,7 +31,6 @@ class _RouteMapPageState extends State<RouteMapPage> {
   List<LatLng> get polyline => widget.polyline.toGoogleParams();
 
   List<LatLng>? border;
-  List<LatLng> testPoints = [];
 
   @override
   Widget build(BuildContext context) {
@@ -61,24 +59,15 @@ class _RouteMapPageState extends State<RouteMapPage> {
                   width: 4,
                 ),
             },
-            markers: {
-              ...locations.map((latLng) {
-                return Marker(
-                  markerId: MarkerId(latLng.toString()),
-                  position: latLng,
-                  icon: BitmapDescriptor.defaultMarkerWithHue(
-                    math.Random().nextInt(360).toDouble(),
-                  ),
-                );
-              }),
-              ...testPoints.map((latLng) {
-                return Marker(
-                  markerId: MarkerId(latLng.toString()),
-                  position: latLng,
-                  icon: BitmapDescriptor.defaultMarker,
-                );
-              }),
-            },
+            markers: locations.map((latLng) {
+              return Marker(
+                markerId: MarkerId(latLng.toString()),
+                position: latLng,
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                  math.Random().nextInt(360).toDouble(),
+                ),
+              );
+            }).toSet(),
             onMapCreated: (GoogleMapController controller) async {
               _controller = controller;
               await _controller.moveCamera(
@@ -123,42 +112,22 @@ class _RouteMapPageState extends State<RouteMapPage> {
             });
 
             await _controller.moveCamera(
-              CameraUpdate.newLatLngZoom(polyline.northwest, 25),
+              CameraUpdate.newLatLngZoom(polyline.northwest, 20),
             );
 
             var visibleRegion = await _controller.getVisibleRegion();
-            final latitudeDiff = visibleRegion.latitudeDiff;
-            final longitudeDiff = visibleRegion.longitudeDiff;
 
-            final height =
-                (polyline.getBounds().latitudeDiff / latitudeDiff).ceil();
-            final width =
-                (polyline.getBounds().longitudeDiff / longitudeDiff).ceil();
-            log(width.toString());
-            log(height.toString());
-
-            final bounds = List.generate(
-              height,
-              (i) {
-                return List.generate(width, (j) {
-                  return visibleRegion
-                      .getShiftedLng(j * longitudeDiff)
-                      .getShiftedLat(-i * latitudeDiff);
-                });
-              },
-            );
+            final bounds = polyline.getBounds().splitBounds(visibleRegion);
 
             //TODO: Extract to isolate
-            var size = height * width;
-            for (int i = 0; i < bounds.length; i++) {
-              for (int j = 0; j < bounds[i].length; j++) {
-                await _controller.moveCamera(
-                  CameraUpdate.newLatLngBounds(bounds[i][j], 0),
-                );
-                final snapshot = await _controller.takeSnapshot();
-                log('${size--} left snapshot => ${snapshot != null}');
-              }
-            }
+            // for (int i = 0; i < bounds.length; i++) {
+            //   for (int j = 0; j < bounds[i].length; j++) {
+            //     await _controller.moveCamera(
+            //       CameraUpdate.newLatLngBounds(bounds[i][j], 0),
+            //     );
+            //     final snapshot = await _controller.takeSnapshot();
+            //   }
+            // }
 
             // for (double i = 0;
             //     visibleRegion.southeast.longitude <
@@ -185,8 +154,6 @@ class _RouteMapPageState extends State<RouteMapPage> {
             //     );
             //   }
             // }
-            log('Done');
-            setState(() {});
           }),
           FloatingActionButton(
             onPressed: () {
