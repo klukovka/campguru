@@ -66,7 +66,7 @@ class LocationsPresenter extends LocationsOutputPort {
     }).toList();
 
     locationsTabCubit.setLocations(allLocations);
-    locationsTabCubit.setLocations(routeLocations);
+    routeLocationsPageCubit.setLocations(routeLocations);
     locationDetailsPageCubit.updateLocation(location);
   }
 
