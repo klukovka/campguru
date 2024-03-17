@@ -109,6 +109,10 @@ class _RouteMapPageState extends State<RouteMapPage> {
             polyline.northeast,
           ];
         });
+
+        _controller.moveCamera(
+          CameraUpdate.newLatLngZoom(polyline.northwest, 25),
+        );
       }),
     );
   }

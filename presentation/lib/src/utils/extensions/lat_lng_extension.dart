@@ -11,58 +11,57 @@ extension DomainListLatLngExtension on List<domain.LatLng> {
 }
 
 extension GoogleListLatLngExtension on List<google.LatLng> {
-  double get westPoint {
+  double get smallestLatitude {
     final latitude = map((e) => e.latitude).toList()..sort();
     return latitude.first;
   }
 
-  double get eastPoint {
+  double get biggestLatitude {
     final latitude = map((e) => e.latitude).toList()..sort();
     return latitude.last;
   }
 
-  double get southPoint {
+  double get smallestLongitude {
     final longitude = map((e) => e.longitude).toList()..sort();
     return longitude.first;
   }
 
-  double get northPoint {
+  double get biggestLongitude {
     final longitude = map((e) => e.longitude).toList()..sort();
     return longitude.last;
   }
 
   google.LatLng get southwest => google.LatLng(
-        westPoint,
-        southPoint,
+        smallestLatitude,
+        smallestLongitude,
       );
 
   google.LatLng get northeast => google.LatLng(
-        eastPoint,
-        northPoint,
-      );
-
-  google.LatLng get southeast => google.LatLng(
-        eastPoint,
-        southPoint,
+        biggestLatitude,
+        biggestLongitude,
       );
 
   google.LatLng get northwest => google.LatLng(
-        westPoint,
-        northPoint,
+        biggestLatitude,
+        smallestLongitude,
+      );
+
+  google.LatLng get southeast => google.LatLng(
+        smallestLatitude,
+        biggestLongitude,
       );
 
   google.LatLngBounds getBounds() {
-    // const safeCoefficient = 0.004;
     const safeCoefficient = 0.004;
 
     return google.LatLngBounds(
       southwest: google.LatLng(
-        westPoint - safeCoefficient,
-        southPoint - safeCoefficient,
+        smallestLatitude - safeCoefficient,
+        smallestLongitude - safeCoefficient,
       ),
       northeast: google.LatLng(
-        eastPoint + safeCoefficient,
-        northPoint + safeCoefficient,
+        biggestLatitude + safeCoefficient,
+        biggestLongitude + safeCoefficient,
       ),
     );
   }

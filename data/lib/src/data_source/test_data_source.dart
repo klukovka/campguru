@@ -180,14 +180,16 @@ class TestDataSource {
       reviews: generateReviews(size: 5, page: 0).values,
       locationsAmount: 3,
       polyline: [
-        LatLng(40.702147, -74.015794),
-        LatLng(40.711614, -74.012318),
-        LatLng(40.718217, -73.998284),
+        LatLng(48.766619, 23.098852),
+        LatLng(48.768140, 23.104775),
+        LatLng(48.772551, 23.156930),
+        LatLng(48.781879, 23.118083),
       ],
       locations: [
-        LatLng(40.702147, -74.015794),
-        LatLng(40.711614, -74.012318),
-        LatLng(40.718217, -73.998284),
+        LatLng(48.766619, 23.098852),
+        LatLng(48.768140, 23.104775),
+        LatLng(48.772551, 23.156930),
+        LatLng(48.781879, 23.118083),
       ],
     );
   }
