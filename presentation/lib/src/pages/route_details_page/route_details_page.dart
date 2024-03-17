@@ -57,7 +57,8 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
               RouteDetailsSliverAppBar(
                 route: state.route,
                 onStretch: () => context.appRouter.pushRouteMap(
-                  state.route.polyline ?? [],
+                  polyline: state.route.polyline ?? [],
+                  locations: state.route.locations ?? [],
                 ),
               ),
               if (description.isNotEmpty)

@@ -10,11 +10,13 @@ import 'package:presentation/src/utils/extensions/lat_lng_extension.dart';
 
 @RoutePage()
 class RouteMapPage extends StatefulWidget {
-  final String coordinates;
+  final String locations;
+  final String polyline;
 
   const RouteMapPage({
     super.key,
-    @PathParam() required this.coordinates,
+    @QueryParam() this.locations = '',
+    @QueryParam() this.polyline = '',
   });
 
   @override
@@ -25,7 +27,8 @@ class _RouteMapPageState extends State<RouteMapPage> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
-  List<LatLng> get coordinates => widget.coordinates.toGoogleParams();
+  List<LatLng> get locations => widget.locations.toGoogleParams();
+  List<LatLng> get polyline => widget.polyline.toGoogleParams();
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +40,17 @@ class _RouteMapPageState extends State<RouteMapPage> {
             compassEnabled: false,
             initialCameraPosition: CameraPosition(
               zoom: 12,
-              target: coordinates.first,
+              target: locations.first,
             ),
             polylines: {
               Polyline(
-                polylineId: PolylineId(widget.coordinates),
+                polylineId: PolylineId(widget.locations),
                 color: Theme.of(context).colorScheme.primary,
-                points: coordinates,
+                points: polyline,
+                width: 4,
               ),
             },
-            markers: coordinates.map((latLng) {
+            markers: locations.map((latLng) {
               return Marker(
                 markerId: MarkerId(latLng.toString()),
                 position: latLng,

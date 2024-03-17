@@ -11,6 +11,7 @@ class Route extends FavoriteTableItem<Route> {
   final String? description;
   final List<String>? labels;
   final List<Review>? reviews;
+  final List<LatLng>? locations;
   final List<LatLng>? polyline;
 
   const Route({
@@ -22,6 +23,7 @@ class Route extends FavoriteTableItem<Route> {
     required this.duration,
     required super.isFavorite,
     required this.reviewsAmount,
+    this.locations,
     this.description,
     this.labels,
     this.locationsAmount,
@@ -45,6 +47,7 @@ class Route extends FavoriteTableItem<Route> {
       labels,
       reviews,
       polyline,
+      locations,
     ];
   }
 
@@ -63,6 +66,7 @@ class Route extends FavoriteTableItem<Route> {
     List<String>? labels,
     List<Review>? reviews,
     List<LatLng>? polyline,
+    List<LatLng>? locations,
   }) {
     return Route(
       id: id ?? this.id,
@@ -78,6 +82,7 @@ class Route extends FavoriteTableItem<Route> {
       labels: labels ?? this.labels,
       reviews: reviews ?? this.reviews,
       polyline: polyline ?? this.polyline,
+      locations: locations ?? this.locations,
     );
   }
 
@@ -96,5 +101,6 @@ class Route extends FavoriteTableItem<Route> {
         labels: another.labels,
         reviews: another.reviews,
         polyline: another.polyline,
+        locations: another.locations,
       );
 }

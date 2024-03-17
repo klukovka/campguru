@@ -138,15 +138,24 @@ abstract class $AppAutoRouter extends _i15.RootStackRouter {
       );
     },
     RouteMapRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
+      final queryParams = routeData.queryParams;
       final args = routeData.argsAs<RouteMapRouteArgs>(
           orElse: () => RouteMapRouteArgs(
-              coordinates: pathParams.getString('coordinates')));
+                locations: queryParams.getString(
+                  'locations',
+                  '',
+                ),
+                polyline: queryParams.getString(
+                  'polyline',
+                  '',
+                ),
+              ));
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i9.RouteMapPage(
           key: args.key,
-          coordinates: args.coordinates,
+          locations: args.locations,
+          polyline: args.polyline,
         ),
       );
     },
@@ -443,15 +452,20 @@ class RouteLocationsRouteArgs {
 class RouteMapRoute extends _i15.PageRouteInfo<RouteMapRouteArgs> {
   RouteMapRoute({
     _i16.Key? key,
-    required String coordinates,
+    String locations = '',
+    String polyline = '',
     List<_i15.PageRouteInfo>? children,
   }) : super(
           RouteMapRoute.name,
           args: RouteMapRouteArgs(
             key: key,
-            coordinates: coordinates,
+            locations: locations,
+            polyline: polyline,
           ),
-          rawPathParams: {'coordinates': coordinates},
+          rawQueryParams: {
+            'locations': locations,
+            'polyline': polyline,
+          },
           initialChildren: children,
         );
 
@@ -464,16 +478,19 @@ class RouteMapRoute extends _i15.PageRouteInfo<RouteMapRouteArgs> {
 class RouteMapRouteArgs {
   const RouteMapRouteArgs({
     this.key,
-    required this.coordinates,
+    this.locations = '',
+    this.polyline = '',
   });
 
   final _i16.Key? key;
 
-  final String coordinates;
+  final String locations;
+
+  final String polyline;
 
   @override
   String toString() {
-    return 'RouteMapRouteArgs{key: $key, coordinates: $coordinates}';
+    return 'RouteMapRouteArgs{key: $key, locations: $locations, polyline: $polyline}';
   }
 }
 

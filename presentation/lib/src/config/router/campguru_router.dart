@@ -33,9 +33,14 @@ class CampguruRouter extends BaseRouter {
   Future<void> pushRouteReviewsPage(int id) =>
       push(RouteReviewsRoute(routeId: id));
 
-  Future<void> pushRouteMap(List<LatLng> coordinates) => push(
+  Future<void> pushRouteMap({
+    required List<LatLng> locations,
+    required List<LatLng> polyline,
+  }) =>
+      push(
         RouteMapRoute(
-          coordinates: coordinates.toRouteParams(),
+          locations: locations.toRouteParams(),
+          polyline: polyline.toRouteParams(),
         ),
       );
 }
