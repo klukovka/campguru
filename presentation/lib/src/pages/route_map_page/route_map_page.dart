@@ -6,7 +6,8 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
-import 'package:presentation/src/utils/extensions/lat_lng_extension.dart';
+import 'package:presentation/src/utils/extensions/google_list_lat_lng_extension.dart';
+import 'package:presentation/src/utils/extensions/string_lat_lng_extension.dart';
 
 @RoutePage()
 class RouteMapPage extends StatefulWidget {

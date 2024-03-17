@@ -2,7 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:presentation/src/config/router/app_auto_router.dart';
 import 'package:presentation/src/config/router/app_auto_router.gr.dart';
 import 'package:presentation/src/config/router/base_router.dart';
-import 'package:presentation/src/utils/extensions/lat_lng_extension.dart';
+import 'package:presentation/src/utils/extensions/domain_list_lat_lng_extension.dart';
 
 class CampguruRouter extends BaseRouter {
   CampguruRouter(AppAutoRouter super.stackRouter);
