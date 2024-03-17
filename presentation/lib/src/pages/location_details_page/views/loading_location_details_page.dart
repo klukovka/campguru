@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/location_details_page/views/location_details_header_delegate.dart';
 import 'package:presentation/src/views/reviews/loading_reviews_list.dart';
+import 'package:presentation/src/views/reviews/more_reviews_button.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class LoadingLocationDetailsPage extends StatelessWidget {
@@ -54,26 +55,10 @@ class LoadingLocationDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Skeletonizer.sliver(
+              const Skeletonizer.sliver(
                 child: SliverPadding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-                  sliver: SliverToBoxAdapter(
-                    child: Row(
-                      //TODO: Add localization
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Reviews',
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ),
-                        const ArrowButton.small(
-                          //TODO: Add localization
-                          child: Text('more'),
-                        )
-                      ],
-                    ),
-                  ),
+                  padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+                  sliver: SliverToBoxAdapter(child: MoreReviewsButton()),
                 ),
               ),
               const LoadingReviewsList.sliver(),

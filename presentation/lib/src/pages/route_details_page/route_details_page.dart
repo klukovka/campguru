@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
-import 'package:presentation/src/pages/route_details_page/views/loading_location_details_page.dart';
+import 'package:presentation/src/pages/route_details_page/views/loading_route_details_page.dart';
 import 'package:presentation/src/pages/route_details_page/views/route_details_header_delegate.dart';
+import 'package:presentation/src/views/reviews/more_reviews_button.dart';
 import 'package:presentation/src/views/reviews/reviews_list.dart';
 
 @RoutePage()
@@ -100,23 +101,13 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
                 SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
-                    child: Row(
-                      //TODO: Add localization
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Reviews (${state.route.reviewsAmount})',
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ),
-                        ArrowButton.small(
-                          onPressed: () {
-                            //TODO: push reviews
-                          },
-                          //TODO: Add localization
-                          child: const Text('more'),
-                        )
-                      ],
+                    child: MoreReviewsButton(
+                      reviewsAmount: state.route.reviewsAmount,
+                      onMorePressed: () =>
+                          //TODO: Push route reviews
+                          context.appRouter.pushLocationReviewsPage(
+                        widget.routeId,
+                      ),
                     ),
                   ),
                 ),

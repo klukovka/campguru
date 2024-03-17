@@ -6,6 +6,7 @@ import 'package:presentation/presentation.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/location_details_page/views/loading_location_details_page.dart';
 import 'package:presentation/src/pages/location_details_page/views/location_details_header_delegate.dart';
+import 'package:presentation/src/views/reviews/more_reviews_button.dart';
 import 'package:presentation/src/views/reviews/reviews_list.dart';
 
 @RoutePage()
@@ -91,24 +92,12 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                 SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
-                    child: Row(
-                      //TODO: Add localization
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Reviews (${state.location.reviewsAmount})',
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ),
-                        ArrowButton.small(
-                          onPressed: () =>
-                              context.appRouter.pushLocationReviewsPage(
-                            widget.locationId,
-                          ),
-                          //TODO: Add localization
-                          child: const Text('more'),
-                        )
-                      ],
+                    child: MoreReviewsButton(
+                      reviewsAmount: state.location.reviewsAmount,
+                      onMorePressed: () =>
+                          context.appRouter.pushLocationReviewsPage(
+                        widget.locationId,
+                      ),
                     ),
                   ),
                 ),
