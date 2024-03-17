@@ -4,10 +4,12 @@ import 'package:presentation/src/bloc.dart';
 class LocationsPresenter extends LocationsOutputPort {
   final LocationsTabCubit locationsTabCubit;
   final LocationDetailsPageCubit locationDetailsPageCubit;
+  final RouteLocationsPageCubit routeLocationsPageCubit;
 
   LocationsPresenter({
     required this.locationsTabCubit,
     required this.locationDetailsPageCubit,
+    required this.routeLocationsPageCubit,
   });
 
   @override
@@ -38,8 +40,14 @@ class LocationsPresenter extends LocationsOutputPort {
           ? item.copyWith(isFavorite: isFavorite)
           : item;
     }).toList();
+    final routeLocations = routeLocationsPageCubit.state.locations.map((item) {
+      return item.id == locationId
+          ? item.copyWith(isFavorite: isFavorite)
+          : item;
+    }).toList();
 
     locationsTabCubit.setLocations(allLocations);
+    routeLocationsPageCubit.setLocations(routeLocations);
 
     if (locationDetailsPageCubit.state.location.id == locationId) {
       locationDetailsPageCubit.updateLocationFavoriteStatus(
@@ -53,8 +61,12 @@ class LocationsPresenter extends LocationsOutputPort {
     final allLocations = locationsTabCubit.state.locations.map((item) {
       return item.id == location.id ? item.merge(location) : item;
     }).toList();
+    final routeLocations = routeLocationsPageCubit.state.locations.map((item) {
+      return item.id == location.id ? item.merge(location) : item;
+    }).toList();
 
     locationsTabCubit.setLocations(allLocations);
+    locationsTabCubit.setLocations(routeLocations);
     locationDetailsPageCubit.updateLocation(location);
   }
 
@@ -75,6 +87,27 @@ class LocationsPresenter extends LocationsOutputPort {
       locationDetailsPageCubit.updateLocation(location);
     } else {
       locationDetailsPageCubit.setHasError();
+    }
+  }
+
+  @override
+  void setRouteLocationsFilter(Filter filter) {
+    routeLocationsPageCubit.setFilter(filter);
+  }
+
+  @override
+  void stopRouteLocationsLoading() {
+    routeLocationsPageCubit.stopLoading();
+  }
+
+  @override
+  void updateRouteLocations(List<Location> locations, int amount) {
+    final append = routeLocationsPageCubit.state.filter.append;
+
+    if (append) {
+      routeLocationsPageCubit.appendLocations(locations);
+    } else {
+      routeLocationsPageCubit.setLocations(locations, amount: amount);
     }
   }
 }

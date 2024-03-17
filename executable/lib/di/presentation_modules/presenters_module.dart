@@ -21,10 +21,12 @@ abstract class PresentersModule {
   LocationsOutputPort getLocationsOutputPort(
     LocationsTabCubit locationsTabCubit,
     LocationDetailsPageCubit locationDetailsPageCubit,
+    RouteLocationsPageCubit routeLocationsPageCubit,
   ) =>
       LocationsPresenter(
         locationsTabCubit: locationsTabCubit,
         locationDetailsPageCubit: locationDetailsPageCubit,
+        routeLocationsPageCubit: routeLocationsPageCubit,
       );
 
   @lazySingleton

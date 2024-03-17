@@ -8,4 +8,7 @@ abstract class LocationsOutputPort {
   void startLocationDetailsLoading();
   void updateLocationDetails(Location location);
   void updateLocationDetailsBriefly(int locationId);
+  void setRouteLocationsFilter(Filter filter);
+  void updateRouteLocations(List<Location> locations, int amount);
+  void stopRouteLocationsLoading();
 }
