@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/utils/extensions/google_list_lat_lng_extension.dart';
+import 'package:presentation/src/utils/extensions/lat_lng_bounds_extension.dart';
 import 'package:presentation/src/utils/extensions/string_lat_lng_extension.dart';
 
 @RoutePage()
@@ -31,6 +32,7 @@ class _RouteMapPageState extends State<RouteMapPage> {
   List<LatLng> get polyline => widget.polyline.toGoogleParams();
 
   List<LatLng>? border;
+  List<LatLng> testPoints = [];
 
   @override
   Widget build(BuildContext context) {
@@ -59,15 +61,24 @@ class _RouteMapPageState extends State<RouteMapPage> {
                   width: 4,
                 ),
             },
-            markers: locations.map((latLng) {
-              return Marker(
-                markerId: MarkerId(latLng.toString()),
-                position: latLng,
-                icon: BitmapDescriptor.defaultMarkerWithHue(
-                  math.Random().nextInt(360).toDouble(),
-                ),
-              );
-            }).toSet(),
+            markers: {
+              ...locations.map((latLng) {
+                return Marker(
+                  markerId: MarkerId(latLng.toString()),
+                  position: latLng,
+                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                    math.Random().nextInt(360).toDouble(),
+                  ),
+                );
+              }),
+              ...testPoints.map((latLng) {
+                return Marker(
+                  markerId: MarkerId(latLng.toString()),
+                  position: latLng,
+                  icon: BitmapDescriptor.defaultMarker,
+                );
+              }),
+            },
             onMapCreated: (GoogleMapController controller) async {
               _controller = controller;
               await _controller.moveCamera(
@@ -101,9 +112,6 @@ class _RouteMapPageState extends State<RouteMapPage> {
 
             // log('width $width; height $height');
 
-            final visibleRegion = await _controller.getVisibleRegion();
-            log(visibleRegion.toString());
-
             setState(() {
               border = [
                 polyline.northeast,
@@ -114,9 +122,71 @@ class _RouteMapPageState extends State<RouteMapPage> {
               ];
             });
 
-            _controller.moveCamera(
+            await _controller.moveCamera(
               CameraUpdate.newLatLngZoom(polyline.northwest, 25),
             );
+
+            var visibleRegion = await _controller.getVisibleRegion();
+            final latitudeDiff = visibleRegion.latitudeDiff;
+            final longitudeDiff = visibleRegion.longitudeDiff;
+
+            final height =
+                (polyline.getBounds().latitudeDiff / latitudeDiff).ceil();
+            final width =
+                (polyline.getBounds().longitudeDiff / longitudeDiff).ceil();
+            log(width.toString());
+            log(height.toString());
+
+            final bounds = List.generate(
+              height,
+              (i) {
+                return List.generate(width, (j) {
+                  return visibleRegion
+                      .getShiftedLng(j * longitudeDiff)
+                      .getShiftedLat(-i * latitudeDiff);
+                });
+              },
+            );
+
+            //TODO: Extract to isolate
+            var size = height * width;
+            for (int i = 0; i < bounds.length; i++) {
+              for (int j = 0; j < bounds[i].length; j++) {
+                await _controller.moveCamera(
+                  CameraUpdate.newLatLngBounds(bounds[i][j], 0),
+                );
+                final snapshot = await _controller.takeSnapshot();
+                log('${size--} left snapshot => ${snapshot != null}');
+              }
+            }
+
+            // for (double i = 0;
+            //     visibleRegion.southeast.longitude <
+            //         polyline.southeast.longitude;
+            //     i += longitudeDiff) {
+            //   testPoints = [...testPoints, visibleRegion.southeast];
+
+            // }
+
+            // /////////////////
+            // while (visibleRegion.southeast.longitude <
+            //     polyline.southeast.longitude) {
+            //   testPoints = [...testPoints, visibleRegion.southeast];
+            //   visibleRegion = visibleRegion.getShiftedLng(longitudeDiff);
+            //   await _controller.moveCamera(
+            //     CameraUpdate.newLatLngBounds(visibleRegion, 0),
+            //   );
+            //   while (visibleRegion.southeast.latitude >
+            //       polyline.southeast.latitude) {
+            //     testPoints = [...testPoints, visibleRegion.southeast];
+            //     visibleRegion = visibleRegion.getShiftedLat(-latitudeDiff);
+            //     await _controller.moveCamera(
+            //       CameraUpdate.newLatLngBounds(visibleRegion, 0),
+            //     );
+            //   }
+            // }
+            log('Done');
+            setState(() {});
           }),
           FloatingActionButton(
             onPressed: () {
