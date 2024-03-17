@@ -104,8 +104,7 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
                     child: MoreReviewsButton(
                       reviewsAmount: state.route.reviewsAmount,
                       onMorePressed: () =>
-                          //TODO: Push route reviews
-                          context.appRouter.pushLocationReviewsPage(
+                          context.appRouter.pushRouteReviewsPage(
                         widget.routeId,
                       ),
                     ),

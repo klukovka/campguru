@@ -27,4 +27,7 @@ class CampguruRouter extends BaseRouter {
 
   Future<void> pushRouteLocationsPage(int id) =>
       push(RouteLocationsRoute(routeId: id));
+
+  Future<void> pushRouteReviewsPage(int id) =>
+      push(RouteReviewsRoute(routeId: id));
 }
