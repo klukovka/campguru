@@ -58,12 +58,9 @@ class LocationsPresenter extends LocationsOutputPort {
 
   @override
   void updateLocationDetails(Location location) {
-    final allLocations = locationsTabCubit.state.locations.map((item) {
-      return item.id == location.id ? item.merge(location) : item;
-    }).toList();
-    final routeLocations = routeLocationsPageCubit.state.locations.map((item) {
-      return item.id == location.id ? item.merge(location) : item;
-    }).toList();
+    final allLocations = locationsTabCubit.state.locations.merge(location);
+    final routeLocations =
+        routeLocationsPageCubit.state.locations.merge(location);
 
     locationsTabCubit.setLocations(allLocations);
     routeLocationsPageCubit.setLocations(routeLocations);

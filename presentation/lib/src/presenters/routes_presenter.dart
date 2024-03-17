@@ -47,9 +47,7 @@ class RoutesPresenter extends RoutesOutputPort {
 
   @override
   void updateRouteDetails(Route route) {
-    final allRoutes = routesTabCubit.state.routes.map((item) {
-      return item.id == route.id ? item.merge(route) : item;
-    }).toList();
+    final allRoutes = routesTabCubit.state.routes.merge(route);
 
     routesTabCubit.setRoutes(allRoutes);
     routeDetailsPageCubit.updateRoute(route);
