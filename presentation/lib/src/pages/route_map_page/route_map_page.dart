@@ -1,5 +1,5 @@
-import 'dart:async';
-import 'dart:math';
+import 'dart:developer';
+import 'dart:math' as math;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
@@ -24,11 +24,12 @@ class RouteMapPage extends StatefulWidget {
 }
 
 class _RouteMapPageState extends State<RouteMapPage> {
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
+  late GoogleMapController _controller;
 
   List<LatLng> get locations => widget.locations.toGoogleParams();
   List<LatLng> get polyline => widget.polyline.toGoogleParams();
+
+  List<LatLng>? border;
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +50,27 @@ class _RouteMapPageState extends State<RouteMapPage> {
                 points: polyline,
                 width: 4,
               ),
+              if (border != null)
+                Polyline(
+                  polylineId: const PolylineId('widget.locations'),
+                  color: Colors.black,
+                  points: border!,
+                  width: 4,
+                ),
             },
             markers: locations.map((latLng) {
               return Marker(
                 markerId: MarkerId(latLng.toString()),
                 position: latLng,
                 icon: BitmapDescriptor.defaultMarkerWithHue(
-                  Random().nextInt(360).toDouble(),
+                  math.Random().nextInt(360).toDouble(),
                 ),
               );
             }).toSet(),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
+            onMapCreated: (GoogleMapController controller) async {
+              _controller = controller;
+              await _controller.moveCamera(
+                  CameraUpdate.newLatLngBounds(polyline.getBounds(), 0));
             },
           ),
           SafeArea(
@@ -70,9 +80,36 @@ class _RouteMapPageState extends State<RouteMapPage> {
                 onPressed: context.appRouter.pop,
               ),
             ),
-          )
+          ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () async {
+        // final visibleRegion = await _controller.getVisibleRegion();
+        // log(visibleRegion.toString());
+        // _controller.moveCamera(CameraUpdate.newLatLngZoom(
+        //   locations.first,
+        //   100,
+        // ));
+        // final width =
+        //     visibleRegion.northeast.latitude - visibleRegion.southwest.latitude;
+        // final height = visibleRegion.northeast.longitude -
+        //     visibleRegion.southwest.longitude;
+
+        // log('width $width; height $height');
+
+        final visibleRegion = await _controller.getVisibleRegion();
+        log(visibleRegion.toString());
+
+        setState(() {
+          border = [
+            polyline.northeast,
+            polyline.southeast,
+            polyline.southwest,
+            polyline.northwest,
+            polyline.northeast,
+          ];
+        });
+      }),
     );
   }
 }
