@@ -9,11 +9,13 @@ import 'package:skeletonizer/skeletonizer.dart';
 class RouteDetailsSliverAppBar extends StatelessWidget {
   final domain.Route route;
   final double toolbarHeight;
+  final Future<void> Function()? onStretch;
 
   const RouteDetailsSliverAppBar({
     super.key,
     required this.route,
     this.toolbarHeight = 48,
+    this.onStretch,
   });
 
   @override
@@ -60,6 +62,7 @@ class RouteDetailsSliverAppBar extends StatelessWidget {
         mark: route.mark,
         name: route.name,
       ),
+      onStretchTrigger: onStretch,
     );
   }
 }
