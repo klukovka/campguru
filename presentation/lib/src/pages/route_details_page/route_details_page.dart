@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/route_details_page/views/loading_route_details_page.dart';
-import 'package:presentation/src/pages/route_details_page/views/route_details_header_delegate.dart';
+import 'package:presentation/src/pages/route_details_page/views/route_details_sliver_app_bar.dart';
 import 'package:presentation/src/views/reviews/more_reviews_button.dart';
 import 'package:presentation/src/views/reviews/reviews_list.dart';
 
@@ -34,6 +34,7 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.locator<RouteDetailsPageController>()(widget.routeId);
     });
@@ -53,13 +54,8 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: RouteDetailsHeaderDelegate(
-                  route: state.route,
-                  maxExtent: MediaQuery.sizeOf(context).width,
-                  safeTopPadding: MediaQuery.paddingOf(context).top,
-                ),
+              RouteDetailsSliverAppBar(
+                route: state.route,
               ),
               if (description.isNotEmpty)
                 SliverPadding(

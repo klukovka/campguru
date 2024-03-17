@@ -2,7 +2,7 @@ import 'package:components/components.dart';
 import 'package:domain/domain.dart' as domain;
 import 'package:flutter/material.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
-import 'package:presentation/src/pages/route_details_page/views/route_details_header_delegate.dart';
+import 'package:presentation/src/pages/route_details_page/views/route_details_sliver_app_bar.dart';
 import 'package:presentation/src/views/reviews/loading_reviews_list.dart';
 import 'package:presentation/src/views/reviews/more_reviews_button.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -19,13 +19,8 @@ class LoadingRouteDetailsPage extends StatelessWidget {
           CustomScrollView(
             slivers: [
               Skeletonizer.sliver(
-                child: SliverPersistentHeader(
-                  pinned: true,
-                  delegate: RouteDetailsHeaderDelegate(
-                    route: route,
-                    maxExtent: MediaQuery.sizeOf(context).width,
-                    safeTopPadding: MediaQuery.paddingOf(context).top,
-                  ),
+                child: RouteDetailsSliverAppBar(
+                  route: route,
                 ),
               ),
               const Skeletonizer.sliver(

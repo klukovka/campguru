@@ -12,6 +12,7 @@ export 'src/fields/search_field.dart';
 export 'src/images/circle_icon_preview.dart';
 export 'src/images/circle_network_image.dart';
 export 'src/images/images_preview.dart';
+export 'src/rating/rating_info_name_app_bar.dart';
 export 'src/rating/rating_name_info_bar.dart';
 export 'src/rating/rating_view.dart';
 export 'src/scrollable/load_more_scroll_listener.dart';

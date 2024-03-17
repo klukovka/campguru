@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:components/components.dart';
 import 'package:domain/domain.dart' as domain;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/route_details_page/views/route_photos_carousel.dart';
@@ -63,4 +66,15 @@ class RouteDetailsHeaderDelegate extends SliverPersistentHeaderDelegate {
       oldDelegate.route != route ||
       oldDelegate.maxExtent != maxExtent ||
       oldDelegate.safeTopPadding != safeTopPadding;
+
+  @override
+  OverScrollHeaderStretchConfiguration get stretchConfiguration =>
+      OverScrollHeaderStretchConfiguration(
+        stretchTriggerOffset: maxExtent / 2,
+        onStretchTrigger: () async {
+          log('Stretch');
+        },
+      );
+
+  double get maxShrinkOffset => maxExtent - minExtent;
 }
