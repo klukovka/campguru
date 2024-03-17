@@ -1,9 +1,9 @@
 import 'package:domain/domain.dart';
 
-class RouteLocationsController {
+class RouteLocationsPageController {
   final GetRouteLocationsUseCase getRouteLocationsUseCase;
 
-  RouteLocationsController(this.getRouteLocationsUseCase);
+  RouteLocationsPageController(this.getRouteLocationsUseCase);
 
   void initialLoading(int routeId) {
     getRouteLocationsUseCase(routeId, const Filter());

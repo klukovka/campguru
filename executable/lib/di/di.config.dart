@@ -194,7 +194,7 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i3.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
           gh<_i4.UpdateRouteFavoriteStatusUseCase>()));
-  gh.lazySingleton<_i3.RouteLocationsController>(() => controllersModule
+  gh.lazySingleton<_i3.RouteLocationsPageController>(() => controllersModule
       .getRouteLocationsController(gh<_i4.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i3.RoutesTabController>(() =>
       controllersModule.getRoutesTabController(gh<_i4.GetAllRoutesUseCase>()));

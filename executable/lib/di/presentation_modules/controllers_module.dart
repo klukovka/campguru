@@ -63,10 +63,10 @@ abstract class ControllersModule {
       RouteDetailsPageController(getRouteDetailsUseCase);
 
   @lazySingleton
-  RouteLocationsController getRouteLocationsController(
+  RouteLocationsPageController getRouteLocationsController(
     GetRouteLocationsUseCase getRouteLocationsUseCase,
   ) =>
-      RouteLocationsController(getRouteLocationsUseCase);
+      RouteLocationsPageController(getRouteLocationsUseCase);
 
   // @lazySingleton
   // RouteReviewsPageController getRouteReviewsPageController(

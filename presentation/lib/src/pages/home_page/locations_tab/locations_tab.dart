@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/src/bloc.dart';
 import 'package:presentation/src/controllers.dart';
 import 'package:presentation/src/core/extensions/build_context_extension.dart';
-import 'package:presentation/src/views/locations/location_tile.dart';
+import 'package:presentation/src/views/locations/locations_list.dart';
 
 @RoutePage()
 class LocationsTab extends StatelessWidget implements AutoRouteWrapper {
@@ -54,12 +54,7 @@ class LocationsTab extends StatelessWidget implements AutoRouteWrapper {
                     ? const SkeletonListView()
                     : LoadMoreScrollListener(
                         loadMore: () => controller.uploadNextPage(state.filter),
-                        child: ListView.builder(
-                          itemBuilder: (context, index) => LocationTile(
-                            location: state.locations[index],
-                          ),
-                          itemCount: state.locations.length,
-                        ),
+                        child: LocationsList(locations: state.locations),
                       ),
               ),
             ],

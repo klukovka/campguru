@@ -123,7 +123,7 @@ abstract class $AppAutoRouter extends _i13.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<RouteLocationsRouteArgs>(
           orElse: () =>
-              RouteLocationsRouteArgs(routeId: pathParams.getString('id')));
+              RouteLocationsRouteArgs(routeId: pathParams.getInt('id')));
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i13.WrappedRoute(
@@ -373,7 +373,7 @@ class RouteDetailsRouteArgs {
 class RouteLocationsRoute extends _i13.PageRouteInfo<RouteLocationsRouteArgs> {
   RouteLocationsRoute({
     _i14.Key? key,
-    required String routeId,
+    required int routeId,
     List<_i13.PageRouteInfo>? children,
   }) : super(
           RouteLocationsRoute.name,
@@ -399,7 +399,7 @@ class RouteLocationsRouteArgs {
 
   final _i14.Key? key;
 
-  final String routeId;
+  final int routeId;
 
   @override
   String toString() {
