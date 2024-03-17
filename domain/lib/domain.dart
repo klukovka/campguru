@@ -36,4 +36,5 @@ export 'src/use_cases/routes/get_all_routes_use_case.dart';
 export 'src/use_cases/routes/get_route_details_use_case.dart';
 export 'src/use_cases/routes/update_route_favorite_status_use_case.dart';
 export 'src/use_cases/users/is_authorized_use_case.dart';
+export 'src/utils/list_extension.dart';
 export 'src/utils/merge_details_extension.dart';

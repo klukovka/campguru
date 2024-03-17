@@ -60,10 +60,9 @@ class RoutesPresenter extends RoutesOutputPort {
 
   @override
   void updateRouteDetailsBriefly(int routeId) {
-    final route = routesTabCubit.state.routes.cast<Route?>().firstWhere(
-          (route) => route?.id == routeId,
-          orElse: () => null,
-        );
+    final route = routesTabCubit.state.routes.firstWhereOrNull(
+      (route) => route.id == routeId,
+    );
 
     if (route != null) {
       routeDetailsPageCubit.updateRoute(route);

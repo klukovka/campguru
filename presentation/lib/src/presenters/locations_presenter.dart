@@ -74,11 +74,9 @@ class LocationsPresenter extends LocationsOutputPort {
 
   @override
   void updateLocationDetailsBriefly(int locationId) {
-    final location =
-        locationsTabCubit.state.locations.cast<Location?>().firstWhere(
-              (location) => location?.id == locationId,
-              orElse: () => null,
-            );
+    final location = locationsTabCubit.state.locations.firstWhereOrNull(
+      (location) => location.id == locationId,
+    );
 
     if (location != null) {
       locationDetailsPageCubit.updateLocation(location);
