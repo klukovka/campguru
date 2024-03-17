@@ -7,6 +7,7 @@ export 'src/buttons/filter_button.dart';
 export 'src/cards/item_card.dart';
 export 'src/carousel/carousel.dart';
 export 'src/carousel/photos_info_carousel.dart';
+export 'src/default_app_bar.dart';
 export 'src/fields/search_field.dart';
 export 'src/images/circle_icon_preview.dart';
 export 'src/images/circle_network_image.dart';

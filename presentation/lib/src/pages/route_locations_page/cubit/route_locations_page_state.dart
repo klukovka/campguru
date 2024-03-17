@@ -13,7 +13,7 @@ class RouteLocationsPageState extends Equatable {
     this.locations = const [],
   });
 
-  bool get isFirstLoading => isLoading && locations.isEmpty;
+  bool get isFirstLoading => isLoading && filter.page == 0;
 
   RouteLocationsPageState copyWith({
     Filter? filter,

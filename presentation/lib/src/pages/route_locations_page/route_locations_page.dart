@@ -43,17 +43,8 @@ class _RouteLocationsPageState extends State<RouteLocationsPage> {
     return BlocBuilder<RouteLocationsPageCubit, RouteLocationsPageState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            leadingWidth: 64,
-            toolbarHeight: 48,
-            backgroundColor: Colors.transparent,
-            surfaceTintColor: Colors.transparent,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: ArrowCircleButton.back(
-                onPressed: context.appRouter.pop,
-              ),
-            ),
+          appBar: DefaultAppBar(
+            onPop: context.appRouter.pop,
           ),
           body: Column(
             children: [
