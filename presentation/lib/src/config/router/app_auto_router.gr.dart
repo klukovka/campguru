@@ -138,9 +138,16 @@ abstract class $AppAutoRouter extends _i15.RootStackRouter {
       );
     },
     RouteMapRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<RouteMapRouteArgs>(
+          orElse: () => RouteMapRouteArgs(
+              coordinates: pathParams.getString('coordinates')));
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.RouteMapPage(),
+        child: _i9.RouteMapPage(
+          key: args.key,
+          coordinates: args.coordinates,
+        ),
       );
     },
     RouteReviewsRoute.name: (routeData) {
@@ -433,16 +440,41 @@ class RouteLocationsRouteArgs {
 
 /// generated route for
 /// [_i9.RouteMapPage]
-class RouteMapRoute extends _i15.PageRouteInfo<void> {
-  const RouteMapRoute({List<_i15.PageRouteInfo>? children})
-      : super(
+class RouteMapRoute extends _i15.PageRouteInfo<RouteMapRouteArgs> {
+  RouteMapRoute({
+    _i16.Key? key,
+    required String coordinates,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
           RouteMapRoute.name,
+          args: RouteMapRouteArgs(
+            key: key,
+            coordinates: coordinates,
+          ),
+          rawPathParams: {'coordinates': coordinates},
           initialChildren: children,
         );
 
   static const String name = 'RouteMapRoute';
 
-  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+  static const _i15.PageInfo<RouteMapRouteArgs> page =
+      _i15.PageInfo<RouteMapRouteArgs>(name);
+}
+
+class RouteMapRouteArgs {
+  const RouteMapRouteArgs({
+    this.key,
+    required this.coordinates,
+  });
+
+  final _i16.Key? key;
+
+  final String coordinates;
+
+  @override
+  String toString() {
+    return 'RouteMapRouteArgs{key: $key, coordinates: $coordinates}';
+  }
 }
 
 /// generated route for

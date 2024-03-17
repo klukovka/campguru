@@ -3,9 +3,9 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
-import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/location_details_page/views/loading_location_details_page.dart';
 import 'package:presentation/src/pages/location_details_page/views/location_details_header_delegate.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/views/reviews/more_reviews_button.dart';
 import 'package:presentation/src/views/reviews/reviews_list.dart';
 

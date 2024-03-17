@@ -5,7 +5,7 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:presentation/src/core/extensions/build_context_extension.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 @RoutePage()
 class LocationMapPage extends StatefulWidget {

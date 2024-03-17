@@ -1,7 +1,7 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/src/core/extensions/date_formatter_extension.dart';
+import 'package:presentation/src/utils/extensions/date_formatter_extension.dart';
 
 class ReviewTile extends StatelessWidget {
   final Review review;

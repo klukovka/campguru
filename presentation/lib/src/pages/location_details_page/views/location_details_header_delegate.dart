@@ -2,8 +2,8 @@ import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/location_details_page/views/location_photos_carousel.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/views/locations/location_favorite_button/location_favorite_button.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

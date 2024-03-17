@@ -1,8 +1,8 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/location_details_page/views/location_details_header_delegate.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/views/reviews/loading_reviews_list.dart';
 import 'package:presentation/src/views/reviews/more_reviews_button.dart';
 import 'package:skeletonizer/skeletonizer.dart';

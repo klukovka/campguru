@@ -5,8 +5,8 @@ import 'package:domain/domain.dart' as domain;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/route_details_page/views/route_photos_carousel.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/views/routes/route_favorite_button/route_favorite_button.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

@@ -1,8 +1,8 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart' as domain;
 import 'package:flutter/material.dart';
-import 'package:presentation/src/core/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/route_details_page/views/route_details_sliver_app_bar.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/views/reviews/loading_reviews_list.dart';
 import 'package:presentation/src/views/reviews/more_reviews_button.dart';
 import 'package:skeletonizer/skeletonizer.dart';
