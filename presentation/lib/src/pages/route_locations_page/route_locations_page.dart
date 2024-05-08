@@ -51,6 +51,7 @@ class _RouteLocationsPageState extends State<RouteLocationsPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SearchField(
+                  isLoading: state.isLoading,
                   //TODO: Localizations
                   hintText: 'Search Locations',
                   search: (value) => controller.search(

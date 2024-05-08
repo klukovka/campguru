@@ -33,6 +33,7 @@ class RoutesTab extends StatelessWidget implements AutoRouteWrapper {
                   children: [
                     Expanded(
                       child: SearchField(
+                        isLoading: state.isLoading,
                         //TODO: Localizations
                         hintText: 'Search Routes',
                         search: (value) => controller.search(
