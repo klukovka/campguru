@@ -12,8 +12,8 @@ class LocationFiltersPageController {
   ) {
     final filter = currentFilter.copyWith(
       page: 0,
-      sortBy: sortBy,
-      labels: labels,
+      sortBy: Nullable(sortBy),
+      labels: Nullable(labels),
     );
 
     getAllLocationsUseCase(filter);

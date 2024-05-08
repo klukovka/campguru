@@ -115,4 +115,9 @@ class LocationsPresenter extends LocationsOutputPort {
   void updateLocationsAvailableFilters(List<LocationFilterLabel> labels) {
     locationsFiltersPageCubit.updateLabels(labels);
   }
+
+  @override
+  void updatePremiumStatus(bool hasPremium) {
+    locationsFiltersPageCubit.updatePremiumStatus(hasPremium);
+  }
 }

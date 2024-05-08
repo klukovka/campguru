@@ -21,10 +21,10 @@ import 'data_modules/preferences_repository_module.dart' as _i12;
 import 'data_modules/reviews_repository_module.dart' as _i15;
 import 'data_modules/routes_repository_module.dart' as _i14;
 import 'data_modules/users_repository_module.dart' as _i10;
-import 'domain_modules/location_use_cases_module.dart' as _i17;
-import 'domain_modules/review_use_cases_module.dart' as _i16;
+import 'domain_modules/location_use_cases_module.dart' as _i18;
+import 'domain_modules/review_use_cases_module.dart' as _i17;
 import 'domain_modules/route_use_cases_module.dart' as _i20;
-import 'domain_modules/user_use_cases_module.dart' as _i18;
+import 'domain_modules/user_use_cases_module.dart' as _i16;
 import 'presentation_modules/auto_router_module.dart' as _i7;
 import 'presentation_modules/bloc_module.dart' as _i8;
 import 'presentation_modules/controllers_module.dart' as _i19;
@@ -53,9 +53,9 @@ Future<_i1.GetIt> $configureDependencies(
   final locationsRepositoryModule = _$LocationsRepositoryModule();
   final routesRepositoryModule = _$RoutesRepositoryModule();
   final reviewsRepositoryModule = _$ReviewsRepositoryModule();
+  final userUseCasesModule = _$UserUseCasesModule();
   final reviewUseCasesModule = _$ReviewUseCasesModule();
   final locationUseCasesCasesModule = _$LocationUseCasesCasesModule();
-  final userUseCasesModule = _$UserUseCasesModule();
   final controllersModule = _$ControllersModule();
   final routeUseCasesModule = _$RouteUseCasesModule();
   gh.lazySingleton<_i3.ErrorHandlerOutputPort>(
@@ -138,6 +138,12 @@ Future<_i1.GetIt> $configureDependencies(
         .getTestReviewsRepository(gh<_i5.TestDataSource>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i3.GetUserSubscriptionStatus>(
+      () => userUseCasesModule.getUserSubscriptionStatus(
+            gh<_i3.UsersRepository>(),
+            gh<_i3.LocationsOutputPort>(),
+            gh<_i3.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i3.GetLocationReviewsUseCase>(
       () => reviewUseCasesModule.getLocationReviewsUseCase(
             gh<_i3.ReviewsRepository>(),
@@ -258,11 +264,11 @@ class _$RoutesRepositoryModule extends _i14.RoutesRepositoryModule {}
 
 class _$ReviewsRepositoryModule extends _i15.ReviewsRepositoryModule {}
 
-class _$ReviewUseCasesModule extends _i16.ReviewUseCasesModule {}
+class _$UserUseCasesModule extends _i16.UserUseCasesModule {}
 
-class _$LocationUseCasesCasesModule extends _i17.LocationUseCasesCasesModule {}
+class _$ReviewUseCasesModule extends _i17.ReviewUseCasesModule {}
 
-class _$UserUseCasesModule extends _i18.UserUseCasesModule {}
+class _$LocationUseCasesCasesModule extends _i18.LocationUseCasesCasesModule {}
 
 class _$ControllersModule extends _i19.ControllersModule {}
 

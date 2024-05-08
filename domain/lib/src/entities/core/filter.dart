@@ -39,17 +39,17 @@ class Filter extends Equatable {
     int? page,
     int? size,
     String? search,
-    SortBy? sortBy,
+    Nullable<SortBy>? sortBy,
     Direction? direction,
-    List<FilterLabel>? labels,
+    Nullable<List<FilterLabel>>? labels,
   }) {
     return Filter(
       page: page ?? this.page,
       size: size ?? this.size,
       search: search ?? this.search,
-      sortBy: sortBy ?? this.sortBy,
+      sortBy: sortBy == null ? this.sortBy : sortBy.value,
       direction: direction ?? this.direction,
-      labels: labels ?? this.labels,
+      labels: labels == null ? this.labels : labels.value,
     );
   }
 }

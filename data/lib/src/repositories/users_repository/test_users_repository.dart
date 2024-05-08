@@ -13,4 +13,9 @@ class TestUsersRepository implements UsersRepository {
       ),
     );
   }
+
+  @override
+  Future<FailureOrResult<bool>> hasPremium() async => FailureOrResult.success(
+        false,
+      );
 }

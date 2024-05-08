@@ -12,4 +12,5 @@ abstract class LocationsOutputPort {
   void updateRouteLocations(List<Location> locations, int amount);
   void stopRouteLocationsLoading();
   void updateLocationsAvailableFilters(List<LocationFilterLabel> labels);
+  void updatePremiumStatus(bool hasPremium);
 }

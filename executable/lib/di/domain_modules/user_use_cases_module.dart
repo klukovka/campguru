@@ -18,4 +18,16 @@ abstract class UserUseCasesModule {
         currentUserOutputPort: currentUserOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
       );
+
+  @lazySingleton
+  GetUserSubscriptionStatus getUserSubscriptionStatus(
+    UsersRepository usersRepository,
+    LocationsOutputPort locationsOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+  ) =>
+      GetUserSubscriptionStatus(
+        usersRepository: usersRepository,
+        locationsOutputPort: locationsOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+      );
 }

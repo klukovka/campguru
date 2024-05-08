@@ -17,4 +17,8 @@ class LocationsFiltersPageCubit extends Cubit<LocationsFiltersPageState> {
       ));
 
   void stopLoading() => emit(state.copyWith(isLoading: false));
+
+  void updatePremiumStatus(bool hasPremium) => emit(state.copyWith(
+        hasPremium: hasPremium,
+      ));
 }

@@ -72,7 +72,7 @@ class TestLocationsRepository implements LocationsRepository {
       LocationFilterLabel(
         id: 1,
         name: FilterLabel.mountains,
-        isPremium: true,
+        isPremium: false,
       ),
       LocationFilterLabel(
         id: 1,
