@@ -1,8 +1,8 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart' as domain;
 import 'package:flutter/material.dart';
+import 'package:presentation/src/pages/routes/views/route_favorite_button/route_favorite_button.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
-import 'package:presentation/src/views/routes/route_favorite_button/route_favorite_button.dart';
 
 class RouteTile extends StatelessWidget {
   final domain.Route route;

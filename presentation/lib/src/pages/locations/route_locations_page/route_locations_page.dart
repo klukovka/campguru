@@ -3,8 +3,8 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
+import 'package:presentation/src/pages/locations/views/locations_list.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
-import 'package:presentation/src/views/locations/locations_list.dart';
 
 @RoutePage()
 class RouteLocationsPage extends StatefulWidget implements AutoRouteWrapper {

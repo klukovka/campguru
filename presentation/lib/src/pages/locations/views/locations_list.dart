@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/src/views/locations/location_tile.dart';
+import 'package:presentation/src/pages/locations/views/location_tile.dart';
 
 class LocationsList extends StatelessWidget {
   final List<Location> locations;

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/src/bloc.dart';
 import 'package:presentation/src/controllers.dart';
+import 'package:presentation/src/pages/routes/views/route_tile.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
-import 'package:presentation/src/views/routes/route_tile.dart';
 
 @RoutePage()
 class RoutesTab extends StatelessWidget implements AutoRouteWrapper {

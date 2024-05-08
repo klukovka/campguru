@@ -1,8 +1,8 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/src/pages/locations/views/location_favorite_button/location_favorite_button.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
-import 'package:presentation/src/views/locations/location_favorite_button/location_favorite_button.dart';
 
 class LocationTile extends StatelessWidget {
   final Location location;

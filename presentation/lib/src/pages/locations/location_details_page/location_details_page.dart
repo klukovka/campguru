@@ -3,62 +3,62 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
-import 'package:presentation/src/pages/route_details_page/views/loading_route_details_page.dart';
-import 'package:presentation/src/pages/route_details_page/views/route_details_sliver_app_bar.dart';
+import 'package:presentation/src/pages/locations/location_details_page/views/loading_location_details_page.dart';
+import 'package:presentation/src/pages/locations/location_details_page/views/location_details_header_delegate.dart';
+import 'package:presentation/src/pages/reviews/views/more_reviews_button.dart';
+import 'package:presentation/src/pages/reviews/views/reviews_list.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
-import 'package:presentation/src/views/reviews/more_reviews_button.dart';
-import 'package:presentation/src/views/reviews/reviews_list.dart';
 
 @RoutePage()
-class RouteDetailsPage extends StatefulWidget implements AutoRouteWrapper {
-  final int routeId;
+class LocationDetailsPage extends StatefulWidget implements AutoRouteWrapper {
+  final int locationId;
 
-  const RouteDetailsPage({
+  const LocationDetailsPage({
     super.key,
-    @PathParam('id') required this.routeId,
+    @PathParam('id') required this.locationId,
   });
 
   @override
-  State<RouteDetailsPage> createState() => _RouteDetailsPageState();
+  State<LocationDetailsPage> createState() => _LocationDetailsPageState();
 
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: context.locator<RouteDetailsPageCubit>(),
+      value: context.locator<LocationDetailsPageCubit>(),
       child: this,
     );
   }
 }
 
-class _RouteDetailsPageState extends State<RouteDetailsPage> {
+class _LocationDetailsPageState extends State<LocationDetailsPage> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.locator<RouteDetailsPageController>()(widget.routeId);
+      context.locator<LocationDetailsPageController>()(widget.locationId);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RouteDetailsPageCubit, RouteDetailsPageState>(
+    return BlocBuilder<LocationDetailsPageCubit, LocationDetailsPageState>(
       builder: (context, state) {
         if (state.isLoading) {
-          return LoadingRouteDetailsPage(route: state.route);
+          return LoadingLocationDetailsPage(location: state.location);
         }
 
-        final description = state.route.description ?? '';
-        final labels = state.route.labels ?? [];
-        final reviews = state.route.reviews ?? [];
+        final description = state.location.description ?? '';
+        final labels = state.location.labels ?? [];
+        final reviews = state.location.reviews ?? [];
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              RouteDetailsSliverAppBar(
-                route: state.route,
-                onStretch: () => context.appRouter.pushRouteMap(
-                  polyline: state.route.polyline ?? [],
-                  locations: state.route.locations ?? [],
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: LocationDetailsHeaderDelegate(
+                  location: state.location,
+                  maxExtent: MediaQuery.sizeOf(context).width,
+                  safeTopPadding: MediaQuery.paddingOf(context).top,
                 ),
               ),
               if (description.isNotEmpty)
@@ -71,22 +71,13 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
               SliverPadding(
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                 sliver: SliverToBoxAdapter(
-                  child: Text(
-                    //TODO: Add correct formatting and localizations
-                    '${state.route.distance.toStringAsFixed(2)} km (${state.route.duration.toStringAsFixed(2)} hours)',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-                sliver: SliverToBoxAdapter(
                   child: ArrowButton.large(
-                    onPressed: () => context.appRouter.pushRouteLocationsPage(
-                      widget.routeId,
+                    onPressed: () => context.appRouter.pushLocationMap(
+                      lat: state.location.lat,
+                      lng: state.location.lng,
                     ),
                     //TODO: Add localization
-                    child: Text('Locations (${state.route.locationsAmount})'),
+                    child: const Text('View on Map'),
                   ),
                 ),
               ),
@@ -97,15 +88,15 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
                     child: StyledChips(labels: labels),
                   ),
                 ),
-              if (state.route.reviewsAmount != 0)
+              if (state.location.reviewsAmount != 0)
                 SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
                     child: MoreReviewsButton(
-                      reviewsAmount: state.route.reviewsAmount,
+                      reviewsAmount: state.location.reviewsAmount,
                       onMorePressed: () =>
-                          context.appRouter.pushRouteReviewsPage(
-                        widget.routeId,
+                          context.appRouter.pushLocationReviewsPage(
+                        widget.locationId,
                       ),
                     ),
                   ),

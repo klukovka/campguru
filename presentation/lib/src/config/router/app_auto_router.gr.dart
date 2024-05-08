@@ -19,20 +19,20 @@ import 'package:presentation/src/pages/home_page/routes_tab/routes_tab.dart'
     as _i11;
 import 'package:presentation/src/pages/home_page/trips_tab/trips_tab.dart'
     as _i14;
-import 'package:presentation/src/pages/location_details_page/location_details_page.dart'
+import 'package:presentation/src/pages/locations/location_details_page/location_details_page.dart'
     as _i2;
-import 'package:presentation/src/pages/location_map_page/location_map_page.dart'
+import 'package:presentation/src/pages/locations/location_map_page/location_map_page.dart'
     as _i3;
-import 'package:presentation/src/pages/location_reviews_page/location_reviews_page.dart'
-    as _i4;
-import 'package:presentation/src/pages/route_details_page/route_details_page.dart'
-    as _i7;
-import 'package:presentation/src/pages/route_locations_page/route_locations_page.dart'
+import 'package:presentation/src/pages/locations/route_locations_page/route_locations_page.dart'
     as _i8;
-import 'package:presentation/src/pages/route_map_page/route_map_page.dart'
-    as _i9;
-import 'package:presentation/src/pages/route_reviews_page/route_reviews_page.dart'
+import 'package:presentation/src/pages/reviews/location_reviews_page/location_reviews_page.dart'
+    as _i4;
+import 'package:presentation/src/pages/reviews/route_reviews_page/route_reviews_page.dart'
     as _i10;
+import 'package:presentation/src/pages/routes/route_details_page/route_details_page.dart'
+    as _i7;
+import 'package:presentation/src/pages/routes/route_map_page/route_map_page.dart'
+    as _i9;
 import 'package:presentation/src/pages/splash_page/splash_page.dart' as _i12;
 import 'package:presentation/src/pages/start_page/start_page.dart' as _i13;
 

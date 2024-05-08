@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:presentation/src/pages/reviews/views/reviews_list.dart';
 import 'package:presentation/src/utils/skeletonizer/entities_skeletonizer_utils.dart';
-import 'package:presentation/src/views/reviews/reviews_list.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class LoadingReviewsList extends StatelessWidget {

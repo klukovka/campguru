@@ -3,47 +3,47 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
+import 'package:presentation/src/pages/reviews/views/loading_reviews_list.dart';
+import 'package:presentation/src/pages/reviews/views/reviews_list.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
-import 'package:presentation/src/views/reviews/loading_reviews_list.dart';
-import 'package:presentation/src/views/reviews/reviews_list.dart';
 
 @RoutePage()
-class LocationReviewsPage extends StatefulWidget implements AutoRouteWrapper {
-  final int locationId;
+class RouteReviewsPage extends StatefulWidget implements AutoRouteWrapper {
+  final int routeId;
 
-  const LocationReviewsPage({
+  const RouteReviewsPage({
     super.key,
-    @PathParam('id') required this.locationId,
+    @PathParam('id') required this.routeId,
   });
 
   @override
-  State<LocationReviewsPage> createState() => _LocationReviewsPageState();
+  State<RouteReviewsPage> createState() => _RouteReviewsPageState();
 
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: context.locator<LocationReviewsPageCubit>(),
+      value: context.locator<RouteReviewsPageCubit>(),
       child: this,
     );
   }
 }
 
-class _LocationReviewsPageState extends State<LocationReviewsPage> {
+class _RouteReviewsPageState extends State<RouteReviewsPage> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.locator<LocationReviewsPageController>().initalLoading(
-            widget.locationId,
+      context.locator<RouteReviewsPageController>().initalLoading(
+            widget.routeId,
           );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.locator<LocationReviewsPageController>();
+    final controller = context.locator<RouteReviewsPageController>();
 
-    return BlocBuilder<LocationReviewsPageCubit, LocationReviewsPageState>(
+    return BlocBuilder<RouteReviewsPageCubit, RouteReviewsPageState>(
       builder: (context, state) {
         return Scaffold(
           appBar: DefaultAppBar(
@@ -53,7 +53,7 @@ class _LocationReviewsPageState extends State<LocationReviewsPage> {
               ? const LoadingReviewsList()
               : LoadMoreScrollListener(
                   loadMore: () => controller.uploadNextPage(
-                    widget.locationId,
+                    widget.routeId,
                     state.filter,
                   ),
                   child: ReviewsList(reviews: state.reviews),

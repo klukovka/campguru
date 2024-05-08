@@ -1,15 +1,15 @@
 import 'package:components/components.dart';
-import 'package:domain/domain.dart';
+import 'package:domain/domain.dart' as domain;
 import 'package:flutter/material.dart';
-import 'package:presentation/src/pages/location_details_page/views/location_details_header_delegate.dart';
+import 'package:presentation/src/pages/reviews/views/loading_reviews_list.dart';
+import 'package:presentation/src/pages/reviews/views/more_reviews_button.dart';
+import 'package:presentation/src/pages/routes/route_details_page/views/route_details_sliver_app_bar.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
-import 'package:presentation/src/views/reviews/loading_reviews_list.dart';
-import 'package:presentation/src/views/reviews/more_reviews_button.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class LoadingLocationDetailsPage extends StatelessWidget {
-  final Location location;
-  const LoadingLocationDetailsPage({super.key, required this.location});
+class LoadingRouteDetailsPage extends StatelessWidget {
+  final domain.Route route;
+  const LoadingRouteDetailsPage({super.key, required this.route});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +19,8 @@ class LoadingLocationDetailsPage extends StatelessWidget {
           CustomScrollView(
             slivers: [
               Skeletonizer.sliver(
-                child: SliverPersistentHeader(
-                  pinned: true,
-                  delegate: LocationDetailsHeaderDelegate(
-                    location: location,
-                    maxExtent: MediaQuery.sizeOf(context).width,
-                    safeTopPadding: MediaQuery.paddingOf(context).top,
-                  ),
+                child: RouteDetailsSliverAppBar(
+                  route: route,
                 ),
               ),
               const Skeletonizer.sliver(
@@ -36,13 +31,25 @@ class LoadingLocationDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const Skeletonizer.sliver(
+              Skeletonizer.sliver(
                 child: SliverPadding(
-                  padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                  sliver: SliverToBoxAdapter(
+                    child: Text(
+                      //TODO: Add correct formatting and localizations
+                      '${route.distance.toStringAsFixed(2)} km (${route.duration.toStringAsFixed(2)} hours)',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ),
+                ),
+              ),
+              Skeletonizer.sliver(
+                child: SliverPadding(
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
                     child: ArrowButton.large(
                       //TODO: Add localization
-                      child: Text('View on Map'),
+                      child: Text('Locations (${route.locationsAmount})'),
                     ),
                   ),
                 ),

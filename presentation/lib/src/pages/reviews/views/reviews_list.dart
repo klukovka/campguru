@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/src/views/reviews/review_tile.dart';
+import 'package:presentation/src/pages/reviews/views/review_tile.dart';
 
 class ReviewsList extends StatelessWidget {
   final List<Review> reviews;

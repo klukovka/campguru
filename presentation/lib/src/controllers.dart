@@ -1,10 +1,10 @@
 export 'pages/home_page/locations_tab/locations_tab_controller.dart';
 export 'pages/home_page/routes_tab/routes_tab_controller.dart';
-export 'pages/location_details_page/location_details_page_controller.dart';
-export 'pages/location_reviews_page/location_reviews_page_controller.dart';
-export 'pages/route_details_page/route_details_page_controller.dart';
-export 'pages/route_locations_page/route_locations_page_controller.dart';
-export 'pages/route_reviews_page/route_reviews_page_controller.dart';
+export 'pages/locations/location_details_page/location_details_page_controller.dart';
+export 'pages/locations/route_locations_page/route_locations_page_controller.dart';
+export 'pages/locations/views/location_favorite_button/location_favorite_button_controller.dart';
+export 'pages/reviews/location_reviews_page/location_reviews_page_controller.dart';
+export 'pages/reviews/route_reviews_page/route_reviews_page_controller.dart';
+export 'pages/routes/route_details_page/route_details_page_controller.dart';
+export 'pages/routes/views/route_favorite_button/route_favorite_button_controller.dart';
 export 'pages/splash_page/splash_page_controller.dart';
-export 'views/locations/location_favorite_button/location_favorite_button_controller.dart';
-export 'views/routes/route_favorite_button/route_favorite_button_controller.dart';
