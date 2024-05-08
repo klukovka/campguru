@@ -44,5 +44,6 @@ class CampguruRouter extends BaseRouter {
         ),
       );
 
-  Future<void> pushLocationsFiltersPage() => push(const LocationFiltersRoute());
+  Future<void> pushLocationsFiltersPage() =>
+      push(const LocationsFiltersRoute());
 }

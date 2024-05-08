@@ -22,13 +22,13 @@ import 'package:presentation/src/pages/home_page/trips_tab/trips_tab.dart'
 import 'package:presentation/src/pages/locations/location_details_page/location_details_page.dart'
     as _i2;
 import 'package:presentation/src/pages/locations/location_map_page/location_map_page.dart'
-    as _i4;
-import 'package:presentation/src/pages/locations/locations_filters_page/locations_filters_page.dart'
     as _i3;
+import 'package:presentation/src/pages/locations/locations_filters_page/locations_filters_page.dart'
+    as _i5;
 import 'package:presentation/src/pages/locations/route_locations_page/route_locations_page.dart'
     as _i9;
 import 'package:presentation/src/pages/reviews/location_reviews_page/location_reviews_page.dart'
-    as _i5;
+    as _i4;
 import 'package:presentation/src/pages/reviews/route_reviews_page/route_reviews_page.dart'
     as _i11;
 import 'package:presentation/src/pages/routes/route_details_page/route_details_page.dart'
@@ -63,12 +63,6 @@ abstract class $AppAutoRouter extends _i16.RootStackRouter {
         )),
       );
     },
-    LocationFiltersRoute.name: (routeData) {
-      return _i16.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i3.LocationFiltersPage(),
-      );
-    },
     LocationMapRoute.name: (routeData) {
       final queryParams = routeData.queryParams;
       final args = routeData.argsAs<LocationMapRouteArgs>(
@@ -84,7 +78,7 @@ abstract class $AppAutoRouter extends _i16.RootStackRouter {
               ));
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i4.LocationMapPage(
+        child: _i3.LocationMapPage(
           key: args.key,
           lng: args.lng,
           lat: args.lat,
@@ -99,10 +93,16 @@ abstract class $AppAutoRouter extends _i16.RootStackRouter {
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i16.WrappedRoute(
-            child: _i5.LocationReviewsPage(
+            child: _i4.LocationReviewsPage(
           key: args.key,
           locationId: args.locationId,
         )),
+      );
+    },
+    LocationsFiltersRoute.name: (routeData) {
+      return _i16.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i16.WrappedRoute(child: const _i5.LocationsFiltersPage()),
       );
     },
     LocationsRoute.name: (routeData) {
@@ -263,21 +263,7 @@ class LocationDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i3.LocationFiltersPage]
-class LocationFiltersRoute extends _i16.PageRouteInfo<void> {
-  const LocationFiltersRoute({List<_i16.PageRouteInfo>? children})
-      : super(
-          LocationFiltersRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'LocationFiltersRoute';
-
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i4.LocationMapPage]
+/// [_i3.LocationMapPage]
 class LocationMapRoute extends _i16.PageRouteInfo<LocationMapRouteArgs> {
   LocationMapRoute({
     _i17.Key? key,
@@ -324,7 +310,7 @@ class LocationMapRouteArgs {
 }
 
 /// generated route for
-/// [_i5.LocationReviewsPage]
+/// [_i4.LocationReviewsPage]
 class LocationReviewsRoute
     extends _i16.PageRouteInfo<LocationReviewsRouteArgs> {
   LocationReviewsRoute({
@@ -361,6 +347,20 @@ class LocationReviewsRouteArgs {
   String toString() {
     return 'LocationReviewsRouteArgs{key: $key, locationId: $locationId}';
   }
+}
+
+/// generated route for
+/// [_i5.LocationsFiltersPage]
+class LocationsFiltersRoute extends _i16.PageRouteInfo<void> {
+  const LocationsFiltersRoute({List<_i16.PageRouteInfo>? children})
+      : super(
+          LocationsFiltersRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LocationsFiltersRoute';
+
+  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
 }
 
 /// generated route for

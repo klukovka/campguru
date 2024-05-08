@@ -35,6 +35,7 @@ class LocationsPresenter extends LocationsOutputPort {
     } else {
       locationsTabCubit.setLocations(locations, amount: amount);
     }
+    locationsFiltersPageCubit.stopLoading();
   }
 
   @override

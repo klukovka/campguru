@@ -7,14 +7,14 @@ part 'locations_filters_page_state.dart';
 class LocationsFiltersPageCubit extends Cubit<LocationsFiltersPageState> {
   LocationsFiltersPageCubit() : super(const LocationsFiltersPageState());
 
-  void updateCurrentFilter(Filter filter) => state.copyWith(
+  void updateCurrentFilter(Filter filter) => emit(state.copyWith(
         filter: filter,
         isLoading: true,
-      );
+      ));
 
-  void updateLabels(List<LocationFilterLabel> labels) => state.copyWith(
+  void updateLabels(List<LocationFilterLabel> labels) => emit(state.copyWith(
         labels: labels,
-      );
+      ));
 
-  void stopLoading() => state.copyWith(isLoading: false);
+  void stopLoading() => emit(state.copyWith(isLoading: false));
 }

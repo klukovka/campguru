@@ -11,6 +11,8 @@ class LocationsFiltersPageState extends Equatable {
     this.isLoading = false,
   });
 
+  List<FilterLabel> get filterLabels => labels.map((e) => e.name).toList();
+
   @override
   List<Object> get props => [filter, labels, isLoading];
 
