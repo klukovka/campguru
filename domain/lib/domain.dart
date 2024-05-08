@@ -12,6 +12,7 @@ export 'src/entities/core/filter_label.dart';
 export 'src/entities/core/sort_by.dart';
 export 'src/entities/core/table_item.dart';
 export 'src/entities/locations/location.dart';
+export 'src/entities/locations/location_filter_label.dart';
 export 'src/entities/reviews/review.dart';
 export 'src/entities/routes/lat_lng.dart';
 export 'src/entities/routes/route.dart';

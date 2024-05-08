@@ -76,6 +76,8 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.routeLocationsPageCubit);
   gh.lazySingleton<_i4.RouteReviewsPageCubit>(
       () => blocModule.routeReviewsPageCubit);
+  gh.lazySingleton<_i4.LocationsFiltersPageCubit>(
+      () => blocModule.locationsFiltersPageCubit);
   await gh.lazySingletonAsync<_i5.HiveDataSource>(
     () => dataSourceModule.hiveDataSource,
     preResolve: true,
@@ -92,6 +94,7 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.LocationsTabCubit>(),
             gh<_i4.LocationDetailsPageCubit>(),
             gh<_i4.RouteLocationsPageCubit>(),
+            gh<_i4.LocationsFiltersPageCubit>(),
           ));
   gh.lazySingleton<_i3.CurrentUserOutputPort>(
       () => presentersModule.getCurrentUserOutputPort(
@@ -188,6 +191,8 @@ Future<_i1.GetIt> $configureDependencies(
       .getLocationReviewsPageController(gh<_i3.GetLocationReviewsUseCase>()));
   gh.lazySingleton<_i4.LocationsTabController>(() => controllersModule
       .getLocationsTabController(gh<_i3.GetAllLocationsUseCase>()));
+  gh.lazySingleton<_i4.LocationFiltersPageController>(() => controllersModule
+      .getLocationFiltersPageController(gh<_i3.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i4.RouteReviewsPageController>(() => controllersModule
       .getRouteReviewsPageController(gh<_i3.GetRouteReviewsUseCase>()));
   gh.lazySingleton<_i3.GetAllRoutesUseCase>(

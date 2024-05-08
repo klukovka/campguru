@@ -3,4 +3,7 @@ enum FilterLabel {
   showNearest,
   nature,
   river,
+  mountains,
+  forest,
+  animals,
 }

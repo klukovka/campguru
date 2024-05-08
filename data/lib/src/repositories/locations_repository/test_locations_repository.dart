@@ -47,4 +47,42 @@ class TestLocationsRepository implements LocationsRepository {
       _dataSource.generateLocations(size: filter.size, page: filter.page),
     );
   }
+
+  Future<FailureOrResult<List<LocationFilterLabel>>>
+      getLocationsFilterLabels() async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    return FailureOrResult.success([
+      LocationFilterLabel(
+        id: 1,
+        name: FilterLabel.showNearest,
+        isPremium: true,
+      ),
+      LocationFilterLabel(
+        id: 1,
+        name: FilterLabel.animals,
+        isPremium: false,
+      ),
+      LocationFilterLabel(
+        id: 1,
+        name: FilterLabel.forest,
+        isPremium: false,
+      ),
+      LocationFilterLabel(
+        id: 1,
+        name: FilterLabel.mountains,
+        isPremium: true,
+      ),
+      LocationFilterLabel(
+        id: 1,
+        name: FilterLabel.nature,
+        isPremium: false,
+      ),
+      LocationFilterLabel(
+        id: 1,
+        name: FilterLabel.river,
+        isPremium: true,
+      ),
+    ]);
+  }
 }

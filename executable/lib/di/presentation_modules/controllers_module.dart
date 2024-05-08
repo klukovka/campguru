@@ -73,4 +73,10 @@ abstract class ControllersModule {
     GetRouteReviewsUseCase getRouteReviewsUseCase,
   ) =>
       RouteReviewsPageController(getRouteReviewsUseCase);
+
+  @lazySingleton
+  LocationFiltersPageController getLocationFiltersPageController(
+    GetAllLocationsUseCase getAllLocationsUseCase,
+  ) =>
+      LocationFiltersPageController(getAllLocationsUseCase);
 }

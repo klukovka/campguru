@@ -5,21 +5,25 @@ class LocationsPresenter extends LocationsOutputPort {
   final LocationsTabCubit locationsTabCubit;
   final LocationDetailsPageCubit locationDetailsPageCubit;
   final RouteLocationsPageCubit routeLocationsPageCubit;
+  final LocationsFiltersPageCubit locationsFiltersPageCubit;
 
   LocationsPresenter({
     required this.locationsTabCubit,
     required this.locationDetailsPageCubit,
     required this.routeLocationsPageCubit,
+    required this.locationsFiltersPageCubit,
   });
 
   @override
   void setAllLocationsFilter(Filter filter) {
     locationsTabCubit.setFilter(filter);
+    locationsFiltersPageCubit.updateCurrentFilter(filter);
   }
 
   @override
   void stopAllLocationsLoading() {
     locationsTabCubit.stopLoading();
+    locationsFiltersPageCubit.stopLoading();
   }
 
   @override

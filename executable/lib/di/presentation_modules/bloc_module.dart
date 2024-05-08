@@ -32,4 +32,8 @@ abstract class BlocModule {
 
   @lazySingleton
   RouteReviewsPageCubit get routeReviewsPageCubit => RouteReviewsPageCubit();
+
+  @lazySingleton
+  LocationsFiltersPageCubit get locationsFiltersPageCubit =>
+      LocationsFiltersPageCubit();
 }

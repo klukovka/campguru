@@ -1,6 +1,7 @@
 export 'pages/home_page/locations_tab/locations_tab_controller.dart';
 export 'pages/home_page/routes_tab/routes_tab_controller.dart';
 export 'pages/locations/location_details_page/location_details_page_controller.dart';
+export 'pages/locations/locations_filters_page/locations_filters_page_controller.dart';
 export 'pages/locations/route_locations_page/route_locations_page_controller.dart';
 export 'pages/locations/views/location_favorite_button/location_favorite_button_controller.dart';
 export 'pages/reviews/location_reviews_page/location_reviews_page_controller.dart';
