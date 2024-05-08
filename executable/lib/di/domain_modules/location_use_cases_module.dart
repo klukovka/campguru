@@ -50,4 +50,15 @@ abstract class LocationUseCasesCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         locationsOutputPort: locationsOutputPort,
       );
+
+  GetLocationsAvailableFiltersUseCase getLocationsAvailableFiltersUseCase(
+    LocationsRepository locationsRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    LocationsOutputPort locationsOutputPort,
+  ) =>
+      GetLocationsAvailableFiltersUseCase(
+        locationsRepository: locationsRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        locationsOutputPort: locationsOutputPort,
+      );
 }

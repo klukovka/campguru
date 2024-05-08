@@ -30,6 +30,7 @@ export 'src/repositories/routes_repository.dart';
 export 'src/repositories/users_repository.dart';
 export 'src/use_cases/locations/get_all_locations_use_case.dart';
 export 'src/use_cases/locations/get_location_details_use_case.dart';
+export 'src/use_cases/locations/get_locations_available_filters.dart';
 export 'src/use_cases/locations/get_route_locations_use_case.dart';
 export 'src/use_cases/locations/update_location_favorite_status_use_case.dart';
 export 'src/use_cases/reviews/get_location_reviews_use_case.dart';

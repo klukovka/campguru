@@ -109,4 +109,9 @@ class LocationsPresenter extends LocationsOutputPort {
       routeLocationsPageCubit.setLocations(locations, amount: amount);
     }
   }
+
+  @override
+  void updateLocationsAvailableFilters(List<LocationFilterLabel> labels) {
+    locationsFiltersPageCubit.updateLabels(labels);
+  }
 }

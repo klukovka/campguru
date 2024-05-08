@@ -48,6 +48,7 @@ class TestLocationsRepository implements LocationsRepository {
     );
   }
 
+  @override
   Future<FailureOrResult<List<LocationFilterLabel>>>
       getLocationsFilterLabels() async {
     await Future.delayed(const Duration(milliseconds: 1000));

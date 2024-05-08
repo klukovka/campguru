@@ -8,12 +8,12 @@ class LocationFiltersPageController {
   void setFilters(
     Filter currentFilter,
     SortBy? sortBy,
-    List<LocationFilterLabel>? labels,
+    List<FilterLabel>? labels,
   ) {
     final filter = currentFilter.copyWith(
       page: 0,
       sortBy: sortBy,
-      labels: labels?.map((e) => e.name).toList(),
+      labels: labels,
     );
 
     getAllLocationsUseCase(filter);

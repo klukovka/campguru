@@ -150,6 +150,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i3.ErrorHandlerOutputPort>(),
             gh<_i3.ReviewsOutputPort>(),
           ));
+  gh.factory<_i3.GetLocationsAvailableFiltersUseCase>(
+      () => locationUseCasesCasesModule.getLocationsAvailableFiltersUseCase(
+            gh<_i3.LocationsRepository>(),
+            gh<_i3.ErrorHandlerOutputPort>(),
+            gh<_i3.LocationsOutputPort>(),
+          ));
   gh.lazySingleton<_i3.GetAllLocationsUseCase>(
       () => locationUseCasesCasesModule.getAllLocationsUseCase(
             gh<_i3.LocationsRepository>(),
@@ -217,17 +223,18 @@ Future<_i1.GetIt> $configureDependencies(
       .getRouteLocationsController(gh<_i3.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i4.RouteDetailsPageController>(() => controllersModule
       .getRouteDetailsPageController(gh<_i3.GetRouteDetailsUseCase>()));
-  gh.lazySingleton<_i4.SplashPageController>(
-      () => controllersModule.getSplashPageController(
-            gh<_i3.IsAuthorizedUseCase>(),
-            gh<_i3.GetAllLocationsUseCase>(),
-            gh<_i3.GetAllRoutesUseCase>(),
-          ));
   gh.lazySingleton<_i4.RoutesTabController>(() =>
       controllersModule.getRoutesTabController(gh<_i3.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i4.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
           gh<_i3.UpdateRouteFavoriteStatusUseCase>()));
+  gh.lazySingleton<_i4.SplashPageController>(
+      () => controllersModule.getSplashPageController(
+            gh<_i3.IsAuthorizedUseCase>(),
+            gh<_i3.GetAllLocationsUseCase>(),
+            gh<_i3.GetAllRoutesUseCase>(),
+            gh<_i3.GetLocationsAvailableFiltersUseCase>(),
+          ));
   return getIt;
 }
 
