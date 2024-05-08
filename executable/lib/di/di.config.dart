@@ -80,11 +80,6 @@ Future<_i1.GetIt> $configureDependencies(
     () => dataSourceModule.hiveDataSource,
     preResolve: true,
   );
-  gh.lazySingleton<_i3.ReviewsOutputPort>(
-      () => presentersModule.getReviewsOutputPort(
-            gh<_i4.LocationReviewsPageCubit>(),
-            gh<_i4.RouteReviewsPageCubit>(),
-          ));
   gh.lazySingleton<_i3.RoutesOutputPort>(
       () => presentersModule.getRoutesOutputPort(
             gh<_i4.RoutesTabCubit>(),
@@ -92,6 +87,12 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i4.CampguruRouter>(
       () => autoRouterModule.router(gh<_i4.AppAutoRouter>()));
+  gh.lazySingleton<_i3.LocationsOutputPort>(
+      () => presentersModule.getLocationsOutputPort(
+            gh<_i4.LocationsTabCubit>(),
+            gh<_i4.LocationDetailsPageCubit>(),
+            gh<_i4.RouteLocationsPageCubit>(),
+          ));
   gh.lazySingleton<_i3.CurrentUserOutputPort>(
       () => presentersModule.getCurrentUserOutputPort(
             gh<_i4.SplashPageCubit>(),
@@ -109,17 +110,16 @@ Future<_i1.GetIt> $configureDependencies(
     () => authRepositoryModule.testAuthRepository,
     registerFor: {_test},
   );
+  gh.lazySingleton<_i3.ReviewsOutputPort>(
+      () => presentersModule.getReviewsOutputPort(
+            gh<_i4.LocationReviewsPageCubit>(),
+            gh<_i4.RouteReviewsPageCubit>(),
+          ));
   gh.lazySingleton<_i3.PreferencesRepository>(
     () => preferencesRepositoryModule
         .testPreferencesRepository(gh<_i5.HiveDataSource>()),
     registerFor: {_test},
   );
-  gh.lazySingleton<_i3.LocationsOutputPort>(
-      () => presentersModule.getLocationsOutputPort(
-            gh<_i4.LocationsTabCubit>(),
-            gh<_i4.LocationDetailsPageCubit>(),
-            gh<_i4.RouteLocationsPageCubit>(),
-          ));
   gh.lazySingleton<_i3.LocationsRepository>(
     () => locationsRepositoryModule
         .getTestLocationsRepository(gh<_i5.TestDataSource>()),

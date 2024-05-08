@@ -43,4 +43,6 @@ class CampguruRouter extends BaseRouter {
           polyline: polyline.toRouteParams(),
         ),
       );
+
+  Future<void> pushLocationsFiltersPage() => push(const LocationFiltersRoute());
 }
