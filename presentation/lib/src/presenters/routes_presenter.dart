@@ -4,20 +4,24 @@ import 'package:presentation/presentation.dart';
 class RoutesPresenter extends RoutesOutputPort {
   final RoutesTabCubit routesTabCubit;
   final RouteDetailsPageCubit routeDetailsPageCubit;
+  final RoutesFiltersPageCubit routesFiltersPageCubit;
 
   RoutesPresenter({
     required this.routesTabCubit,
     required this.routeDetailsPageCubit,
+    required this.routesFiltersPageCubit,
   });
 
   @override
   void setAllRoutesFilter(Filter filter) {
     routesTabCubit.setFilter(filter);
+    routesFiltersPageCubit.updateCurrentFilter(filter);
   }
 
   @override
   void stopAllRoutesLoading() {
     routesTabCubit.stopLoading();
+    routesFiltersPageCubit.stopLoading();
   }
 
   @override

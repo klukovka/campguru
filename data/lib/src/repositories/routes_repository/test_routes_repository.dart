@@ -34,4 +34,53 @@ class TestRoutesRepository extends RoutesRepository {
     await Future.delayed(const Duration(milliseconds: 200));
     return FailureOrResult.success(null);
   }
+
+  @override
+  Future<FailureOrResult<List<PremiumBasedFilterLabel>>>
+      getRoutesFilterLabels() async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    return FailureOrResult.success([
+      PremiumBasedFilterLabel(
+        id: 1,
+        name: FilterLabel.animals,
+        isPremium: false,
+      ),
+      PremiumBasedFilterLabel(
+        id: 1,
+        name: FilterLabel.forest,
+        isPremium: false,
+      ),
+      PremiumBasedFilterLabel(
+        id: 1,
+        name: FilterLabel.mountains,
+        isPremium: false,
+      ),
+      PremiumBasedFilterLabel(
+        id: 1,
+        name: FilterLabel.nature,
+        isPremium: false,
+      ),
+      PremiumBasedFilterLabel(
+        id: 1,
+        name: FilterLabel.river,
+        isPremium: true,
+      ),
+      PremiumBasedFilterLabel(
+        id: 1,
+        name: FilterLabel.hasInternet,
+        isPremium: true,
+      ),
+      PremiumBasedFilterLabel(
+        id: 1,
+        name: FilterLabel.cafe,
+        isPremium: false,
+      ),
+      PremiumBasedFilterLabel(
+        id: 1,
+        name: FilterLabel.wc,
+        isPremium: true,
+      ),
+    ]);
+  }
 }

@@ -78,6 +78,8 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.routeReviewsPageCubit);
   gh.lazySingleton<_i4.LocationsFiltersPageCubit>(
       () => blocModule.locationsFiltersPageCubit);
+  gh.lazySingleton<_i4.RoutesFiltersPageCubit>(
+      () => blocModule.routesFiltersPageCubit);
   await gh.lazySingletonAsync<_i5.HiveDataSource>(
     () => dataSourceModule.hiveDataSource,
     preResolve: true,
@@ -86,6 +88,7 @@ Future<_i1.GetIt> $configureDependencies(
       () => presentersModule.getRoutesOutputPort(
             gh<_i4.RoutesTabCubit>(),
             gh<_i4.RouteDetailsPageCubit>(),
+            gh<_i4.RoutesFiltersPageCubit>(),
           ));
   gh.lazySingleton<_i4.CampguruRouter>(
       () => autoRouterModule.router(gh<_i4.AppAutoRouter>()));
@@ -231,6 +234,8 @@ Future<_i1.GetIt> $configureDependencies(
       .getRouteDetailsPageController(gh<_i3.GetRouteDetailsUseCase>()));
   gh.lazySingleton<_i4.RoutesTabController>(() =>
       controllersModule.getRoutesTabController(gh<_i3.GetAllRoutesUseCase>()));
+  gh.lazySingleton<_i4.RouteFiltersPageController>(() => controllersModule
+      .getRouteFiltersPageController(gh<_i3.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i4.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
           gh<_i3.UpdateRouteFavoriteStatusUseCase>()));

@@ -82,4 +82,10 @@ abstract class ControllersModule {
     GetAllLocationsUseCase getAllLocationsUseCase,
   ) =>
       LocationFiltersPageController(getAllLocationsUseCase);
+
+  @lazySingleton
+  RouteFiltersPageController getRouteFiltersPageController(
+    GetAllRoutesUseCase getAllRoutesUseCase,
+  ) =>
+      RouteFiltersPageController(getAllRoutesUseCase);
 }

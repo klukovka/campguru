@@ -45,9 +45,11 @@ abstract class PresentersModule {
   RoutesOutputPort getRoutesOutputPort(
     RoutesTabCubit routesTabCubit,
     RouteDetailsPageCubit routeDetailsPageCubit,
+    RoutesFiltersPageCubit routesFiltersPageCubit,
   ) =>
       RoutesPresenter(
         routesTabCubit: routesTabCubit,
         routeDetailsPageCubit: routeDetailsPageCubit,
+        routesFiltersPageCubit: routesFiltersPageCubit,
       );
 }

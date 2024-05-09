@@ -6,4 +6,7 @@ enum FilterLabel {
   mountains,
   forest,
   animals,
+  hasInternet,
+  cafe,
+  wc,
 }

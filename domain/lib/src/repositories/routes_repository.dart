@@ -5,4 +5,6 @@ abstract class RoutesRepository {
   Future<FailureOrResult<void>> addRouteToFavorites(int id);
   Future<FailureOrResult<void>> removeRouteFromFavorites(int id);
   Future<FailureOrResult<Route>> getRouteDetails(int id);
+  Future<FailureOrResult<List<PremiumBasedFilterLabel>>>
+      getRoutesFilterLabels();
 }

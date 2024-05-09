@@ -10,5 +10,8 @@ extension FilterLabelExtension on FilterLabel {
         FilterLabel.mountains => 'Mountains',
         FilterLabel.forest => 'Forest',
         FilterLabel.animals => 'Animals',
+        FilterLabel.hasInternet => 'Has Internet',
+        FilterLabel.cafe => 'Cafe',
+        FilterLabel.wc => 'WC',
       };
 }
