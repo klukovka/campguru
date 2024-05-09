@@ -7,5 +7,6 @@ export 'pages/locations/views/location_favorite_button/location_favorite_button_
 export 'pages/reviews/location_reviews_page/location_reviews_page_controller.dart';
 export 'pages/reviews/route_reviews_page/route_reviews_page_controller.dart';
 export 'pages/routes/route_details_page/route_details_page_controller.dart';
+export 'pages/routes/routes_filters_page/routes_filters_page_controller.dart';
 export 'pages/routes/views/route_favorite_button/route_favorite_button_controller.dart';
 export 'pages/splash_page/splash_page_controller.dart';

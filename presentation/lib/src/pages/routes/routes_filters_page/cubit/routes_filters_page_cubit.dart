@@ -2,10 +2,10 @@ import 'package:domain/domain.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'locations_filters_page_state.dart';
+part 'routes_filters_page_state.dart';
 
-class LocationsFiltersPageCubit extends Cubit<LocationsFiltersPageState> {
-  LocationsFiltersPageCubit() : super(const LocationsFiltersPageState());
+class RoutesFiltersPageCubit extends Cubit<RoutesFiltersPageState> {
+  RoutesFiltersPageCubit() : super(const RoutesFiltersPageState());
 
   void updateCurrentFilter(Filter filter) => emit(state.copyWith(
         filter: filter,

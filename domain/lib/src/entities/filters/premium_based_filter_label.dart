@@ -1,11 +1,11 @@
 import 'package:domain/domain.dart';
 
-class LocationFilterLabel {
+class PremiumBasedFilterLabel {
   final int id;
   final FilterLabel name;
   final bool isPremium;
 
-  LocationFilterLabel({
+  PremiumBasedFilterLabel({
     required this.id,
     required this.name,
     required this.isPremium,

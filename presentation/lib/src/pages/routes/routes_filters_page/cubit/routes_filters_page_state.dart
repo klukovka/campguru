@@ -1,12 +1,12 @@
-part of 'locations_filters_page_cubit.dart';
+part of 'routes_filters_page_cubit.dart';
 
-class LocationsFiltersPageState extends Equatable {
+class RoutesFiltersPageState extends Equatable {
   final Filter filter;
   final List<PremiumBasedFilterLabel> labels;
   final bool isLoading;
   final bool hasPremium;
 
-  const LocationsFiltersPageState({
+  const RoutesFiltersPageState({
     this.filter = const Filter(),
     this.labels = const [],
     this.isLoading = false,
@@ -37,13 +37,13 @@ class LocationsFiltersPageState extends Equatable {
   @override
   List<Object> get props => [filter, labels, isLoading, hasPremium];
 
-  LocationsFiltersPageState copyWith({
+  RoutesFiltersPageState copyWith({
     Filter? filter,
     List<PremiumBasedFilterLabel>? labels,
     bool? isLoading,
     bool? hasPremium,
   }) {
-    return LocationsFiltersPageState(
+    return RoutesFiltersPageState(
       filter: filter ?? this.filter,
       labels: labels ?? this.labels,
       isLoading: isLoading ?? this.isLoading,

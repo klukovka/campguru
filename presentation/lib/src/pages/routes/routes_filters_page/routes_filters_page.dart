@@ -9,28 +9,28 @@ import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/utils/extensions/filter_label_extension.dart';
 import 'package:presentation/src/utils/extensions/sort_by_extension.dart';
 
-enum _LocationsFiltersPageField {
+enum _RoutesFiltersPageField {
   sortBy,
   filters,
 }
 
 @RoutePage()
-class LocationsFiltersPage extends StatefulWidget implements AutoRouteWrapper {
-  const LocationsFiltersPage({super.key});
+class RoutesFiltersPage extends StatefulWidget implements AutoRouteWrapper {
+  const RoutesFiltersPage({super.key});
 
   @override
-  State<LocationsFiltersPage> createState() => _LocationsFiltersPageState();
+  State<RoutesFiltersPage> createState() => _RoutesFiltersPageState();
 
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: context.locator<LocationsFiltersPageCubit>(),
+      value: context.locator<RoutesFiltersPageCubit>(),
       child: this,
     );
   }
 }
 
-class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
+class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
   final _fbKey = GlobalKey<FormBuilderState>();
 
   FormBuilderState? get _fbState => _fbKey.currentState;
@@ -38,7 +38,7 @@ class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocationsFiltersPageCubit, LocationsFiltersPageState>(
+    return BlocBuilder<RoutesFiltersPageCubit, RoutesFiltersPageState>(
       builder: (context, state) {
         final fields = [
           _buildSortByField(state),
@@ -62,9 +62,9 @@ class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
     );
   }
 
-  Widget _buildSortByField(LocationsFiltersPageState state) {
+  Widget _buildSortByField(RoutesFiltersPageState state) {
     return FormBuilderRadioGroup(
-      name: _LocationsFiltersPageField.sortBy.name,
+      name: _RoutesFiltersPageField.sortBy.name,
       orientation: OptionsOrientation.vertical,
       initialValue: state.filter.sortBy,
       decoration: const InputDecoration(
@@ -84,11 +84,11 @@ class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
     );
   }
 
-  Widget _buildFiltersField(LocationsFiltersPageState state) {
+  Widget _buildFiltersField(RoutesFiltersPageState state) {
     final List<FilterLabel> values =
-        _fbValues[_LocationsFiltersPageField.filters.name] ?? [];
+        _fbValues[_RoutesFiltersPageField.filters.name] ?? [];
     return FormBuilderCheckboxGroup(
-      name: _LocationsFiltersPageField.filters.name,
+      name: _RoutesFiltersPageField.filters.name,
       orientation: OptionsOrientation.vertical,
       initialValue: state.filter.labels,
       disabled: state.getDisabledLabels(values),
@@ -118,18 +118,18 @@ class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
     );
   }
 
-  Widget _buildBottomNavigationBar(LocationsFiltersPageState state) {
+  Widget _buildBottomNavigationBar(RoutesFiltersPageState state) {
     return FilterButtons(
       onResetPressed: () {
         _fbState?.patchValue({
-          _LocationsFiltersPageField.sortBy.name: null,
-          _LocationsFiltersPageField.filters.name: null,
+          _RoutesFiltersPageField.sortBy.name: null,
+          _RoutesFiltersPageField.filters.name: null,
         });
       },
       onApplyPressed: () {
         _fbState?.patchValue({
-          _LocationsFiltersPageField.sortBy.name: null,
-          _LocationsFiltersPageField.filters.name: null,
+          _RoutesFiltersPageField.sortBy.name: null,
+          _RoutesFiltersPageField.filters.name: null,
         });
       },
       isLoading: state.isLoading,

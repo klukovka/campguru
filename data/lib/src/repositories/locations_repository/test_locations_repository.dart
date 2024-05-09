@@ -49,37 +49,37 @@ class TestLocationsRepository implements LocationsRepository {
   }
 
   @override
-  Future<FailureOrResult<List<LocationFilterLabel>>>
+  Future<FailureOrResult<List<PremiumBasedFilterLabel>>>
       getLocationsFilterLabels() async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
     return FailureOrResult.success([
-      LocationFilterLabel(
+      PremiumBasedFilterLabel(
         id: 1,
         name: FilterLabel.showNearest,
         isPremium: true,
       ),
-      LocationFilterLabel(
+      PremiumBasedFilterLabel(
         id: 1,
         name: FilterLabel.animals,
         isPremium: false,
       ),
-      LocationFilterLabel(
+      PremiumBasedFilterLabel(
         id: 1,
         name: FilterLabel.forest,
         isPremium: false,
       ),
-      LocationFilterLabel(
+      PremiumBasedFilterLabel(
         id: 1,
         name: FilterLabel.mountains,
         isPremium: false,
       ),
-      LocationFilterLabel(
+      PremiumBasedFilterLabel(
         id: 1,
         name: FilterLabel.nature,
         isPremium: false,
       ),
-      LocationFilterLabel(
+      PremiumBasedFilterLabel(
         id: 1,
         name: FilterLabel.river,
         isPremium: true,

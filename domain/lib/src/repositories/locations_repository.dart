@@ -7,5 +7,6 @@ abstract class LocationsRepository {
   Future<FailureOrResult<Location>> getLocationDetails(int id);
   Future<FailureOrResult<Chunk<Location>>> getRouteLocations(
       int routeId, Filter filter);
-  Future<FailureOrResult<List<LocationFilterLabel>>> getLocationsFilterLabels();
+  Future<FailureOrResult<List<PremiumBasedFilterLabel>>>
+      getLocationsFilterLabels();
 }

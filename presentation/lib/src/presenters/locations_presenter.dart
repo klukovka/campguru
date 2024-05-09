@@ -112,7 +112,7 @@ class LocationsPresenter extends LocationsOutputPort {
   }
 
   @override
-  void updateLocationsAvailableFilters(List<LocationFilterLabel> labels) {
+  void updateLocationsAvailableFilters(List<PremiumBasedFilterLabel> labels) {
     locationsFiltersPageCubit.updateLabels(labels);
   }
 
