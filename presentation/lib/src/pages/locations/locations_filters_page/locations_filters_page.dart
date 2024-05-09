@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
+import 'package:presentation/src/utils/extensions/filter_label_extension.dart';
 import 'package:presentation/src/utils/extensions/sort_by_extension.dart';
 
 enum _LocationFiltersPageField {
@@ -110,7 +111,7 @@ class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
           .map((e) => FormBuilderFieldOption(
                 value: e,
                 child: Text(
-                    '${e.name}${state.isLabelAvailable(e) ? '' : ' (premium)'}'),
+                    '${e.getLabel(context)}${state.isLabelAvailable(e) ? '' : ' (premium)'}'),
               ))
           .toList(),
     );
