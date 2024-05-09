@@ -127,10 +127,12 @@ class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
         });
       },
       onApplyPressed: () {
-        _fbState?.patchValue({
-          _LocationsFiltersPageField.sortBy.name: null,
-          _LocationsFiltersPageField.filters.name: null,
-        });
+        _fbState?.save();
+        context.locator<LocationFiltersPageController>().setFilters(
+              state.filter,
+              _fbValues[_LocationsFiltersPageField.sortBy.name],
+              _fbValues[_LocationsFiltersPageField.filters.name],
+            );
       },
       isLoading: state.isLoading,
     );

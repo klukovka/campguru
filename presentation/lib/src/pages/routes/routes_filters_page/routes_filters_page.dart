@@ -127,10 +127,13 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
         });
       },
       onApplyPressed: () {
-        _fbState?.patchValue({
-          _RoutesFiltersPageField.sortBy.name: null,
-          _RoutesFiltersPageField.filters.name: null,
-        });
+        _fbState?.save();
+        context.locator<RouteFiltersPageController>().setFilters(
+              state.filter,
+              _fbValues[_RoutesFiltersPageField.sortBy.name],
+              _fbValues[_RoutesFiltersPageField.filters.name],
+              null,
+            );
       },
       isLoading: state.isLoading,
     );

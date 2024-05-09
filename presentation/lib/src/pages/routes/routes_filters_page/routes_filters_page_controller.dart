@@ -9,7 +9,7 @@ class RouteFiltersPageController {
     Filter currentFilter,
     SortBy? sortBy,
     List<FilterLabel>? labels,
-    (int, int) distanceRange,
+    (int, int)? distanceRange,
   ) {
     final filter = currentFilter.copyWith(
       page: 0,
