@@ -8,4 +8,6 @@ abstract class RoutesOutputPort {
   void startRouteDetailsLoading();
   void updateRouteDetails(Route route);
   void updateRouteDetailsBriefly(int routeId);
+  void updateRoutesAvailableFilters(List<PremiumBasedFilterLabel> labels);
+  void updatePremiumStatus(bool hasPremium);
 }

@@ -45,7 +45,8 @@ class RoutesTab extends StatelessWidget implements AutoRouteWrapper {
                     const SizedBox(width: 16),
                     FilterButton(
                       isNotEmpty: state.filter.isNotEmpty,
-                      onPressed: () {},
+                      onPressed: () =>
+                          context.appRouter.pushRoutesFiltersPage(),
                     ),
                   ],
                 ),

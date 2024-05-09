@@ -33,6 +33,8 @@ class RoutesPresenter extends RoutesOutputPort {
     } else {
       routesTabCubit.setRoutes(routes, amount: amount);
     }
+
+    routesFiltersPageCubit.stopLoading();
   }
 
   @override
@@ -74,5 +76,15 @@ class RoutesPresenter extends RoutesOutputPort {
     } else {
       routeDetailsPageCubit.setHasError();
     }
+  }
+
+  @override
+  void updateRoutesAvailableFilters(List<PremiumBasedFilterLabel> labels) {
+    routesFiltersPageCubit.updateLabels(labels);
+  }
+
+  @override
+  void updatePremiumStatus(bool hasPremium) {
+    routesFiltersPageCubit.updatePremiumStatus(hasPremium);
   }
 }

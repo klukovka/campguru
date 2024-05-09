@@ -10,6 +10,7 @@ abstract class ControllersModule {
     GetAllLocationsUseCase getAllLocationsUseCase,
     GetAllRoutesUseCase getAllRoutesUseCase,
     GetLocationsAvailableFiltersUseCase getLocationsAvailableFiltersUseCase,
+    GetRoutesAvailableFiltersUseCase getRoutesAvailableFiltersUseCase,
   ) =>
       SplashPageController(
         isAuthorizedUseCase: isAuthorizedUseCase,
@@ -17,6 +18,7 @@ abstract class ControllersModule {
         getAllRoutesUseCase: getAllRoutesUseCase,
         getLocationsAvailableFiltersUseCase:
             getLocationsAvailableFiltersUseCase,
+        getRoutesAvailableFiltersUseCase: getRoutesAvailableFiltersUseCase,
       );
 
   @lazySingleton

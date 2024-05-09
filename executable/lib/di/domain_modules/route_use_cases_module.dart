@@ -38,4 +38,15 @@ abstract class RouteUseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         routesOutputPort: routesOutputPort,
       );
+
+  GetRoutesAvailableFiltersUseCase getRoutesAvailableFiltersUseCase(
+    RoutesRepository routesRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    RoutesOutputPort routesOutputPort,
+  ) =>
+      GetRoutesAvailableFiltersUseCase(
+        routesRepository: routesRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        routesOutputPort: routesOutputPort,
+      );
 }
