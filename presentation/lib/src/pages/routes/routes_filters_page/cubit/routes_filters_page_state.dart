@@ -15,6 +15,13 @@ class RoutesFiltersPageState extends Equatable {
 
   List<FilterLabel> get filterLabels => labels.map((e) => e.name).toList();
 
+  RangeValues? get distance => filter.distanceRange != null
+      ? RangeValues(
+          filter.distanceRange!.$1,
+          filter.distanceRange!.$2,
+        )
+      : null;
+
   List<FilterLabel> getDisabledLabels(List<FilterLabel> selectedLabels) {
     if (hasPremium) return [];
     if (selectedLabels.length < 3) {

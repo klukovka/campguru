@@ -8,7 +8,7 @@ class Filter extends Equatable {
   final SortBy? sortBy;
   final Direction? direction;
   final List<FilterLabel>? labels;
-  final (int, int)? distanceRange;
+  final (double, double)? distanceRange;
 
   const Filter({
     this.page = 0,
@@ -45,7 +45,7 @@ class Filter extends Equatable {
     Nullable<SortBy>? sortBy,
     Direction? direction,
     Nullable<List<FilterLabel>>? labels,
-    Nullable<(int, int)>? distanceRange,
+    Nullable<(double, double)>? distanceRange,
   }) {
     return Filter(
       page: page ?? this.page,

@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 
 class RouteFiltersPageController {
   final GetAllRoutesUseCase getAllRoutesUseCase;
@@ -9,13 +10,15 @@ class RouteFiltersPageController {
     Filter currentFilter,
     SortBy? sortBy,
     List<FilterLabel>? labels,
-    (int, int)? distanceRange,
+    RangeValues? distanceRange,
   ) {
     final filter = currentFilter.copyWith(
       page: 0,
       sortBy: Nullable(sortBy),
       labels: Nullable(labels),
-      distanceRange: Nullable(distanceRange),
+      distanceRange: Nullable(distanceRange == null || distanceRange.end == 0
+          ? null
+          : (distanceRange.start, distanceRange.end)),
     );
 
     getAllRoutesUseCase(filter);

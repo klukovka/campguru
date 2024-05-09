@@ -11,6 +11,7 @@ import 'package:presentation/src/utils/extensions/sort_by_extension.dart';
 
 enum _RoutesFiltersPageField {
   sortBy,
+  distance,
   filters,
 }
 
@@ -42,6 +43,7 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
       builder: (context, state) {
         final fields = [
           _buildSortByField(state),
+          _buildDistanceField(state),
           _buildFiltersField(state),
         ];
         return Scaffold(
@@ -59,6 +61,25 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
           bottomNavigationBar: _buildBottomNavigationBar(state),
         );
       },
+    );
+  }
+
+  Widget _buildDistanceField(RoutesFiltersPageState state) {
+    return FormBuilderRangeSlider(
+      name: _RoutesFiltersPageField.distance.name,
+      min: 0,
+      max: 5000,
+      enabled: state.hasPremium,
+      initialValue: state.distance,
+      decoration: InputDecoration(
+        fillColor: Colors.transparent,
+
+        //TODO: Add localizations
+        labelText: 'Distance (m)',
+        helperText: state.hasPremium
+            ? null
+            : '* available only for users with subscription',
+      ),
     );
   }
 
@@ -124,6 +145,7 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
         _fbState?.patchValue({
           _RoutesFiltersPageField.sortBy.name: null,
           _RoutesFiltersPageField.filters.name: null,
+          _RoutesFiltersPageField.distance.name: const RangeValues(0, 0),
         });
       },
       onApplyPressed: () {
@@ -132,7 +154,7 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
               state.filter,
               _fbValues[_RoutesFiltersPageField.sortBy.name],
               _fbValues[_RoutesFiltersPageField.filters.name],
-              null,
+              _fbValues[_RoutesFiltersPageField.distance.name],
             );
       },
       isLoading: state.isLoading,
