@@ -4,6 +4,7 @@ export 'src/buttons/arrow_button.dart';
 export 'src/buttons/arrow_circle_button.dart';
 export 'src/buttons/favorite_button.dart';
 export 'src/buttons/filter_button.dart';
+export 'src/buttons/filter_buttons.dart';
 export 'src/cards/item_card.dart';
 export 'src/carousel/carousel.dart';
 export 'src/carousel/photos_info_carousel.dart';

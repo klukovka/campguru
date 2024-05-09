@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -118,63 +119,20 @@ class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
   }
 
   Widget _buildBottomNavigationBar(LocationsFiltersPageState state) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: Theme.of(context).colorScheme.primaryContainer,
-          ),
-        ),
-        color: Theme.of(context).navigationBarTheme.backgroundColor,
-      ),
-      child: SafeArea(
-        child: Row(
-          children: [
-            Expanded(
-              child: _buildResetButton(),
-            ),
-            Expanded(
-              child: _buildApplyButton(state),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildResetButton() {
-    return TextButton(
-      onPressed: () {
+    return FilterButtons(
+      onResetPressed: () {
         _fbState?.patchValue({
           _LocationFiltersPageField.sortBy.name: null,
           _LocationFiltersPageField.filters.name: null,
         });
       },
-      //TODO: Add localizations
-      child: const Text('Reset'),
-    );
-  }
-
-  Widget _buildApplyButton(LocationsFiltersPageState state) {
-    return ElevatedButton(
-      onPressed: state.isLoading
-          ? null
-          : () {
-              _fbState?.save();
-              context.locator<LocationFiltersPageController>().setFilters(
-                    state.filter,
-                    _fbValues[_LocationFiltersPageField.sortBy.name],
-                    _fbValues[_LocationFiltersPageField.filters.name],
-                  );
-            },
-      //TODO: Add localizations
-      child: state.isLoading
-          ? const Padding(
-              padding: EdgeInsets.all(4),
-              child: CircularProgressIndicator(),
-            )
-          : const Text('Apply'),
+      onApplyPressed: () {
+        _fbState?.patchValue({
+          _LocationFiltersPageField.sortBy.name: null,
+          _LocationFiltersPageField.filters.name: null,
+        });
+      },
+      isLoading: state.isLoading,
     );
   }
 }
