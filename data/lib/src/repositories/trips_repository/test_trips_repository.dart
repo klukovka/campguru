@@ -9,7 +9,8 @@ class TestTripsRepository implements TripsRepository {
   @override
   Future<FailureOrResult<Trip>> getTripDetails(int id) async {
     await Future.delayed(const Duration(milliseconds: 1000));
-    return FailureOrResult.success(_dataSource.getTripDetails(id));
+    final trip = await _dataSource.getTripDetails(id);
+    return FailureOrResult.success(trip);
   }
 
   @override
@@ -26,8 +27,9 @@ class TestTripsRepository implements TripsRepository {
   @override
   Future<FailureOrResult<Trip>> completeTrip(int id) async {
     await Future.delayed(const Duration(milliseconds: 1000));
-    return FailureOrResult.success(_dataSource.getTripDetails(id).copyWith(
-          completed: true,
-        ));
+    final trip = await _dataSource.getTripDetails(id);
+    return FailureOrResult.success(trip.copyWith(
+      completed: true,
+    ));
   }
 }

@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:domain/domain.dart';
 
 class TestDataSource {
+  final DeviceInfoPlugin deviceInfoPlugin;
   static const _maxLocations = 50;
   static const _maxReviews = 50;
   static const _maxTrips = 40;
@@ -22,6 +24,8 @@ class TestDataSource {
     'https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_640.jpg',
     'https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg',
   ];
+
+  TestDataSource(this.deviceInfoPlugin);
 
   Chunk<Location> generateLocations({required int size, required int page}) {
     int allUploadedLocations = page * size;
@@ -186,6 +190,18 @@ class TestDataSource {
     );
   }
 
+  Future<User> getCurrentUser() async {
+    final deviceInfo = await deviceInfoPlugin.deviceInfo;
+    final device =
+        (deviceInfo.data['name']?.toString() ?? '').replaceAll(' ', '');
+    return User(
+      id: 1000,
+      email: 'noah.sebastian+$device@badomens.io',
+      name: 'Noah Sebastian',
+      photo: 'https://pbs.twimg.com/media/GBpiaxpWwAA9dXw.jpg',
+    );
+  }
+
   List<User> generateUsers(int size) => List.generate(
         size,
         (index) => generateUser(index),
@@ -194,7 +210,7 @@ class TestDataSource {
   User generateUser(int index) {
     return User(
       id: index,
-      email: 'mock.email@gmail.com',
+      email: 'mock.email+$index@gmail.com',
       name: index % 2 == 0 ? 'Oli Sykes' : 'Chris Motionless',
       photo: index % 2 == 0
           ? 'https://townsquare.media/site/366/files/2022/02/attachment-oli_sykes_bmth_2022_red_carpet_photo.jpg'
@@ -238,7 +254,7 @@ class TestDataSource {
     );
   }
 
-  Trip getTripDetails(int id) {
+  Future<Trip> getTripDetails(int id) async {
     final completed = id & 2 == 0;
     return Trip(
       id: id,
@@ -248,7 +264,10 @@ class TestDataSource {
           : DateTime.now().add(Duration(days: id)),
       completed: completed,
       route: getRouteDetails(id),
-      users: generateUsers(4),
+      users: [
+        await getCurrentUser(),
+        ...generateUsers(4),
+      ],
       usersAmount: 4,
     );
   }

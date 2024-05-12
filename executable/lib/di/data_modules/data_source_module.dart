@@ -1,4 +1,7 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:data/data.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:injectable/injectable.dart';
 
 @module
@@ -10,5 +13,8 @@ abstract class DataSourceModule {
 
   @lazySingleton
   @test
-  TestDataSource get testDataSource => TestDataSource();
+  TestDataSource getTestDataSource(
+    DeviceInfoPlugin deviceInfoPlugin,
+  ) =>
+      TestDataSource(deviceInfoPlugin);
 }

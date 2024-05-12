@@ -6,5 +6,8 @@ import 'package:injectable/injectable.dart';
 abstract class UsersRepositoryModule {
   @test
   @lazySingleton
-  UsersRepository get testUsersRepository => TestUsersRepository();
+  UsersRepository getTestUsersRepository(TestDataSource dataSource) =>
+      TestUsersRepository(
+        dataSource,
+      );
 }
