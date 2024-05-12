@@ -60,4 +60,10 @@ abstract class PresentersModule {
     ProfileTabCubit profileTabCubit,
   ) =>
       SettingsPresenter(profileTabCubit: profileTabCubit);
+
+  @lazySingleton
+  TripsOutputPort getTripsOutputPort(
+    TripsTabCubit tripsTabCubit,
+  ) =>
+      TripsPresenter(tripsTabCubit: tripsTabCubit);
 }

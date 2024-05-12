@@ -39,6 +39,7 @@ abstract class RouteUseCasesModule {
         routesOutputPort: routesOutputPort,
       );
 
+  @lazySingleton
   GetRoutesAvailableFiltersUseCase getRoutesAvailableFiltersUseCase(
     RoutesRepository routesRepository,
     ErrorHandlerOutputPort errorHandlerOutputPort,

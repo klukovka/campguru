@@ -42,4 +42,7 @@ abstract class BlocModule {
 
   @lazySingleton
   ProfileTabCubit get profileTabCubit => ProfileTabCubit();
+
+  @lazySingleton
+  TripsTabCubit get tripsTabCubit => TripsTabCubit();
 }

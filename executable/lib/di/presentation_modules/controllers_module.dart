@@ -12,6 +12,7 @@ abstract class ControllersModule {
     GetLocationsAvailableFiltersUseCase getLocationsAvailableFiltersUseCase,
     GetRoutesAvailableFiltersUseCase getRoutesAvailableFiltersUseCase,
     GetAppVersion getAppVersion,
+    GetTripsUseCase getAllTripsUseCase,
   ) =>
       SplashPageController(
         isAuthorizedUseCase: isAuthorizedUseCase,
@@ -21,6 +22,7 @@ abstract class ControllersModule {
             getLocationsAvailableFiltersUseCase,
         getRoutesAvailableFiltersUseCase: getRoutesAvailableFiltersUseCase,
         getAppVersion: getAppVersion,
+        getAllTripsUseCase: getAllTripsUseCase,
       );
 
   @lazySingleton
@@ -92,4 +94,8 @@ abstract class ControllersModule {
     GetAllRoutesUseCase getAllRoutesUseCase,
   ) =>
       RouteFiltersPageController(getAllRoutesUseCase);
+
+  @lazySingleton
+  TripsTabController getTripsTabController(GetTripsUseCase getTripsUseCase) =>
+      TripsTabController(getTripsUseCase);
 }

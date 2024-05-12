@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
 
-class Trip {
+class Trip with TableItem<Trip> {
+  @override
   final int id;
   final String name;
   final DateTime date;
@@ -34,4 +35,14 @@ class Trip {
       users: users ?? this.users,
     );
   }
+
+  @override
+  Trip merge(Trip another) => copyWith(
+        id: another.id,
+        name: another.name,
+        date: another.date,
+        completed: another.completed,
+        route: another.route,
+        users: another.users,
+      );
 }
