@@ -3,6 +3,7 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
+import 'package:presentation/src/pages/trips/trip_details_page/views/complete_trip_bottom_bar.dart';
 import 'package:presentation/src/pages/trips/trip_details_page/views/loading_trip_details_page.dart';
 import 'package:presentation/src/pages/trips/trip_details_page/views/trip_details_sliver_app_bar.dart';
 import 'package:presentation/src/pages/trips/trip_details_page/views/users_list.dart';
@@ -93,6 +94,14 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
               UsersList.sliver(users: state.trip.users ?? []),
             ],
           ),
+          bottomNavigationBar: state.trip.completed
+              ? null
+              : CompleteTripBottomBar(
+                  onPressed: () {
+                    //TODO: Complete trip
+                  },
+                  isLoading: false,
+                ),
         );
       },
     );
