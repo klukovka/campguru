@@ -22,4 +22,12 @@ class TestTripsRepository implements TripsRepository {
       ),
     );
   }
+
+  @override
+  Future<FailureOrResult<Trip>> completeTrip(int id) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(_dataSource.getTripDetails(id).copyWith(
+          completed: true,
+        ));
+  }
 }

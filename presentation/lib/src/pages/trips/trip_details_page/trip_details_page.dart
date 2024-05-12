@@ -36,7 +36,7 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.locator<TripDetailsPageController>()(widget.tripId);
+      context.locator<TripDetailsPageController>().getDetails(widget.tripId);
     });
   }
 
@@ -98,9 +98,11 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
               ? null
               : CompleteTripBottomBar(
                   onPressed: () {
-                    //TODO: Complete trip
+                    context.locator<TripDetailsPageController>().complete(
+                          widget.tripId,
+                        );
                   },
-                  isLoading: false,
+                  isLoading: state.isCompleteLoading,
                 ),
         );
       },

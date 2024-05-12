@@ -7,4 +7,5 @@ abstract class TripsOutputPort {
   void startTripDetailsLoading();
   void updateTripDetails(Trip trip);
   void updateTripDetailsBriefly(int tripId);
+  void startCompeteTrip();
 }

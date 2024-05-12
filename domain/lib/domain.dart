@@ -46,6 +46,7 @@ export 'src/use_cases/routes/get_route_details_use_case.dart';
 export 'src/use_cases/routes/get_routes_available_filters.dart';
 export 'src/use_cases/routes/update_route_favorite_status_use_case.dart';
 export 'src/use_cases/settings/get_app_version.dart';
+export 'src/use_cases/trips/complete_trip_use_case.dart';
 export 'src/use_cases/trips/get_trip_details_use_case.dart';
 export 'src/use_cases/trips/get_trips_use_case.dart';
 export 'src/use_cases/users/get_user_subscription_status.dart';

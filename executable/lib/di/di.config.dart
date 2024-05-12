@@ -250,20 +250,29 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.ErrorHandlerOutputPort>(),
             gh<_i4.TripsOutputPort>(),
           ));
+  gh.lazySingleton<_i4.CompleteTripUseCase>(
+      () => tripUseCasesModule.completeTripUseCase(
+            gh<_i4.TripsRepository>(),
+            gh<_i4.ErrorHandlerOutputPort>(),
+            gh<_i4.TripsOutputPort>(),
+          ));
   gh.lazySingleton<_i5.LocationReviewsPageController>(() => controllersModule
       .getLocationReviewsPageController(gh<_i4.GetLocationReviewsUseCase>()));
   gh.lazySingleton<_i5.LocationsTabController>(() => controllersModule
       .getLocationsTabController(gh<_i4.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i5.LocationFiltersPageController>(() => controllersModule
       .getLocationFiltersPageController(gh<_i4.GetAllLocationsUseCase>()));
-  gh.lazySingleton<_i5.TripDetailsPageController>(() => controllersModule
-      .getTripDetailsPageController(gh<_i4.GetTripDetailsUseCase>()));
   gh.lazySingleton<_i5.RouteReviewsPageController>(() => controllersModule
       .getRouteReviewsPageController(gh<_i4.GetRouteReviewsUseCase>()));
   gh.lazySingleton<_i4.GetAppVersion>(
       () => settingsUseCasesModule.getAppVersion(
             gh<_i4.AppSettingsRepository>(),
             gh<_i4.SettingsOutputPort>(),
+          ));
+  gh.lazySingleton<_i5.TripDetailsPageController>(
+      () => controllersModule.getTripDetailsPageController(
+            gh<_i4.GetTripDetailsUseCase>(),
+            gh<_i4.CompleteTripUseCase>(),
           ));
   gh.lazySingleton<_i4.GetAllRoutesUseCase>(
       () => routeUseCasesModule.getAllRoutesUseCase(

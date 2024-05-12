@@ -62,4 +62,9 @@ class TripsPresenter extends TripsOutputPort {
       tripDetailsPageCubit.setHasError();
     }
   }
+
+  @override
+  void startCompeteTrip() {
+    tripDetailsPageCubit.startComplete();
+  }
 }

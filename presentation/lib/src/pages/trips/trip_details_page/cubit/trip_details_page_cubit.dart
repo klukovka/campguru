@@ -37,7 +37,14 @@ class TripDetailsPageCubit extends Cubit<TripDetailsPageState> {
   void updateTrip(Trip trip) => emit(state.copyWith(
         trip: trip,
         isLoading: false,
+        isCompleteLoading: false,
       ));
 
-  void setHasError() => emit(state.copyWith(hasError: false));
+  void setHasError() => emit(state.copyWith(
+        hasError: false,
+        isLoading: false,
+        isCompleteLoading: false,
+      ));
+
+  void startComplete() => emit(state.copyWith(isCompleteLoading: true));
 }

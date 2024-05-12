@@ -27,15 +27,15 @@ abstract class TripUseCasesModule {
         tripsOutputPort: tripsOutputPort,
       );
 
-  // @lazySingleton
-  // GetTripsAvailableFiltersUseCase getTripsAvailableFiltersUseCase(
-  //   TripsRepository tripsRepository,
-  //   ErrorHandlerOutputPort errorHandlerOutputPort,
-  //   TripsOutputPort tripsOutputPort,
-  // ) =>
-  //     GetTripsAvailableFiltersUseCase(
-  //       tripsRepository: tripsRepository,
-  //       errorHandlerOutputPort: errorHandlerOutputPort,
-  //       tripsOutputPort: tripsOutputPort,
-  //     );
+  @lazySingleton
+  CompleteTripUseCase completeTripUseCase(
+    TripsRepository tripsRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    TripsOutputPort tripsOutputPort,
+  ) =>
+      CompleteTripUseCase(
+        tripsRepository: tripsRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        tripsOutputPort: tripsOutputPort,
+      );
 }
