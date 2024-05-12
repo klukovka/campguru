@@ -227,6 +227,7 @@ class TestDataSource {
           completed: completed,
           route: getRouteDetails(id),
           users: [],
+          usersAmount: 4,
         );
       },
     );
@@ -248,6 +249,7 @@ class TestDataSource {
       completed: completed,
       route: getRouteDetails(id),
       users: generateUsers(4),
+      usersAmount: 4,
     );
   }
 }

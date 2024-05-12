@@ -7,6 +7,7 @@ class Trip with TableItem<Trip> {
   final DateTime date;
   final bool completed;
   final Route route;
+  final int usersAmount;
   final List<User>? users;
 
   Trip({
@@ -16,6 +17,7 @@ class Trip with TableItem<Trip> {
     required this.completed,
     required this.route,
     required this.users,
+    required this.usersAmount,
   });
 
   Trip copyWith({
@@ -25,6 +27,7 @@ class Trip with TableItem<Trip> {
     bool? completed,
     Route? route,
     List<User>? users,
+    int? usersAmount,
   }) {
     return Trip(
       id: id ?? this.id,
@@ -33,6 +36,7 @@ class Trip with TableItem<Trip> {
       completed: completed ?? this.completed,
       route: route ?? this.route,
       users: users ?? this.users,
+      usersAmount: usersAmount ?? this.usersAmount,
     );
   }
 
@@ -44,5 +48,6 @@ class Trip with TableItem<Trip> {
         completed: another.completed,
         route: another.route,
         users: another.users,
+        usersAmount: another.usersAmount,
       );
 }

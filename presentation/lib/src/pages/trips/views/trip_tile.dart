@@ -24,7 +24,16 @@ class TripTile extends StatelessWidget {
             trip.date.dayAbbreviatedMonthYear,
             style: Theme.of(context).textTheme.labelLarge,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 8),
+          //TODO: Add correct formatting and localizations
+          Text(
+            '${trip.route.distance.toStringAsFixed(2)} km (${trip.route.duration.toStringAsFixed(2)} hours)',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          const SizedBox(height: 8),
+          //TODO: Add localization
+          Text('${trip.usersAmount} Users'),
+          const SizedBox(height: 8),
           Row(
             children: [
               Icon(trip.completed ? Icons.check : Icons.close),
