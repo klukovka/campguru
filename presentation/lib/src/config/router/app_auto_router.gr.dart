@@ -210,7 +210,7 @@ abstract class $AppAutoRouter extends _i17.RootStackRouter {
     TripsRoute.name: (routeData) {
       return _i17.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i16.TripsTab(),
+        child: _i17.WrappedRoute(child: const _i16.TripsTab()),
       );
     },
   };

@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 class ItemCard extends StatelessWidget {
   final String imageUrl;
   final Widget content;
-  final Widget favoriteButton;
+  final Widget? favoriteButton;
   final VoidCallback onPressed;
 
   const ItemCard({
     super.key,
     required this.imageUrl,
     required this.content,
-    required this.favoriteButton,
     required this.onPressed,
+    this.favoriteButton,
   });
 
   @override
   Widget build(BuildContext context) {
+    final favoriteButton = this.favoriteButton;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -41,7 +42,7 @@ class ItemCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ArrowCircleButton.forward(onPressed: onPressed),
-                  favoriteButton
+                  favoriteButton ?? const SizedBox.shrink(),
                 ],
               ),
             ],
