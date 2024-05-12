@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class RatingNameInfoBar extends StatelessWidget {
   final String name;
-  final double mark;
+  final double? mark;
 
   const RatingNameInfoBar({
     super.key,
@@ -13,6 +13,7 @@ class RatingNameInfoBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mark = this.mark;
     return Container(
       height: 100,
       width: MediaQuery.sizeOf(context).width,
@@ -40,16 +41,17 @@ class RatingNameInfoBar extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          IconTheme(
-            data: const IconThemeData(size: 24),
-            child: DefaultTextStyle(
-              style: Theme.of(context).textTheme.titleLarge!,
-              child: RatingView(
-                rate: mark,
-                mainAxisAlignment: MainAxisAlignment.center,
+          if (mark != null)
+            IconTheme(
+              data: const IconThemeData(size: 24),
+              child: DefaultTextStyle(
+                style: Theme.of(context).textTheme.titleLarge!,
+                child: RatingView(
+                  rate: mark,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

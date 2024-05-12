@@ -3,12 +3,12 @@ import 'package:presentation/presentation.dart';
 
 class TripsPresenter extends TripsOutputPort {
   final TripsTabCubit tripsTabCubit;
-  // final TripDetailsPageCubit tripDetailsPageCubit;
+  final TripDetailsPageCubit tripDetailsPageCubit;
   final TripsFiltersPageCubit tripsFiltersPageCubit;
 
   TripsPresenter({
     required this.tripsTabCubit,
-    // required this.tripDetailsPageCubit,
+    required this.tripDetailsPageCubit,
     required this.tripsFiltersPageCubit,
   });
 
@@ -42,12 +42,12 @@ class TripsPresenter extends TripsOutputPort {
     final allTrips = tripsTabCubit.state.trips.merge(trip);
 
     tripsTabCubit.setTrips(allTrips);
-    // tripDetailsPageCubit.updateTrip(trip);
+    tripDetailsPageCubit.updateTrip(trip);
   }
 
   @override
   void startTripDetailsLoading() {
-    // tripDetailsPageCubit.startLoading();
+    tripDetailsPageCubit.startLoading();
   }
 
   @override
@@ -57,9 +57,9 @@ class TripsPresenter extends TripsOutputPort {
     );
 
     if (trip != null) {
-      // tripDetailsPageCubit.updateTrip(trip);
+      tripDetailsPageCubit.updateTrip(trip);
     } else {
-      // tripDetailsPageCubit.setHasError();
+      tripDetailsPageCubit.setHasError();
     }
   }
 }

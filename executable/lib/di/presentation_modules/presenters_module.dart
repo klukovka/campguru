@@ -65,9 +65,11 @@ abstract class PresentersModule {
   TripsOutputPort getTripsOutputPort(
     TripsTabCubit tripsTabCubit,
     TripsFiltersPageCubit tripsFiltersPageCubit,
+    TripDetailsPageCubit tripDetailsPageCubit,
   ) =>
       TripsPresenter(
         tripsTabCubit: tripsTabCubit,
         tripsFiltersPageCubit: tripsFiltersPageCubit,
+        tripDetailsPageCubit: tripDetailsPageCubit,
       );
 }

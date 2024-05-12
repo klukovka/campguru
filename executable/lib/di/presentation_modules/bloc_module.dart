@@ -48,4 +48,7 @@ abstract class BlocModule {
 
   @lazySingleton
   TripsFiltersPageCubit get tripsFiltersPageCubit => TripsFiltersPageCubit();
+
+  @lazySingleton
+  TripDetailsPageCubit get tripDetailsPageCubit => TripDetailsPageCubit();
 }

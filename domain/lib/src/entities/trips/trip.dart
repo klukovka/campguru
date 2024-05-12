@@ -10,7 +10,7 @@ class Trip with TableItem<Trip> {
   final int usersAmount;
   final List<User>? users;
 
-  Trip({
+  const Trip({
     required this.id,
     required this.name,
     required this.date,

@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/utils/extensions/date_formatter_extension.dart';
 
 class TripTile extends StatelessWidget {
@@ -44,9 +45,7 @@ class TripTile extends StatelessWidget {
           ),
         ],
       ),
-      onPressed: () {
-        //TODO: Open details
-      },
+      onPressed: () => context.appRouter.pushTripDetailsPage(trip.id),
     );
   }
 }

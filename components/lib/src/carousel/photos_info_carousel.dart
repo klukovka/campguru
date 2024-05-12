@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class PhotosInfoCarousel extends StatelessWidget {
   final List<String> images;
   final String name;
-  final double mark;
+  final double? mark;
 
   const PhotosInfoCarousel({
     super.key,
     required this.images,
     required this.name,
-    required this.mark,
+    this.mark,
   });
 
   @override

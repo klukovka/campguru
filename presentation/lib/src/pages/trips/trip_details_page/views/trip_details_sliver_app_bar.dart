@@ -1,0 +1,64 @@
+import 'package:components/components.dart';
+import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
+class TripDetailsSliverAppBar extends StatelessWidget {
+  final Trip trip;
+  final double toolbarHeight;
+  final Future<void> Function()? onStretch;
+
+  const TripDetailsSliverAppBar({
+    super.key,
+    required this.trip,
+    this.toolbarHeight = 48,
+    this.onStretch,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final safeTopPadding = MediaQuery.paddingOf(context).top;
+
+    final image = LayoutBuilder(builder: (context, constraints) {
+      return Image.network(
+        trip.route.mapUrl,
+        fit: BoxFit.cover,
+        height: constraints.maxHeight,
+        width: constraints.maxWidth,
+      );
+    });
+    return SliverAppBar(
+      toolbarHeight: toolbarHeight,
+      expandedHeight: MediaQuery.sizeOf(context).width - safeTopPadding,
+      automaticallyImplyLeading: false,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Skeleton.ignore(
+            child: ArrowCircleButton.back(
+              onPressed: context.appRouter.pop,
+            ),
+          ),
+          //TODO: Add chat button
+        ],
+      ),
+      pinned: true,
+      stretch: true,
+      flexibleSpace: FlexibleSpaceBar(
+        stretchModes: const [
+          StretchMode.fadeTitle,
+          StretchMode.blurBackground,
+          StretchMode.zoomBackground,
+        ],
+        title: image,
+        background: image,
+      ),
+      bottom: RatingInfoNameAppBar(
+        mark: 5,
+        name: trip.name,
+      ),
+      onStretchTrigger: onStretch,
+    );
+  }
+}
