@@ -5,7 +5,7 @@ class TestUsersRepository implements UsersRepository {
   Future<FailureOrResult<User>> getCurrentUser() async {
     await Future.delayed(const Duration(seconds: 1));
     return FailureOrResult.success(
-      User(
+      const User(
         id: 1,
         email: 'noah.sebastian@badomens.io',
         name: 'Noah Sebastian',

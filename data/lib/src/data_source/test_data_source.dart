@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 class TestDataSource {
   static const _maxLocations = 50;
   static const _maxReviews = 50;
+  static const _maxTrips = 40;
 
   static const _map =
       'https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyA3kg7YWugGl1lTXmAmaBGPNhDW9pEh5bo&signature=GJnbP6sQrFY1ce8IsvG2WR2P0Jw=';
@@ -91,16 +92,7 @@ class TestDataSource {
       size,
       (index) => Review(
         id: index,
-        user: User(
-          id: index,
-          email: 'mock.email@gmail.com',
-          name: index % 2 == 0 ? 'Oli Sykes' : 'Chris Motionless',
-          photo: index % 2 == 0
-              ? 'https://townsquare.media/site/366/files/2022/02/attachment-oli_sykes_bmth_2022_red_carpet_photo.jpg'
-              : index % 3 == 0
-                  ? null
-                  : 'https://pbs.twimg.com/profile_images/1700188099366580224/le9XC-fH_400x400.jpg',
-        ),
+        user: generateUser(index),
         mark: Random().nextInt(5).toDouble(),
         review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
                 'sed do eiusmod tempor incididunt ut labore et dolore magna '
@@ -191,6 +183,71 @@ class TestDataSource {
         LatLng(48.772551, 23.156930),
         LatLng(48.781879, 23.118083),
       ],
+    );
+  }
+
+  List<User> generateUsers(int size) => List.generate(
+        size,
+        (index) => generateUser(index),
+      );
+
+  User generateUser(int index) {
+    return User(
+      id: index,
+      email: 'mock.email@gmail.com',
+      name: index % 2 == 0 ? 'Oli Sykes' : 'Chris Motionless',
+      photo: index % 2 == 0
+          ? 'https://townsquare.media/site/366/files/2022/02/attachment-oli_sykes_bmth_2022_red_carpet_photo.jpg'
+          : index % 3 == 0
+              ? null
+              : 'https://pbs.twimg.com/profile_images/1700188099366580224/le9XC-fH_400x400.jpg',
+    );
+  }
+
+  Chunk<Trip> generateTrips({required int size, required int page}) {
+    int allUploadedTrips = page * size;
+    if (allUploadedTrips >= _maxTrips) {
+      return Chunk(
+        fullCount: _maxTrips,
+        values: const [],
+      );
+    }
+
+    final trips = List.generate(
+      size,
+      (index) {
+        final id = allUploadedTrips + index;
+        final completed = index & 2 == 0;
+        return Trip(
+          id: allUploadedTrips + index,
+          name: 'Trip $id',
+          date: completed
+              ? DateTime.now().subtract(Duration(days: index))
+              : DateTime.now().add(Duration(days: index)),
+          completed: completed,
+          route: getRouteDetails(id),
+          users: [],
+        );
+      },
+    );
+
+    return Chunk(
+      fullCount: _maxTrips,
+      values: trips,
+    );
+  }
+
+  Trip getTripDetails(int id) {
+    final completed = id & 2 == 0;
+    return Trip(
+      id: id,
+      name: 'Trip $id',
+      date: completed
+          ? DateTime.now().subtract(Duration(days: id))
+          : DateTime.now().add(Duration(days: id)),
+      completed: completed,
+      route: getRouteDetails(id),
+      users: generateUsers(4),
     );
   }
 }

@@ -18,19 +18,20 @@ import 'package:presentation/presentation.dart' as _i5;
 import 'data_modules/app_settings_repository_module.dart' as _i14;
 import 'data_modules/auth_repository_module.dart' as _i13;
 import 'data_modules/data_source_module.dart' as _i11;
-import 'data_modules/locations_repository_module.dart' as _i16;
+import 'data_modules/locations_repository_module.dart' as _i17;
 import 'data_modules/preferences_repository_module.dart' as _i15;
-import 'data_modules/reviews_repository_module.dart' as _i18;
-import 'data_modules/routes_repository_module.dart' as _i17;
+import 'data_modules/reviews_repository_module.dart' as _i19;
+import 'data_modules/routes_repository_module.dart' as _i18;
+import 'data_modules/trips_repository_module.dart' as _i16;
 import 'data_modules/users_repository_module.dart' as _i12;
-import 'domain_modules/location_use_cases_module.dart' as _i21;
-import 'domain_modules/review_use_cases_module.dart' as _i20;
-import 'domain_modules/route_use_cases_module.dart' as _i24;
-import 'domain_modules/settings_use_cases_module.dart' as _i23;
-import 'domain_modules/user_use_cases_module.dart' as _i19;
+import 'domain_modules/location_use_cases_module.dart' as _i22;
+import 'domain_modules/review_use_cases_module.dart' as _i21;
+import 'domain_modules/route_use_cases_module.dart' as _i25;
+import 'domain_modules/settings_use_cases_module.dart' as _i24;
+import 'domain_modules/user_use_cases_module.dart' as _i20;
 import 'presentation_modules/auto_router_module.dart' as _i9;
 import 'presentation_modules/bloc_module.dart' as _i10;
-import 'presentation_modules/controllers_module.dart' as _i22;
+import 'presentation_modules/controllers_module.dart' as _i23;
 import 'presentation_modules/packages_module.dart' as _i7;
 import 'presentation_modules/presenters_module.dart' as _i8;
 
@@ -56,6 +57,7 @@ Future<_i1.GetIt> $configureDependencies(
   final authRepositoryModule = _$AuthRepositoryModule();
   final appSettingsRepositoryModule = _$AppSettingsRepositoryModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
+  final tripsRepositoryModule = _$TripsRepositoryModule();
   final locationsRepositoryModule = _$LocationsRepositoryModule();
   final routesRepositoryModule = _$RoutesRepositoryModule();
   final reviewsRepositoryModule = _$ReviewsRepositoryModule();
@@ -139,6 +141,10 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i4.PreferencesRepository>(
     () => preferencesRepositoryModule
         .testPreferencesRepository(gh<_i6.HiveDataSource>()),
+    registerFor: {_test},
+  );
+  gh.lazySingleton<_i4.TripsRepository>(
+    () => tripsRepositoryModule.getTripsRepository(gh<_i6.TestDataSource>()),
     registerFor: {_test},
   );
   gh.lazySingleton<_i4.SettingsOutputPort>(
@@ -297,20 +303,22 @@ class _$AppSettingsRepositoryModule extends _i14.AppSettingsRepositoryModule {}
 
 class _$PreferencesRepositoryModule extends _i15.PreferencesRepositoryModule {}
 
-class _$LocationsRepositoryModule extends _i16.LocationsRepositoryModule {}
+class _$TripsRepositoryModule extends _i16.TripsRepositoryModule {}
 
-class _$RoutesRepositoryModule extends _i17.RoutesRepositoryModule {}
+class _$LocationsRepositoryModule extends _i17.LocationsRepositoryModule {}
 
-class _$ReviewsRepositoryModule extends _i18.ReviewsRepositoryModule {}
+class _$RoutesRepositoryModule extends _i18.RoutesRepositoryModule {}
 
-class _$UserUseCasesModule extends _i19.UserUseCasesModule {}
+class _$ReviewsRepositoryModule extends _i19.ReviewsRepositoryModule {}
 
-class _$ReviewUseCasesModule extends _i20.ReviewUseCasesModule {}
+class _$UserUseCasesModule extends _i20.UserUseCasesModule {}
 
-class _$LocationUseCasesCasesModule extends _i21.LocationUseCasesCasesModule {}
+class _$ReviewUseCasesModule extends _i21.ReviewUseCasesModule {}
 
-class _$ControllersModule extends _i22.ControllersModule {}
+class _$LocationUseCasesCasesModule extends _i22.LocationUseCasesCasesModule {}
 
-class _$SettingsUseCasesModule extends _i23.SettingsUseCasesModule {}
+class _$ControllersModule extends _i23.ControllersModule {}
 
-class _$RouteUseCasesModule extends _i24.RouteUseCasesModule {}
+class _$SettingsUseCasesModule extends _i24.SettingsUseCasesModule {}
+
+class _$RouteUseCasesModule extends _i25.RouteUseCasesModule {}
