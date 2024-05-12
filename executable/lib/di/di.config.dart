@@ -80,6 +80,7 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.locationsFiltersPageCubit);
   gh.lazySingleton<_i4.RoutesFiltersPageCubit>(
       () => blocModule.routesFiltersPageCubit);
+  gh.lazySingleton<_i4.ProfileTabCubit>(() => blocModule.profileTabCubit);
   await gh.lazySingletonAsync<_i5.HiveDataSource>(
     () => dataSourceModule.hiveDataSource,
     preResolve: true,
@@ -99,11 +100,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.RouteLocationsPageCubit>(),
             gh<_i4.LocationsFiltersPageCubit>(),
           ));
-  gh.lazySingleton<_i3.CurrentUserOutputPort>(
-      () => presentersModule.getCurrentUserOutputPort(
-            gh<_i4.SplashPageCubit>(),
-            gh<_i4.HomePageCubit>(),
-          ));
   gh.lazySingleton<_i3.UsersRepository>(
     () => usersRepositoryModule.testUsersRepository,
     registerFor: {_test},
@@ -120,6 +116,12 @@ Future<_i1.GetIt> $configureDependencies(
       () => presentersModule.getReviewsOutputPort(
             gh<_i4.LocationReviewsPageCubit>(),
             gh<_i4.RouteReviewsPageCubit>(),
+          ));
+  gh.lazySingleton<_i3.CurrentUserOutputPort>(
+      () => presentersModule.getCurrentUserOutputPort(
+            gh<_i4.SplashPageCubit>(),
+            gh<_i4.HomePageCubit>(),
+            gh<_i4.ProfileTabCubit>(),
           ));
   gh.lazySingleton<_i3.PreferencesRepository>(
     () => preferencesRepositoryModule

@@ -39,4 +39,7 @@ abstract class BlocModule {
 
   @lazySingleton
   RoutesFiltersPageCubit get routesFiltersPageCubit => RoutesFiltersPageCubit();
+
+  @lazySingleton
+  ProfileTabCubit get profileTabCubit => ProfileTabCubit();
 }

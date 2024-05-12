@@ -116,7 +116,7 @@ abstract class $AppAutoRouter extends _i17.RootStackRouter {
     ProfileRoute.name: (routeData) {
       return _i17.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.ProfileTab(),
+        child: _i17.WrappedRoute(child: const _i7.ProfileTab()),
       );
     },
     RouteDetailsRoute.name: (routeData) {

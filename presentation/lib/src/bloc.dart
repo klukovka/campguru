@@ -1,5 +1,6 @@
 export 'pages/home_page/cubit/home_page_cubit.dart';
 export 'pages/home_page/locations_tab/cubit/locations_tab_cubit.dart';
+export 'pages/home_page/profile_tab/cubit/profile_tab_cubit.dart';
 export 'pages/home_page/routes_tab/cubit/routes_tab_cubit.dart';
 export 'pages/locations/location_details_page/cubit/location_details_page_cubit.dart';
 export 'pages/locations/locations_filters_page/cubit/locations_filters_page_cubit.dart';
