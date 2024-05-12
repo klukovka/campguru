@@ -4,24 +4,24 @@ import 'package:presentation/presentation.dart';
 class TripsPresenter extends TripsOutputPort {
   final TripsTabCubit tripsTabCubit;
   // final TripDetailsPageCubit tripDetailsPageCubit;
-  // final TripsFiltersPageCubit tripsFiltersPageCubit;
+  final TripsFiltersPageCubit tripsFiltersPageCubit;
 
   TripsPresenter({
     required this.tripsTabCubit,
     // required this.tripDetailsPageCubit,
-    // required this.tripsFiltersPageCubit,
+    required this.tripsFiltersPageCubit,
   });
 
   @override
   void setAllTripsFilter(Filter filter) {
     tripsTabCubit.setFilter(filter);
-    // tripsFiltersPageCubit.updateCurrentFilter(filter);
+    tripsFiltersPageCubit.updateCurrentFilter(filter);
   }
 
   @override
   void stopAllTripsLoading() {
     tripsTabCubit.stopLoading();
-    // tripsFiltersPageCubit.stopLoading();
+    tripsFiltersPageCubit.stopLoading();
   }
 
   @override
@@ -34,7 +34,7 @@ class TripsPresenter extends TripsOutputPort {
       tripsTabCubit.setTrips(trips, amount: amount);
     }
 
-    // tripsFiltersPageCubit.stopLoading();
+    tripsFiltersPageCubit.stopLoading();
   }
 
   @override

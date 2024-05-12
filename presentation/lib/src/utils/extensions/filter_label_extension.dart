@@ -13,5 +13,6 @@ extension FilterLabelExtension on FilterLabel {
         FilterLabel.hasInternet => 'Has Internet',
         FilterLabel.cafe => 'Cafe',
         FilterLabel.wc => 'WC',
+        FilterLabel.showUncompleted => 'Show Uncompleted',
       };
 }

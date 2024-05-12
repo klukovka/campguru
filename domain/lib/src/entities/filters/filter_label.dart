@@ -9,4 +9,5 @@ enum FilterLabel {
   hasInternet,
   cafe,
   wc,
+  showUncompleted,
 }

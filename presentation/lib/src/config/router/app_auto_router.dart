@@ -35,6 +35,10 @@ class AppAutoRouter extends $AppAutoRouter {
       page: RoutesFiltersRoute.page,
       path: '/home/routes/filters',
     ),
+    AutoRoute(
+      page: TripsFiltersRoute.page,
+      path: '/home/trips/filters',
+    ),
     AutoRoute(page: StartRoute.page, path: '/start'),
     AutoRoute(
       page: LocationDetailsRoute.page,

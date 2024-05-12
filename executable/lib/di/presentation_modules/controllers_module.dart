@@ -98,4 +98,10 @@ abstract class ControllersModule {
   @lazySingleton
   TripsTabController getTripsTabController(GetTripsUseCase getTripsUseCase) =>
       TripsTabController(getTripsUseCase);
+
+  @lazySingleton
+  TripFiltersPageController getTripFiltersPageController(
+    GetTripsUseCase getTripsUseCase,
+  ) =>
+      TripFiltersPageController(getTripsUseCase);
 }

@@ -97,6 +97,8 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.routesFiltersPageCubit);
   gh.lazySingleton<_i5.ProfileTabCubit>(() => blocModule.profileTabCubit);
   gh.lazySingleton<_i5.TripsTabCubit>(() => blocModule.tripsTabCubit);
+  gh.lazySingleton<_i5.TripsFiltersPageCubit>(
+      () => blocModule.tripsFiltersPageCubit);
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.hiveDataSource,
     preResolve: true,
@@ -109,8 +111,6 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i5.CampguruRouter>(
       () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
-  gh.lazySingleton<_i4.TripsOutputPort>(
-      () => presentersModule.getTripsOutputPort(gh<_i5.TripsTabCubit>()));
   gh.lazySingleton<_i4.LocationsOutputPort>(
       () => presentersModule.getLocationsOutputPort(
             gh<_i5.LocationsTabCubit>(),
@@ -154,6 +154,11 @@ Future<_i1.GetIt> $configureDependencies(
   );
   gh.lazySingleton<_i4.SettingsOutputPort>(
       () => presentersModule.getSettingsOutputPort(gh<_i5.ProfileTabCubit>()));
+  gh.lazySingleton<_i4.TripsOutputPort>(
+      () => presentersModule.getTripsOutputPort(
+            gh<_i5.TripsTabCubit>(),
+            gh<_i5.TripsFiltersPageCubit>(),
+          ));
   gh.lazySingleton<_i4.LocationsRepository>(
     () => locationsRepositoryModule
         .getTestLocationsRepository(gh<_i6.TestDataSource>()),
@@ -289,6 +294,8 @@ Future<_i1.GetIt> $configureDependencies(
       .getRouteDetailsPageController(gh<_i4.GetRouteDetailsUseCase>()));
   gh.lazySingleton<_i5.TripsTabController>(
       () => controllersModule.getTripsTabController(gh<_i4.GetTripsUseCase>()));
+  gh.lazySingleton<_i5.TripFiltersPageController>(() => controllersModule
+      .getTripFiltersPageController(gh<_i4.GetTripsUseCase>()));
   gh.lazySingleton<_i5.RoutesTabController>(() =>
       controllersModule.getRoutesTabController(gh<_i4.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i5.RouteFiltersPageController>(() => controllersModule

@@ -7,5 +7,8 @@ extension SortByExtension on SortBy {
         SortBy.rating => 'Rating',
         SortBy.routes => 'Routes',
         SortBy.reviews => 'Reviews',
+        SortBy.date => 'Date',
+        SortBy.distance => 'Distance',
+        SortBy.users => 'Users',
       };
 }

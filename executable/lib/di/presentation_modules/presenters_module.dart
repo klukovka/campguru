@@ -64,6 +64,10 @@ abstract class PresentersModule {
   @lazySingleton
   TripsOutputPort getTripsOutputPort(
     TripsTabCubit tripsTabCubit,
+    TripsFiltersPageCubit tripsFiltersPageCubit,
   ) =>
-      TripsPresenter(tripsTabCubit: tripsTabCubit);
+      TripsPresenter(
+        tripsTabCubit: tripsTabCubit,
+        tripsFiltersPageCubit: tripsFiltersPageCubit,
+      );
 }
