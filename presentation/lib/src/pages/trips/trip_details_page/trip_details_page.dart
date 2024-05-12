@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/trips/trip_details_page/views/loading_trip_details_page.dart';
 import 'package:presentation/src/pages/trips/trip_details_page/views/trip_details_sliver_app_bar.dart';
+import 'package:presentation/src/pages/trips/trip_details_page/views/users_list.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 @RoutePage()
@@ -57,7 +58,7 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 sliver: SliverToBoxAdapter(
                   child: Text(
                     //TODO: Add correct formatting and localizations
@@ -78,7 +79,18 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
                   ),
                 ),
               ),
-              //TODO: Add users
+              SliverPadding(
+                padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                sliver: SliverToBoxAdapter(
+                  child: Text(
+                    //TODO: Add localization
+
+                    'Users (${state.trip.usersAmount})',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ),
+              ),
+              UsersList.sliver(users: state.trip.users ?? []),
             ],
           ),
         );

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 class RatingInfoNameAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   final String name;
-  final double mark;
+  final double? mark;
 
   const RatingInfoNameAppBar({
     super.key,
     required this.name,
-    required this.mark,
+    this.mark,
   });
 
   @override

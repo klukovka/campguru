@@ -55,7 +55,6 @@ class TripDetailsSliverAppBar extends StatelessWidget {
         background: image,
       ),
       bottom: RatingInfoNameAppBar(
-        mark: 5,
         name: trip.name,
       ),
       onStretchTrigger: onStretch,
