@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/src/pages/trips/trip_details_page/views/trip_chat_button.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -40,7 +41,7 @@ class TripDetailsSliverAppBar extends StatelessWidget {
               onPressed: context.appRouter.pop,
             ),
           ),
-          //TODO: Add chat button
+          TripChatButton(tripId: trip.id),
         ],
       ),
       pinned: true,
