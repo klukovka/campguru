@@ -10,4 +10,6 @@ class ProfileTabCubit extends Cubit<ProfileTabState> {
   void updateUser(User user) => emit(state.copyWith(
         user: user,
       ));
+
+  void updateVersion(String version) => emit(state.copyWith(version: version));
 }

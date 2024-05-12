@@ -23,6 +23,7 @@ export 'src/output_ports/error_handler_output_port.dart';
 export 'src/output_ports/locations_output_port.dart';
 export 'src/output_ports/reviews_output_port.dart';
 export 'src/output_ports/routes_output_port.dart';
+export 'src/repositories/app_settings_repository.dart';
 export 'src/repositories/auth_repository.dart';
 export 'src/repositories/locations_repository.dart';
 export 'src/repositories/preferences_repository.dart';

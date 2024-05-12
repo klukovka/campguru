@@ -6,6 +6,7 @@ export 'src/buttons/favorite_button.dart';
 export 'src/buttons/filter_button.dart';
 export 'src/buttons/filter_buttons.dart';
 export 'src/cards/item_card.dart';
+export 'src/cards/navigation_tile.dart';
 export 'src/carousel/carousel.dart';
 export 'src/carousel/photos_info_carousel.dart';
 export 'src/default_app_bar.dart';
