@@ -25,7 +25,8 @@ import 'data_modules/routes_repository_module.dart' as _i17;
 import 'data_modules/users_repository_module.dart' as _i12;
 import 'domain_modules/location_use_cases_module.dart' as _i21;
 import 'domain_modules/review_use_cases_module.dart' as _i20;
-import 'domain_modules/route_use_cases_module.dart' as _i23;
+import 'domain_modules/route_use_cases_module.dart' as _i24;
+import 'domain_modules/settings_use_cases_module.dart' as _i23;
 import 'domain_modules/user_use_cases_module.dart' as _i19;
 import 'presentation_modules/auto_router_module.dart' as _i9;
 import 'presentation_modules/bloc_module.dart' as _i10;
@@ -62,6 +63,7 @@ Future<_i1.GetIt> $configureDependencies(
   final reviewUseCasesModule = _$ReviewUseCasesModule();
   final locationUseCasesCasesModule = _$LocationUseCasesCasesModule();
   final controllersModule = _$ControllersModule();
+  final settingsUseCasesModule = _$SettingsUseCasesModule();
   final routeUseCasesModule = _$RouteUseCasesModule();
   await gh.singletonAsync<_i3.PackageInfo>(
     () => packagesModule.packageInfo(),
@@ -139,6 +141,8 @@ Future<_i1.GetIt> $configureDependencies(
         .testPreferencesRepository(gh<_i6.HiveDataSource>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i4.SettingsOutputPort>(
+      () => presentersModule.getSettingsOutputPort(gh<_i5.ProfileTabCubit>()));
   gh.lazySingleton<_i4.LocationsRepository>(
     () => locationsRepositoryModule
         .getTestLocationsRepository(gh<_i6.TestDataSource>()),
@@ -223,6 +227,11 @@ Future<_i1.GetIt> $configureDependencies(
       .getLocationFiltersPageController(gh<_i4.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i5.RouteReviewsPageController>(() => controllersModule
       .getRouteReviewsPageController(gh<_i4.GetRouteReviewsUseCase>()));
+  gh.lazySingleton<_i4.GetAppVersion>(
+      () => settingsUseCasesModule.getAppVersion(
+            gh<_i4.AppSettingsRepository>(),
+            gh<_i4.SettingsOutputPort>(),
+          ));
   gh.factory<_i4.GetRoutesAvailableFiltersUseCase>(
       () => routeUseCasesModule.getRoutesAvailableFiltersUseCase(
             gh<_i4.RoutesRepository>(),
@@ -251,10 +260,6 @@ Future<_i1.GetIt> $configureDependencies(
       .getRouteLocationsController(gh<_i4.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i5.RouteDetailsPageController>(() => controllersModule
       .getRouteDetailsPageController(gh<_i4.GetRouteDetailsUseCase>()));
-  gh.lazySingleton<_i5.RoutesTabController>(() =>
-      controllersModule.getRoutesTabController(gh<_i4.GetAllRoutesUseCase>()));
-  gh.lazySingleton<_i5.RouteFiltersPageController>(() => controllersModule
-      .getRouteFiltersPageController(gh<_i4.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i5.SplashPageController>(
       () => controllersModule.getSplashPageController(
             gh<_i4.IsAuthorizedUseCase>(),
@@ -262,7 +267,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i4.GetAllRoutesUseCase>(),
             gh<_i4.GetLocationsAvailableFiltersUseCase>(),
             gh<_i4.GetRoutesAvailableFiltersUseCase>(),
+            gh<_i4.GetAppVersion>(),
           ));
+  gh.lazySingleton<_i5.RoutesTabController>(() =>
+      controllersModule.getRoutesTabController(gh<_i4.GetAllRoutesUseCase>()));
+  gh.lazySingleton<_i5.RouteFiltersPageController>(() => controllersModule
+      .getRouteFiltersPageController(gh<_i4.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i5.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
           gh<_i4.UpdateRouteFavoriteStatusUseCase>()));
@@ -301,4 +311,6 @@ class _$LocationUseCasesCasesModule extends _i21.LocationUseCasesCasesModule {}
 
 class _$ControllersModule extends _i22.ControllersModule {}
 
-class _$RouteUseCasesModule extends _i23.RouteUseCasesModule {}
+class _$SettingsUseCasesModule extends _i23.SettingsUseCasesModule {}
+
+class _$RouteUseCasesModule extends _i24.RouteUseCasesModule {}

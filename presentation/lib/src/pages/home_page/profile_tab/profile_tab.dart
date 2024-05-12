@@ -103,21 +103,26 @@ class ProfileTab extends StatelessWidget implements AutoRouteWrapper {
             padding: const EdgeInsets.all(16),
             sliver: SliverFillRemaining(
               hasScrollBody: false,
-              child: Column(
-                children: [
-                  const Spacer(),
-                  SizedBox(
-                    width: double.infinity,
-                    child: TextButton.icon(
-                      onPressed: () {
-                        //TODO: Logout
-                      },
-                      icon: Icon(MdiIcons.exitToApp),
-                      label: const Text('Logout'),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                ],
+              child: BlocBuilder<ProfileTabCubit, ProfileTabState>(
+                builder: (context, state) {
+                  return Column(
+                    children: [
+                      const Spacer(),
+                      SizedBox(
+                        width: double.infinity,
+                        child: TextButton.icon(
+                          onPressed: () {
+                            //TODO: Logout
+                          },
+                          icon: Icon(MdiIcons.exitToApp),
+                          label: const Text('Logout'),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text('Version: ${state.version}'),
+                    ],
+                  );
+                },
               ),
             ),
           ),

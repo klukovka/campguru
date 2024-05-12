@@ -54,4 +54,10 @@ abstract class PresentersModule {
         routeDetailsPageCubit: routeDetailsPageCubit,
         routesFiltersPageCubit: routesFiltersPageCubit,
       );
+
+  @lazySingleton
+  SettingsOutputPort getSettingsOutputPort(
+    ProfileTabCubit profileTabCubit,
+  ) =>
+      SettingsPresenter(profileTabCubit: profileTabCubit);
 }
