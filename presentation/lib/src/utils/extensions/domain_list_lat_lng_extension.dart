@@ -1,11 +1,11 @@
 import 'package:domain/domain.dart' as domain;
-import 'package:google_maps_flutter/google_maps_flutter.dart' as google;
+import 'package:latlong2/latlong.dart' as flutter_map;
 
 extension DomainListLatLngExtension on List<domain.LatLng> {
   String toRouteParams() =>
       map((latLng) => '${latLng.latitude},${latLng.longitude}').join(';');
 
-  List<google.LatLng> toGoogleParams() =>
-      map((latLng) => google.LatLng(latLng.latitude, latLng.longitude))
+  List<flutter_map.LatLng> toGoogleParams() =>
+      map((latLng) => flutter_map.LatLng(latLng.latitude, latLng.longitude))
           .toList();
 }

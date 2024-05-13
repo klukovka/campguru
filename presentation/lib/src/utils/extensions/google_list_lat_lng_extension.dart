@@ -1,6 +1,7 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
-extension GoogleListLatLngExtension on List<LatLng> {
+extension ListLatLng2Extension on List<LatLng> {
   double get smallestLatitude {
     final latitude = map((e) => e.latitude).toList()..sort();
     return latitude.first;
@@ -45,11 +46,11 @@ extension GoogleListLatLngExtension on List<LatLng> {
     const safeCoefficient = 0.004;
 
     return LatLngBounds(
-      southwest: LatLng(
+      LatLng(
         smallestLatitude - safeCoefficient,
         smallestLongitude - safeCoefficient,
       ),
-      northeast: LatLng(
+      LatLng(
         biggestLatitude + safeCoefficient,
         biggestLongitude + safeCoefficient,
       ),
