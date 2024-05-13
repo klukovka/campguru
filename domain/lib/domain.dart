@@ -28,6 +28,7 @@ export 'src/output_ports/settings_output_port.dart';
 export 'src/output_ports/trips_output_port.dart';
 export 'src/repositories/app_settings_repository.dart';
 export 'src/repositories/auth_repository.dart';
+export 'src/repositories/cache_repository.dart';
 export 'src/repositories/locations_repository.dart';
 export 'src/repositories/preferences_repository.dart';
 export 'src/repositories/reviews_repository.dart';
