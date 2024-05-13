@@ -1,9 +1,8 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
@@ -23,61 +22,70 @@ class LocationMapPage extends StatefulWidget {
 }
 
 class LocationMapPageState extends State<LocationMapPage> {
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
+  late final MapController _controller;
 
   LatLng get _initialPosition => LatLng(widget.lat, widget.lng);
 
   @override
+  void initState() {
+    super.initState();
+    _controller = MapController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _controller.future,
-      builder: (context, snapshot) {
-        return Scaffold(
-          body: Stack(
+    return Scaffold(
+      body: Stack(
+        children: [
+          FlutterMap(
+            mapController: _controller,
+            options: MapOptions(
+              initialCenter: _initialPosition,
+              initialZoom: 8,
+            ),
             children: [
-              GoogleMap(
-                mapType: MapType.normal,
-                compassEnabled: false,
-                initialCameraPosition: CameraPosition(
-                  zoom: 12,
-                  target: _initialPosition,
-                ),
-                markers: {
-                  Marker(
-                    markerId: const MarkerId('location'),
-                    anchor: const Offset(0.5, 0.5),
-                    position: _initialPosition,
-                  )
-                },
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
+              TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                userAgentPackageName: 'com.example.campguru',
               ),
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 16),
-                  child: ArrowCircleButton.back(
-                    onPressed: context.appRouter.pop,
+              MarkerLayer(
+                markers: [
+                  Marker(
+                    point: _initialPosition,
+                    rotate: false,
+                    child: Icon(
+                      MdiIcons.mapMarker,
+                      size: 32,
+                      color: Colors.red,
+                    ),
                   ),
-                ),
-              )
+                ],
+              ),
             ],
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.startDocked,
-          floatingActionButton: snapshot.hasData
-              ? FloatingActionButton(
-                  onPressed: () async {
-                    final controller = snapshot.data!;
-                    controller
-                        .moveCamera(CameraUpdate.newLatLng(_initialPosition));
-                  },
-                  child: Icon(MdiIcons.mapMarkerRadius),
-                )
-              : null,
-        );
-      },
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: ArrowCircleButton.back(
+                onPressed: context.appRouter.pop,
+              ),
+            ),
+          )
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _controller.move(_initialPosition, 8);
+        },
+        child: Icon(MdiIcons.mapMarkerRadius),
+      ),
     );
   }
 }

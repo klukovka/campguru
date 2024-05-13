@@ -78,8 +78,8 @@ class TestDataSource {
         'Animals',
       ],
       reviews: generateReviews(size: 5, page: 0).values,
-      lat: 50,
-      lng: 50,
+      lat: 49.09,
+      lng: 35.52,
     );
   }
 
@@ -176,16 +176,16 @@ class TestDataSource {
       reviews: generateReviews(size: 5, page: 0).values,
       locationsAmount: 3,
       polyline: [
-        LatLng(48.766619, 23.098852),
-        LatLng(48.768140, 23.104775),
-        LatLng(48.772551, 23.156930),
-        LatLng(48.781879, 23.118083),
+        LatLng(49.096619, 35.528852),
+        LatLng(49.098140, 35.524775),
+        LatLng(49.092551, 35.526930),
+        LatLng(49.091879, 35.528083),
       ],
       locations: [
-        LatLng(48.766619, 23.098852),
-        LatLng(48.768140, 23.104775),
-        LatLng(48.772551, 23.156930),
-        LatLng(48.781879, 23.118083),
+        LatLng(49.096619, 35.528852),
+        LatLng(49.098140, 35.524775),
+        LatLng(49.092551, 35.526930),
+        LatLng(49.091879, 35.528083),
       ],
     );
   }
