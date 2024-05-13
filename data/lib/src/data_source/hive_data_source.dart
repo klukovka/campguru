@@ -5,7 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveDataSource {
   static const _preferencesBoxKey = '_preferencesBoxKey';
-  static const _routesBoxKey = '_preferencesBoxKey';
+  static const _routesBoxKey = '_routesBoxKey';
 
   static const _userIdKey = '_userIdKey';
   static const _accessTokenKey = '_accessTokenKey';

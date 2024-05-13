@@ -11,7 +11,7 @@ class CacheFlutterMapRepository implements CacheRepository {
   CacheFlutterMapRepository(this._dataSource);
 
   @override
-  Stream<double> saveRoute(Route route) async* {
+  Stream<(double progress, bool isCompleted)> saveRoute(Route route) async* {
     await _dataSource.saveRoute(RouteHiveDto.fromDomain(route));
     final store = FMTCStore('Route${route.id}');
     await store.manage.create();
@@ -28,6 +28,9 @@ class CacheFlutterMapRepository implements CacheRepository {
       ),
     );
 
-    yield* progress.map((event) => event.percentageProgress);
+    yield* progress.map((event) => (
+          event.percentageProgress,
+          event.isComplete,
+        ));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:domain/domain.dart';
 
 abstract class CacheRepository {
-  Stream<double> saveRoute(Route route);
+  Stream<(double progress, bool isCompleted)> saveRoute(Route route);
 }

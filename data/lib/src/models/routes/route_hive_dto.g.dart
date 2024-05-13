@@ -8,7 +8,7 @@ part of 'route_hive_dto.dart';
 
 class RouteHiveDtoAdapter extends TypeAdapter<RouteHiveDto> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
   RouteHiveDto read(BinaryReader reader) {
