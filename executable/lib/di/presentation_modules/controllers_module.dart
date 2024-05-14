@@ -118,6 +118,12 @@ abstract class ControllersModule {
   @lazySingleton
   RouteMapPageController getRouteMapPageController(
     CacheRouteUseCase cacheRouteUseCase,
+    GetRouteDetailsUseCase getRouteDetailsUseCase,
+    GetGeopositionUseCase getGeopositionUseCase,
   ) =>
-      RouteMapPageController(cacheRouteUseCase);
+      RouteMapPageController(
+        cacheRouteUseCase: cacheRouteUseCase,
+        getRouteDetailsUseCase: getRouteDetailsUseCase,
+        getGeopositionUseCase: getGeopositionUseCase,
+      );
 }

@@ -7,9 +7,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/routes/route_map_page/views/cache_route_button.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
-import 'package:presentation/src/utils/extensions/domain_list_lat_lng_extension.dart';
-import 'package:presentation/src/utils/extensions/google_list_lat_lng_extension.dart';
-import 'package:presentation/src/utils/extensions/string_lat_lng_extension.dart';
 
 @RoutePage()
 class RouteMapPage extends StatefulWidget implements AutoRouteWrapper {
@@ -25,7 +22,7 @@ class RouteMapPage extends StatefulWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: context.locator<RouteDetailsPageCubit>(),
+      value: context.locator<RouteMapPageCubit>(),
       child: this,
     );
   }
@@ -40,7 +37,7 @@ class _RouteMapPageState extends State<RouteMapPage> {
     _controller = MapController();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.locator<RouteDetailsPageController>()(widget.routeId);
+      context.locator<RouteMapPageController>().getDetails(widget.routeId);
     });
   }
 
@@ -52,13 +49,8 @@ class _RouteMapPageState extends State<RouteMapPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RouteDetailsPageCubit, RouteDetailsPageState>(
+    return BlocBuilder<RouteMapPageCubit, RouteMapPageState>(
       builder: (context, state) {
-        final locations =
-            state.route.locations?.toRouteParams().toMapParams() ?? [];
-        final polyline =
-            state.route.polyline?.toRouteParams().toMapParams() ?? [];
-        final bounds = polyline.getBounds();
         return Scaffold(
           body: state.isLoading
               ? const Center(
@@ -69,8 +61,9 @@ class _RouteMapPageState extends State<RouteMapPage> {
                     FlutterMap(
                       mapController: _controller,
                       options: MapOptions(
-                        initialCenter: bounds.center,
-                        initialCameraFit: CameraFit.bounds(bounds: bounds),
+                        initialCenter: state.bounds.center,
+                        initialCameraFit:
+                            CameraFit.bounds(bounds: state.bounds),
                       ),
                       children: [
                         TileLayer(
@@ -81,7 +74,7 @@ class _RouteMapPageState extends State<RouteMapPage> {
                         PolylineLayer(
                           polylines: [
                             Polyline(
-                              points: polyline,
+                              points: state.polyline,
                               strokeWidth: 5,
                               strokeJoin: StrokeJoin.round,
                               color: Colors.black,
@@ -89,19 +82,32 @@ class _RouteMapPageState extends State<RouteMapPage> {
                           ],
                         ),
                         MarkerLayer(
-                          markers: locations
-                              .map(
-                                (e) => Marker(
-                                  point: e,
-                                  rotate: false,
-                                  child: Icon(
-                                    MdiIcons.mapMarker,
-                                    size: 32,
-                                    color: Colors.red,
-                                  ),
+                          markers: [
+                            ...state.locations.map(
+                              (e) => Marker(
+                                point: e,
+                                rotate: false,
+                                child: Icon(
+                                  MdiIcons.mapMarker,
+                                  size: 32,
+                                  color: Colors.red,
                                 ),
-                              )
-                              .toList(),
+                              ),
+                            ),
+                            if (state.isGeopositionEnabled)
+                              Marker(
+                                point: state.mapCurrentPosition,
+                                child: Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.blue,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(MdiIcons.human),
+                                ),
+                              ),
+                          ],
                         ),
                       ],
                     ),
@@ -126,7 +132,7 @@ class _RouteMapPageState extends State<RouteMapPage> {
                 FloatingActionButton(
                   onPressed: () {
                     _controller.fitCamera(
-                      CameraFit.bounds(bounds: bounds),
+                      CameraFit.bounds(bounds: state.bounds),
                     );
                   },
                   child: Icon(MdiIcons.mapMarkerRadius),
