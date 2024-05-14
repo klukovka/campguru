@@ -74,9 +74,9 @@ class _RouteMapPageState extends State<RouteMapPage> {
                       ),
                       children: [
                         TileLayer(
+                          userAgentPackageName: 'com.example.campguru',
                           urlTemplate:
                               'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          userAgentPackageName: 'com.example.campguru',
                         ),
                         PolylineLayer(
                           polylines: [

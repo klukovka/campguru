@@ -5,8 +5,7 @@ import 'package:injectable/injectable.dart';
 @module
 abstract class CacheRepositoryModule {
   @lazySingleton
-  CacheRepository getCacheRepository(HiveDataSource dataSource) =>
-      CacheFlutterMapRepository(
-        dataSource,
-      );
+  @preResolve
+  Future<CacheRepository> getCacheRepository(HiveDataSource dataSource) =>
+      CacheFlutterMapRepository.getInstance(dataSource);
 }

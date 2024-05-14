@@ -62,7 +62,7 @@ class _CacheProgressViewState extends State<CacheProgressView> {
                                 padding: const EdgeInsets.only(left: 12),
                                 child: Text(
                                   //TODO: add localizations
-                                  'Caching $progress%',
+                                  'Caching ${progress.toStringAsFixed(2)}%',
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge

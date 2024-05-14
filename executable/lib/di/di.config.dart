@@ -108,7 +108,7 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i6.RouteCacheProgressViewCubit>(
       () => blocModule.routeCacheProgressViewCubit);
   await gh.lazySingletonAsync<_i7.HiveDataSource>(
-    () => dataSourceModule.hiveDataSource,
+    () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
   );
   gh.lazySingleton<_i6.CampguruRouter>(
@@ -162,8 +162,10 @@ Future<_i1.GetIt> $configureDependencies(
   );
   gh.lazySingleton<_i5.SettingsOutputPort>(
       () => presentersModule.getSettingsOutputPort(gh<_i6.ProfileTabCubit>()));
-  gh.lazySingleton<_i5.CacheRepository>(
-      () => cacheRepositoryModule.getCacheRepository(gh<_i7.HiveDataSource>()));
+  await gh.lazySingletonAsync<_i5.CacheRepository>(
+    () => cacheRepositoryModule.getCacheRepository(gh<_i7.HiveDataSource>()),
+    preResolve: true,
+  );
   gh.lazySingleton<_i5.UsersRepository>(
     () =>
         usersRepositoryModule.getTestUsersRepository(gh<_i7.TestDataSource>()),

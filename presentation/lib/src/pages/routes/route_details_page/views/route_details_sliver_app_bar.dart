@@ -23,11 +23,14 @@ class RouteDetailsSliverAppBar extends StatelessWidget {
     final safeTopPadding = MediaQuery.paddingOf(context).top;
 
     final image = LayoutBuilder(builder: (context, constraints) {
-      return Image.network(
-        route.mapUrl,
-        fit: BoxFit.cover,
-        height: constraints.maxHeight,
-        width: constraints.maxWidth,
+      return GestureDetector(
+        onTap: onStretch,
+        child: Image.network(
+          route.mapUrl,
+          fit: BoxFit.cover,
+          height: constraints.maxHeight,
+          width: constraints.maxWidth,
+        ),
       );
     });
     return SliverAppBar(

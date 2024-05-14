@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:data/data.dart';
 import 'package:data/src/models/routes/route_hive_dto.dart';
 import 'package:domain/domain.dart';
@@ -8,7 +10,23 @@ import 'package:latlong2/latlong.dart' as latlong;
 class CacheFlutterMapRepository implements CacheRepository {
   final HiveDataSource _dataSource;
 
-  CacheFlutterMapRepository(this._dataSource);
+  CacheFlutterMapRepository._(this._dataSource);
+
+  static Future<CacheFlutterMapRepository> getInstance(
+    HiveDataSource dataSource,
+  ) async {
+    try {
+      await FMTCObjectBoxBackend().initialise();
+    } catch (e, st) {
+      log(
+        'FMTCObjectBoxBackend initialization failed',
+        error: e,
+        stackTrace: st,
+      );
+    }
+
+    return CacheFlutterMapRepository._(dataSource);
+  }
 
   @override
   Stream<(double progress, bool isCompleted)> saveRoute(Route route) async* {
@@ -24,7 +42,10 @@ class CacheFlutterMapRepository implements CacheRepository {
       region: region.toDownloadable(
         minZoom: 1,
         maxZoom: 20,
-        options: TileLayer(),
+        options: TileLayer(
+          userAgentPackageName: 'com.example.campguru',
+          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        ),
       ),
     );
 
