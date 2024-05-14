@@ -4,6 +4,8 @@ class RouteMapPageState extends Equatable {
   final Route route;
   final bool isLoading;
   final bool hasError;
+  final bool isGeopositionEnabled;
+  final LatLng currentPosition;
 
   const RouteMapPageState({
     this.route = const Route(
@@ -18,20 +20,34 @@ class RouteMapPageState extends Equatable {
     ),
     this.isLoading = true,
     this.hasError = false,
+    this.isGeopositionEnabled = false,
+    this.currentPosition = const LatLng(0, 0),
   });
 
   @override
-  List<Object> get props => [route, isLoading, hasError];
+  List<Object> get props {
+    return [
+      route,
+      isLoading,
+      hasError,
+      isGeopositionEnabled,
+      currentPosition,
+    ];
+  }
 
   RouteMapPageState copyWith({
     Route? route,
     bool? isLoading,
     bool? hasError,
+    bool? isGeopositionEnabled,
+    LatLng? currentPosition,
   }) {
     return RouteMapPageState(
       route: route ?? this.route,
       isLoading: isLoading ?? this.isLoading,
       hasError: hasError ?? this.hasError,
+      isGeopositionEnabled: isGeopositionEnabled ?? this.isGeopositionEnabled,
+      currentPosition: currentPosition ?? this.currentPosition,
     );
   }
 }

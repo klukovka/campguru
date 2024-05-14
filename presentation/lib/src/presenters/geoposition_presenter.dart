@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:domain/domain.dart';
+import 'package:flutter/foundation.dart';
 import 'package:presentation/presentation.dart';
 
 class GeopositionPresenter implements GeopositionOutputPort {
@@ -11,11 +12,12 @@ class GeopositionPresenter implements GeopositionOutputPort {
   });
   @override
   void setGeopositionEnabled(bool enabled) {
-    log('setGeopositionEnabled $enabled');
+    routeMapPageCubit.updateEnabledGeoposition(enabled);
   }
 
   @override
   void updateUserPosition(LatLng latLng) {
-    log('${latLng.latitude};${latLng.longitude}');
+    if (kDebugMode) log('${latLng.latitude};${latLng.longitude}');
+    routeMapPageCubit.updateCurrentLocation(latLng);
   }
 }

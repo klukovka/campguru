@@ -22,4 +22,12 @@ class RouteMapPageCubit extends Cubit<RouteMapPageState> {
       ));
 
   void setHasError() => emit(state.copyWith(hasError: false));
+
+  void updateEnabledGeoposition(bool enabled) => emit(state.copyWith(
+        isGeopositionEnabled: enabled,
+      ));
+
+  void updateCurrentLocation(LatLng latLng) => emit(state.copyWith(
+        currentPosition: latLng,
+      ));
 }
