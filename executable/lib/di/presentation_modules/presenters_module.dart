@@ -50,6 +50,7 @@ abstract class PresentersModule {
     RoutesFiltersPageCubit routesFiltersPageCubit,
     HomePageCubit homePageCubit,
     RouteCacheProgressViewCubit routeCacheProgressViewCubit,
+    RouteMapPageCubit routeMapPageCubit,
   ) =>
       RoutesPresenter(
         routesTabCubit: routesTabCubit,
@@ -57,6 +58,7 @@ abstract class PresentersModule {
         routesFiltersPageCubit: routesFiltersPageCubit,
         homePageCubit: homePageCubit,
         routeCacheProgressViewCubit: routeCacheProgressViewCubit,
+        routeMapPageCubit: routeMapPageCubit,
       );
 
   @lazySingleton

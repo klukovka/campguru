@@ -7,6 +7,7 @@ class RoutesPresenter extends RoutesOutputPort {
   final RoutesFiltersPageCubit routesFiltersPageCubit;
   final HomePageCubit homePageCubit;
   final RouteCacheProgressViewCubit routeCacheProgressViewCubit;
+  final RouteMapPageCubit routeMapPageCubit;
 
   RoutesPresenter({
     required this.routesTabCubit,
@@ -14,6 +15,7 @@ class RoutesPresenter extends RoutesOutputPort {
     required this.routesFiltersPageCubit,
     required this.homePageCubit,
     required this.routeCacheProgressViewCubit,
+    required this.routeMapPageCubit,
   });
 
   @override
@@ -53,6 +55,9 @@ class RoutesPresenter extends RoutesOutputPort {
       routeDetailsPageCubit.updateRouteFavoriteStatus(
         isFavorite,
       );
+      routeMapPageCubit.updateRouteFavoriteStatus(
+        isFavorite,
+      );
     }
   }
 
@@ -62,11 +67,13 @@ class RoutesPresenter extends RoutesOutputPort {
 
     routesTabCubit.setRoutes(allRoutes);
     routeDetailsPageCubit.updateRoute(route);
+    routeMapPageCubit.updateRoute(route);
   }
 
   @override
   void startRouteDetailsLoading() {
     routeDetailsPageCubit.startLoading();
+    routeMapPageCubit.startLoading();
   }
 
   @override
@@ -77,8 +84,10 @@ class RoutesPresenter extends RoutesOutputPort {
 
     if (route != null) {
       routeDetailsPageCubit.updateRoute(route);
+      routeMapPageCubit.updateRoute(route);
     } else {
       routeDetailsPageCubit.setHasError();
+      routeMapPageCubit.setHasError();
     }
   }
 

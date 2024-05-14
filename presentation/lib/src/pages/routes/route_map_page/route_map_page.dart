@@ -25,7 +25,7 @@ class RouteMapPage extends StatefulWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: context.locator<RouteDetailsPageCubit>(),
+      value: context.locator<RouteMapPageCubit>(),
       child: this,
     );
   }
@@ -52,7 +52,7 @@ class _RouteMapPageState extends State<RouteMapPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RouteDetailsPageCubit, RouteDetailsPageState>(
+    return BlocBuilder<RouteMapPageCubit, RouteMapPageState>(
       builder: (context, state) {
         final locations =
             state.route.locations?.toRouteParams().toMapParams() ?? [];
