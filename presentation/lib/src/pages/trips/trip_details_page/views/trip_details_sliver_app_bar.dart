@@ -32,6 +32,7 @@ class TripDetailsSliverAppBar extends StatelessWidget {
     return SliverAppBar(
       toolbarHeight: toolbarHeight,
       expandedHeight: MediaQuery.sizeOf(context).width - safeTopPadding,
+      stretchTriggerOffset: 10,
       automaticallyImplyLeading: false,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

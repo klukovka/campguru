@@ -5,6 +5,7 @@ export 'src/buttons/arrow_circle_button.dart';
 export 'src/buttons/favorite_button.dart';
 export 'src/buttons/filter_button.dart';
 export 'src/buttons/filter_buttons.dart';
+export 'src/cache_progress_view.dart';
 export 'src/cards/item_card.dart';
 export 'src/cards/navigation_tile.dart';
 export 'src/carousel/carousel.dart';

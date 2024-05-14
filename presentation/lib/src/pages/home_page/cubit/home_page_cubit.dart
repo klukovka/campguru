@@ -10,4 +10,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   void updateAvatar(String? avatar) {
     emit(state.copyWith(userAvatar: () => avatar));
   }
+
+  void updateIsCompleted(bool isCompleted) =>
+      emit(state.copyWith(isCompleted: isCompleted));
 }

@@ -1,169 +1,141 @@
-import 'dart:math' as math;
-
 import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:presentation/presentation.dart';
+import 'package:presentation/src/pages/routes/route_map_page/views/cache_route_button.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
+import 'package:presentation/src/utils/extensions/domain_list_lat_lng_extension.dart';
 import 'package:presentation/src/utils/extensions/google_list_lat_lng_extension.dart';
-import 'package:presentation/src/utils/extensions/lat_lng_bounds_extension.dart';
 import 'package:presentation/src/utils/extensions/string_lat_lng_extension.dart';
 
 @RoutePage()
-class RouteMapPage extends StatefulWidget {
-  final String locations;
-  final String polyline;
-
+class RouteMapPage extends StatefulWidget implements AutoRouteWrapper {
+  final int routeId;
   const RouteMapPage({
     super.key,
-    @QueryParam() this.locations = '',
-    @QueryParam() this.polyline = '',
+    @PathParam('id') required this.routeId,
   });
 
   @override
   State<RouteMapPage> createState() => _RouteMapPageState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider.value(
+      value: context.locator<RouteDetailsPageCubit>(),
+      child: this,
+    );
+  }
 }
 
 class _RouteMapPageState extends State<RouteMapPage> {
-  late GoogleMapController _controller;
+  late final MapController _controller;
 
-  List<LatLng> get locations => widget.locations.toGoogleParams();
-  List<LatLng> get polyline => widget.polyline.toGoogleParams();
+  @override
+  void initState() {
+    super.initState();
+    _controller = MapController();
 
-  List<LatLng>? border;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.locator<RouteDetailsPageController>()(widget.routeId);
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
-            mapType: MapType.normal,
-            compassEnabled: false,
-            initialCameraPosition: CameraPosition(
-              zoom: 12,
-              target: locations.first,
-            ),
-            polylines: {
-              Polyline(
-                polylineId: PolylineId(widget.locations),
-                color: Theme.of(context).colorScheme.primary,
-                points: polyline,
-                width: 4,
-              ),
-              if (border != null)
-                Polyline(
-                  polylineId: const PolylineId('widget.locations'),
-                  color: Colors.black,
-                  points: border!,
-                  width: 4,
+    return BlocBuilder<RouteDetailsPageCubit, RouteDetailsPageState>(
+      builder: (context, state) {
+        final locations =
+            state.route.locations?.toRouteParams().toMapParams() ?? [];
+        final polyline =
+            state.route.polyline?.toRouteParams().toMapParams() ?? [];
+        final bounds = polyline.getBounds();
+        return Scaffold(
+          body: state.isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Stack(
+                  children: [
+                    FlutterMap(
+                      mapController: _controller,
+                      options: MapOptions(
+                        initialCenter: bounds.center,
+                        initialCameraFit: CameraFit.bounds(bounds: bounds),
+                      ),
+                      children: [
+                        TileLayer(
+                          userAgentPackageName: 'com.example.campguru',
+                          urlTemplate:
+                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        ),
+                        PolylineLayer(
+                          polylines: [
+                            Polyline(
+                              points: polyline,
+                              strokeWidth: 5,
+                              strokeJoin: StrokeJoin.round,
+                              color: Colors.black,
+                            ),
+                          ],
+                        ),
+                        MarkerLayer(
+                          markers: locations
+                              .map(
+                                (e) => Marker(
+                                  point: e,
+                                  rotate: false,
+                                  child: Icon(
+                                    MdiIcons.mapMarker,
+                                    size: 32,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ],
+                    ),
+                    SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16),
+                        child: ArrowCircleButton.back(
+                          onPressed: context.appRouter.pop,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-            },
-            markers: locations.map((latLng) {
-              return Marker(
-                markerId: MarkerId(latLng.toString()),
-                position: latLng,
-                icon: BitmapDescriptor.defaultMarkerWithHue(
-                  math.Random().nextInt(360).toDouble(),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                CacheRouteButton(route: state.route),
+                const Spacer(),
+                FloatingActionButton(
+                  onPressed: () {
+                    _controller.fitCamera(
+                      CameraFit.bounds(bounds: bounds),
+                    );
+                  },
+                  child: Icon(MdiIcons.mapMarkerRadius),
                 ),
-              );
-            }).toSet(),
-            onMapCreated: (GoogleMapController controller) async {
-              _controller = controller;
-              await _controller.moveCamera(
-                  CameraUpdate.newLatLngBounds(polyline.getBounds(), 0));
-            },
-          ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: ArrowCircleButton.back(
-                onPressed: context.appRouter.pop,
-              ),
+              ],
             ),
           ),
-        ],
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FloatingActionButton(onPressed: () async {
-            // final visibleRegion = await _controller.getVisibleRegion();
-            // log(visibleRegion.toString());
-            // _controller.moveCamera(CameraUpdate.newLatLngZoom(
-            //   locations.first,
-            //   100,
-            // ));
-            // final width =
-            //     visibleRegion.northeast.latitude - visibleRegion.southwest.latitude;
-            // final height = visibleRegion.northeast.longitude -
-            //     visibleRegion.southwest.longitude;
-
-            // log('width $width; height $height');
-
-            setState(() {
-              border = [
-                polyline.northeast,
-                polyline.southeast,
-                polyline.southwest,
-                polyline.northwest,
-                polyline.northeast,
-              ];
-            });
-
-            await _controller.moveCamera(
-              CameraUpdate.newLatLngZoom(polyline.northwest, 20),
-            );
-
-            var visibleRegion = await _controller.getVisibleRegion();
-
-            final bounds = polyline.getBounds().splitBounds(visibleRegion);
-
-            //TODO: Extract to isolate
-            // for (int i = 0; i < bounds.length; i++) {
-            //   for (int j = 0; j < bounds[i].length; j++) {
-            //     await _controller.moveCamera(
-            //       CameraUpdate.newLatLngBounds(bounds[i][j], 0),
-            //     );
-            //     final snapshot = await _controller.takeSnapshot();
-            //   }
-            // }
-
-            // for (double i = 0;
-            //     visibleRegion.southeast.longitude <
-            //         polyline.southeast.longitude;
-            //     i += longitudeDiff) {
-            //   testPoints = [...testPoints, visibleRegion.southeast];
-
-            // }
-
-            // /////////////////
-            // while (visibleRegion.southeast.longitude <
-            //     polyline.southeast.longitude) {
-            //   testPoints = [...testPoints, visibleRegion.southeast];
-            //   visibleRegion = visibleRegion.getShiftedLng(longitudeDiff);
-            //   await _controller.moveCamera(
-            //     CameraUpdate.newLatLngBounds(visibleRegion, 0),
-            //   );
-            //   while (visibleRegion.southeast.latitude >
-            //       polyline.southeast.latitude) {
-            //     testPoints = [...testPoints, visibleRegion.southeast];
-            //     visibleRegion = visibleRegion.getShiftedLat(-latitudeDiff);
-            //     await _controller.moveCamera(
-            //       CameraUpdate.newLatLngBounds(visibleRegion, 0),
-            //     );
-            //   }
-            // }
-          }),
-          FloatingActionButton(
-            onPressed: () {
-              _controller.moveCamera(
-                  CameraUpdate.newLatLngBounds(polyline.getBounds(), 0));
-            },
-            child: const Icon(Icons.back_hand),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

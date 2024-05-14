@@ -10,4 +10,8 @@ abstract class RoutesOutputPort {
   void updateRouteDetailsBriefly(int routeId);
   void updateRoutesAvailableFilters(List<PremiumBasedFilterLabel> labels);
   void updatePremiumStatus(bool hasPremium);
+  void updateCacheProgress({
+    required double cacheProgress,
+    required bool isCompleted,
+  });
 }

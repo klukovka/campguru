@@ -114,4 +114,10 @@ abstract class ControllersModule {
         getTripDetailsUseCase,
         completeTripUseCase,
       );
+
+  @lazySingleton
+  RouteMapPageController getRouteMapPageController(
+    CacheRouteUseCase cacheRouteUseCase,
+  ) =>
+      RouteMapPageController(cacheRouteUseCase);
 }

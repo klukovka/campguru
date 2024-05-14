@@ -1,5 +1,3 @@
-// ignore_for_file: invalid_annotation_target
-
 import 'package:data/data.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:injectable/injectable.dart';
@@ -8,7 +6,7 @@ import 'package:injectable/injectable.dart';
 abstract class DataSourceModule {
   @lazySingleton
   @preResolve
-  Future<HiveDataSource> get hiveDataSource async =>
+  Future<HiveDataSource> getHiveDataSource() async =>
       await HiveDataSource.getInstance();
 
   @lazySingleton

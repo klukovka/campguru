@@ -2,12 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
-import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/pages/home_page/home_page_tab_type.dart';
 import 'package:presentation/src/pages/home_page/views/bottom_navigation_bar_avatar.dart';
+import 'package:presentation/src/pages/routes/views/route_cache_progress/route_cache_progress_view.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 @RoutePage()
-class HomePage extends StatelessWidget implements AutoRouteWrapper {
+class HomePage extends StatefulWidget implements AutoRouteWrapper {
   const HomePage({super.key});
 
   @override
@@ -19,8 +20,28 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final overlay = OverlayEntry(
+      builder: (_) => const Positioned(
+          bottom: 70, right: 0, left: 0, child: RouteCacheProgressView()));
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomePageCubit, HomePageState>(
+    return BlocConsumer<HomePageCubit, HomePageState>(
+      listener: (context, state) {
+        if (state.isCompleted) {
+          if (overlay.mounted) {
+            overlay.remove();
+          }
+        } else {
+          if (!overlay.mounted) {
+            Overlay.of(context, rootOverlay: true).insert(overlay);
+          }
+        }
+      },
       builder: (context, state) {
         final userAvatar = state.userAvatar;
         return AutoTabsRouter(

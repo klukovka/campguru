@@ -5,11 +5,15 @@ class RoutesPresenter extends RoutesOutputPort {
   final RoutesTabCubit routesTabCubit;
   final RouteDetailsPageCubit routeDetailsPageCubit;
   final RoutesFiltersPageCubit routesFiltersPageCubit;
+  final HomePageCubit homePageCubit;
+  final RouteCacheProgressViewCubit routeCacheProgressViewCubit;
 
   RoutesPresenter({
     required this.routesTabCubit,
     required this.routeDetailsPageCubit,
     required this.routesFiltersPageCubit,
+    required this.homePageCubit,
+    required this.routeCacheProgressViewCubit,
   });
 
   @override
@@ -86,5 +90,14 @@ class RoutesPresenter extends RoutesOutputPort {
   @override
   void updatePremiumStatus(bool hasPremium) {
     routesFiltersPageCubit.updatePremiumStatus(hasPremium);
+  }
+
+  @override
+  void updateCacheProgress({
+    required double cacheProgress,
+    required bool isCompleted,
+  }) {
+    homePageCubit.updateIsCompleted(isCompleted);
+    routeCacheProgressViewCubit.updateProgress(cacheProgress);
   }
 }

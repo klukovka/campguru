@@ -19,7 +19,10 @@ dependencies:
   hive_flutter: ^1.1.0
   package_info_plus: ^8.0.0
   device_info_plus: ^10.1.0
-
+  flutter_map_tile_caching: ^9.0.1
+  latlong2: ^0.9.1
+  flutter_map: ^6.1.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

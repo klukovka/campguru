@@ -1,8 +1,6 @@
-import 'package:domain/domain.dart';
 import 'package:presentation/src/config/router/app_auto_router.dart';
 import 'package:presentation/src/config/router/app_auto_router.gr.dart';
 import 'package:presentation/src/config/router/base_router.dart';
-import 'package:presentation/src/utils/extensions/domain_list_lat_lng_extension.dart';
 
 class CampguruRouter extends BaseRouter {
   CampguruRouter(AppAutoRouter super.stackRouter);
@@ -33,16 +31,7 @@ class CampguruRouter extends BaseRouter {
   Future<void> pushRouteReviewsPage(int id) =>
       push(RouteReviewsRoute(routeId: id));
 
-  Future<void> pushRouteMap({
-    required List<LatLng> locations,
-    required List<LatLng> polyline,
-  }) =>
-      push(
-        RouteMapRoute(
-          locations: locations.toRouteParams(),
-          polyline: polyline.toRouteParams(),
-        ),
-      );
+  Future<void> pushRouteMap(int id) => push(RouteMapRoute(routeId: id));
 
   Future<void> pushLocationsFiltersPage() =>
       push(const LocationsFiltersRoute());
