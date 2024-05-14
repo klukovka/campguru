@@ -15,7 +15,7 @@ class CacheRouteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
-      onPressed: () => context.locator<RouteMapPageController>()(route),
+      onPressed: () => context.locator<RouteMapPageController>().cache(route),
       icon: Icon(MdiIcons.cached),
       //TODO: Add localizations
       label: const Text('Cache'),

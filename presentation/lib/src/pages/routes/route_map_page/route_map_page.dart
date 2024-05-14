@@ -40,7 +40,7 @@ class _RouteMapPageState extends State<RouteMapPage> {
     _controller = MapController();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.locator<RouteDetailsPageController>()(widget.routeId);
+      context.locator<RouteMapPageController>().getDetails(widget.routeId);
     });
   }
 
