@@ -78,4 +78,12 @@ abstract class PresentersModule {
         tripsFiltersPageCubit: tripsFiltersPageCubit,
         tripDetailsPageCubit: tripDetailsPageCubit,
       );
+
+  @lazySingleton
+  GeopositionOutputPort geopositionPresenter(
+    RouteMapPageCubit routeMapPageCubit,
+  ) =>
+      GeopositionPresenter(
+        routeMapPageCubit: routeMapPageCubit,
+      );
 }
