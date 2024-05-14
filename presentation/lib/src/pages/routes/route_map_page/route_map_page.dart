@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/presentation.dart';
+import 'package:presentation/src/pages/routes/route_map_page/views/cache_route_button.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/utils/extensions/domain_list_lat_lng_extension.dart';
 import 'package:presentation/src/utils/extensions/google_list_lat_lng_extension.dart';
@@ -114,13 +115,24 @@ class _RouteMapPageState extends State<RouteMapPage> {
                     )
                   ],
                 ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              _controller.fitCamera(
-                CameraFit.bounds(bounds: bounds),
-              );
-            },
-            child: Icon(MdiIcons.mapMarkerRadius),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                CacheRouteButton(route: state.route),
+                const Spacer(),
+                FloatingActionButton(
+                  onPressed: () {
+                    _controller.fitCamera(
+                      CameraFit.bounds(bounds: bounds),
+                    );
+                  },
+                  child: Icon(MdiIcons.mapMarkerRadius),
+                ),
+              ],
+            ),
           ),
         );
       },

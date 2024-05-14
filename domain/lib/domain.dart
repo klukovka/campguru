@@ -42,6 +42,7 @@ export 'src/use_cases/locations/get_route_locations_use_case.dart';
 export 'src/use_cases/locations/update_location_favorite_status_use_case.dart';
 export 'src/use_cases/reviews/get_location_reviews_use_case.dart';
 export 'src/use_cases/reviews/get_route_reviews_use_case.dart';
+export 'src/use_cases/routes/cache_route_use_case.dart';
 export 'src/use_cases/routes/get_all_routes_use_case.dart';
 export 'src/use_cases/routes/get_route_details_use_case.dart';
 export 'src/use_cases/routes/get_routes_available_filters.dart';

@@ -50,4 +50,18 @@ abstract class RouteUseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         routesOutputPort: routesOutputPort,
       );
+
+  @lazySingleton
+  CacheRouteUseCase cacheRouteUseCase(
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    RoutesOutputPort routesOutputPort,
+    CacheRepository cacheRepository,
+    UsersRepository usersRepository,
+  ) =>
+      CacheRouteUseCase(
+        cacheRepository: cacheRepository,
+        usersRepository: usersRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        routesOutputPort: routesOutputPort,
+      );
 }
