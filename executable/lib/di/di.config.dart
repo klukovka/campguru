@@ -105,6 +105,8 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.tripsFiltersPageCubit);
   gh.lazySingleton<_i6.TripDetailsPageCubit>(
       () => blocModule.tripDetailsPageCubit);
+  gh.lazySingleton<_i6.RouteCacheProgressViewCubit>(
+      () => blocModule.routeCacheProgressViewCubit);
   await gh.lazySingletonAsync<_i7.HiveDataSource>(
     () => dataSourceModule.hiveDataSource,
     preResolve: true,
@@ -146,6 +148,14 @@ Future<_i1.GetIt> $configureDependencies(
         .testPreferencesRepository(gh<_i7.HiveDataSource>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i5.RoutesOutputPort>(
+      () => presentersModule.getRoutesOutputPort(
+            gh<_i6.RoutesTabCubit>(),
+            gh<_i6.RouteDetailsPageCubit>(),
+            gh<_i6.RoutesFiltersPageCubit>(),
+            gh<_i6.HomePageCubit>(),
+            gh<_i6.RouteCacheProgressViewCubit>(),
+          ));
   gh.lazySingleton<_i7.TestDataSource>(
     () => dataSourceModule.getTestDataSource(gh<_i3.DeviceInfoPlugin>()),
     registerFor: {_test},
@@ -154,13 +164,6 @@ Future<_i1.GetIt> $configureDependencies(
       () => presentersModule.getSettingsOutputPort(gh<_i6.ProfileTabCubit>()));
   gh.lazySingleton<_i5.CacheRepository>(
       () => cacheRepositoryModule.getCacheRepository(gh<_i7.HiveDataSource>()));
-  gh.lazySingleton<_i5.RoutesOutputPort>(
-      () => presentersModule.getRoutesOutputPort(
-            gh<_i6.RoutesTabCubit>(),
-            gh<_i6.RouteDetailsPageCubit>(),
-            gh<_i6.RoutesFiltersPageCubit>(),
-            gh<_i6.HomePageCubit>(),
-          ));
   gh.lazySingleton<_i5.UsersRepository>(
     () =>
         usersRepositoryModule.getTestUsersRepository(gh<_i7.TestDataSource>()),

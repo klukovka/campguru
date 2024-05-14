@@ -51,4 +51,8 @@ abstract class BlocModule {
 
   @lazySingleton
   TripDetailsPageCubit get tripDetailsPageCubit => TripDetailsPageCubit();
+
+  @lazySingleton
+  RouteCacheProgressViewCubit get routeCacheProgressViewCubit =>
+      RouteCacheProgressViewCubit();
 }

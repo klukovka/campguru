@@ -29,22 +29,19 @@ class _HomePageState extends State<HomePage> {
           bottom: 70, right: 0, left: 0, child: RouteCacheProgressView()));
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Overlay.of(context, rootOverlay: true).insert(overlay);
-    });
-  }
-
-  @override
-  void dispose() {
-    overlay.remove();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomePageCubit, HomePageState>(
+    return BlocConsumer<HomePageCubit, HomePageState>(
+      listener: (context, state) {
+        if (state.isCompleted) {
+          if (overlay.mounted) {
+            overlay.remove();
+          }
+        } else {
+          if (!overlay.mounted) {
+            Overlay.of(context, rootOverlay: true).insert(overlay);
+          }
+        }
+      },
       builder: (context, state) {
         final userAvatar = state.userAvatar;
         return AutoTabsRouter(

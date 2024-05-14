@@ -61,4 +61,6 @@ class HiveDataSource {
   RouteHiveDto? getRoute(int id) {
     return _routesBox.get(id);
   }
+
+  List<RouteHiveDto> getCachedRoutes() => _routesBox.values.toList();
 }

@@ -33,4 +33,8 @@ class CacheFlutterMapRepository implements CacheRepository {
           event.isComplete,
         ));
   }
+
+  @override
+  List<Route> getCachedRoutes() =>
+      _dataSource.getCachedRoutes().map((e) => e.toDomain()).toList();
 }
