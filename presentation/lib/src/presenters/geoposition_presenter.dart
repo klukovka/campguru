@@ -16,6 +16,6 @@ class GeopositionPresenter implements GeopositionOutputPort {
 
   @override
   void updateUserPosition(LatLng latLng) {
-    log(latLng.toString());
+    log('${latLng.latitude};${latLng.longitude}');
   }
 }

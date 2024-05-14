@@ -55,4 +55,22 @@ class GeolocatorGeopositionRepository implements GeopositionRepository {
       ));
     }
   }
+
+  @override
+  Future<FailureOrResult<LatLng>> getCurrentPosition() async {
+    try {
+      final position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+
+      return FailureOrResult.success(
+        LatLng(position.latitude, position.longitude),
+      );
+    } catch (e) {
+      return FailureOrResult.failure(ApplicationFailure(
+        type: ApplicationErrorType.general,
+        message: e.toString(),
+      ));
+    }
+  }
 }

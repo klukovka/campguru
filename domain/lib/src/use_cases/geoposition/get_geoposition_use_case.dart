@@ -27,6 +27,16 @@ class GetGeopositionUseCase {
       return;
     }
 
+    final currentPosition = await geopositionRepository.getCurrentPosition();
+
+    if (currentPosition.hasFailed) {
+      errorHandlerOutputPort.setError(currentPosition.failure!);
+      geopositionOutputPort.setGeopositionEnabled(false);
+      return;
+    }
+
+    geopositionOutputPort.updateUserPosition(currentPosition.result!);
+
     final stream = geopositionRepository.getCurrentPositionStream();
 
     if (stream.hasFailed) {
