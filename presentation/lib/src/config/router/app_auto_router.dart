@@ -66,7 +66,7 @@ class AppAutoRouter extends $AppAutoRouter {
     ),
     AutoRoute(
       page: RouteMapRoute.page,
-      path: '/home/routes?locations={locations}&&polyline={polyline}',
+      path: '/home/routes/:id/map',
     ),
     AutoRoute(
       page: TripDetailsRoute.page,

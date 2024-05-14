@@ -152,9 +152,16 @@ abstract class $AppAutoRouter extends _i19.RootStackRouter {
       );
     },
     RouteMapRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<RouteMapRouteArgs>(
+          orElse: () => RouteMapRouteArgs(routeId: pathParams.getInt('id')));
       return _i19.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i10.RouteMapPage()),
+        child: _i19.WrappedRoute(
+            child: _i10.RouteMapPage(
+          key: args.key,
+          routeId: args.routeId,
+        )),
       );
     },
     RouteReviewsRoute.name: (routeData) {
@@ -486,16 +493,41 @@ class RouteLocationsRouteArgs {
 
 /// generated route for
 /// [_i10.RouteMapPage]
-class RouteMapRoute extends _i19.PageRouteInfo<void> {
-  const RouteMapRoute({List<_i19.PageRouteInfo>? children})
-      : super(
+class RouteMapRoute extends _i19.PageRouteInfo<RouteMapRouteArgs> {
+  RouteMapRoute({
+    _i20.Key? key,
+    required int routeId,
+    List<_i19.PageRouteInfo>? children,
+  }) : super(
           RouteMapRoute.name,
+          args: RouteMapRouteArgs(
+            key: key,
+            routeId: routeId,
+          ),
+          rawPathParams: {'id': routeId},
           initialChildren: children,
         );
 
   static const String name = 'RouteMapRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i19.PageInfo<RouteMapRouteArgs> page =
+      _i19.PageInfo<RouteMapRouteArgs>(name);
+}
+
+class RouteMapRouteArgs {
+  const RouteMapRouteArgs({
+    this.key,
+    required this.routeId,
+  });
+
+  final _i20.Key? key;
+
+  final int routeId;
+
+  @override
+  String toString() {
+    return 'RouteMapRouteArgs{key: $key, routeId: $routeId}';
+  }
 }
 
 /// generated route for

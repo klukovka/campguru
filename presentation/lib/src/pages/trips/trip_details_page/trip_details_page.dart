@@ -53,10 +53,8 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
             slivers: [
               TripDetailsSliverAppBar(
                 trip: state.trip,
-                onStretch: () {
-                  context.locator<RouteDetailsPageController>()(state.route.id);
-                  context.appRouter.pushRouteMap();
-                },
+                onStretch: () async =>
+                    context.appRouter.pushRouteMap(state.route.id),
               ),
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -12,7 +12,11 @@ import 'package:presentation/src/utils/extensions/string_lat_lng_extension.dart'
 
 @RoutePage()
 class RouteMapPage extends StatefulWidget implements AutoRouteWrapper {
-  const RouteMapPage({super.key});
+  final int routeId;
+  const RouteMapPage({
+    super.key,
+    @PathParam('id') required this.routeId,
+  });
 
   @override
   State<RouteMapPage> createState() => _RouteMapPageState();
@@ -33,6 +37,10 @@ class _RouteMapPageState extends State<RouteMapPage> {
   void initState() {
     super.initState();
     _controller = MapController();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.locator<RouteDetailsPageController>()(widget.routeId);
+    });
   }
 
   @override

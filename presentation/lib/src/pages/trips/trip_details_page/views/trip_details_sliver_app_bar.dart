@@ -8,7 +8,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 class TripDetailsSliverAppBar extends StatelessWidget {
   final Trip trip;
   final double toolbarHeight;
-  final VoidCallback? onStretch;
+  final Future<void> Function()? onStretch;
 
   const TripDetailsSliverAppBar({
     super.key,
@@ -59,7 +59,7 @@ class TripDetailsSliverAppBar extends StatelessWidget {
       bottom: RatingInfoNameAppBar(
         name: trip.name,
       ),
-      onStretchTrigger: () async => onStretch?.call(),
+      onStretchTrigger: onStretch,
     );
   }
 }
