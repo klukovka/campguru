@@ -175,13 +175,13 @@ class TestDataSource {
       ],
       reviews: generateReviews(size: 5, page: 0).values,
       locationsAmount: 3,
-      polyline: [
+      polyline: const [
         LatLng(49.096619, 35.528852),
         LatLng(49.098140, 35.524775),
         LatLng(49.092551, 35.526930),
         LatLng(49.091879, 35.528083),
       ],
-      locations: [
+      locations: const [
         LatLng(49.096619, 35.528852),
         LatLng(49.098140, 35.524775),
         LatLng(49.092551, 35.526930),

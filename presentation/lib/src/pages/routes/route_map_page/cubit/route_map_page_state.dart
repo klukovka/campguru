@@ -24,6 +24,16 @@ class RouteMapPageState extends Equatable {
     this.currentPosition = const LatLng(0, 0),
   });
 
+  List<flutter_map.LatLng> get locations =>
+      route.locations?.map((e) => e.toMapParams()).toList() ?? [];
+
+  List<flutter_map.LatLng> get polyline =>
+      route.polyline?.map((e) => e.toMapParams()).toList() ?? [];
+
+  LatLngBounds get bounds => polyline.getBounds();
+
+  flutter_map.LatLng get mapCurrentPosition => currentPosition.toMapParams();
+
   @override
   List<Object> get props {
     return [
