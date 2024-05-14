@@ -152,25 +152,9 @@ abstract class $AppAutoRouter extends _i19.RootStackRouter {
       );
     },
     RouteMapRoute.name: (routeData) {
-      final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<RouteMapRouteArgs>(
-          orElse: () => RouteMapRouteArgs(
-                locations: queryParams.getString(
-                  'locations',
-                  '',
-                ),
-                polyline: queryParams.getString(
-                  'polyline',
-                  '',
-                ),
-              ));
       return _i19.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i10.RouteMapPage(
-          key: args.key,
-          locations: args.locations,
-          polyline: args.polyline,
-        ),
+        child: _i19.WrappedRoute(child: const _i10.RouteMapPage()),
       );
     },
     RouteReviewsRoute.name: (routeData) {
@@ -502,49 +486,16 @@ class RouteLocationsRouteArgs {
 
 /// generated route for
 /// [_i10.RouteMapPage]
-class RouteMapRoute extends _i19.PageRouteInfo<RouteMapRouteArgs> {
-  RouteMapRoute({
-    _i20.Key? key,
-    String locations = '',
-    String polyline = '',
-    List<_i19.PageRouteInfo>? children,
-  }) : super(
+class RouteMapRoute extends _i19.PageRouteInfo<void> {
+  const RouteMapRoute({List<_i19.PageRouteInfo>? children})
+      : super(
           RouteMapRoute.name,
-          args: RouteMapRouteArgs(
-            key: key,
-            locations: locations,
-            polyline: polyline,
-          ),
-          rawQueryParams: {
-            'locations': locations,
-            'polyline': polyline,
-          },
           initialChildren: children,
         );
 
   static const String name = 'RouteMapRoute';
 
-  static const _i19.PageInfo<RouteMapRouteArgs> page =
-      _i19.PageInfo<RouteMapRouteArgs>(name);
-}
-
-class RouteMapRouteArgs {
-  const RouteMapRouteArgs({
-    this.key,
-    this.locations = '',
-    this.polyline = '',
-  });
-
-  final _i20.Key? key;
-
-  final String locations;
-
-  final String polyline;
-
-  @override
-  String toString() {
-    return 'RouteMapRouteArgs{key: $key, locations: $locations, polyline: $polyline}';
-  }
+  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
 }
 
 /// generated route for
