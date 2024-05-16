@@ -128,6 +128,8 @@ Future<_i1.GetIt> $configureDependencies(
   );
   gh.lazySingleton<_i5.GeopositionRepository>(
       () => geopositionRepositoryModule.geopositionRepository);
+  gh.lazySingleton<_i6.CampguruRouter>(
+      () => autoRouterModule.router(gh<_i6.AppAutoRouter>()));
   gh.lazySingleton<_i5.RoutesOutputPort>(
       () => presentersModule.getRoutesOutputPort(
             gh<_i6.RoutesTabCubit>(),
@@ -139,9 +141,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i6.CreateRoutePageCubit>(),
             gh<_i6.FavoriteRoutesTabCubit>(),
             gh<_i6.MyOwnRoutesTabCubit>(),
+            gh<_i6.CachedRoutesTabCubit>(),
           ));
-  gh.lazySingleton<_i6.CampguruRouter>(
-      () => autoRouterModule.router(gh<_i6.AppAutoRouter>()));
   gh.lazySingleton<_i5.TripsOutputPort>(
       () => presentersModule.getTripsOutputPort(
             gh<_i6.TripsTabCubit>(),
@@ -393,6 +394,20 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i6.FavoriteRoutesTabController>(() => controllersModule
       .favoriteRoutesTabController(gh<_i5.GetFavoriteRoutesUseCase>()));
+  gh.lazySingleton<_i6.SplashPageController>(
+      () => controllersModule.getSplashPageController(
+            gh<_i5.IsAuthorizedUseCase>(),
+            gh<_i5.GetAllLocationsUseCase>(),
+            gh<_i5.GetAllRoutesUseCase>(),
+            gh<_i5.GetLocationsAvailableFiltersUseCase>(),
+            gh<_i5.GetRoutesAvailableFiltersUseCase>(),
+            gh<_i5.GetAppVersion>(),
+            gh<_i5.GetTripsUseCase>(),
+            gh<_i5.GetFavoriteLocationsUseCase>(),
+            gh<_i5.GetFavoriteRoutesUseCase>(),
+            gh<_i5.GetMyOwnRoutesUseCase>(),
+            gh<_i5.GetCachedRoutesUseCase>(),
+          ));
   gh.lazySingleton<_i6.MyOwnRoutesTabController>(() => controllersModule
       .myOwnRoutesTabController(gh<_i5.GetMyOwnRoutesUseCase>()));
   gh.lazySingleton<_i6.RoutesTabController>(() =>
@@ -408,19 +423,6 @@ Future<_i1.GetIt> $configureDependencies(
       () => controllersModule.createRoutePageController(
             gh<_i5.GetRoutePreviewUseCase>(),
             gh<_i5.CreateNewRouteUseCase>(),
-          ));
-  gh.lazySingleton<_i6.SplashPageController>(
-      () => controllersModule.getSplashPageController(
-            gh<_i5.IsAuthorizedUseCase>(),
-            gh<_i5.GetAllLocationsUseCase>(),
-            gh<_i5.GetAllRoutesUseCase>(),
-            gh<_i5.GetLocationsAvailableFiltersUseCase>(),
-            gh<_i5.GetRoutesAvailableFiltersUseCase>(),
-            gh<_i5.GetAppVersion>(),
-            gh<_i5.GetTripsUseCase>(),
-            gh<_i5.GetFavoriteLocationsUseCase>(),
-            gh<_i5.GetFavoriteRoutesUseCase>(),
-            gh<_i5.GetMyOwnRoutesUseCase>(),
           ));
   gh.lazySingleton<_i6.TripDetailsPageController>(
       () => controllersModule.getTripDetailsPageController(

@@ -56,6 +56,7 @@ abstract class PresentersModule {
     CreateRoutePageCubit createRoutePageCubit,
     FavoriteRoutesTabCubit favoriteRoutesTabCubit,
     MyOwnRoutesTabCubit myOwnRoutesTabCubit,
+    CachedRoutesTabCubit cachedRoutesTabCubit,
   ) =>
       RoutesPresenter(
         routesTabCubit: routesTabCubit,
@@ -67,6 +68,7 @@ abstract class PresentersModule {
         createRoutePageCubit: createRoutePageCubit,
         favoriteRoutesTabCubit: favoriteRoutesTabCubit,
         myOwnRoutesTabCubit: myOwnRoutesTabCubit,
+        cachedRoutesTabCubit: cachedRoutesTabCubit,
       );
 
   @lazySingleton

@@ -11,6 +11,7 @@ class RoutesPresenter extends RoutesOutputPort {
   final CreateRoutePageCubit createRoutePageCubit;
   final FavoriteRoutesTabCubit favoriteRoutesTabCubit;
   final MyOwnRoutesTabCubit myOwnRoutesTabCubit;
+  final CachedRoutesTabCubit cachedRoutesTabCubit;
 
   RoutesPresenter({
     required this.routesTabCubit,
@@ -22,6 +23,7 @@ class RoutesPresenter extends RoutesOutputPort {
     required this.createRoutePageCubit,
     required this.favoriteRoutesTabCubit,
     required this.myOwnRoutesTabCubit,
+    required this.cachedRoutesTabCubit,
   });
 
   @override
@@ -186,5 +188,15 @@ class RoutesPresenter extends RoutesOutputPort {
   @override
   void updateMyOwnRoutes(List<Route> routes, int fullCount) {
     myOwnRoutesTabCubit.setRoutes(routes, amount: fullCount);
+  }
+
+  @override
+  void setCachedRoutesSearchQuery(String searchQuery) {
+    cachedRoutesTabCubit.setSearchQuery(searchQuery);
+  }
+
+  @override
+  void updateCachedRoutes(List<Route> routes) {
+    cachedRoutesTabCubit.setRoutes(routes);
   }
 }
