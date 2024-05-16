@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:presentation/src/pages/routes/create_route_page/views/locations_selector_form_field.dart';
 
 enum _CreateRoutePageField {
   name,
@@ -38,6 +39,10 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           children: [
+            LocationSelectorFormField(
+              name: _CreateRoutePageField.locations.name,
+            ),
+            const SizedBox(height: 12),
             FormBuilderTextField(
               name: _CreateRoutePageField.name.name,
               maxLength: 30,
@@ -62,6 +67,7 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
             FormBuilderCheckbox(
               name: _CreateRoutePageField.private.name,
               title: const Text('Private'),
+              initialValue: false,
               decoration: const InputDecoration(),
             ),
           ],
