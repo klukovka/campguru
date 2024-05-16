@@ -112,6 +112,8 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i6.RouteCacheProgressViewCubit>(
       () => blocModule.routeCacheProgressViewCubit);
   gh.lazySingleton<_i6.RouteMapPageCubit>(() => blocModule.routeMapPageCubit);
+  gh.lazySingleton<_i6.FavoriteLocationsPageCubit>(
+      () => blocModule.favoriteLocationsPageCubit);
   await gh.lazySingletonAsync<_i7.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -129,13 +131,6 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i6.CampguruRouter>(
       () => autoRouterModule.router(gh<_i6.AppAutoRouter>()));
-  gh.lazySingleton<_i5.LocationsOutputPort>(
-      () => presentersModule.getLocationsOutputPort(
-            gh<_i6.LocationsTabCubit>(),
-            gh<_i6.LocationDetailsPageCubit>(),
-            gh<_i6.RouteLocationsPageCubit>(),
-            gh<_i6.LocationsFiltersPageCubit>(),
-          ));
   gh.lazySingleton<_i5.TripsOutputPort>(
       () => presentersModule.getTripsOutputPort(
             gh<_i6.TripsTabCubit>(),
@@ -166,6 +161,14 @@ Future<_i1.GetIt> $configureDependencies(
         .testPreferencesRepository(gh<_i7.HiveDataSource>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i5.LocationsOutputPort>(
+      () => presentersModule.getLocationsOutputPort(
+            gh<_i6.LocationsTabCubit>(),
+            gh<_i6.LocationDetailsPageCubit>(),
+            gh<_i6.RouteLocationsPageCubit>(),
+            gh<_i6.LocationsFiltersPageCubit>(),
+            gh<_i6.FavoriteLocationsPageCubit>(),
+          ));
   gh.lazySingleton<_i7.TestDataSource>(
     () => dataSourceModule.getTestDataSource(gh<_i3.DeviceInfoPlugin>()),
     registerFor: {_test},
@@ -257,6 +260,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.ErrorHandlerOutputPort>(),
             gh<_i5.LocationsOutputPort>(),
           ));
+  gh.lazySingleton<_i5.GetFavoriteLocationsUseCase>(
+      () => locationUseCasesCasesModule.getFavoriteLocationsUseCase(
+            gh<_i5.LocationsRepository>(),
+            gh<_i5.ErrorHandlerOutputPort>(),
+            gh<_i5.LocationsOutputPort>(),
+          ));
   gh.lazySingleton<_i5.IsAuthorizedUseCase>(
       () => userUseCasesModule.getIsAuthorizedUseCase(
             gh<_i5.PreferencesRepository>(),
@@ -315,6 +324,9 @@ Future<_i1.GetIt> $configureDependencies(
       .getRouteLocationsController(gh<_i5.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i6.RouteDetailsPageController>(() => controllersModule
       .getRouteDetailsPageController(gh<_i5.GetRouteDetailsUseCase>()));
+  gh.lazySingleton<_i6.FavoriteLocationsPageController>(() =>
+      controllersModule.getFavoriteLocationsPageController(
+          gh<_i5.GetFavoriteLocationsUseCase>()));
   gh.lazySingleton<_i6.RouteMapPageController>(
       () => controllersModule.getRouteMapPageController(
             gh<_i5.CacheRouteUseCase>(),
@@ -346,11 +358,6 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i6.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
           gh<_i5.UpdateRouteFavoriteStatusUseCase>()));
-  gh.lazySingleton<_i6.TripDetailsPageController>(
-      () => controllersModule.getTripDetailsPageController(
-            gh<_i5.GetTripDetailsUseCase>(),
-            gh<_i5.CompleteTripUseCase>(),
-          ));
   gh.lazySingleton<_i6.SplashPageController>(
       () => controllersModule.getSplashPageController(
             gh<_i5.IsAuthorizedUseCase>(),
@@ -360,6 +367,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.GetRoutesAvailableFiltersUseCase>(),
             gh<_i5.GetAppVersion>(),
             gh<_i5.GetTripsUseCase>(),
+            gh<_i5.GetFavoriteLocationsUseCase>(),
+          ));
+  gh.lazySingleton<_i6.TripDetailsPageController>(
+      () => controllersModule.getTripDetailsPageController(
+            gh<_i5.GetTripDetailsUseCase>(),
+            gh<_i5.CompleteTripUseCase>(),
           ));
   gh.lazySingleton<_i6.TripsTabController>(
       () => controllersModule.getTripsTabController(gh<_i5.GetTripsUseCase>()));

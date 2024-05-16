@@ -86,4 +86,15 @@ class TestLocationsRepository implements LocationsRepository {
       ),
     ]);
   }
+
+  @override
+  Future<FailureOrResult<Chunk<Location>>> getFavoriteLocations(
+    Filter filter,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    return FailureOrResult.success(
+      _dataSource.generateLocations(size: filter.size, page: filter.page),
+    );
+  }
 }

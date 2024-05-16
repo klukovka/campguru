@@ -25,12 +25,14 @@ abstract class PresentersModule {
     LocationDetailsPageCubit locationDetailsPageCubit,
     RouteLocationsPageCubit routeLocationsPageCubit,
     LocationsFiltersPageCubit locationsFiltersPageCubit,
+    FavoriteLocationsPageCubit favoriteLocationsPageCubit,
   ) =>
       LocationsPresenter(
         locationsTabCubit: locationsTabCubit,
         locationDetailsPageCubit: locationDetailsPageCubit,
         routeLocationsPageCubit: routeLocationsPageCubit,
         locationsFiltersPageCubit: locationsFiltersPageCubit,
+        favoriteLocationsPageCubit: favoriteLocationsPageCubit,
       );
 
   @lazySingleton

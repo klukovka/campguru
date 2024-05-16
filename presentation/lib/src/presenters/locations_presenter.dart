@@ -6,12 +6,14 @@ class LocationsPresenter extends LocationsOutputPort {
   final LocationDetailsPageCubit locationDetailsPageCubit;
   final RouteLocationsPageCubit routeLocationsPageCubit;
   final LocationsFiltersPageCubit locationsFiltersPageCubit;
+  final FavoriteLocationsPageCubit favoriteLocationsPageCubit;
 
   LocationsPresenter({
     required this.locationsTabCubit,
     required this.locationDetailsPageCubit,
     required this.routeLocationsPageCubit,
     required this.locationsFiltersPageCubit,
+    required this.favoriteLocationsPageCubit,
   });
 
   @override
@@ -51,8 +53,15 @@ class LocationsPresenter extends LocationsOutputPort {
       isFavorite,
     );
 
+    final favoriteLocations =
+        favoriteLocationsPageCubit.state.locations.updateFavoriteStatus(
+      locationId,
+      isFavorite,
+    );
+
     locationsTabCubit.setLocations(allLocations);
     routeLocationsPageCubit.setLocations(routeLocations);
+    favoriteLocationsPageCubit.setLocations(favoriteLocations);
 
     if (locationDetailsPageCubit.state.location.id == locationId) {
       locationDetailsPageCubit.updateLocationFavoriteStatus(
@@ -119,5 +128,20 @@ class LocationsPresenter extends LocationsOutputPort {
   @override
   void updatePremiumStatus(bool hasPremium) {
     locationsFiltersPageCubit.updatePremiumStatus(hasPremium);
+  }
+
+  @override
+  void setFavoriteLocationsFilter(Filter filter) {
+    favoriteLocationsPageCubit.setFilter(filter);
+  }
+
+  @override
+  void stopFavoriteLocationsLoading() {
+    favoriteLocationsPageCubit.stopLoading();
+  }
+
+  @override
+  void updateFavoriteLocations(List<Location> locations, int amount) {
+    favoriteLocationsPageCubit.setLocations(locations, amount: amount);
   }
 }
