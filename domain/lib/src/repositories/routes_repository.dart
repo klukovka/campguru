@@ -8,4 +8,5 @@ abstract class RoutesRepository {
   Future<FailureOrResult<List<PremiumBasedFilterLabel>>>
       getRoutesFilterLabels();
   Future<FailureOrResult<Route>> createRoute(NewRoute newRoute);
+  Future<FailureOrResult<String>> getRoutePreview(List<LatLng> points);
 }

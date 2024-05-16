@@ -51,6 +51,7 @@ export 'src/use_cases/routes/cache_route_use_case.dart';
 export 'src/use_cases/routes/create_new_route_use_case.dart';
 export 'src/use_cases/routes/get_all_routes_use_case.dart';
 export 'src/use_cases/routes/get_route_details_use_case.dart';
+export 'src/use_cases/routes/get_route_preview_use_case.dart';
 export 'src/use_cases/routes/get_routes_available_filters.dart';
 export 'src/use_cases/routes/update_route_favorite_status_use_case.dart';
 export 'src/use_cases/settings/get_app_version.dart';

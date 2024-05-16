@@ -16,4 +16,7 @@ abstract class RoutesOutputPort {
   });
   void startRouteCreation();
   void stopRouteCreation();
+  void startPreviewLoading();
+  void updateRoutePreview(String url);
+  void stopPreviewLoading();
 }
