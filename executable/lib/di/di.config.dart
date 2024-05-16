@@ -370,6 +370,11 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i6.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
           gh<_i5.UpdateRouteFavoriteStatusUseCase>()));
+  gh.lazySingleton<_i6.CreateRoutePageController>(
+      () => controllersModule.createRoutePageController(
+            gh<_i5.GetRoutePreviewUseCase>(),
+            gh<_i5.CreateNewRouteUseCase>(),
+          ));
   gh.lazySingleton<_i6.SplashPageController>(
       () => controllersModule.getSplashPageController(
             gh<_i5.IsAuthorizedUseCase>(),

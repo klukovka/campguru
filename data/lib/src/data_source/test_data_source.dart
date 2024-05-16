@@ -47,6 +47,8 @@ class TestDataSource {
           mark: Random().nextDouble() * 5,
           reviewsAmount: Random().nextInt(100),
           isFavorite: Random().nextInt(4) % 2 == 0,
+          lat: 34,
+          lng: 23,
         );
       },
     );

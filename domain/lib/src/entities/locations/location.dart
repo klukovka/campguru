@@ -8,8 +8,10 @@ class Location extends FavoriteTableItem<Location> {
   final String? description;
   final List<String>? labels;
   final List<Review>? reviews;
-  final double? lng;
-  final double? lat;
+  final double lng;
+  final double lat;
+
+  LatLng get latLng => LatLng(lat, lng);
 
   const Location({
     required super.id,
@@ -21,8 +23,8 @@ class Location extends FavoriteTableItem<Location> {
     this.description,
     this.labels,
     this.reviews,
-    this.lat,
-    this.lng,
+    required this.lat,
+    required this.lng,
   });
 
   @override

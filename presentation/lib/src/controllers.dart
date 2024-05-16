@@ -8,6 +8,7 @@ export 'pages/locations/route_locations_page/route_locations_page_controller.dar
 export 'pages/locations/views/location_favorite_button/location_favorite_button_controller.dart';
 export 'pages/reviews/location_reviews_page/location_reviews_page_controller.dart';
 export 'pages/reviews/route_reviews_page/route_reviews_page_controller.dart';
+export 'pages/routes/create_route_page/create_route_page_controller.dart';
 export 'pages/routes/route_details_page/route_details_page_controller.dart';
 export 'pages/routes/route_map_page/route_map_page_controller.dart';
 export 'pages/routes/routes_filters_page/routes_filters_page_controller.dart';
