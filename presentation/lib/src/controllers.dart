@@ -10,6 +10,7 @@ export 'pages/reviews/location_reviews_page/location_reviews_page_controller.dar
 export 'pages/reviews/route_reviews_page/route_reviews_page_controller.dart';
 export 'pages/routes/create_route_page/create_route_page_controller.dart';
 export 'pages/routes/my_routes_page/favorite_routes_tab/favorite_routes_tab_controller.dart';
+export 'pages/routes/my_routes_page/my_own_routes_tab/my_own_routes_tab_controller.dart';
 export 'pages/routes/route_details_page/route_details_page_controller.dart';
 export 'pages/routes/route_map_page/route_map_page_controller.dart';
 export 'pages/routes/routes_filters_page/routes_filters_page_controller.dart';
