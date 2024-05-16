@@ -7,15 +7,15 @@ class LocationSelectorFormField extends FormBuilderField<List<Location>> {
   LocationSelectorFormField({
     super.key,
     required super.name,
-    String? preview,
     super.validator,
+    super.onChanged,
+    super.autovalidateMode,
   }) : super(
           builder: (state) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 LocationSelectorView(
-                  preview: preview,
                   locations: state.value ?? [],
                   onChanged: (List<Location> value) => state.didChange(value),
                   onRemoved: (Location value) => state.didChange(
@@ -23,7 +23,7 @@ class LocationSelectorFormField extends FormBuilderField<List<Location>> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8, left: 12),
+                  padding: const EdgeInsets.only(top: 8),
                   child: Text(
                     state.errorText ?? '',
                     style:

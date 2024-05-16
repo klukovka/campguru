@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class RoundedNetworkImage extends StatelessWidget {
   final String? imageUrl;
   final double? width;
   final double? height;
+  final bool isLoading;
 
   const RoundedNetworkImage({
     super.key,
     this.imageUrl,
     this.height,
     this.width,
+    this.isLoading = false,
   });
 
   @override
@@ -31,15 +34,23 @@ class RoundedNetworkImage extends StatelessWidget {
             : null,
       ),
       //TODO: Add Localization
-      child: imageUrl == null
-          ? Text(
-              'Not available',
-              textAlign: TextAlign.center,
-              style: TextStyle(
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 200),
+        child: isLoading
+            ? SpinKitThreeBounce(
                 color: Theme.of(context).colorScheme.onPrimary,
-              ),
-            )
-          : null,
+                size: 16,
+              )
+            : imageUrl == null
+                ? Text(
+                    'Not available',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  )
+                : null,
+      ),
     );
   }
 }
