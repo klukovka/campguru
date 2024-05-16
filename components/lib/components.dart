@@ -1,5 +1,7 @@
 library components;
 
+export 'src/autovalidate_mode_notification/autovalidate_mode_notification.dart';
+export 'src/autovalidate_mode_notification/autovalidate_mode_notification_builder.dart';
 export 'src/buttons/arrow_button.dart';
 export 'src/buttons/arrow_circle_button.dart';
 export 'src/buttons/favorite_button.dart';
