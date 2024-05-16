@@ -7,6 +7,7 @@ class Route extends FavoriteTableItem<Route> {
   final double distance;
   final double duration;
   final int reviewsAmount;
+  final bool isMine;
   final int? locationsAmount;
   final String? description;
   final List<String>? labels;
@@ -23,6 +24,7 @@ class Route extends FavoriteTableItem<Route> {
     required this.duration,
     required super.isFavorite,
     required this.reviewsAmount,
+    required this.isMine,
     this.locations,
     this.description,
     this.labels,
@@ -48,6 +50,7 @@ class Route extends FavoriteTableItem<Route> {
       reviews,
       polyline,
       locations,
+      isMine,
     ];
   }
 
@@ -60,6 +63,7 @@ class Route extends FavoriteTableItem<Route> {
     double? distance,
     double? duration,
     bool? isFavorite,
+    bool? isMine,
     int? reviewsAmount,
     int? locationsAmount,
     String? description,
@@ -83,6 +87,7 @@ class Route extends FavoriteTableItem<Route> {
       reviews: reviews ?? this.reviews,
       polyline: polyline ?? this.polyline,
       locations: locations ?? this.locations,
+      isMine: isMine ?? this.isMine,
     );
   }
 
@@ -102,5 +107,6 @@ class Route extends FavoriteTableItem<Route> {
         reviews: another.reviews,
         polyline: another.polyline,
         locations: another.locations,
+        isMine: another.isMine,
       );
 }

@@ -15,6 +15,7 @@ class RouteDetailsPageState extends Equatable {
       mapUrl: '',
       distance: 0,
       duration: 0,
+      isMine: false,
     ),
     this.isLoading = true,
     this.hasError = false,

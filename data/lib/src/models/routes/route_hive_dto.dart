@@ -34,6 +34,8 @@ class RouteHiveDto extends Dto<Route> {
   final List<LatLngDto>? locations;
   @HiveField(12)
   final List<LatLngDto>? polyline;
+  @HiveField(13)
+  final bool isMine;
 
   RouteHiveDto({
     required this.id,
@@ -49,6 +51,7 @@ class RouteHiveDto extends Dto<Route> {
     required this.labels,
     required this.locations,
     required this.polyline,
+    this.isMine = false,
   });
 
   factory RouteHiveDto.fromDomain(Route route) => RouteHiveDto(
@@ -69,6 +72,7 @@ class RouteHiveDto extends Dto<Route> {
         polyline: route.polyline
             ?.map((latLng) => LatLngDto.fromDomain(latLng))
             .toList(),
+        isMine: route.isMine,
       );
 
   @override
@@ -86,5 +90,6 @@ class RouteHiveDto extends Dto<Route> {
         labels: labels,
         locationsAmount: locationsAmount,
         polyline: polyline?.map((e) => e.toDomain()).toList(),
+        isMine: isMine,
       );
 }

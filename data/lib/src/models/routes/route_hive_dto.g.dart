@@ -30,13 +30,14 @@ class RouteHiveDtoAdapter extends TypeAdapter<RouteHiveDto> {
       labels: (fields[10] as List?)?.cast<String>(),
       locations: (fields[11] as List?)?.cast<LatLngDto>(),
       polyline: (fields[12] as List?)?.cast<LatLngDto>(),
+      isMine: fields[13] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, RouteHiveDto obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(14)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -62,7 +63,9 @@ class RouteHiveDtoAdapter extends TypeAdapter<RouteHiveDto> {
       ..writeByte(11)
       ..write(obj.locations)
       ..writeByte(12)
-      ..write(obj.polyline);
+      ..write(obj.polyline)
+      ..writeByte(13)
+      ..write(obj.isMine);
   }
 
   @override
