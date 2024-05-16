@@ -10,6 +10,7 @@ class RoutesPresenter extends RoutesOutputPort {
   final RouteMapPageCubit routeMapPageCubit;
   final CreateRoutePageCubit createRoutePageCubit;
   final FavoriteRoutesTabCubit favoriteRoutesTabCubit;
+  final MyOwnRoutesTabCubit myOwnRoutesTabCubit;
 
   RoutesPresenter({
     required this.routesTabCubit,
@@ -20,6 +21,7 @@ class RoutesPresenter extends RoutesOutputPort {
     required this.routeMapPageCubit,
     required this.createRoutePageCubit,
     required this.favoriteRoutesTabCubit,
+    required this.myOwnRoutesTabCubit,
   });
 
   @override
@@ -60,8 +62,14 @@ class RoutesPresenter extends RoutesOutputPort {
       isFavorite,
     );
 
+    final myOwnRoutes = myOwnRoutesTabCubit.state.routes.updateFavoriteStatus(
+      routeId,
+      isFavorite,
+    );
+
     routesTabCubit.setRoutes(allRoutes);
     favoriteRoutesTabCubit.setRoutes(favoriteRoutes);
+    myOwnRoutesTabCubit.setRoutes(myOwnRoutes);
 
     if (routeDetailsPageCubit.state.route.id == routeId) {
       routeDetailsPageCubit.updateRouteFavoriteStatus(
@@ -163,5 +171,20 @@ class RoutesPresenter extends RoutesOutputPort {
   @override
   void updateFavoriteRoutes(List<Route> routes, int fullCount) {
     favoriteRoutesTabCubit.setRoutes(routes, amount: fullCount);
+  }
+
+  @override
+  void setMyOwnRoutesFilter(Filter filter) {
+    myOwnRoutesTabCubit.setFilter(filter);
+  }
+
+  @override
+  void stopMyOwnRoutesLoading() {
+    myOwnRoutesTabCubit.stopLoading();
+  }
+
+  @override
+  void updateMyOwnRoutes(List<Route> routes, int fullCount) {
+    myOwnRoutesTabCubit.setRoutes(routes, amount: fullCount);
   }
 }

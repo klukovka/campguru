@@ -15,6 +15,7 @@ abstract class ControllersModule {
     GetTripsUseCase getAllTripsUseCase,
     GetFavoriteLocationsUseCase getFavoriteLocationsUseCase,
     GetFavoriteRoutesUseCase getFavoriteRoutesUseCase,
+    GetMyOwnRoutesUseCase getMyOwnRoutesUseCase,
   ) =>
       SplashPageController(
         isAuthorizedUseCase: isAuthorizedUseCase,
@@ -27,6 +28,7 @@ abstract class ControllersModule {
         getAllTripsUseCase: getAllTripsUseCase,
         getFavoriteLocationsUseCase: getFavoriteLocationsUseCase,
         getFavoriteRoutesUseCase: getFavoriteRoutesUseCase,
+        getMyOwnRoutesUseCase: getMyOwnRoutesUseCase,
       );
 
   @lazySingleton
