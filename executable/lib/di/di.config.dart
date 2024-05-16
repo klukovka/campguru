@@ -344,6 +344,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.ErrorHandlerOutputPort>(),
             gh<_i5.RoutesOutputPort>(),
           ));
+  gh.lazySingleton<_i5.GetMyOwnRoutesUseCase>(
+      () => routeUseCasesModule.getMyOwnRoutesUseCase(
+            gh<_i5.RoutesRepository>(),
+            gh<_i5.ErrorHandlerOutputPort>(),
+            gh<_i5.RoutesOutputPort>(),
+          ));
   gh.lazySingleton<_i6.RouteLocationsPageController>(() => controllersModule
       .getRouteLocationsController(gh<_i5.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i6.RouteDetailsPageController>(() => controllersModule

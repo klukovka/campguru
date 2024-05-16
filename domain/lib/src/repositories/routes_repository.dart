@@ -10,4 +10,5 @@ abstract class RoutesRepository {
   Future<FailureOrResult<Route>> createRoute(NewRoute newRoute);
   Future<FailureOrResult<String>> getRoutePreview(List<LatLng> points);
   Future<FailureOrResult<Chunk<Route>>> getFavoriteRoutes(Filter filter);
+  Future<FailureOrResult<Chunk<Route>>> getMyOwnRoutes(Filter filter);
 }
