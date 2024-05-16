@@ -108,4 +108,15 @@ class TestRoutesRepository extends RoutesRepository {
       ),
     );
   }
+
+  @override
+  Future<FailureOrResult<Chunk<Route>>> getMyOwnRoutes(Filter filter) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(
+      _dataSource.generateRoutes(
+        size: filter.size,
+        page: filter.page,
+      ),
+    );
+  }
 }
