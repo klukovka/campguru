@@ -168,6 +168,10 @@ abstract class ControllersModule {
   @lazySingleton
   CachedRoutesTabController cachedRoutesTabController(
     GetCachedRoutesUseCase getCachedRoutesUseCase,
+    DeleteCachedRouteUseCase deleteCachedRouteUseCase,
   ) =>
-      CachedRoutesTabController(getCachedRoutesUseCase);
+      CachedRoutesTabController(
+        getCachedRoutesUseCase: getCachedRoutesUseCase,
+        deleteCachedRouteUseCase: deleteCachedRouteUseCase,
+      );
 }

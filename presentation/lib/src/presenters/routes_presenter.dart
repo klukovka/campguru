@@ -199,4 +199,12 @@ class RoutesPresenter extends RoutesOutputPort {
   void updateCachedRoutes(List<Route> routes) {
     cachedRoutesTabCubit.setRoutes(routes);
   }
+
+  @override
+  void deleteCachedRoute(int routeId) {
+    final routes = cachedRoutesTabCubit.state.routes
+        .where((element) => element.id != routeId)
+        .toList();
+    cachedRoutesTabCubit.setRoutes(routes);
+  }
 }

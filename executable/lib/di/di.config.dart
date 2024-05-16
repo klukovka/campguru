@@ -301,12 +301,23 @@ Future<_i1.GetIt> $configureDependencies(
     () => tripsRepositoryModule.getTripsRepository(gh<_i7.TestDataSource>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i5.DeleteCachedRouteUseCase>(
+      () => routeUseCasesModule.deleteCachedRouteUseCase(
+            gh<_i5.CacheRepository>(),
+            gh<_i5.RoutesOutputPort>(),
+            gh<_i5.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i6.RouteReviewsPageController>(() => controllersModule
       .getRouteReviewsPageController(gh<_i5.GetRouteReviewsUseCase>()));
   gh.lazySingleton<_i5.GetCachedRoutesUseCase>(
       () => routeUseCasesModule.getCachedRoutesUseCase(
             gh<_i5.CacheRepository>(),
             gh<_i5.RoutesOutputPort>(),
+          ));
+  gh.lazySingleton<_i6.CachedRoutesTabController>(
+      () => controllersModule.cachedRoutesTabController(
+            gh<_i5.GetCachedRoutesUseCase>(),
+            gh<_i5.DeleteCachedRouteUseCase>(),
           ));
   gh.lazySingleton<_i5.GetAppVersion>(
       () => settingsUseCasesModule.getAppVersion(
@@ -414,8 +425,6 @@ Future<_i1.GetIt> $configureDependencies(
       controllersModule.getRoutesTabController(gh<_i5.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i6.RouteFiltersPageController>(() => controllersModule
       .getRouteFiltersPageController(gh<_i5.GetAllRoutesUseCase>()));
-  gh.lazySingleton<_i6.CachedRoutesTabController>(() => controllersModule
-      .cachedRoutesTabController(gh<_i5.GetCachedRoutesUseCase>()));
   gh.lazySingleton<_i6.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
           gh<_i5.UpdateRouteFavoriteStatusUseCase>()));
