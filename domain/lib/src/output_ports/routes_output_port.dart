@@ -33,4 +33,7 @@ abstract class RoutesOutputPort {
   void setMyOwnRoutesFilter(Filter filter);
   void updateMyOwnRoutes(List<Route> routes, int fullCount);
   void stopMyOwnRoutesLoading();
+
+  void setCachedRoutesFilter(String searchQuery);
+  void updateCachedRoutes(List<Route> routes);
 }

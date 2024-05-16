@@ -50,6 +50,7 @@ export 'src/use_cases/reviews/get_route_reviews_use_case.dart';
 export 'src/use_cases/routes/cache_route_use_case.dart';
 export 'src/use_cases/routes/create_new_route_use_case.dart';
 export 'src/use_cases/routes/get_all_routes_use_case.dart';
+export 'src/use_cases/routes/get_cached_routes_use_case.dart';
 export 'src/use_cases/routes/get_favorite_routes_use_case.dart';
 export 'src/use_cases/routes/get_my_own_routes_use_case.dart';
 export 'src/use_cases/routes/get_route_details_use_case.dart';

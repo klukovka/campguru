@@ -300,6 +300,11 @@ Future<_i1.GetIt> $configureDependencies(
   );
   gh.lazySingleton<_i6.RouteReviewsPageController>(() => controllersModule
       .getRouteReviewsPageController(gh<_i5.GetRouteReviewsUseCase>()));
+  gh.lazySingleton<_i5.GetCachedRoutesUseCase>(
+      () => routeUseCasesModule.getCachedRoutesUseCase(
+            gh<_i5.CacheRepository>(),
+            gh<_i5.RoutesOutputPort>(),
+          ));
   gh.lazySingleton<_i5.GetAppVersion>(
       () => settingsUseCasesModule.getAppVersion(
             gh<_i5.AppSettingsRepository>(),
