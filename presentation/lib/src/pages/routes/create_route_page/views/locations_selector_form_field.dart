@@ -8,6 +8,7 @@ class LocationSelectorFormField extends FormBuilderField<List<Location>> {
     super.key,
     required super.name,
     String? preview,
+    super.validator,
   }) : super(
           builder: (state) {
             return Column(
