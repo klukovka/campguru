@@ -14,4 +14,9 @@ abstract class RoutesOutputPort {
     required double cacheProgress,
     required bool isCompleted,
   });
+  void startRouteCreation();
+  void stopRouteCreation({required bool hasError, int? routeId});
+  void startPreviewLoading();
+  void updateRoutePreview(String url);
+  void stopPreviewLoading();
 }

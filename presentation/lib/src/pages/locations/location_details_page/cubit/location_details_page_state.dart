@@ -13,6 +13,8 @@ class LocationDetailsPageState extends Equatable {
       mark: 0,
       reviewsAmount: 0,
       isFavorite: false,
+      lat: 0,
+      lng: 0,
     ),
     this.isLoading = true,
     this.hasError = false,

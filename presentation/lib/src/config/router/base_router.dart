@@ -19,7 +19,8 @@ abstract class BaseRouter {
 
   void popUntilPath(String path) => stackRouter.popUntilRouteWithName(path);
 
-  Future<void> push(PageRouteInfo<dynamic> route) => stackRouter.push(route);
+  Future<T?> push<T>(PageRouteInfo<dynamic> route) =>
+      stackRouter.push<T?>(route);
 
   Future<void> pushAll(List<PageRouteInfo<dynamic>> routes) =>
       stackRouter.pushAll(routes);

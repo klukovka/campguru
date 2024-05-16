@@ -134,4 +134,14 @@ abstract class ControllersModule {
     GetFavoriteLocationsUseCase getFavoriteLocationsUseCase,
   ) =>
       FavoriteLocationsPageController(getFavoriteLocationsUseCase);
+
+  @lazySingleton
+  CreateRoutePageController createRoutePageController(
+    GetRoutePreviewUseCase getRoutePreviewUseCase,
+    CreateNewRouteUseCase createNewRouteUseCase,
+  ) =>
+      CreateRoutePageController(
+        getRoutePreviewUseCase: getRoutePreviewUseCase,
+        createNewRouteUseCase: createNewRouteUseCase,
+      );
 }

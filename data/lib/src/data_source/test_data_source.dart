@@ -47,6 +47,8 @@ class TestDataSource {
           mark: Random().nextDouble() * 5,
           reviewsAmount: Random().nextInt(100),
           isFavorite: Random().nextInt(4) % 2 == 0,
+          lat: 34,
+          lng: 23,
         );
       },
     );
@@ -141,6 +143,7 @@ class TestDataSource {
           mapUrl: _map,
           distance: Random().nextDouble() * 5000,
           duration: Random().nextDouble() * 5,
+          isMine: Random().nextInt(4) % 2 == 0,
         );
       },
     );
@@ -161,6 +164,7 @@ class TestDataSource {
       mapUrl: _map,
       distance: Random().nextDouble() * 5000,
       duration: Random().nextDouble() * 5,
+      isMine: Random().nextInt(4) % 2 == 0,
       description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       labels: const [

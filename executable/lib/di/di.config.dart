@@ -114,21 +114,14 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i6.RouteMapPageCubit>(() => blocModule.routeMapPageCubit);
   gh.lazySingleton<_i6.FavoriteLocationsPageCubit>(
       () => blocModule.favoriteLocationsPageCubit);
+  gh.lazySingleton<_i6.CreateRoutePageCubit>(
+      () => blocModule.createRoutePageCubit);
   await gh.lazySingletonAsync<_i7.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
   );
   gh.lazySingleton<_i5.GeopositionRepository>(
       () => geopositionRepositoryModule.geopositionRepository);
-  gh.lazySingleton<_i5.RoutesOutputPort>(
-      () => presentersModule.getRoutesOutputPort(
-            gh<_i6.RoutesTabCubit>(),
-            gh<_i6.RouteDetailsPageCubit>(),
-            gh<_i6.RoutesFiltersPageCubit>(),
-            gh<_i6.HomePageCubit>(),
-            gh<_i6.RouteCacheProgressViewCubit>(),
-            gh<_i6.RouteMapPageCubit>(),
-          ));
   gh.lazySingleton<_i6.CampguruRouter>(
       () => autoRouterModule.router(gh<_i6.AppAutoRouter>()));
   gh.lazySingleton<_i5.TripsOutputPort>(
@@ -173,6 +166,16 @@ Future<_i1.GetIt> $configureDependencies(
     () => dataSourceModule.getTestDataSource(gh<_i3.DeviceInfoPlugin>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i5.RoutesOutputPort>(
+      () => presentersModule.getRoutesOutputPort(
+            gh<_i6.RoutesTabCubit>(),
+            gh<_i6.RouteDetailsPageCubit>(),
+            gh<_i6.RoutesFiltersPageCubit>(),
+            gh<_i6.HomePageCubit>(),
+            gh<_i6.RouteCacheProgressViewCubit>(),
+            gh<_i6.RouteMapPageCubit>(),
+            gh<_i6.CreateRoutePageCubit>(),
+          ));
   gh.lazySingleton<_i5.SettingsOutputPort>(
       () => presentersModule.getSettingsOutputPort(gh<_i6.ProfileTabCubit>()));
   await gh.lazySingletonAsync<_i5.CacheRepository>(
@@ -320,6 +323,18 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.ErrorHandlerOutputPort>(),
             gh<_i5.RoutesOutputPort>(),
           ));
+  gh.lazySingleton<_i5.CreateNewRouteUseCase>(
+      () => routeUseCasesModule.getCreateNewRouteUseCase(
+            gh<_i5.RoutesRepository>(),
+            gh<_i5.ErrorHandlerOutputPort>(),
+            gh<_i5.RoutesOutputPort>(),
+          ));
+  gh.lazySingleton<_i5.GetRoutePreviewUseCase>(
+      () => routeUseCasesModule.getGetRoutePreviewUseCase(
+            gh<_i5.RoutesRepository>(),
+            gh<_i5.ErrorHandlerOutputPort>(),
+            gh<_i5.RoutesOutputPort>(),
+          ));
   gh.lazySingleton<_i6.RouteLocationsPageController>(() => controllersModule
       .getRouteLocationsController(gh<_i5.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i6.RouteDetailsPageController>(() => controllersModule
@@ -358,6 +373,11 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i6.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
           gh<_i5.UpdateRouteFavoriteStatusUseCase>()));
+  gh.lazySingleton<_i6.CreateRoutePageController>(
+      () => controllersModule.createRoutePageController(
+            gh<_i5.GetRoutePreviewUseCase>(),
+            gh<_i5.CreateNewRouteUseCase>(),
+          ));
   gh.lazySingleton<_i6.SplashPageController>(
       () => controllersModule.getSplashPageController(
             gh<_i5.IsAuthorizedUseCase>(),

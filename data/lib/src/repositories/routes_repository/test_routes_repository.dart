@@ -83,4 +83,18 @@ class TestRoutesRepository extends RoutesRepository {
       ),
     ]);
   }
+
+  @override
+  Future<FailureOrResult<Route>> createRoute(NewRoute newRoute) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(_dataSource.getRouteDetails(100));
+  }
+
+  @override
+  Future<FailureOrResult<String>> getRoutePreview(List<LatLng> points) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(
+      _dataSource.getRouteDetails(100).mapUrl,
+    );
+  }
 }

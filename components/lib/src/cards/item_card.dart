@@ -24,16 +24,10 @@ class ItemCard extends StatelessWidget {
         child: IntrinsicHeight(
           child: Row(
             children: [
-              Container(
-                width: 100,
+              RoundedNetworkImage(
+                imageUrl: imageUrl,
                 height: 152,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(imageUrl),
-                  ),
-                ),
+                width: 100,
               ),
               const SizedBox(width: 16),
               Expanded(child: content),
