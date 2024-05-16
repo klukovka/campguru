@@ -80,5 +80,9 @@ class AppAutoRouter extends $AppAutoRouter {
       page: CreateRouteRoute.page,
       path: '/home/routes/create',
     ),
+    AutoRoute(
+      page: SelectableLocationsRoute.page,
+      path: '/home/routes/create/location',
+    ),
   ];
 }

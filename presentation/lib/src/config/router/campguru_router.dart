@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:presentation/src/config/router/app_auto_router.dart';
 import 'package:presentation/src/config/router/app_auto_router.gr.dart';
 import 'package:presentation/src/config/router/base_router.dart';
@@ -47,4 +48,11 @@ class CampguruRouter extends BaseRouter {
       push(const FavoriteLocationsRoute());
 
   Future<void> pushCreateRoutePage() => push(const CreateRouteRoute());
+
+  Future<List<Location>?> pushSelectableLocationsPage(
+    List<Location> selectedLocations,
+  ) =>
+      push<List<Location>>(
+        SelectableLocationsRoute(selectedLocations: selectedLocations),
+      );
 }
