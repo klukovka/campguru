@@ -84,5 +84,14 @@ class AppAutoRouter extends $AppAutoRouter {
       page: SelectableLocationsRoute.page,
       path: '/home/routes/create/location',
     ),
+    AutoRoute(page: MyRoutesRoute.page, path: '/home/my_routes/', children: [
+      AutoRoute(
+        page: CachedRoutesRoute.page,
+        path: 'cached',
+        initial: true,
+      ),
+      AutoRoute(page: FavoriteRoutesRoute.page, path: 'favorites'),
+      AutoRoute(page: MyOwnRoutesRoute.page, path: 'my_own'),
+    ]),
   ];
 }
