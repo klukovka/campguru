@@ -63,4 +63,8 @@ class HiveDataSource {
   }
 
   List<RouteHiveDto> getCachedRoutes() => _routesBox.values.toList();
+
+  Future<void> deleteRoute(int id) async {
+    await _routesBox.delete(id);
+  }
 }

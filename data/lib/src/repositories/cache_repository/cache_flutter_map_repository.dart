@@ -62,4 +62,19 @@ class CacheFlutterMapRepository implements CacheRepository {
       .where((element) =>
           element.name.toLowerCase().contains(searchQuery.toLowerCase()))
       .toList();
+
+  @override
+  Future<FailureOrResult<void>> deleteRoute(int routeId) async {
+    try {
+      final store = FMTCStore('Route$routeId');
+      await store.manage.delete();
+      await _dataSource.deleteRoute(routeId);
+      return FailureOrResult.success(null);
+    } catch (e) {
+      return FailureOrResult.failure(ApplicationFailure(
+        type: ApplicationErrorType.general,
+        message: e.toString(),
+      ));
+    }
+  }
 }

@@ -36,4 +36,6 @@ abstract class RoutesOutputPort {
 
   void setCachedRoutesSearchQuery(String searchQuery);
   void updateCachedRoutes(List<Route> routes);
+
+  void deleteCachedRoute(int routeId);
 }
