@@ -58,4 +58,8 @@ abstract class BlocModule {
 
   @lazySingleton
   RouteMapPageCubit get routeMapPageCubit => RouteMapPageCubit();
+
+  @lazySingleton
+  FavoriteLocationsPageCubit get favoriteLocationsPageCubit =>
+      FavoriteLocationsPageCubit();
 }

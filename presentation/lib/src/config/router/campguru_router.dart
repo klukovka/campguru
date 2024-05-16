@@ -42,4 +42,7 @@ class CampguruRouter extends BaseRouter {
 
   Future<void> pushTripDetailsPage(int id) =>
       push(TripDetailsRoute(tripId: id));
+
+  Future<void> pushFavoriteLocationsPage() =>
+      push(const FavoriteLocationsRoute());
 }

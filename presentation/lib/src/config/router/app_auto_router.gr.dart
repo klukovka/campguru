@@ -8,51 +8,59 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i19;
-import 'package:flutter/material.dart' as _i20;
-import 'package:presentation/src/pages/home_page/home_page.dart' as _i1;
+import 'package:auto_route/auto_route.dart' as _i20;
+import 'package:flutter/material.dart' as _i21;
+import 'package:presentation/src/pages/home_page/home_page.dart' as _i2;
 import 'package:presentation/src/pages/home_page/locations_tab/locations_tab.dart'
-    as _i6;
-import 'package:presentation/src/pages/home_page/profile_tab/profile_tab.dart'
     as _i7;
-import 'package:presentation/src/pages/home_page/routes_tab/routes_tab.dart'
-    as _i13;
-import 'package:presentation/src/pages/home_page/trips_tab/trips_tab.dart'
-    as _i18;
-import 'package:presentation/src/pages/locations/location_details_page/location_details_page.dart'
-    as _i2;
-import 'package:presentation/src/pages/locations/location_map_page/location_map_page.dart'
-    as _i3;
-import 'package:presentation/src/pages/locations/locations_filters_page/locations_filters_page.dart'
-    as _i5;
-import 'package:presentation/src/pages/locations/route_locations_page/route_locations_page.dart'
-    as _i9;
-import 'package:presentation/src/pages/reviews/location_reviews_page/location_reviews_page.dart'
-    as _i4;
-import 'package:presentation/src/pages/reviews/route_reviews_page/route_reviews_page.dart'
-    as _i11;
-import 'package:presentation/src/pages/routes/route_details_page/route_details_page.dart'
+import 'package:presentation/src/pages/home_page/profile_tab/profile_tab.dart'
     as _i8;
-import 'package:presentation/src/pages/routes/route_map_page/route_map_page.dart'
+import 'package:presentation/src/pages/home_page/routes_tab/routes_tab.dart'
+    as _i14;
+import 'package:presentation/src/pages/home_page/trips_tab/trips_tab.dart'
+    as _i19;
+import 'package:presentation/src/pages/locations/favorite_locations_page/favorite_locations_page.dart'
+    as _i1;
+import 'package:presentation/src/pages/locations/location_details_page/location_details_page.dart'
+    as _i3;
+import 'package:presentation/src/pages/locations/location_map_page/location_map_page.dart'
+    as _i4;
+import 'package:presentation/src/pages/locations/locations_filters_page/locations_filters_page.dart'
+    as _i6;
+import 'package:presentation/src/pages/locations/route_locations_page/route_locations_page.dart'
     as _i10;
-import 'package:presentation/src/pages/routes/routes_filters_page/routes_filters_page.dart'
+import 'package:presentation/src/pages/reviews/location_reviews_page/location_reviews_page.dart'
+    as _i5;
+import 'package:presentation/src/pages/reviews/route_reviews_page/route_reviews_page.dart'
     as _i12;
-import 'package:presentation/src/pages/splash_page/splash_page.dart' as _i14;
-import 'package:presentation/src/pages/start_page/start_page.dart' as _i15;
+import 'package:presentation/src/pages/routes/route_details_page/route_details_page.dart'
+    as _i9;
+import 'package:presentation/src/pages/routes/route_map_page/route_map_page.dart'
+    as _i11;
+import 'package:presentation/src/pages/routes/routes_filters_page/routes_filters_page.dart'
+    as _i13;
+import 'package:presentation/src/pages/splash_page/splash_page.dart' as _i15;
+import 'package:presentation/src/pages/start_page/start_page.dart' as _i16;
 import 'package:presentation/src/pages/trips/trip_details_page/trip_details_page.dart'
-    as _i16;
-import 'package:presentation/src/pages/trips/trips_filters_page/trips_filters_page.dart'
     as _i17;
+import 'package:presentation/src/pages/trips/trips_filters_page/trips_filters_page.dart'
+    as _i18;
 
-abstract class $AppAutoRouter extends _i19.RootStackRouter {
+abstract class $AppAutoRouter extends _i20.RootStackRouter {
   $AppAutoRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i19.PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+  final Map<String, _i20.PageFactory> pagesMap = {
+    FavoriteLocationsRoute.name: (routeData) {
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i1.HomePage()),
+        child: _i20.WrappedRoute(child: const _i1.FavoriteLocationsPage()),
+      );
+    },
+    HomeRoute.name: (routeData) {
+      return _i20.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i20.WrappedRoute(child: const _i2.HomePage()),
       );
     },
     LocationDetailsRoute.name: (routeData) {
@@ -60,10 +68,10 @@ abstract class $AppAutoRouter extends _i19.RootStackRouter {
       final args = routeData.argsAs<LocationDetailsRouteArgs>(
           orElse: () =>
               LocationDetailsRouteArgs(locationId: pathParams.getInt('id')));
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(
-            child: _i2.LocationDetailsPage(
+        child: _i20.WrappedRoute(
+            child: _i3.LocationDetailsPage(
           key: args.key,
           locationId: args.locationId,
         )),
@@ -82,9 +90,9 @@ abstract class $AppAutoRouter extends _i19.RootStackRouter {
                   0,
                 ),
               ));
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i3.LocationMapPage(
+        child: _i4.LocationMapPage(
           key: args.key,
           lng: args.lng,
           lat: args.lat,
@@ -96,31 +104,31 @@ abstract class $AppAutoRouter extends _i19.RootStackRouter {
       final args = routeData.argsAs<LocationReviewsRouteArgs>(
           orElse: () =>
               LocationReviewsRouteArgs(locationId: pathParams.getInt('id')));
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(
-            child: _i4.LocationReviewsPage(
+        child: _i20.WrappedRoute(
+            child: _i5.LocationReviewsPage(
           key: args.key,
           locationId: args.locationId,
         )),
       );
     },
     LocationsFiltersRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i5.LocationsFiltersPage()),
+        child: _i20.WrappedRoute(child: const _i6.LocationsFiltersPage()),
       );
     },
     LocationsRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i6.LocationsTab()),
+        child: _i20.WrappedRoute(child: const _i7.LocationsTab()),
       );
     },
     ProfileRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i7.ProfileTab()),
+        child: _i20.WrappedRoute(child: const _i8.ProfileTab()),
       );
     },
     RouteDetailsRoute.name: (routeData) {
@@ -128,10 +136,10 @@ abstract class $AppAutoRouter extends _i19.RootStackRouter {
       final args = routeData.argsAs<RouteDetailsRouteArgs>(
           orElse: () =>
               RouteDetailsRouteArgs(routeId: pathParams.getInt('id')));
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(
-            child: _i8.RouteDetailsPage(
+        child: _i20.WrappedRoute(
+            child: _i9.RouteDetailsPage(
           key: args.key,
           routeId: args.routeId,
         )),
@@ -142,10 +150,10 @@ abstract class $AppAutoRouter extends _i19.RootStackRouter {
       final args = routeData.argsAs<RouteLocationsRouteArgs>(
           orElse: () =>
               RouteLocationsRouteArgs(routeId: pathParams.getInt('id')));
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(
-            child: _i9.RouteLocationsPage(
+        child: _i20.WrappedRoute(
+            child: _i10.RouteLocationsPage(
           key: args.key,
           routeId: args.routeId,
         )),
@@ -155,10 +163,10 @@ abstract class $AppAutoRouter extends _i19.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<RouteMapRouteArgs>(
           orElse: () => RouteMapRouteArgs(routeId: pathParams.getInt('id')));
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(
-            child: _i10.RouteMapPage(
+        child: _i20.WrappedRoute(
+            child: _i11.RouteMapPage(
           key: args.key,
           routeId: args.routeId,
         )),
@@ -169,71 +177,85 @@ abstract class $AppAutoRouter extends _i19.RootStackRouter {
       final args = routeData.argsAs<RouteReviewsRouteArgs>(
           orElse: () =>
               RouteReviewsRouteArgs(routeId: pathParams.getInt('id')));
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(
-            child: _i11.RouteReviewsPage(
+        child: _i20.WrappedRoute(
+            child: _i12.RouteReviewsPage(
           key: args.key,
           routeId: args.routeId,
         )),
       );
     },
     RoutesFiltersRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i12.RoutesFiltersPage()),
+        child: _i20.WrappedRoute(child: const _i13.RoutesFiltersPage()),
       );
     },
     RoutesRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i13.RoutesTab()),
+        child: _i20.WrappedRoute(child: const _i14.RoutesTab()),
       );
     },
     SplashRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i14.SplashPage()),
+        child: _i20.WrappedRoute(child: const _i15.SplashPage()),
       );
     },
     StartRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i15.StartPage(),
+        child: const _i16.StartPage(),
       );
     },
     TripDetailsRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<TripDetailsRouteArgs>(
           orElse: () => TripDetailsRouteArgs(tripId: pathParams.getInt('id')));
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(
-            child: _i16.TripDetailsPage(
+        child: _i20.WrappedRoute(
+            child: _i17.TripDetailsPage(
           key: args.key,
           tripId: args.tripId,
         )),
       );
     },
     TripsFiltersRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i17.TripsFiltersPage()),
+        child: _i20.WrappedRoute(child: const _i18.TripsFiltersPage()),
       );
     },
     TripsRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i18.TripsTab()),
+        child: _i20.WrappedRoute(child: const _i19.TripsTab()),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.HomePage]
-class HomeRoute extends _i19.PageRouteInfo<void> {
-  const HomeRoute({List<_i19.PageRouteInfo>? children})
+/// [_i1.FavoriteLocationsPage]
+class FavoriteLocationsRoute extends _i20.PageRouteInfo<void> {
+  const FavoriteLocationsRoute({List<_i20.PageRouteInfo>? children})
+      : super(
+          FavoriteLocationsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FavoriteLocationsRoute';
+
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.HomePage]
+class HomeRoute extends _i20.PageRouteInfo<void> {
+  const HomeRoute({List<_i20.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -241,17 +263,17 @@ class HomeRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.LocationDetailsPage]
+/// [_i3.LocationDetailsPage]
 class LocationDetailsRoute
-    extends _i19.PageRouteInfo<LocationDetailsRouteArgs> {
+    extends _i20.PageRouteInfo<LocationDetailsRouteArgs> {
   LocationDetailsRoute({
-    _i20.Key? key,
+    _i21.Key? key,
     required int locationId,
-    List<_i19.PageRouteInfo>? children,
+    List<_i20.PageRouteInfo>? children,
   }) : super(
           LocationDetailsRoute.name,
           args: LocationDetailsRouteArgs(
@@ -264,8 +286,8 @@ class LocationDetailsRoute
 
   static const String name = 'LocationDetailsRoute';
 
-  static const _i19.PageInfo<LocationDetailsRouteArgs> page =
-      _i19.PageInfo<LocationDetailsRouteArgs>(name);
+  static const _i20.PageInfo<LocationDetailsRouteArgs> page =
+      _i20.PageInfo<LocationDetailsRouteArgs>(name);
 }
 
 class LocationDetailsRouteArgs {
@@ -274,7 +296,7 @@ class LocationDetailsRouteArgs {
     required this.locationId,
   });
 
-  final _i20.Key? key;
+  final _i21.Key? key;
 
   final int locationId;
 
@@ -285,13 +307,13 @@ class LocationDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i3.LocationMapPage]
-class LocationMapRoute extends _i19.PageRouteInfo<LocationMapRouteArgs> {
+/// [_i4.LocationMapPage]
+class LocationMapRoute extends _i20.PageRouteInfo<LocationMapRouteArgs> {
   LocationMapRoute({
-    _i20.Key? key,
+    _i21.Key? key,
     double lng = 0,
     double lat = 0,
-    List<_i19.PageRouteInfo>? children,
+    List<_i20.PageRouteInfo>? children,
   }) : super(
           LocationMapRoute.name,
           args: LocationMapRouteArgs(
@@ -308,8 +330,8 @@ class LocationMapRoute extends _i19.PageRouteInfo<LocationMapRouteArgs> {
 
   static const String name = 'LocationMapRoute';
 
-  static const _i19.PageInfo<LocationMapRouteArgs> page =
-      _i19.PageInfo<LocationMapRouteArgs>(name);
+  static const _i20.PageInfo<LocationMapRouteArgs> page =
+      _i20.PageInfo<LocationMapRouteArgs>(name);
 }
 
 class LocationMapRouteArgs {
@@ -319,7 +341,7 @@ class LocationMapRouteArgs {
     this.lat = 0,
   });
 
-  final _i20.Key? key;
+  final _i21.Key? key;
 
   final double lng;
 
@@ -332,13 +354,13 @@ class LocationMapRouteArgs {
 }
 
 /// generated route for
-/// [_i4.LocationReviewsPage]
+/// [_i5.LocationReviewsPage]
 class LocationReviewsRoute
-    extends _i19.PageRouteInfo<LocationReviewsRouteArgs> {
+    extends _i20.PageRouteInfo<LocationReviewsRouteArgs> {
   LocationReviewsRoute({
-    _i20.Key? key,
+    _i21.Key? key,
     required int locationId,
-    List<_i19.PageRouteInfo>? children,
+    List<_i20.PageRouteInfo>? children,
   }) : super(
           LocationReviewsRoute.name,
           args: LocationReviewsRouteArgs(
@@ -351,8 +373,8 @@ class LocationReviewsRoute
 
   static const String name = 'LocationReviewsRoute';
 
-  static const _i19.PageInfo<LocationReviewsRouteArgs> page =
-      _i19.PageInfo<LocationReviewsRouteArgs>(name);
+  static const _i20.PageInfo<LocationReviewsRouteArgs> page =
+      _i20.PageInfo<LocationReviewsRouteArgs>(name);
 }
 
 class LocationReviewsRouteArgs {
@@ -361,7 +383,7 @@ class LocationReviewsRouteArgs {
     required this.locationId,
   });
 
-  final _i20.Key? key;
+  final _i21.Key? key;
 
   final int locationId;
 
@@ -372,9 +394,9 @@ class LocationReviewsRouteArgs {
 }
 
 /// generated route for
-/// [_i5.LocationsFiltersPage]
-class LocationsFiltersRoute extends _i19.PageRouteInfo<void> {
-  const LocationsFiltersRoute({List<_i19.PageRouteInfo>? children})
+/// [_i6.LocationsFiltersPage]
+class LocationsFiltersRoute extends _i20.PageRouteInfo<void> {
+  const LocationsFiltersRoute({List<_i20.PageRouteInfo>? children})
       : super(
           LocationsFiltersRoute.name,
           initialChildren: children,
@@ -382,13 +404,13 @@ class LocationsFiltersRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'LocationsFiltersRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.LocationsTab]
-class LocationsRoute extends _i19.PageRouteInfo<void> {
-  const LocationsRoute({List<_i19.PageRouteInfo>? children})
+/// [_i7.LocationsTab]
+class LocationsRoute extends _i20.PageRouteInfo<void> {
+  const LocationsRoute({List<_i20.PageRouteInfo>? children})
       : super(
           LocationsRoute.name,
           initialChildren: children,
@@ -396,13 +418,13 @@ class LocationsRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'LocationsRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i7.ProfileTab]
-class ProfileRoute extends _i19.PageRouteInfo<void> {
-  const ProfileRoute({List<_i19.PageRouteInfo>? children})
+/// [_i8.ProfileTab]
+class ProfileRoute extends _i20.PageRouteInfo<void> {
+  const ProfileRoute({List<_i20.PageRouteInfo>? children})
       : super(
           ProfileRoute.name,
           initialChildren: children,
@@ -410,16 +432,16 @@ class ProfileRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'ProfileRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.RouteDetailsPage]
-class RouteDetailsRoute extends _i19.PageRouteInfo<RouteDetailsRouteArgs> {
+/// [_i9.RouteDetailsPage]
+class RouteDetailsRoute extends _i20.PageRouteInfo<RouteDetailsRouteArgs> {
   RouteDetailsRoute({
-    _i20.Key? key,
+    _i21.Key? key,
     required int routeId,
-    List<_i19.PageRouteInfo>? children,
+    List<_i20.PageRouteInfo>? children,
   }) : super(
           RouteDetailsRoute.name,
           args: RouteDetailsRouteArgs(
@@ -432,8 +454,8 @@ class RouteDetailsRoute extends _i19.PageRouteInfo<RouteDetailsRouteArgs> {
 
   static const String name = 'RouteDetailsRoute';
 
-  static const _i19.PageInfo<RouteDetailsRouteArgs> page =
-      _i19.PageInfo<RouteDetailsRouteArgs>(name);
+  static const _i20.PageInfo<RouteDetailsRouteArgs> page =
+      _i20.PageInfo<RouteDetailsRouteArgs>(name);
 }
 
 class RouteDetailsRouteArgs {
@@ -442,7 +464,7 @@ class RouteDetailsRouteArgs {
     required this.routeId,
   });
 
-  final _i20.Key? key;
+  final _i21.Key? key;
 
   final int routeId;
 
@@ -453,12 +475,12 @@ class RouteDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i9.RouteLocationsPage]
-class RouteLocationsRoute extends _i19.PageRouteInfo<RouteLocationsRouteArgs> {
+/// [_i10.RouteLocationsPage]
+class RouteLocationsRoute extends _i20.PageRouteInfo<RouteLocationsRouteArgs> {
   RouteLocationsRoute({
-    _i20.Key? key,
+    _i21.Key? key,
     required int routeId,
-    List<_i19.PageRouteInfo>? children,
+    List<_i20.PageRouteInfo>? children,
   }) : super(
           RouteLocationsRoute.name,
           args: RouteLocationsRouteArgs(
@@ -471,8 +493,8 @@ class RouteLocationsRoute extends _i19.PageRouteInfo<RouteLocationsRouteArgs> {
 
   static const String name = 'RouteLocationsRoute';
 
-  static const _i19.PageInfo<RouteLocationsRouteArgs> page =
-      _i19.PageInfo<RouteLocationsRouteArgs>(name);
+  static const _i20.PageInfo<RouteLocationsRouteArgs> page =
+      _i20.PageInfo<RouteLocationsRouteArgs>(name);
 }
 
 class RouteLocationsRouteArgs {
@@ -481,7 +503,7 @@ class RouteLocationsRouteArgs {
     required this.routeId,
   });
 
-  final _i20.Key? key;
+  final _i21.Key? key;
 
   final int routeId;
 
@@ -492,12 +514,12 @@ class RouteLocationsRouteArgs {
 }
 
 /// generated route for
-/// [_i10.RouteMapPage]
-class RouteMapRoute extends _i19.PageRouteInfo<RouteMapRouteArgs> {
+/// [_i11.RouteMapPage]
+class RouteMapRoute extends _i20.PageRouteInfo<RouteMapRouteArgs> {
   RouteMapRoute({
-    _i20.Key? key,
+    _i21.Key? key,
     required int routeId,
-    List<_i19.PageRouteInfo>? children,
+    List<_i20.PageRouteInfo>? children,
   }) : super(
           RouteMapRoute.name,
           args: RouteMapRouteArgs(
@@ -510,8 +532,8 @@ class RouteMapRoute extends _i19.PageRouteInfo<RouteMapRouteArgs> {
 
   static const String name = 'RouteMapRoute';
 
-  static const _i19.PageInfo<RouteMapRouteArgs> page =
-      _i19.PageInfo<RouteMapRouteArgs>(name);
+  static const _i20.PageInfo<RouteMapRouteArgs> page =
+      _i20.PageInfo<RouteMapRouteArgs>(name);
 }
 
 class RouteMapRouteArgs {
@@ -520,7 +542,7 @@ class RouteMapRouteArgs {
     required this.routeId,
   });
 
-  final _i20.Key? key;
+  final _i21.Key? key;
 
   final int routeId;
 
@@ -531,12 +553,12 @@ class RouteMapRouteArgs {
 }
 
 /// generated route for
-/// [_i11.RouteReviewsPage]
-class RouteReviewsRoute extends _i19.PageRouteInfo<RouteReviewsRouteArgs> {
+/// [_i12.RouteReviewsPage]
+class RouteReviewsRoute extends _i20.PageRouteInfo<RouteReviewsRouteArgs> {
   RouteReviewsRoute({
-    _i20.Key? key,
+    _i21.Key? key,
     required int routeId,
-    List<_i19.PageRouteInfo>? children,
+    List<_i20.PageRouteInfo>? children,
   }) : super(
           RouteReviewsRoute.name,
           args: RouteReviewsRouteArgs(
@@ -549,8 +571,8 @@ class RouteReviewsRoute extends _i19.PageRouteInfo<RouteReviewsRouteArgs> {
 
   static const String name = 'RouteReviewsRoute';
 
-  static const _i19.PageInfo<RouteReviewsRouteArgs> page =
-      _i19.PageInfo<RouteReviewsRouteArgs>(name);
+  static const _i20.PageInfo<RouteReviewsRouteArgs> page =
+      _i20.PageInfo<RouteReviewsRouteArgs>(name);
 }
 
 class RouteReviewsRouteArgs {
@@ -559,7 +581,7 @@ class RouteReviewsRouteArgs {
     required this.routeId,
   });
 
-  final _i20.Key? key;
+  final _i21.Key? key;
 
   final int routeId;
 
@@ -570,9 +592,9 @@ class RouteReviewsRouteArgs {
 }
 
 /// generated route for
-/// [_i12.RoutesFiltersPage]
-class RoutesFiltersRoute extends _i19.PageRouteInfo<void> {
-  const RoutesFiltersRoute({List<_i19.PageRouteInfo>? children})
+/// [_i13.RoutesFiltersPage]
+class RoutesFiltersRoute extends _i20.PageRouteInfo<void> {
+  const RoutesFiltersRoute({List<_i20.PageRouteInfo>? children})
       : super(
           RoutesFiltersRoute.name,
           initialChildren: children,
@@ -580,13 +602,13 @@ class RoutesFiltersRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'RoutesFiltersRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i13.RoutesTab]
-class RoutesRoute extends _i19.PageRouteInfo<void> {
-  const RoutesRoute({List<_i19.PageRouteInfo>? children})
+/// [_i14.RoutesTab]
+class RoutesRoute extends _i20.PageRouteInfo<void> {
+  const RoutesRoute({List<_i20.PageRouteInfo>? children})
       : super(
           RoutesRoute.name,
           initialChildren: children,
@@ -594,13 +616,13 @@ class RoutesRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'RoutesRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i14.SplashPage]
-class SplashRoute extends _i19.PageRouteInfo<void> {
-  const SplashRoute({List<_i19.PageRouteInfo>? children})
+/// [_i15.SplashPage]
+class SplashRoute extends _i20.PageRouteInfo<void> {
+  const SplashRoute({List<_i20.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -608,13 +630,13 @@ class SplashRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i15.StartPage]
-class StartRoute extends _i19.PageRouteInfo<void> {
-  const StartRoute({List<_i19.PageRouteInfo>? children})
+/// [_i16.StartPage]
+class StartRoute extends _i20.PageRouteInfo<void> {
+  const StartRoute({List<_i20.PageRouteInfo>? children})
       : super(
           StartRoute.name,
           initialChildren: children,
@@ -622,16 +644,16 @@ class StartRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'StartRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i16.TripDetailsPage]
-class TripDetailsRoute extends _i19.PageRouteInfo<TripDetailsRouteArgs> {
+/// [_i17.TripDetailsPage]
+class TripDetailsRoute extends _i20.PageRouteInfo<TripDetailsRouteArgs> {
   TripDetailsRoute({
-    _i20.Key? key,
+    _i21.Key? key,
     required int tripId,
-    List<_i19.PageRouteInfo>? children,
+    List<_i20.PageRouteInfo>? children,
   }) : super(
           TripDetailsRoute.name,
           args: TripDetailsRouteArgs(
@@ -644,8 +666,8 @@ class TripDetailsRoute extends _i19.PageRouteInfo<TripDetailsRouteArgs> {
 
   static const String name = 'TripDetailsRoute';
 
-  static const _i19.PageInfo<TripDetailsRouteArgs> page =
-      _i19.PageInfo<TripDetailsRouteArgs>(name);
+  static const _i20.PageInfo<TripDetailsRouteArgs> page =
+      _i20.PageInfo<TripDetailsRouteArgs>(name);
 }
 
 class TripDetailsRouteArgs {
@@ -654,7 +676,7 @@ class TripDetailsRouteArgs {
     required this.tripId,
   });
 
-  final _i20.Key? key;
+  final _i21.Key? key;
 
   final int tripId;
 
@@ -665,9 +687,9 @@ class TripDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i17.TripsFiltersPage]
-class TripsFiltersRoute extends _i19.PageRouteInfo<void> {
-  const TripsFiltersRoute({List<_i19.PageRouteInfo>? children})
+/// [_i18.TripsFiltersPage]
+class TripsFiltersRoute extends _i20.PageRouteInfo<void> {
+  const TripsFiltersRoute({List<_i20.PageRouteInfo>? children})
       : super(
           TripsFiltersRoute.name,
           initialChildren: children,
@@ -675,13 +697,13 @@ class TripsFiltersRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'TripsFiltersRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i18.TripsTab]
-class TripsRoute extends _i19.PageRouteInfo<void> {
-  const TripsRoute({List<_i19.PageRouteInfo>? children})
+/// [_i19.TripsTab]
+class TripsRoute extends _i20.PageRouteInfo<void> {
+  const TripsRoute({List<_i20.PageRouteInfo>? children})
       : super(
           TripsRoute.name,
           initialChildren: children,
@@ -689,5 +711,5 @@ class TripsRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'TripsRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }

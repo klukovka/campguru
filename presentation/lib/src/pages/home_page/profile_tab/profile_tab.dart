@@ -40,10 +40,8 @@ class ProfileTab extends StatelessWidget implements AutoRouteWrapper {
       ),
       NavigationTile(
         leading: Icon(HomePageTabType.locations.iconData),
-        title: const Text('Saved Locations'),
-        onPressed: () {
-          //TODO: Add navigation to saved locations
-        },
+        title: const Text('Favorite Locations'),
+        onPressed: context.appRouter.pushFavoriteLocationsPage,
       ),
       NavigationTile(
         leading: Icon(HomePageTabType.routes.iconData),

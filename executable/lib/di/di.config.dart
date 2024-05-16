@@ -112,6 +112,8 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i6.RouteCacheProgressViewCubit>(
       () => blocModule.routeCacheProgressViewCubit);
   gh.lazySingleton<_i6.RouteMapPageCubit>(() => blocModule.routeMapPageCubit);
+  gh.lazySingleton<_i6.FavoriteLocationsPageCubit>(
+      () => blocModule.favoriteLocationsPageCubit);
   await gh.lazySingletonAsync<_i7.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -321,6 +323,9 @@ Future<_i1.GetIt> $configureDependencies(
       .getRouteLocationsController(gh<_i5.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i6.RouteDetailsPageController>(() => controllersModule
       .getRouteDetailsPageController(gh<_i5.GetRouteDetailsUseCase>()));
+  gh.lazySingleton<_i6.FavoriteLocationsPageController>(() =>
+      controllersModule.getFavoriteLocationsPageController(
+          gh<_i5.GetFavoriteLocationsUseCase>()));
   gh.lazySingleton<_i6.RouteMapPageController>(
       () => controllersModule.getRouteMapPageController(
             gh<_i5.CacheRouteUseCase>(),
