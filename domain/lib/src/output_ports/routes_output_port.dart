@@ -14,4 +14,6 @@ abstract class RoutesOutputPort {
     required double cacheProgress,
     required bool isCompleted,
   });
+  void startRouteCreation();
+  void stopRouteCreation();
 }
