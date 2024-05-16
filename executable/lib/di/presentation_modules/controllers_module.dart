@@ -14,6 +14,7 @@ abstract class ControllersModule {
     GetAppVersion getAppVersion,
     GetTripsUseCase getAllTripsUseCase,
     GetFavoriteLocationsUseCase getFavoriteLocationsUseCase,
+    GetFavoriteRoutesUseCase getFavoriteRoutesUseCase,
   ) =>
       SplashPageController(
         isAuthorizedUseCase: isAuthorizedUseCase,
@@ -25,6 +26,7 @@ abstract class ControllersModule {
         getAppVersion: getAppVersion,
         getAllTripsUseCase: getAllTripsUseCase,
         getFavoriteLocationsUseCase: getFavoriteLocationsUseCase,
+        getFavoriteRoutesUseCase: getFavoriteRoutesUseCase,
       );
 
   @lazySingleton
@@ -143,5 +145,13 @@ abstract class ControllersModule {
       CreateRoutePageController(
         getRoutePreviewUseCase: getRoutePreviewUseCase,
         createNewRouteUseCase: createNewRouteUseCase,
+      );
+
+  @lazySingleton
+  FavoriteRoutesTabController favoriteRoutesTabController(
+    GetFavoriteRoutesUseCase getFavoriteRoutesUseCase,
+  ) =>
+      FavoriteRoutesTabController(
+        getFavoriteRoutesUseCase,
       );
 }

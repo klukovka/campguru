@@ -20,6 +20,6 @@ abstract class RoutesOutputPort {
   void updateRoutePreview(String url);
   void stopPreviewLoading();
   void setFavoriteRoutesFilter(Filter filter);
-  void updateFavoriteRoutes(List<Route> values, int fullCount);
+  void updateFavoriteRoutes(List<Route> routes, int fullCount);
   void stopFavoriteRoutesLoading();
 }

@@ -85,7 +85,7 @@ abstract class $AppAutoRouter extends _i26.RootStackRouter {
     FavoriteRoutesRoute.name: (routeData) {
       return _i26.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.FavoriteRoutesTab(),
+        child: _i26.WrappedRoute(child: const _i4.FavoriteRoutesTab()),
       );
     },
     HomeRoute.name: (routeData) {

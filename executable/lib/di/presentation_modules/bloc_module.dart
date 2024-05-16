@@ -65,4 +65,7 @@ abstract class BlocModule {
 
   @lazySingleton
   CreateRoutePageCubit get createRoutePageCubit => CreateRoutePageCubit();
+
+  @lazySingleton
+  FavoriteRoutesTabCubit get favoriteRoutesTabCubit => FavoriteRoutesTabCubit();
 }

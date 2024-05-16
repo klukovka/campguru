@@ -10,6 +10,7 @@ export 'pages/locations/route_locations_page/cubit/route_locations_page_cubit.da
 export 'pages/reviews/location_reviews_page/cubit/location_reviews_page_cubit.dart';
 export 'pages/reviews/route_reviews_page/cubit/route_reviews_page_cubit.dart';
 export 'pages/routes/create_route_page/cubit/create_route_page_cubit.dart';
+export 'pages/routes/my_routes_page/favorite_routes_tab/cubit/favorite_routes_tab_cubit.dart';
 export 'pages/routes/route_details_page/cubit/route_details_page_cubit.dart';
 export 'pages/routes/route_map_page/cubit/route_map_page_cubit.dart';
 export 'pages/routes/routes_filters_page/cubit/routes_filters_page_cubit.dart';
