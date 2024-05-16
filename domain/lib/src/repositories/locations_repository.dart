@@ -9,4 +9,5 @@ abstract class LocationsRepository {
       int routeId, Filter filter);
   Future<FailureOrResult<List<PremiumBasedFilterLabel>>>
       getLocationsFilterLabels();
+  Future<FailureOrResult<Chunk<Location>>> getFavoriteLocations(Filter filter);
 }

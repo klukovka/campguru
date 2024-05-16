@@ -257,6 +257,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.ErrorHandlerOutputPort>(),
             gh<_i5.LocationsOutputPort>(),
           ));
+  gh.lazySingleton<_i5.GetFavoriteLocationsUseCase>(
+      () => locationUseCasesCasesModule.getFavoriteLocationsUseCase(
+            gh<_i5.LocationsRepository>(),
+            gh<_i5.ErrorHandlerOutputPort>(),
+            gh<_i5.LocationsOutputPort>(),
+          ));
   gh.lazySingleton<_i5.IsAuthorizedUseCase>(
       () => userUseCasesModule.getIsAuthorizedUseCase(
             gh<_i5.PreferencesRepository>(),
