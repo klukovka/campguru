@@ -6,10 +6,12 @@ import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 class LocationTile extends StatelessWidget {
   final Location location;
+  final Widget? buttonBelow;
 
   const LocationTile({
     super.key,
     required this.location,
+    this.buttonBelow,
   });
 
   @override
@@ -36,7 +38,7 @@ class LocationTile extends StatelessWidget {
           Text('${location.reviewsAmount} Reviews'),
         ],
       ),
-      favoriteButton: LocationFavoriteButton(location: location),
+      favoriteButton: buttonBelow ?? LocationFavoriteButton(location: location),
       onPressed: () => context.appRouter.pushLocationDetailsPage(location.id),
     );
   }
