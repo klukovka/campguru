@@ -25,8 +25,13 @@ class HomePage extends StatefulWidget implements AutoRouteWrapper {
 
 class _HomePageState extends State<HomePage> {
   final overlay = OverlayEntry(
-      builder: (_) => const Positioned(
-          bottom: 70, right: 0, left: 0, child: RouteCacheProgressView()));
+    builder: (context) => Positioned(
+      bottom: 70 + MediaQuery.paddingOf(context).bottom,
+      right: 0,
+      left: 0,
+      child: const RouteCacheProgressView(),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {

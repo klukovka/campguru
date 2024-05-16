@@ -9,6 +9,9 @@ class SplashPageController {
   final GetAppVersion getAppVersion;
   final GetTripsUseCase getAllTripsUseCase;
   final GetFavoriteLocationsUseCase getFavoriteLocationsUseCase;
+  final GetFavoriteRoutesUseCase getFavoriteRoutesUseCase;
+  final GetMyOwnRoutesUseCase getMyOwnRoutesUseCase;
+  final GetCachedRoutesUseCase getCachedRoutesUseCase;
 
   SplashPageController({
     required this.isAuthorizedUseCase,
@@ -19,6 +22,9 @@ class SplashPageController {
     required this.getAppVersion,
     required this.getAllTripsUseCase,
     required this.getFavoriteLocationsUseCase,
+    required this.getFavoriteRoutesUseCase,
+    required this.getMyOwnRoutesUseCase,
+    required this.getCachedRoutesUseCase,
   });
 
   void checkIfAuthorized() => isAuthorizedUseCase();
@@ -30,6 +36,9 @@ class SplashPageController {
     getAllRoutesUseCase(const Filter());
     getAllTripsUseCase(const Filter());
     getFavoriteLocationsUseCase(const Filter());
+    getFavoriteRoutesUseCase(const Filter());
+    getMyOwnRoutesUseCase(const Filter());
+    getCachedRoutesUseCase();
     getAppVersion();
   }
 }

@@ -88,4 +88,50 @@ abstract class RouteUseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         routesOutputPort: routesOutputPort,
       );
+
+  @lazySingleton
+  GetFavoriteRoutesUseCase getFavoriteRoutesUseCase(
+    RoutesRepository routesRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    RoutesOutputPort routesOutputPort,
+  ) =>
+      GetFavoriteRoutesUseCase(
+        routesRepository: routesRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        routesOutputPort: routesOutputPort,
+      );
+
+  @lazySingleton
+  GetMyOwnRoutesUseCase getMyOwnRoutesUseCase(
+    RoutesRepository routesRepository,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    RoutesOutputPort routesOutputPort,
+  ) =>
+      GetMyOwnRoutesUseCase(
+        routesRepository: routesRepository,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+        routesOutputPort: routesOutputPort,
+      );
+
+  @lazySingleton
+  GetCachedRoutesUseCase getCachedRoutesUseCase(
+    CacheRepository cacheRepository,
+    RoutesOutputPort routesOutputPort,
+  ) =>
+      GetCachedRoutesUseCase(
+        cacheRepository: cacheRepository,
+        routesOutputPort: routesOutputPort,
+      );
+
+  @lazySingleton
+  DeleteCachedRouteUseCase deleteCachedRouteUseCase(
+    CacheRepository cacheRepository,
+    RoutesOutputPort routesOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+  ) =>
+      DeleteCachedRouteUseCase(
+        cacheRepository: cacheRepository,
+        routesOutputPort: routesOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+      );
 }

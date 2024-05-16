@@ -45,10 +45,8 @@ class ProfileTab extends StatelessWidget implements AutoRouteWrapper {
       ),
       NavigationTile(
         leading: Icon(HomePageTabType.routes.iconData),
-        title: const Text('Saved Routes'),
-        onPressed: () {
-          //TODO: Add navigation to saved routes
-        },
+        title: const Text('My Routes'),
+        onPressed: context.appRouter.pushMyRoutesPage,
       ),
       NavigationTile(
         leading: Icon(MdiIcons.help),

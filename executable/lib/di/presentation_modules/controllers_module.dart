@@ -14,6 +14,9 @@ abstract class ControllersModule {
     GetAppVersion getAppVersion,
     GetTripsUseCase getAllTripsUseCase,
     GetFavoriteLocationsUseCase getFavoriteLocationsUseCase,
+    GetFavoriteRoutesUseCase getFavoriteRoutesUseCase,
+    GetMyOwnRoutesUseCase getMyOwnRoutesUseCase,
+    GetCachedRoutesUseCase getCachedRoutesUseCase,
   ) =>
       SplashPageController(
         isAuthorizedUseCase: isAuthorizedUseCase,
@@ -25,6 +28,9 @@ abstract class ControllersModule {
         getAppVersion: getAppVersion,
         getAllTripsUseCase: getAllTripsUseCase,
         getFavoriteLocationsUseCase: getFavoriteLocationsUseCase,
+        getFavoriteRoutesUseCase: getFavoriteRoutesUseCase,
+        getMyOwnRoutesUseCase: getMyOwnRoutesUseCase,
+        getCachedRoutesUseCase: getCachedRoutesUseCase,
       );
 
   @lazySingleton
@@ -143,5 +149,29 @@ abstract class ControllersModule {
       CreateRoutePageController(
         getRoutePreviewUseCase: getRoutePreviewUseCase,
         createNewRouteUseCase: createNewRouteUseCase,
+      );
+
+  @lazySingleton
+  FavoriteRoutesTabController favoriteRoutesTabController(
+    GetFavoriteRoutesUseCase getFavoriteRoutesUseCase,
+  ) =>
+      FavoriteRoutesTabController(
+        getFavoriteRoutesUseCase,
+      );
+
+  @lazySingleton
+  MyOwnRoutesTabController myOwnRoutesTabController(
+    GetMyOwnRoutesUseCase getMyOwnRoutesUseCase,
+  ) =>
+      MyOwnRoutesTabController(getMyOwnRoutesUseCase);
+
+  @lazySingleton
+  CachedRoutesTabController cachedRoutesTabController(
+    GetCachedRoutesUseCase getCachedRoutesUseCase,
+    DeleteCachedRouteUseCase deleteCachedRouteUseCase,
+  ) =>
+      CachedRoutesTabController(
+        getCachedRoutesUseCase: getCachedRoutesUseCase,
+        deleteCachedRouteUseCase: deleteCachedRouteUseCase,
       );
 }

@@ -9,6 +9,9 @@ class RoutesPresenter extends RoutesOutputPort {
   final RouteCacheProgressViewCubit routeCacheProgressViewCubit;
   final RouteMapPageCubit routeMapPageCubit;
   final CreateRoutePageCubit createRoutePageCubit;
+  final FavoriteRoutesTabCubit favoriteRoutesTabCubit;
+  final MyOwnRoutesTabCubit myOwnRoutesTabCubit;
+  final CachedRoutesTabCubit cachedRoutesTabCubit;
 
   RoutesPresenter({
     required this.routesTabCubit,
@@ -18,6 +21,9 @@ class RoutesPresenter extends RoutesOutputPort {
     required this.routeCacheProgressViewCubit,
     required this.routeMapPageCubit,
     required this.createRoutePageCubit,
+    required this.favoriteRoutesTabCubit,
+    required this.myOwnRoutesTabCubit,
+    required this.cachedRoutesTabCubit,
   });
 
   @override
@@ -52,7 +58,21 @@ class RoutesPresenter extends RoutesOutputPort {
       isFavorite,
     );
 
+    final favoriteRoutes =
+        favoriteRoutesTabCubit.state.routes.updateFavoriteStatus(
+      routeId,
+      isFavorite,
+    );
+
+    final myOwnRoutes = myOwnRoutesTabCubit.state.routes.updateFavoriteStatus(
+      routeId,
+      isFavorite,
+    );
+
     routesTabCubit.setRoutes(allRoutes);
+    favoriteRoutesTabCubit.setRoutes(favoriteRoutes);
+    myOwnRoutesTabCubit.setRoutes(myOwnRoutes);
+
     if (routeDetailsPageCubit.state.route.id == routeId) {
       routeDetailsPageCubit.updateRouteFavoriteStatus(
         isFavorite,
@@ -138,5 +158,53 @@ class RoutesPresenter extends RoutesOutputPort {
   @override
   void updateRoutePreview(String url) {
     createRoutePageCubit.updatePreview(url);
+  }
+
+  @override
+  void setFavoriteRoutesFilter(Filter filter) {
+    favoriteRoutesTabCubit.setFilter(filter);
+  }
+
+  @override
+  void stopFavoriteRoutesLoading() {
+    favoriteRoutesTabCubit.stopLoading();
+  }
+
+  @override
+  void updateFavoriteRoutes(List<Route> routes, int fullCount) {
+    favoriteRoutesTabCubit.setRoutes(routes, amount: fullCount);
+  }
+
+  @override
+  void setMyOwnRoutesFilter(Filter filter) {
+    myOwnRoutesTabCubit.setFilter(filter);
+  }
+
+  @override
+  void stopMyOwnRoutesLoading() {
+    myOwnRoutesTabCubit.stopLoading();
+  }
+
+  @override
+  void updateMyOwnRoutes(List<Route> routes, int fullCount) {
+    myOwnRoutesTabCubit.setRoutes(routes, amount: fullCount);
+  }
+
+  @override
+  void setCachedRoutesSearchQuery(String searchQuery) {
+    cachedRoutesTabCubit.setSearchQuery(searchQuery);
+  }
+
+  @override
+  void updateCachedRoutes(List<Route> routes) {
+    cachedRoutesTabCubit.setRoutes(routes);
+  }
+
+  @override
+  void deleteCachedRoute(int routeId) {
+    final routes = cachedRoutesTabCubit.state.routes
+        .where((element) => element.id != routeId)
+        .toList();
+    cachedRoutesTabCubit.setRoutes(routes);
   }
 }

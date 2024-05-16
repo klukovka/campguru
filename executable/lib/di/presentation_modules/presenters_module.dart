@@ -54,6 +54,9 @@ abstract class PresentersModule {
     RouteCacheProgressViewCubit routeCacheProgressViewCubit,
     RouteMapPageCubit routeMapPageCubit,
     CreateRoutePageCubit createRoutePageCubit,
+    FavoriteRoutesTabCubit favoriteRoutesTabCubit,
+    MyOwnRoutesTabCubit myOwnRoutesTabCubit,
+    CachedRoutesTabCubit cachedRoutesTabCubit,
   ) =>
       RoutesPresenter(
         routesTabCubit: routesTabCubit,
@@ -63,6 +66,9 @@ abstract class PresentersModule {
         routeCacheProgressViewCubit: routeCacheProgressViewCubit,
         routeMapPageCubit: routeMapPageCubit,
         createRoutePageCubit: createRoutePageCubit,
+        favoriteRoutesTabCubit: favoriteRoutesTabCubit,
+        myOwnRoutesTabCubit: myOwnRoutesTabCubit,
+        cachedRoutesTabCubit: cachedRoutesTabCubit,
       );
 
   @lazySingleton
