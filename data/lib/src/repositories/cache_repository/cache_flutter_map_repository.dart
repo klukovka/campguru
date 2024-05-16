@@ -56,6 +56,10 @@ class CacheFlutterMapRepository implements CacheRepository {
   }
 
   @override
-  List<Route> getCachedRoutes() =>
-      _dataSource.getCachedRoutes().map((e) => e.toDomain()).toList();
+  List<Route> getCachedRoutes({String searchQuery = ''}) => _dataSource
+      .getCachedRoutes()
+      .map((e) => e.toDomain())
+      .where((element) =>
+          element.name.toLowerCase().contains(searchQuery.toLowerCase()))
+      .toList();
 }
