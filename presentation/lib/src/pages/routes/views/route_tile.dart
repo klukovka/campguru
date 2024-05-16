@@ -6,10 +6,14 @@ import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 class RouteTile extends StatelessWidget {
   final domain.Route route;
+  final VoidCallback? onPressed;
+  final Widget? buttonBelow;
 
   const RouteTile({
     super.key,
     required this.route,
+    this.onPressed,
+    this.buttonBelow,
   });
 
   @override
@@ -42,8 +46,9 @@ class RouteTile extends StatelessWidget {
           Text('${route.reviewsAmount} Reviews'),
         ],
       ),
-      favoriteButton: RouteFavoriteButton(route: route),
-      onPressed: () => context.appRouter.pushRouteDetailsPage(route.id),
+      favoriteButton: buttonBelow ?? RouteFavoriteButton(route: route),
+      onPressed:
+          onPressed ?? () => context.appRouter.pushRouteDetailsPage(route.id),
     );
   }
 }

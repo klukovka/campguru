@@ -53,6 +53,12 @@ class _CachedRoutesTabState extends State<CachedRoutesTab> {
               child: ListView.builder(
                 itemBuilder: (context, index) => RouteTile(
                   route: state.routes[index],
+                  buttonBelow: DeleteCircleButton(onPressed: () {
+                    //TODO: Delete
+                  }),
+                  onPressed: () {
+                    //TODO: Open cached location map
+                  },
                 ),
                 itemCount: state.routes.length,
               ),
