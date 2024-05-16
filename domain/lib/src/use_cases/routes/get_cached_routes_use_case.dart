@@ -9,7 +9,7 @@ class GetCachedRoutesUseCase {
     required this.routesOutputPort,
   });
 
-  Future<void> call(String searchQuery) async {
+  Future<void> call({String searchQuery = ''}) async {
     routesOutputPort.setCachedRoutesFilter(searchQuery);
     final routes = cacheRepository.getCachedRoutes(
       searchQuery: searchQuery,

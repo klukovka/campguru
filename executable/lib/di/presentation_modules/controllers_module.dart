@@ -162,4 +162,10 @@ abstract class ControllersModule {
     GetMyOwnRoutesUseCase getMyOwnRoutesUseCase,
   ) =>
       MyOwnRoutesTabController(getMyOwnRoutesUseCase);
+
+  @lazySingleton
+  CachedRoutesTabController cachedRoutesTabController(
+    GetCachedRoutesUseCase getCachedRoutesUseCase,
+  ) =>
+      CachedRoutesTabController(getCachedRoutesUseCase);
 }
