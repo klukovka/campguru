@@ -45,4 +45,6 @@ class CampguruRouter extends BaseRouter {
 
   Future<void> pushFavoriteLocationsPage() =>
       push(const FavoriteLocationsRoute());
+
+  Future<void> pushCreateRoutePage() => push(const CreateRouteRoute());
 }

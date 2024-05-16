@@ -53,6 +53,14 @@ class _HomePageState extends State<HomePage> {
                 opacity: animation,
                 child: child,
               ),
+              floatingActionButton: switch (tabsRouter.activeIndex) {
+                int x when x == HomePageTabType.routes.index =>
+                  FloatingActionButton(
+                    onPressed: context.appRouter.pushCreateRoutePage,
+                    child: const Icon(Icons.add),
+                  ),
+                _ => null,
+              },
               bottomNavigationBar: BottomNavigationBar(
                 onTap: (index) => tabsRouter.setActiveIndex(index),
                 currentIndex: tabsRouter.activeIndex,
