@@ -5,25 +5,29 @@ class CreateRoutePageState extends Equatable {
   final bool isPreviewLoading;
   final bool hasError;
   final String? preview;
+  final int? routeId;
 
   const CreateRoutePageState({
     this.isSaving = false,
     this.isPreviewLoading = false,
     this.hasError = false,
     this.preview,
+    this.routeId,
   });
 
   CreateRoutePageState copyWith({
     bool? isSaving,
     bool? isPreviewLoading,
-    String? preview,
+    Nullable<String>? preview,
     bool? hasError,
+    Nullable<int>? routeId,
   }) {
     return CreateRoutePageState(
       isSaving: isSaving ?? this.isSaving,
       isPreviewLoading: isPreviewLoading ?? this.isPreviewLoading,
-      preview: preview ?? this.preview,
+      preview: preview != null ? preview.value : this.preview,
       hasError: hasError ?? this.hasError,
+      routeId: routeId != null ? routeId.value : this.routeId,
     );
   }
 
@@ -33,5 +37,6 @@ class CreateRoutePageState extends Equatable {
         isPreviewLoading,
         preview,
         hasError,
+        routeId,
       ];
 }

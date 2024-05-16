@@ -128,8 +128,11 @@ class RoutesPresenter extends RoutesOutputPort {
   }
 
   @override
-  void stopRouteCreation({required bool hasError}) {
-    createRoutePageCubit.stopRouteCreation(hasError: hasError);
+  void stopRouteCreation({required bool hasError, int? routeId}) {
+    createRoutePageCubit.stopRouteCreation(
+      hasError: hasError,
+      routeId: routeId,
+    );
   }
 
   @override

@@ -55,4 +55,7 @@ class CampguruRouter extends BaseRouter {
       push<List<Location>>(
         SelectableLocationsRoute(selectedLocations: selectedLocations),
       );
+
+  Future<void> replaceRouteDetailsPage(int id) =>
+      replace(RouteDetailsRoute(routeId: id));
 }

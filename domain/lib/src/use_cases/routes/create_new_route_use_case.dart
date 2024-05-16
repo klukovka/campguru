@@ -22,6 +22,9 @@ class CreateNewRouteUseCase {
     }
 
     routesOutputPort.updateRouteDetails(route.result!);
-    routesOutputPort.stopRouteCreation(hasError: false);
+    routesOutputPort.stopRouteCreation(
+      hasError: false,
+      routeId: route.result?.id,
+    );
   }
 }

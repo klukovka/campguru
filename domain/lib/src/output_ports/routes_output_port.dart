@@ -15,7 +15,7 @@ abstract class RoutesOutputPort {
     required bool isCompleted,
   });
   void startRouteCreation();
-  void stopRouteCreation({required bool hasError});
+  void stopRouteCreation({required bool hasError, int? routeId});
   void startPreviewLoading();
   void updateRoutePreview(String url);
   void stopPreviewLoading();
