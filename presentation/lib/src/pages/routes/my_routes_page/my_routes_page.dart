@@ -13,6 +13,8 @@ class MyRoutesPage extends StatelessWidget {
       transitionBuilder: (context, child, animation) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
+          //TODO: Add localizations
+          appBar: AppBar(title: const Text('My Routes')),
           body: FadeTransition(
             opacity: animation,
             child: child,
