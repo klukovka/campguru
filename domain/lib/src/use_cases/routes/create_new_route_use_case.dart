@@ -17,11 +17,11 @@ class CreateNewRouteUseCase {
 
     if (route.hasFailed) {
       errorHandlerOutputPort.setError(route.failure!);
-      routesOutputPort.stopRouteCreation();
+      routesOutputPort.stopRouteCreation(hasError: true);
       return;
     }
 
     routesOutputPort.updateRouteDetails(route.result!);
-    routesOutputPort.stopRouteCreation();
+    routesOutputPort.stopRouteCreation(hasError: false);
   }
 }
