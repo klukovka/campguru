@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -187,7 +188,15 @@ class _SignUpPageState extends State<SignUpPage> {
             AutovalidateMode.onUserInteraction,
           ).dispatch(context);
           if (_fbState?.saveAndValidate() ?? false) {
-            //TODO: Save
+            context.locator<SignUpPageController>()(
+              NewUser(
+                email: _fbValues[SignUpPageField.email.name],
+                password: _fbValues[SignUpPageField.password.name],
+                name: _fbValues[SignUpPageField.name.name],
+                photo: (_fbValues[SignUpPageField.photo.name] as PickedImage?)
+                    ?.bytes,
+              ),
+            );
           }
         },
         child: isLoading

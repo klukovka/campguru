@@ -28,7 +28,11 @@ class StablePreferencesRepository implements PreferencesRepository {
 
     if (token.isEmpty) return true;
 
-    return Jwt.isExpired(token);
+    try {
+      return Jwt.isExpired(token);
+    } catch (_) {
+      return true;
+    }
   }
 
   @override

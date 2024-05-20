@@ -24,16 +24,16 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
 
   @override
   void signUpCompleted() {
-    // TODO: implement signUpCompleted
+    signUpPageCubit.signUpCompleted();
   }
 
   @override
   void signUpFailed() {
-    // TODO: implement signUpFailed
+    signUpPageCubit.signUpFailed();
   }
 
   @override
   void startSignUp() {
-    // TODO: implement startSignUp
+    signUpPageCubit.startSignUp();
   }
 }

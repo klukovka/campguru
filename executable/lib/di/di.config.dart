@@ -336,6 +336,8 @@ Future<_i1.GetIt> $configureDependencies(
       .getLocationsTabController(gh<_i5.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i6.LocationFiltersPageController>(() => controllersModule
       .getLocationFiltersPageController(gh<_i5.GetAllLocationsUseCase>()));
+  gh.lazySingleton<_i6.SignUpPageController>(
+      () => controllersModule.signUpPageController(gh<_i5.SignUpUseCase>()));
   gh.lazySingleton<_i5.TripsRepository>(
     () => tripsRepositoryModule.getTripsRepository(gh<_i7.TestDataSource>()),
     registerFor: {_test},
