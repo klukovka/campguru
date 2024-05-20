@@ -6,6 +6,8 @@ import 'package:presentation/src/config/router/base_router.dart';
 class CampguruRouter extends BaseRouter {
   CampguruRouter(AppAutoRouter super.stackRouter);
 
+  Future<void> replaceToSplashPage() => pushAndClearStack(const SplashRoute());
+
   Future<void> replaceToHomePage() => pushAndClearStack(const HomeRoute());
 
   Future<void> replaceToStartPage() => pushAndClearStack(const StartRoute());

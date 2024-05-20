@@ -39,50 +39,63 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     //TODO: Add localizations
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign Up'),
-      ),
-      body: AutovalidateModeNotificationBuilder(
-        builder: (context, autovalidateMode, child) => FormBuilder(
-          key: _fbKey,
-          autovalidateMode: autovalidateMode,
-          child: SafeArea(
-            child: CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                  sliver: SliverFillRemaining(
-                    child: Column(
-                      children: [
-                        const Spacer(),
-                        AvatarPickerFormField(
-                          name: SignUpPageField.photo.name,
-                          radius: 52,
+    return BlocConsumer<SignUpPageCubit, SignUpPageState>(
+      listener: (context, state) {
+        if (state.status == SignUpPageStatus.success) {
+          context.appRouter.replaceToSplashPage();
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Sign Up'),
+          ),
+          body: AutovalidateModeNotificationBuilder(
+            builder: (context, autovalidateMode, child) => FormBuilder(
+              key: _fbKey,
+              autovalidateMode: autovalidateMode,
+              child: SafeArea(
+                child: CustomScrollView(
+                  slivers: [
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 24, horizontal: 16),
+                      sliver: SliverFillRemaining(
+                        child: Column(
+                          children: [
+                            const Spacer(),
+                            AvatarPickerFormField(
+                              name: SignUpPageField.photo.name,
+                              radius: 52,
+                            ),
+                            const SizedBox(height: 32),
+                            _buildNameField(),
+                            const SizedBox(height: 12),
+                            _buildEmailField(),
+                            const SizedBox(height: 12),
+                            _buildPasswordField(),
+                            const SizedBox(height: 12),
+                            _buildConfirmPasswordField(),
+                            const SizedBox(height: 12),
+                            const Spacer(),
+                            Builder(
+                              builder: (context) => _buildSaveButton(
+                                context,
+                                isLoading:
+                                    state.status == SignUpPageStatus.loading,
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 32),
-                        _buildNameField(),
-                        const SizedBox(height: 12),
-                        _buildEmailField(),
-                        const SizedBox(height: 12),
-                        _buildPasswordField(),
-                        const SizedBox(height: 12),
-                        _buildConfirmPasswordField(),
-                        const SizedBox(height: 12),
-                        const Spacer(),
-                        Builder(
-                          builder: (context) => _buildSaveButton(context),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -159,8 +172,9 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Widget _buildSaveButton(
-    BuildContext context,
-  ) {
+    BuildContext context, {
+    required bool isLoading,
+  }) {
     return Container(
       margin: EdgeInsets.only(
         top: 20,
@@ -176,13 +190,12 @@ class _SignUpPageState extends State<SignUpPage> {
             //TODO: Save
           }
         },
-        child: const Text('Complete'),
-        // child: state.isSaving
-        //     ? const Padding(
-        //         padding: EdgeInsets.all(4),
-        //         child: CircularProgressIndicator(),
-        //       )
-        //     : const Text('Complete'),
+        child: isLoading
+            ? const Padding(
+                padding: EdgeInsets.all(4),
+                child: CircularProgressIndicator(),
+              )
+            : const Text('Complete'),
       ),
     );
   }
