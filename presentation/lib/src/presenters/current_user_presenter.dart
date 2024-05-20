@@ -19,4 +19,19 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
       profileTabCubit.updateUser(user);
     }
   }
+
+  @override
+  void signUpCompleted() {
+    // TODO: implement signUpCompleted
+  }
+
+  @override
+  void signUpFailed() {
+    // TODO: implement signUpFailed
+  }
+
+  @override
+  void startSignUp() {
+    // TODO: implement startSignUp
+  }
 }

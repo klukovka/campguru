@@ -12,9 +12,10 @@ class ApiAuthRepository implements AuthRepository {
   @override
   Future<FailureOrResult<AuthenticationDetails>> refreshToken(
     String refreshToken,
-  ) {
-    // TODO: implement refreshToken
-    throw UnimplementedError();
+  ) async {
+    //TODO: Implement
+    return FailureOrResult.failure(
+        ApplicationFailure(type: ApplicationErrorType.general));
   }
 
   @override
