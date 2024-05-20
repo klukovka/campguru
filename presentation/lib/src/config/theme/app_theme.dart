@@ -21,6 +21,9 @@ final themeExtensions = <ThemeExtension<dynamic>>[
   CircleIconPreviewThemeData(
     user: HomePageTabType.profile.iconData,
   ),
+  AvatarThemeData(
+    defaultIcon: HomePageTabType.profile.iconData,
+  ),
 ];
 
 final lightTheme = FlexThemeData.light(
