@@ -34,8 +34,7 @@ class Avatar extends StatelessWidget {
           : Icon(
               Theme.of(context).extension<AvatarThemeData>()?.defaultIcon,
               size: radius * 2,
-              color: placeholderColor ??
-                  Theme.of(context).colorScheme.surface.withOpacity(0.6),
+              color: placeholderColor ?? Theme.of(context).colorScheme.primary,
             ),
     );
   }
