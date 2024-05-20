@@ -11,6 +11,7 @@ import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 enum SignUpPageField {
   photo,
   name,
+  surname,
   email,
   password,
   confirmPassword,
@@ -72,6 +73,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             const SizedBox(height: 32),
                             _buildNameField(),
                             const SizedBox(height: 12),
+                            _buildSurnameField(),
+                            const SizedBox(height: 12),
                             _buildEmailField(),
                             const SizedBox(height: 12),
                             _buildPasswordField(),
@@ -111,6 +114,22 @@ class _SignUpPageState extends State<SignUpPage> {
       },
       decoration: InputDecoration(
         labelText: 'Name',
+        prefixIcon: Icon(MdiIcons.account),
+      ),
+    );
+  }
+
+  Widget _buildSurnameField() {
+    return FormBuilderTextField(
+      name: SignUpPageField.surname.name,
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return 'Field is required';
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: 'Surname',
         prefixIcon: Icon(MdiIcons.account),
       ),
     );
@@ -193,6 +212,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 email: _fbValues[SignUpPageField.email.name],
                 password: _fbValues[SignUpPageField.password.name],
                 name: _fbValues[SignUpPageField.name.name],
+                surname: _fbValues[SignUpPageField.surname.name],
                 photo: (_fbValues[SignUpPageField.photo.name] as PickedImage?)
                     ?.bytes,
               ),

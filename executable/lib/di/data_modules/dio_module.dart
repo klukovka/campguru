@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -16,11 +14,15 @@ abstract class DioModule {
       ..options.sendTimeout = const Duration(milliseconds: 180000)
       ..options.receiveTimeout = const Duration(milliseconds: 180000)
       ..options.receiveDataWhenStatusError = true
-      ..options.contentType = ContentType.json.value
+      ..options.contentType = Headers.jsonContentType
       ..interceptors.add(
         LogInterceptor(
-            requestBody: true, responseBody: true, requestHeader: true),
-      );
+          requestBody: true,
+          responseBody: true,
+          requestHeader: true,
+        ),
+      )
+      ..options.validateStatus = (status) => true;
   }
 
   @lazySingleton
@@ -33,10 +35,14 @@ abstract class DioModule {
       ..options.sendTimeout = const Duration(milliseconds: 180000)
       ..options.receiveTimeout = const Duration(milliseconds: 180000)
       ..options.receiveDataWhenStatusError = true
-      ..options.contentType = ContentType.json.value
+      ..options.contentType = Headers.jsonContentType
       ..interceptors.add(
         LogInterceptor(
-            requestBody: true, responseBody: true, requestHeader: true),
-      );
+          requestBody: true,
+          responseBody: true,
+          requestHeader: true,
+        ),
+      )
+      ..options.validateStatus = (status) => true;
   }
 }

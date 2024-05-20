@@ -14,6 +14,7 @@ class NewUserDto {
   final String email;
   final String password;
   final String name;
+  final String surname;
   final Uint8List? photo;
 
   NewUserDto({
@@ -21,6 +22,7 @@ class NewUserDto {
     required this.password,
     required this.name,
     required this.photo,
+    required this.surname,
   });
 
   factory NewUserDto.fromDomain(NewUser newUser) => NewUserDto(
@@ -28,6 +30,7 @@ class NewUserDto {
         password: newUser.password,
         name: newUser.name,
         photo: newUser.photo,
+        surname: newUser.surname,
       );
 
   Map<String, dynamic> toJson() => _$NewUserDtoToJson(this);

@@ -22,7 +22,7 @@ class ApiAuthRepository implements AuthRepository {
   Future<FailureOrResult<AuthenticationDetails>> signUp(NewUser newUser) async {
     final response = await client.post(
       '/auth/sign-up',
-      data: NewUserDto.fromDomain(newUser),
+      data: NewUserDto.fromDomain(newUser).toJson(),
     );
 
     return response.toFailureOrResult(AuthenticationDetailsDto.fromJson);

@@ -11,6 +11,7 @@ Map<String, dynamic> _$NewUserDtoToJson(NewUserDto instance) {
     'email': instance.email,
     'password': instance.password,
     'name': instance.name,
+    'surname': instance.surname,
   };
 
   void writeNotNull(String key, dynamic value) {

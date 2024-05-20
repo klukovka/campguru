@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:data/src/core/dto.dart';
 import 'package:data/src/models/errors/error_dto.dart';
 import 'package:dio/dio.dart';
@@ -15,7 +17,7 @@ extension HandleResponseExtension on Response {
       return FailureOrResult.success(null);
     }
 
-    final response = ErrorDto.fromJson(data);
+    final response = ErrorDto.fromJson(jsonDecode(data));
 
     return FailureOrResult.failure(
       ApiFailure(

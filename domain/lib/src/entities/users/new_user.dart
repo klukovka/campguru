@@ -6,6 +6,7 @@ class NewUser extends Equatable {
   final String email;
   final String password;
   final String name;
+  final String surname;
   final Uint8List? photo;
 
   NewUser({
@@ -13,8 +14,15 @@ class NewUser extends Equatable {
     required this.password,
     required this.name,
     required this.photo,
+    required this.surname,
   });
 
   @override
-  List<Object?> get props => [email, password, name, photo];
+  List<Object?> get props => [
+        email,
+        password,
+        name,
+        photo,
+        surname,
+      ];
 }
