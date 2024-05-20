@@ -10,36 +10,40 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:data/data.dart' as _i7;
 import 'package:device_info_plus/device_info_plus.dart' as _i3;
+import 'package:dio/dio.dart' as _i8;
 import 'package:domain/domain.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:package_info_plus/package_info_plus.dart' as _i4;
 import 'package:presentation/presentation.dart' as _i6;
 
-import 'data_modules/app_settings_repository_module.dart' as _i15;
-import 'data_modules/auth_repository_module.dart' as _i14;
-import 'data_modules/cache_repository_module.dart' as _i17;
-import 'data_modules/data_packages_module.dart' as _i8;
-import 'data_modules/data_source_module.dart' as _i12;
-import 'data_modules/geoposition_repository_module.dart' as _i13;
-import 'data_modules/locations_repository_module.dart' as _i19;
-import 'data_modules/preferences_repository_module.dart' as _i16;
-import 'data_modules/reviews_repository_module.dart' as _i21;
-import 'data_modules/routes_repository_module.dart' as _i20;
-import 'data_modules/trips_repository_module.dart' as _i28;
-import 'data_modules/users_repository_module.dart' as _i18;
-import 'domain_modules/geoposition_use_cases_module.dart' as _i25;
-import 'domain_modules/location_use_cases_module.dart' as _i26;
-import 'domain_modules/review_use_cases_module.dart' as _i24;
-import 'domain_modules/route_use_cases_module.dart' as _i22;
-import 'domain_modules/settings_use_cases_module.dart' as _i29;
-import 'domain_modules/trip_use_cases_module.dart' as _i30;
-import 'domain_modules/user_use_cases_module.dart' as _i23;
-import 'presentation_modules/auto_router_module.dart' as _i10;
-import 'presentation_modules/bloc_module.dart' as _i11;
-import 'presentation_modules/controllers_module.dart' as _i27;
-import 'presentation_modules/presenters_module.dart' as _i9;
+import 'data_modules/app_settings_repository_module.dart' as _i16;
+import 'data_modules/auth_repository_module.dart' as _i27;
+import 'data_modules/cache_repository_module.dart' as _i18;
+import 'data_modules/data_packages_module.dart' as _i9;
+import 'data_modules/data_source_module.dart' as _i13;
+import 'data_modules/dio_module.dart' as _i17;
+import 'data_modules/geoposition_repository_module.dart' as _i14;
+import 'data_modules/locations_repository_module.dart' as _i20;
+import 'data_modules/preferences_repository_module.dart' as _i15;
+import 'data_modules/reviews_repository_module.dart' as _i22;
+import 'data_modules/routes_repository_module.dart' as _i21;
+import 'data_modules/trips_repository_module.dart' as _i30;
+import 'data_modules/users_repository_module.dart' as _i19;
+import 'domain_modules/geoposition_use_cases_module.dart' as _i26;
+import 'domain_modules/location_use_cases_module.dart' as _i28;
+import 'domain_modules/review_use_cases_module.dart' as _i25;
+import 'domain_modules/route_use_cases_module.dart' as _i23;
+import 'domain_modules/settings_use_cases_module.dart' as _i31;
+import 'domain_modules/trip_use_cases_module.dart' as _i32;
+import 'domain_modules/user_use_cases_module.dart' as _i24;
+import 'presentation_modules/auto_router_module.dart' as _i11;
+import 'presentation_modules/bloc_module.dart' as _i12;
+import 'presentation_modules/controllers_module.dart' as _i29;
+import 'presentation_modules/presenters_module.dart' as _i10;
 
+const String _dev = 'dev';
+const String _prod = 'prod';
 const String _test = 'test';
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -59,9 +63,9 @@ Future<_i1.GetIt> $configureDependencies(
   final blocModule = _$BlocModule();
   final dataSourceModule = _$DataSourceModule();
   final geopositionRepositoryModule = _$GeopositionRepositoryModule();
-  final authRepositoryModule = _$AuthRepositoryModule();
-  final appSettingsRepositoryModule = _$AppSettingsRepositoryModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
+  final appSettingsRepositoryModule = _$AppSettingsRepositoryModule();
+  final dioModule = _$DioModule();
   final cacheRepositoryModule = _$CacheRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
   final locationsRepositoryModule = _$LocationsRepositoryModule();
@@ -71,6 +75,7 @@ Future<_i1.GetIt> $configureDependencies(
   final userUseCasesModule = _$UserUseCasesModule();
   final reviewUseCasesModule = _$ReviewUseCasesModule();
   final geopositionUseCasesModule = _$GeopositionUseCasesModule();
+  final authRepositoryModule = _$AuthRepositoryModule();
   final locationUseCasesCasesModule = _$LocationUseCasesCasesModule();
   final controllersModule = _$ControllersModule();
   final tripsRepositoryModule = _$TripsRepositoryModule();
@@ -122,6 +127,7 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.myOwnRoutesTabCubit);
   gh.lazySingleton<_i6.CachedRoutesTabCubit>(
       () => blocModule.cachedRoutesTabCubit);
+  gh.lazySingleton<_i6.SignUpPageCubit>(() => blocModule.signUpPageCubit);
   await gh.lazySingletonAsync<_i7.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -130,6 +136,13 @@ Future<_i1.GetIt> $configureDependencies(
       () => geopositionRepositoryModule.geopositionRepository);
   gh.lazySingleton<_i6.CampguruRouter>(
       () => autoRouterModule.router(gh<_i6.AppAutoRouter>()));
+  gh.lazySingleton<_i5.CurrentUserOutputPort>(
+      () => presentersModule.getCurrentUserOutputPort(
+            gh<_i6.SplashPageCubit>(),
+            gh<_i6.HomePageCubit>(),
+            gh<_i6.ProfileTabCubit>(),
+            gh<_i6.SignUpPageCubit>(),
+          ));
   gh.lazySingleton<_i5.RoutesOutputPort>(
       () => presentersModule.getRoutesOutputPort(
             gh<_i6.RoutesTabCubit>(),
@@ -149,9 +162,13 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i6.TripsFiltersPageCubit>(),
             gh<_i6.TripDetailsPageCubit>(),
           ));
-  gh.lazySingleton<_i5.AuthRepository>(
-    () => authRepositoryModule.testAuthRepository,
-    registerFor: {_test},
+  gh.lazySingleton<_i5.PreferencesRepository>(
+    () => preferencesRepositoryModule
+        .stablePreferencesRepository(gh<_i7.HiveDataSource>()),
+    registerFor: {
+      _dev,
+      _prod,
+    },
   );
   gh.lazySingleton<_i5.GeopositionOutputPort>(
       () => presentersModule.geopositionPresenter(gh<_i6.RouteMapPageCubit>()));
@@ -160,18 +177,23 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i6.LocationReviewsPageCubit>(),
             gh<_i6.RouteReviewsPageCubit>(),
           ));
-  gh.lazySingleton<_i5.CurrentUserOutputPort>(
-      () => presentersModule.getCurrentUserOutputPort(
-            gh<_i6.SplashPageCubit>(),
-            gh<_i6.HomePageCubit>(),
-            gh<_i6.ProfileTabCubit>(),
-          ));
   gh.lazySingleton<_i5.AppSettingsRepository>(() => appSettingsRepositoryModule
       .getAppSettingsRepository(gh<_i4.PackageInfo>()));
   gh.lazySingleton<_i5.PreferencesRepository>(
     () => preferencesRepositoryModule
         .testPreferencesRepository(gh<_i7.HiveDataSource>()),
     registerFor: {_test},
+  );
+  gh.lazySingleton<_i8.Dio>(
+    () => dioModule.prodDio(),
+    registerFor: {_prod},
+  );
+  gh.lazySingleton<_i8.Dio>(
+    () => dioModule.dio(),
+    registerFor: {
+      _test,
+      _dev,
+    },
   );
   gh.lazySingleton<_i5.LocationsOutputPort>(
       () => presentersModule.getLocationsOutputPort(
@@ -242,6 +264,10 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.GeopositionOutputPort>(),
             gh<_i5.ErrorHandlerOutputPort>(),
           ));
+  gh.lazySingleton<_i5.AuthRepository>(
+    () => authRepositoryModule.testAuthRepository(gh<_i8.Dio>()),
+    registerFor: {_test},
+  );
   gh.factory<_i5.GetLocationsAvailableFiltersUseCase>(
       () => locationUseCasesCasesModule.getLocationsAvailableFiltersUseCase(
             gh<_i5.LocationsRepository>(),
@@ -286,17 +312,32 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.CurrentUserOutputPort>(),
             gh<_i5.ErrorHandlerOutputPort>(),
           ));
+  gh.lazySingleton<_i5.AuthRepository>(
+    () => authRepositoryModule.apiAuthRepository(gh<_i8.Dio>()),
+    registerFor: {
+      _dev,
+      _prod,
+    },
+  );
   gh.lazySingleton<_i6.LocationDetailsPageController>(() => controllersModule
       .getLocationDetailsPageController(gh<_i5.GetLocationDetailsUseCase>()));
   gh.lazySingleton<_i6.LocationFavoriteButtonController>(() =>
       controllersModule.getLocationFavoriteButtonController(
           gh<_i5.UpdateLocationFavoriteStatusUseCase>()));
+  gh.lazySingleton<_i5.SignUpUseCase>(() => userUseCasesModule.signUpUseCase(
+        gh<_i5.PreferencesRepository>(),
+        gh<_i5.AuthRepository>(),
+        gh<_i5.CurrentUserOutputPort>(),
+        gh<_i5.ErrorHandlerOutputPort>(),
+      ));
   gh.lazySingleton<_i6.LocationReviewsPageController>(() => controllersModule
       .getLocationReviewsPageController(gh<_i5.GetLocationReviewsUseCase>()));
   gh.lazySingleton<_i6.LocationsTabController>(() => controllersModule
       .getLocationsTabController(gh<_i5.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i6.LocationFiltersPageController>(() => controllersModule
       .getLocationFiltersPageController(gh<_i5.GetAllLocationsUseCase>()));
+  gh.lazySingleton<_i6.SignUpPageController>(
+      () => controllersModule.signUpPageController(gh<_i5.SignUpUseCase>()));
   gh.lazySingleton<_i5.TripsRepository>(
     () => tripsRepositoryModule.getTripsRepository(gh<_i7.TestDataSource>()),
     registerFor: {_test},
@@ -445,48 +486,50 @@ Future<_i1.GetIt> $configureDependencies(
   return getIt;
 }
 
-class _$DataPackagesModule extends _i8.DataPackagesModule {}
+class _$DataPackagesModule extends _i9.DataPackagesModule {}
 
-class _$PresentersModule extends _i9.PresentersModule {}
+class _$PresentersModule extends _i10.PresentersModule {}
 
-class _$AutoRouterModule extends _i10.AutoRouterModule {}
+class _$AutoRouterModule extends _i11.AutoRouterModule {}
 
-class _$BlocModule extends _i11.BlocModule {}
+class _$BlocModule extends _i12.BlocModule {}
 
-class _$DataSourceModule extends _i12.DataSourceModule {}
+class _$DataSourceModule extends _i13.DataSourceModule {}
 
-class _$GeopositionRepositoryModule extends _i13.GeopositionRepositoryModule {}
+class _$GeopositionRepositoryModule extends _i14.GeopositionRepositoryModule {}
 
-class _$AuthRepositoryModule extends _i14.AuthRepositoryModule {}
+class _$PreferencesRepositoryModule extends _i15.PreferencesRepositoryModule {}
 
-class _$AppSettingsRepositoryModule extends _i15.AppSettingsRepositoryModule {}
+class _$AppSettingsRepositoryModule extends _i16.AppSettingsRepositoryModule {}
 
-class _$PreferencesRepositoryModule extends _i16.PreferencesRepositoryModule {}
+class _$DioModule extends _i17.DioModule {}
 
-class _$CacheRepositoryModule extends _i17.CacheRepositoryModule {}
+class _$CacheRepositoryModule extends _i18.CacheRepositoryModule {}
 
-class _$UsersRepositoryModule extends _i18.UsersRepositoryModule {}
+class _$UsersRepositoryModule extends _i19.UsersRepositoryModule {}
 
-class _$LocationsRepositoryModule extends _i19.LocationsRepositoryModule {}
+class _$LocationsRepositoryModule extends _i20.LocationsRepositoryModule {}
 
-class _$RoutesRepositoryModule extends _i20.RoutesRepositoryModule {}
+class _$RoutesRepositoryModule extends _i21.RoutesRepositoryModule {}
 
-class _$ReviewsRepositoryModule extends _i21.ReviewsRepositoryModule {}
+class _$ReviewsRepositoryModule extends _i22.ReviewsRepositoryModule {}
 
-class _$RouteUseCasesModule extends _i22.RouteUseCasesModule {}
+class _$RouteUseCasesModule extends _i23.RouteUseCasesModule {}
 
-class _$UserUseCasesModule extends _i23.UserUseCasesModule {}
+class _$UserUseCasesModule extends _i24.UserUseCasesModule {}
 
-class _$ReviewUseCasesModule extends _i24.ReviewUseCasesModule {}
+class _$ReviewUseCasesModule extends _i25.ReviewUseCasesModule {}
 
-class _$GeopositionUseCasesModule extends _i25.GeopositionUseCasesModule {}
+class _$GeopositionUseCasesModule extends _i26.GeopositionUseCasesModule {}
 
-class _$LocationUseCasesCasesModule extends _i26.LocationUseCasesCasesModule {}
+class _$AuthRepositoryModule extends _i27.AuthRepositoryModule {}
 
-class _$ControllersModule extends _i27.ControllersModule {}
+class _$LocationUseCasesCasesModule extends _i28.LocationUseCasesCasesModule {}
 
-class _$TripsRepositoryModule extends _i28.TripsRepositoryModule {}
+class _$ControllersModule extends _i29.ControllersModule {}
 
-class _$SettingsUseCasesModule extends _i29.SettingsUseCasesModule {}
+class _$TripsRepositoryModule extends _i30.TripsRepositoryModule {}
 
-class _$TripUseCasesModule extends _i30.TripUseCasesModule {}
+class _$SettingsUseCasesModule extends _i31.SettingsUseCasesModule {}
+
+class _$TripUseCasesModule extends _i32.TripUseCasesModule {}

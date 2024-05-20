@@ -15,6 +15,7 @@ abstract class EntitiesSkeletonizerUtils {
     id: -1,
     email: 'somemockedemail@gmail.com',
     name: SkeletonUtils.shortText,
+    surname: SkeletonUtils.shortText,
     photo: null,
   );
 }

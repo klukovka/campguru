@@ -9,11 +9,13 @@ abstract class PresentersModule {
     SplashPageCubit splashPageCubit,
     HomePageCubit homePageCubit,
     ProfileTabCubit profileTabCubit,
+    SignUpPageCubit signUpPageCubit,
   ) =>
       CurrentUserPresenter(
         splashPageCubit: splashPageCubit,
         homePageCubit: homePageCubit,
         profileTabCubit: profileTabCubit,
+        signUpPageCubit: signUpPageCubit,
       );
 
   @lazySingleton

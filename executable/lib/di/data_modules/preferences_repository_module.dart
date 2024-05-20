@@ -7,5 +7,13 @@ abstract class PreferencesRepositoryModule {
   @test
   @lazySingleton
   PreferencesRepository testPreferencesRepository(HiveDataSource dataSource) =>
-      TestPreferencesRepository(dataSource);
+      ProxyTestPreferencesRepository(dataSource);
+
+  @dev
+  @prod
+  @lazySingleton
+  PreferencesRepository stablePreferencesRepository(
+    HiveDataSource dataSource,
+  ) =>
+      StablePreferencesRepository(dataSource);
 }

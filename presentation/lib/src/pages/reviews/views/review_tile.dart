@@ -22,7 +22,7 @@ class ReviewTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                review.user.name,
+                review.user.fullname,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               IconTheme(

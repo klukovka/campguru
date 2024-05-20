@@ -23,7 +23,7 @@ class ProfileShortInfoView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                user.name,
+                user.fullname,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               Text(

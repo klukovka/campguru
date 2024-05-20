@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 @RoutePage()
 class StartPage extends StatelessWidget {
@@ -7,9 +8,12 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Start'),
+        child: ElevatedButton(
+          onPressed: context.appRouter.pushSignUpPage,
+          child: const Text('Sign up'),
+        ),
       ),
     );
   }

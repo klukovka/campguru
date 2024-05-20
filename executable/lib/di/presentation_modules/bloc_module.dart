@@ -74,4 +74,7 @@ abstract class BlocModule {
 
   @lazySingleton
   CachedRoutesTabCubit get cachedRoutesTabCubit => CachedRoutesTabCubit();
+
+  @lazySingleton
+  SignUpPageCubit get signUpPageCubit => SignUpPageCubit();
 }

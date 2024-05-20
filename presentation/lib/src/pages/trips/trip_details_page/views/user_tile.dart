@@ -20,7 +20,7 @@ class UserTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                user.name,
+                user.fullname,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               Text(

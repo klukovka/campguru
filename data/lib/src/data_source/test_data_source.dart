@@ -201,7 +201,8 @@ class TestDataSource {
     return User(
       id: 1000,
       email: 'noah.sebastian+$device@badomens.io',
-      name: 'Noah Sebastian',
+      name: 'Noah',
+      surname: 'Sebastian',
       photo: 'https://pbs.twimg.com/media/GBpiaxpWwAA9dXw.jpg',
     );
   }
@@ -215,7 +216,8 @@ class TestDataSource {
     return User(
       id: index,
       email: 'mock.email+$index@gmail.com',
-      name: index % 2 == 0 ? 'Oli Sykes' : 'Chris Motionless',
+      name: index % 2 == 0 ? 'Oli' : 'Chris',
+      surname: index % 2 == 0 ? 'Sykes' : 'Motionless',
       photo: index % 2 == 0
           ? 'https://townsquare.media/site/366/files/2022/02/attachment-oli_sykes_bmth_2022_red_carpet_photo.jpg'
           : index % 3 == 0

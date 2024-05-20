@@ -17,6 +17,11 @@ class AppAutoRouter extends $AppAutoRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(page: SplashRoute.page, path: '/splash', initial: true),
+    AutoRoute(
+      page: SignUpRoute.page,
+      path: '/sign_up',
+    ),
+    AutoRoute(page: StartRoute.page, path: '/start'),
     AutoRoute(page: HomeRoute.page, path: '/home/', children: [
       AutoRoute(
         page: LocationsRoute.page,
@@ -39,7 +44,6 @@ class AppAutoRouter extends $AppAutoRouter {
       page: TripsFiltersRoute.page,
       path: '/home/trips/filters',
     ),
-    AutoRoute(page: StartRoute.page, path: '/start'),
     AutoRoute(
       page: LocationDetailsRoute.page,
       path: '/home/locations/:id',

@@ -174,4 +174,10 @@ abstract class ControllersModule {
         getCachedRoutesUseCase: getCachedRoutesUseCase,
         deleteCachedRouteUseCase: deleteCachedRouteUseCase,
       );
+
+  @lazySingleton
+  SignUpPageController signUpPageController(SignUpUseCase signUpUseCase) =>
+      SignUpPageController(
+        signUpUseCase,
+      );
 }

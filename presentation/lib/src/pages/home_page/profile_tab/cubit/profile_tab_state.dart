@@ -9,6 +9,7 @@ class ProfileTabState extends Equatable {
       id: -1,
       email: '',
       name: '',
+      surname: '',
       photo: null,
     ),
     this.version = '',

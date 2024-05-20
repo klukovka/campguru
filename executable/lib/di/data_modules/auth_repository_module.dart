@@ -1,4 +1,5 @@
 import 'package:data/data.dart';
+import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
@@ -6,5 +7,10 @@ import 'package:injectable/injectable.dart';
 abstract class AuthRepositoryModule {
   @test
   @lazySingleton
-  AuthRepository get testAuthRepository => TestAuthRepository();
+  AuthRepository testAuthRepository(Dio dio) => ProxyTestAuthRepository(dio);
+
+  @dev
+  @prod
+  @lazySingleton
+  AuthRepository apiAuthRepository(Dio dio) => ApiAuthRepository(dio);
 }
