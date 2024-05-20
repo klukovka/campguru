@@ -291,6 +291,12 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i6.LocationFavoriteButtonController>(() =>
       controllersModule.getLocationFavoriteButtonController(
           gh<_i5.UpdateLocationFavoriteStatusUseCase>()));
+  gh.lazySingleton<_i5.SignUpUseCase>(() => userUseCasesModule.signUpUseCase(
+        gh<_i5.PreferencesRepository>(),
+        gh<_i5.AuthRepository>(),
+        gh<_i5.CurrentUserOutputPort>(),
+        gh<_i5.ErrorHandlerOutputPort>(),
+      ));
   gh.lazySingleton<_i6.LocationReviewsPageController>(() => controllersModule
       .getLocationReviewsPageController(gh<_i5.GetLocationReviewsUseCase>()));
   gh.lazySingleton<_i6.LocationsTabController>(() => controllersModule

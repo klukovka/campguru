@@ -30,4 +30,18 @@ abstract class UserUseCasesModule {
         locationsOutputPort: locationsOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
       );
+
+  @lazySingleton
+  SignUpUseCase signUpUseCase(
+    PreferencesRepository preferencesRepository,
+    AuthRepository authRepository,
+    CurrentUserOutputPort currentUserOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+  ) =>
+      SignUpUseCase(
+        preferencesRepository: preferencesRepository,
+        authRepository: authRepository,
+        currentUserOutputPort: currentUserOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+      );
 }
