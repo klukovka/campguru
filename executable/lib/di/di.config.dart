@@ -17,7 +17,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:package_info_plus/package_info_plus.dart' as _i4;
 import 'package:presentation/presentation.dart' as _i6;
 
-import 'data_modules/app_settings_repository_module.dart' as _i15;
+import 'data_modules/app_settings_repository_module.dart' as _i16;
 import 'data_modules/auth_repository_module.dart' as _i27;
 import 'data_modules/cache_repository_module.dart' as _i18;
 import 'data_modules/data_packages_module.dart' as _i9;
@@ -25,7 +25,7 @@ import 'data_modules/data_source_module.dart' as _i13;
 import 'data_modules/dio_module.dart' as _i17;
 import 'data_modules/geoposition_repository_module.dart' as _i14;
 import 'data_modules/locations_repository_module.dart' as _i20;
-import 'data_modules/preferences_repository_module.dart' as _i16;
+import 'data_modules/preferences_repository_module.dart' as _i15;
 import 'data_modules/reviews_repository_module.dart' as _i22;
 import 'data_modules/routes_repository_module.dart' as _i21;
 import 'data_modules/trips_repository_module.dart' as _i30;
@@ -42,9 +42,9 @@ import 'presentation_modules/bloc_module.dart' as _i12;
 import 'presentation_modules/controllers_module.dart' as _i29;
 import 'presentation_modules/presenters_module.dart' as _i10;
 
-const String _test = 'test';
-const String _prod = 'prod';
 const String _dev = 'dev';
+const String _prod = 'prod';
+const String _test = 'test';
 
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> $configureDependencies(
@@ -63,8 +63,8 @@ Future<_i1.GetIt> $configureDependencies(
   final blocModule = _$BlocModule();
   final dataSourceModule = _$DataSourceModule();
   final geopositionRepositoryModule = _$GeopositionRepositoryModule();
-  final appSettingsRepositoryModule = _$AppSettingsRepositoryModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
+  final appSettingsRepositoryModule = _$AppSettingsRepositoryModule();
   final dioModule = _$DioModule();
   final cacheRepositoryModule = _$CacheRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
@@ -154,6 +154,14 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i6.TripsFiltersPageCubit>(),
             gh<_i6.TripDetailsPageCubit>(),
           ));
+  gh.lazySingleton<_i5.PreferencesRepository>(
+    () => preferencesRepositoryModule
+        .stablePreferencesRepository(gh<_i7.HiveDataSource>()),
+    registerFor: {
+      _dev,
+      _prod,
+    },
+  );
   gh.lazySingleton<_i5.GeopositionOutputPort>(
       () => presentersModule.geopositionPresenter(gh<_i6.RouteMapPageCubit>()));
   gh.lazySingleton<_i5.ReviewsOutputPort>(
@@ -486,9 +494,9 @@ class _$DataSourceModule extends _i13.DataSourceModule {}
 
 class _$GeopositionRepositoryModule extends _i14.GeopositionRepositoryModule {}
 
-class _$AppSettingsRepositoryModule extends _i15.AppSettingsRepositoryModule {}
+class _$PreferencesRepositoryModule extends _i15.PreferencesRepositoryModule {}
 
-class _$PreferencesRepositoryModule extends _i16.PreferencesRepositoryModule {}
+class _$AppSettingsRepositoryModule extends _i16.AppSettingsRepositoryModule {}
 
 class _$DioModule extends _i17.DioModule {}
 

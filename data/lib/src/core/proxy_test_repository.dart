@@ -11,4 +11,26 @@ abstract class ProxyTestRepository {
       return await testRequest();
     }
   }
+
+  Future<T> makeAsyncCall<T>({
+    required Future<T> Function() apiRequest,
+    required Future<T> Function() testRequest,
+  }) async {
+    try {
+      return await apiRequest();
+    } catch (_) {
+      return await testRequest();
+    }
+  }
+
+  T makeSafeCall<T>({
+    required T Function() apiRequest,
+    required T Function() testRequest,
+  }) {
+    try {
+      return apiRequest();
+    } catch (_) {
+      return testRequest();
+    }
+  }
 }
