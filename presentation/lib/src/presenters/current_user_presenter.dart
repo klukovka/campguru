@@ -5,11 +5,13 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
   final SplashPageCubit splashPageCubit;
   final HomePageCubit homePageCubit;
   final ProfileTabCubit profileTabCubit;
+  final SignUpPageCubit signUpPageCubit;
 
   CurrentUserPresenter({
     required this.splashPageCubit,
     required this.homePageCubit,
     required this.profileTabCubit,
+    required this.signUpPageCubit,
   });
   @override
   void setCurrentUser(User? user) {
