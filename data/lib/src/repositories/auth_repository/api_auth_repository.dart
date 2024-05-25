@@ -32,9 +32,10 @@ class ApiAuthRepository implements AuthRepository {
 
   @override
   Future<FailureOrResult<AuthenticationDetails>> login(
-      LoginUser loginUser) async {
+    LoginUser loginUser,
+  ) async {
     final response = await client.post(
-      '/auth/sign-in ',
+      '/auth/sign-in',
       data: LoginUserDto.fromDomain(loginUser).toJson(),
     );
     return response.toFailureOrResult(AuthenticationDetailsDto.fromJson);
