@@ -25,4 +25,11 @@ class ProxyTestAuthRepository extends ProxyTestRepository
   Future<FailureOrResult<AuthenticationDetails>> signUp(NewUser newUser) async {
     return await apiAuthRepository.signUp(newUser);
   }
+
+  @override
+  Future<FailureOrResult<AuthenticationDetails>> login(
+    LoginUser loginUser,
+  ) async {
+    return await apiAuthRepository.login(loginUser);
+  }
 }
