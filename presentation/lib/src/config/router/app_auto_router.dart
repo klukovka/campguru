@@ -97,5 +97,10 @@ class AppAutoRouter extends $AppAutoRouter {
       AutoRoute(page: FavoriteRoutesRoute.page, path: 'favorites'),
       AutoRoute(page: MyOwnRoutesRoute.page, path: 'my_own'),
     ]),
+    AutoRoute(
+      page: AppUnexpectedErrorDialog.page,
+      path: '/unexpected_error?title={title}&&message={message}',
+      fullscreenDialog: true,
+    ),
   ];
 }

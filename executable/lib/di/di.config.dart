@@ -307,14 +307,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i7.ErrorHandlerOutputPort>(),
             gh<_i7.LocationsOutputPort>(),
           ));
-  gh.lazySingleton<_i7.IsAuthorizedUseCase>(
-      () => userUseCasesModule.getIsAuthorizedUseCase(
-            gh<_i7.PreferencesRepository>(),
-            gh<_i7.AuthRepository>(),
-            gh<_i7.UsersRepository>(),
-            gh<_i7.CurrentUserOutputPort>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-          ));
   gh.lazySingleton<_i7.AuthRepository>(
     () => authRepositoryModule.apiAuthRepository(gh<_i8.Dio>()),
     registerFor: {
@@ -363,6 +355,13 @@ Future<_i1.GetIt> $configureDependencies(
       () => routeUseCasesModule.getCachedRoutesUseCase(
             gh<_i7.CacheRepository>(),
             gh<_i7.RoutesOutputPort>(),
+          ));
+  gh.lazySingleton<_i7.IsAuthorizedUseCase>(
+      () => userUseCasesModule.getIsAuthorizedUseCase(
+            gh<_i7.PreferencesRepository>(),
+            gh<_i7.AuthRepository>(),
+            gh<_i7.UsersRepository>(),
+            gh<_i7.CurrentUserOutputPort>(),
           ));
   gh.lazySingleton<_i5.CachedRoutesTabController>(
       () => controllersModule.cachedRoutesTabController(

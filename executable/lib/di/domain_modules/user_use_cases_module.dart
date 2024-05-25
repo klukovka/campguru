@@ -9,14 +9,12 @@ abstract class UserUseCasesModule {
     AuthRepository authRepository,
     UsersRepository usersRepository,
     CurrentUserOutputPort currentUserOutputPort,
-    ErrorHandlerOutputPort errorHandlerOutputPort,
   ) =>
       IsAuthorizedUseCase(
         preferencesRepository: preferencesRepository,
         authRepository: authRepository,
         usersRepository: usersRepository,
         currentUserOutputPort: currentUserOutputPort,
-        errorHandlerOutputPort: errorHandlerOutputPort,
       );
 
   @lazySingleton
