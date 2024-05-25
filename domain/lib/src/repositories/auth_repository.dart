@@ -6,4 +6,6 @@ abstract class AuthRepository {
   );
 
   Future<FailureOrResult<AuthenticationDetails>> signUp(NewUser newUser);
+
+  Future<FailureOrResult<AuthenticationDetails>> login(LoginUser loginUser);
 }

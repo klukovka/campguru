@@ -66,6 +66,7 @@ export 'src/use_cases/trips/get_trip_details_use_case.dart';
 export 'src/use_cases/trips/get_trips_use_case.dart';
 export 'src/use_cases/users/get_user_subscription_status.dart';
 export 'src/use_cases/users/is_authorized_use_case.dart';
+export 'src/use_cases/users/login_use_case.dart';
 export 'src/use_cases/users/sign_up_use_case.dart';
 export 'src/utils/list_extension.dart';
 export 'src/utils/merge_details_extension.dart';
