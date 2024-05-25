@@ -67,10 +67,10 @@ abstract class $AppAutoRouter extends _i28.RootStackRouter {
 
   @override
   final Map<String, _i28.PageFactory> pagesMap = {
-    AppUnexpectedErrorDialog.name: (routeData) {
+    AppUnexpectedErrorRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<AppUnexpectedErrorDialogArgs>(
-          orElse: () => AppUnexpectedErrorDialogArgs(
+      final args = routeData.argsAs<AppUnexpectedErrorRouteArgs>(
+          orElse: () => AppUnexpectedErrorRouteArgs(
                 title: pathParams.getString('title'),
                 message: pathParams.getString(
                   'message',
@@ -322,16 +322,16 @@ abstract class $AppAutoRouter extends _i28.RootStackRouter {
 
 /// generated route for
 /// [_i1.AppUnexpectedErrorDialog]
-class AppUnexpectedErrorDialog
-    extends _i28.PageRouteInfo<AppUnexpectedErrorDialogArgs> {
-  AppUnexpectedErrorDialog({
+class AppUnexpectedErrorRoute
+    extends _i28.PageRouteInfo<AppUnexpectedErrorRouteArgs> {
+  AppUnexpectedErrorRoute({
     _i30.Key? key,
     required String title,
     String message = '',
     List<_i28.PageRouteInfo>? children,
   }) : super(
-          AppUnexpectedErrorDialog.name,
-          args: AppUnexpectedErrorDialogArgs(
+          AppUnexpectedErrorRoute.name,
+          args: AppUnexpectedErrorRouteArgs(
             key: key,
             title: title,
             message: message,
@@ -343,14 +343,14 @@ class AppUnexpectedErrorDialog
           initialChildren: children,
         );
 
-  static const String name = 'AppUnexpectedErrorDialog';
+  static const String name = 'AppUnexpectedErrorRoute';
 
-  static const _i28.PageInfo<AppUnexpectedErrorDialogArgs> page =
-      _i28.PageInfo<AppUnexpectedErrorDialogArgs>(name);
+  static const _i28.PageInfo<AppUnexpectedErrorRouteArgs> page =
+      _i28.PageInfo<AppUnexpectedErrorRouteArgs>(name);
 }
 
-class AppUnexpectedErrorDialogArgs {
-  const AppUnexpectedErrorDialogArgs({
+class AppUnexpectedErrorRouteArgs {
+  const AppUnexpectedErrorRouteArgs({
     this.key,
     required this.title,
     this.message = '',
@@ -364,7 +364,7 @@ class AppUnexpectedErrorDialogArgs {
 
   @override
   String toString() {
-    return 'AppUnexpectedErrorDialogArgs{key: $key, title: $title, message: $message}';
+    return 'AppUnexpectedErrorRouteArgs{key: $key, title: $title, message: $message}';
   }
 }
 

@@ -56,13 +56,17 @@ class AppUnexpectedErrorDialog extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 2),
                           child: Text(
                             title,
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.bodyLarge,
                             textAlign: TextAlign.center,
                           ),
                         ),
                         Offstage(
                           offstage: message.isEmpty,
-                          child: Text(message),
+                          child: Text(
+                            message,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ],
                     ),

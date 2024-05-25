@@ -11,13 +11,12 @@ extension BuildContextExtension on BuildContext {
   CampguruRouter get appRouter => locator<CampguruRouter>();
   CampguruToasts get toasts => CampguruToasts.of(this);
   void showError(Failure failure) {
-    //TODO: Add localizations
-    final message = failure.message != null ? ' [${failure.message}]' : '';
-    final mainInfo = switch (failure) {
+    final message = failure.message ?? '';
+    final title = switch (failure) {
       ApplicationFailure() => failure.type.getLabel(this),
       ApiFailure() => 'Server error has occured!'
     };
 
-    toasts.showError('$mainInfo$message');
+    appRouter.pushErrorDialog(title: title, message: message);
   }
 }
