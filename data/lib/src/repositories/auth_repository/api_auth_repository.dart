@@ -15,7 +15,8 @@ class ApiAuthRepository implements AuthRepository {
   ) async {
     //TODO: Implement
     return FailureOrResult.failure(
-        ApplicationFailure(type: ApplicationErrorType.general));
+      ApplicationFailure(type: ApplicationErrorType.general),
+    );
   }
 
   @override

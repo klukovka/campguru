@@ -18,12 +18,7 @@ class ProxyTestAuthRepository extends ProxyTestRepository
   Future<FailureOrResult<AuthenticationDetails>> refreshToken(
     String refreshToken,
   ) async {
-    return await makeSafeRequest(
-      apiRequest: () async =>
-          await apiAuthRepository.refreshToken(refreshToken),
-      testRequest: () async =>
-          await testAuthRepository.refreshToken(refreshToken),
-    );
+    return await apiAuthRepository.refreshToken(refreshToken);
   }
 
   @override
