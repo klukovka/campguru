@@ -7,6 +7,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
+import 'package:presentation/src/utils/extensions/credentials_validation_extension.dart';
 
 enum SignUpPageField {
   photo,
@@ -227,23 +228,5 @@ class _SignUpPageState extends State<SignUpPage> {
             : const Text('Complete'),
       ),
     );
-  }
-}
-
-extension on String {
-  //TODO: Extract
-  bool get isValidEmail {
-    final regex =
-        RegExp(r"^[a-zA-Z0-9._-]+[\+\d+]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$");
-
-    return regex.hasMatch(this);
-  }
-
-  bool get isPasswordValid {
-    final passwordRegex = RegExp(
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$',
-    );
-
-    return passwordRegex.hasMatch(this);
   }
 }

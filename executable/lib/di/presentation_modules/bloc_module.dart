@@ -77,4 +77,7 @@ abstract class BlocModule {
 
   @lazySingleton
   SignUpPageCubit get signUpPageCubit => SignUpPageCubit();
+
+  @lazySingleton
+  StartPageCubit get startPageCubit => StartPageCubit();
 }

@@ -18,5 +18,6 @@ export 'pages/routes/routes_filters_page/routes_filters_page_controller.dart';
 export 'pages/routes/views/route_favorite_button/route_favorite_button_controller.dart';
 export 'pages/sign_up_page/sign_up_page_controller.dart';
 export 'pages/splash_page/splash_page_controller.dart';
+export 'pages/start_page/start_page_controller.dart';
 export 'pages/trips/trip_details_page/trip_details_page_controller.dart';
 export 'pages/trips/trips_filters_page/trips_filters_page_controller.dart';

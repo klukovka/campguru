@@ -23,4 +23,16 @@ class TestAuthRepository implements AuthRepository {
       ),
     );
   }
+
+  @override
+  Future<FailureOrResult<AuthenticationDetails>> login(
+      LoginUser loginUser) async {
+    return FailureOrResult.success(
+      const AuthenticationDetails(
+        userId: 1,
+        accessJwtToken: 'accessJwtToken',
+        refreshJwtToken: 'refreshJwtToken',
+      ),
+    );
+  }
 }

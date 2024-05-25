@@ -6,12 +6,14 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
   final HomePageCubit homePageCubit;
   final ProfileTabCubit profileTabCubit;
   final SignUpPageCubit signUpPageCubit;
+  final StartPageCubit startPageCubit;
 
   CurrentUserPresenter({
     required this.splashPageCubit,
     required this.homePageCubit,
     required this.profileTabCubit,
     required this.signUpPageCubit,
+    required this.startPageCubit,
   });
   @override
   void setCurrentUser(User? user) {
@@ -35,5 +37,20 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
   @override
   void startSignUp() {
     signUpPageCubit.startSignUp();
+  }
+
+  @override
+  void loginCompleted() {
+    startPageCubit.loginCompleted();
+  }
+
+  @override
+  void loginFailed() {
+    startPageCubit.loginFailed();
+  }
+
+  @override
+  void startLogin() {
+    startPageCubit.startLogin();
   }
 }

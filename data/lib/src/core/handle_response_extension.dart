@@ -17,13 +17,20 @@ extension HandleResponseExtension on Response {
       return FailureOrResult.success(null);
     }
 
-    final response = ErrorDto.fromJson(jsonDecode(data));
+    try {
+      final result = data is String ? jsonDecode(data) : data;
+      final response = ErrorDto.fromJson(result);
 
-    return FailureOrResult.failure(
-      ApiFailure(
-        code: statusCode.toString(),
-        message: response.message ?? statusMessage ?? '',
-      ),
-    );
+      return FailureOrResult.failure(
+        ApiFailure(
+          code: statusCode.toString(),
+          message: response.message ?? statusMessage ?? '',
+        ),
+      );
+    } catch (e) {
+      return FailureOrResult.failure(ApplicationFailure(
+        type: ApplicationErrorType.general,
+      ));
+    }
   }
 }

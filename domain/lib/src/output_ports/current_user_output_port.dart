@@ -5,4 +5,8 @@ abstract class CurrentUserOutputPort {
   void startSignUp();
   void signUpFailed();
   void signUpCompleted();
+
+  void startLogin();
+  void loginFailed();
+  void loginCompleted();
 }

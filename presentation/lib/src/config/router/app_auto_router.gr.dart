@@ -268,7 +268,7 @@ abstract class $AppAutoRouter extends _i27.RootStackRouter {
     StartRoute.name: (routeData) {
       return _i27.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i23.StartPage(),
+        child: _i27.WrappedRoute(child: const _i23.StartPage()),
       );
     },
     TripDetailsRoute.name: (routeData) {
