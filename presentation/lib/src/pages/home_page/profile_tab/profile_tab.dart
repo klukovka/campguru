@@ -108,7 +108,9 @@ class ProfileTab extends StatelessWidget implements AutoRouteWrapper {
                         width: double.infinity,
                         child: TextButton.icon(
                           onPressed: () {
-                            //TODO: Logout
+                            context
+                              ..locator<ProfileTabController>().logout()
+                              ..appRouter.replaceToStartPage();
                           },
                           icon: Icon(MdiIcons.exitToApp),
                           label: const Text('Logout'),

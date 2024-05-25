@@ -337,6 +337,10 @@ Future<_i1.GetIt> $configureDependencies(
       .getLocationsTabController(gh<_i7.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i5.LocationFiltersPageController>(() => controllersModule
       .getLocationFiltersPageController(gh<_i7.GetAllLocationsUseCase>()));
+  gh.lazySingleton<_i7.LogoutUseCase>(() => userUseCasesModule.logoutUseCase(
+        gh<_i7.PreferencesRepository>(),
+        gh<_i7.CacheRepository>(),
+      ));
   gh.lazySingleton<_i5.SignUpPageController>(
       () => controllersModule.signUpPageController(gh<_i7.SignUpUseCase>()));
   gh.lazySingleton<_i7.TripsRepository>(
@@ -368,6 +372,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i7.GetCachedRoutesUseCase>(),
             gh<_i7.DeleteCachedRouteUseCase>(),
           ));
+  gh.lazySingleton<_i5.ProfileTabController>(
+      () => controllersModule.profileTabController(gh<_i7.LogoutUseCase>()));
   gh.lazySingleton<_i7.GetAppVersion>(
       () => settingsUseCasesModule.getAppVersion(
             gh<_i7.AppSettingsRepository>(),

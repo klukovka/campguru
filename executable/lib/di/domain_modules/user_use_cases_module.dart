@@ -56,4 +56,14 @@ abstract class UserUseCasesModule {
         currentUserOutputPort: currentUserOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
       );
+
+  @lazySingleton
+  LogoutUseCase logoutUseCase(
+    PreferencesRepository preferencesRepository,
+    CacheRepository cacheRepository,
+  ) =>
+      LogoutUseCase(
+        preferencesRepository: preferencesRepository,
+        cacheRepository: cacheRepository,
+      );
 }

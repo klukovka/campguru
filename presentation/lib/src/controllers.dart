@@ -1,4 +1,5 @@
 export 'pages/home_page/locations_tab/locations_tab_controller.dart';
+export 'pages/home_page/profile_tab/profile_tab_controller.dart';
 export 'pages/home_page/routes_tab/routes_tab_controller.dart';
 export 'pages/home_page/trips_tab/trips_tab_controller.dart';
 export 'pages/locations/favorite_locations_page/favorite_locations_page_controller.dart';

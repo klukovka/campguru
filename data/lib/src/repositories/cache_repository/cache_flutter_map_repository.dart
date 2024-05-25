@@ -77,4 +77,13 @@ class CacheFlutterMapRepository implements CacheRepository {
       ));
     }
   }
+
+  @override
+  Future<FailureOrResult<void>> clearRoutes() async {
+    final routes = getCachedRoutes();
+    final results = await Future.wait(routes.map((e) => deleteRoute(e.id)));
+    final failure = results.firstWhereOrNull((element) => element.hasFailed);
+    if (failure != null) return failure;
+    return FailureOrResult.success(null);
+  }
 }
