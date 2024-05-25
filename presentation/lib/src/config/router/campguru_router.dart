@@ -64,4 +64,13 @@ class CampguruRouter extends BaseRouter {
   Future<void> pushMyRoutesPage() => push(const MyRoutesRoute());
 
   Future<void> pushSignUpPage() => push(const SignUpRoute());
+
+  Future<void> pushErrorDialog({
+    required String title,
+    required String message,
+  }) =>
+      push(AppUnexpectedErrorRoute(
+        title: title,
+        message: message,
+      ));
 }

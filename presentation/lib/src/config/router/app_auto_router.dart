@@ -1,12 +1,30 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'app_auto_router.gr.dart';
 
 const _durationInMilliseconds = 250;
 const _fadeIn = TransitionsBuilders.fadeIn;
 
+Route<T> popUpRouteBuilder<T>(
+  BuildContext context,
+  Widget child,
+  AutoRoutePage<T> page,
+) {
+  return CupertinoModalPopupRoute(
+    builder: (context) => Align(
+      alignment: Alignment.center,
+      child: Center(child: child),
+    ),
+    settings: page,
+    barrierColor: Colors.black.withOpacity(0.75),
+    barrierDismissible: false,
+  );
+}
+
 @AutoRouterConfig(
-  replaceInRouteName: 'Page|Tab,Route',
+  replaceInRouteName: 'Page|Tab|Dialog,Route',
 )
 class AppAutoRouter extends $AppAutoRouter {
   @override
@@ -97,5 +115,12 @@ class AppAutoRouter extends $AppAutoRouter {
       AutoRoute(page: FavoriteRoutesRoute.page, path: 'favorites'),
       AutoRoute(page: MyOwnRoutesRoute.page, path: 'my_own'),
     ]),
+    CustomRoute(
+      page: AppUnexpectedErrorRoute.page,
+      path: '/unexpected_error?title={title}&&message={message}',
+      customRouteBuilder: popUpRouteBuilder,
+      fullscreenDialog: true,
+      opaque: false,
+    ),
   ];
 }

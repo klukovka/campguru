@@ -186,4 +186,10 @@ abstract class ControllersModule {
     LoginUseCase loginUseCase,
   ) =>
       StartPageController(loginUseCase);
+
+  @lazySingleton
+  ProfileTabController profileTabController(LogoutUseCase logoutUseCase) =>
+      ProfileTabController(
+        logoutUseCase: logoutUseCase,
+      );
 }

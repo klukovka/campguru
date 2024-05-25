@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
@@ -58,9 +59,11 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return BlocListener<SplashPageCubit, SplashPageState>(
       listener: _onStateChanged,
-      child: const Scaffold(
+      child: Scaffold(
         body: Center(
-          child: Text('Splash'),
+          child: SpinKitFadingCircle(
+            color: Theme.of(context).colorScheme.onBackground,
+          ),
         ),
       ),
     );

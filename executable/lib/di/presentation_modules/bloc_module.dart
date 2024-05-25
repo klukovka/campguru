@@ -80,4 +80,7 @@ abstract class BlocModule {
 
   @lazySingleton
   StartPageCubit get startPageCubit => StartPageCubit();
+
+  @lazySingleton
+  AppControlCubit get appControlCubit => AppControlCubit();
 }

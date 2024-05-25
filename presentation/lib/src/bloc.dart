@@ -1,3 +1,4 @@
+export 'core/app_control/cubit/app_control_cubit.dart';
 export 'pages/home_page/cubit/home_page_cubit.dart';
 export 'pages/home_page/locations_tab/cubit/locations_tab_cubit.dart';
 export 'pages/home_page/profile_tab/cubit/profile_tab_cubit.dart';
