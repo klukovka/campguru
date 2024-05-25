@@ -21,7 +21,12 @@ abstract class PresentersModule {
       );
 
   @lazySingleton
-  ErrorHandlerOutputPort getErrorHandlerOutputPort() => ErrorHandlerPresenter();
+  ErrorHandlerOutputPort getErrorHandlerOutputPort(
+    AppControlCubit appControlCubit,
+  ) =>
+      ErrorHandlerPresenter(
+        appControlCubit: appControlCubit,
+      );
 
   @lazySingleton
   LocationsOutputPort getLocationsOutputPort(
