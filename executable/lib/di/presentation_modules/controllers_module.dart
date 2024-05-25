@@ -180,4 +180,10 @@ abstract class ControllersModule {
       SignUpPageController(
         signUpUseCase,
       );
+
+  @lazySingleton
+  StartPageController startPageController(
+    LoginUseCase loginUseCase,
+  ) =>
+      StartPageController(loginUseCase);
 }

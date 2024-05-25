@@ -128,21 +128,23 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i6.CachedRoutesTabCubit>(
       () => blocModule.cachedRoutesTabCubit);
   gh.lazySingleton<_i6.SignUpPageCubit>(() => blocModule.signUpPageCubit);
+  gh.lazySingleton<_i6.StartPageCubit>(() => blocModule.startPageCubit);
   await gh.lazySingletonAsync<_i7.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
   );
   gh.lazySingleton<_i5.GeopositionRepository>(
       () => geopositionRepositoryModule.geopositionRepository);
-  gh.lazySingleton<_i6.CampguruRouter>(
-      () => autoRouterModule.router(gh<_i6.AppAutoRouter>()));
   gh.lazySingleton<_i5.CurrentUserOutputPort>(
       () => presentersModule.getCurrentUserOutputPort(
             gh<_i6.SplashPageCubit>(),
             gh<_i6.HomePageCubit>(),
             gh<_i6.ProfileTabCubit>(),
             gh<_i6.SignUpPageCubit>(),
+            gh<_i6.StartPageCubit>(),
           ));
+  gh.lazySingleton<_i6.CampguruRouter>(
+      () => autoRouterModule.router(gh<_i6.AppAutoRouter>()));
   gh.lazySingleton<_i5.RoutesOutputPort>(
       () => presentersModule.getRoutesOutputPort(
             gh<_i6.RoutesTabCubit>(),
@@ -371,6 +373,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.AppSettingsRepository>(),
             gh<_i5.SettingsOutputPort>(),
           ));
+  gh.lazySingleton<_i6.StartPageController>(
+      () => controllersModule.startPageController(gh<_i5.LoginUseCase>()));
   gh.lazySingleton<_i5.GetAllRoutesUseCase>(
       () => routeUseCasesModule.getAllRoutesUseCase(
             gh<_i5.RoutesRepository>(),
