@@ -10,12 +10,14 @@ class RouteDetailsSliverAppBar extends StatelessWidget {
   final domain.Route route;
   final double toolbarHeight;
   final Future<void> Function()? onStretch;
+  final Widget? rightButton;
 
   const RouteDetailsSliverAppBar({
     super.key,
     required this.route,
     this.toolbarHeight = 48,
     this.onStretch,
+    this.rightButton,
   });
 
   @override
@@ -45,7 +47,7 @@ class RouteDetailsSliverAppBar extends StatelessWidget {
             ),
           ),
           Skeleton.ignore(
-            child: RouteFavoriteButton(route: route),
+            child: rightButton ?? RouteFavoriteButton(route: route),
           ),
         ],
       ),
