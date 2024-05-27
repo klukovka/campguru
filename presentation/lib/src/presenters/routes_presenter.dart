@@ -12,6 +12,7 @@ class RoutesPresenter extends RoutesOutputPort {
   final FavoriteRoutesTabCubit favoriteRoutesTabCubit;
   final MyOwnRoutesTabCubit myOwnRoutesTabCubit;
   final CachedRoutesTabCubit cachedRoutesTabCubit;
+  final CachedRouteDetailsPageCubit cachedRouteDetailsPageCubit;
 
   RoutesPresenter({
     required this.routesTabCubit,
@@ -24,6 +25,7 @@ class RoutesPresenter extends RoutesOutputPort {
     required this.favoriteRoutesTabCubit,
     required this.myOwnRoutesTabCubit,
     required this.cachedRoutesTabCubit,
+    required this.cachedRouteDetailsPageCubit,
   });
 
   @override
@@ -206,5 +208,10 @@ class RoutesPresenter extends RoutesOutputPort {
         .where((element) => element.id != routeId)
         .toList();
     cachedRoutesTabCubit.setRoutes(routes);
+  }
+
+  @override
+  void updateCachedRouteDetails(Route route) {
+    cachedRouteDetailsPageCubit.updateRoute(route);
   }
 }

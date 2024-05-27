@@ -32,6 +32,7 @@ class _CachedRouteDetailsPageState extends State<CachedRouteDetailsPage> {
             route: state.route,
             //TODO: Push cached route map
             onStretch: () => context.appRouter.pushRouteMap(widget.routeId),
+            rightButton: const SizedBox.shrink(),
           ),
         ],
       ),

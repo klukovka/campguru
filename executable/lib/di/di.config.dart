@@ -128,6 +128,8 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i5.SignUpPageCubit>(() => blocModule.signUpPageCubit);
   gh.lazySingleton<_i5.StartPageCubit>(() => blocModule.startPageCubit);
   gh.lazySingleton<_i5.AppControlCubit>(() => blocModule.appControlCubit);
+  gh.lazySingleton<_i5.CachedRouteDetailsPageCubit>(
+      () => blocModule.cachedRouteDetailsPageCubit);
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -144,6 +146,14 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i5.CampguruRouter>(
       () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
+  gh.lazySingleton<_i7.ErrorHandlerOutputPort>(() =>
+      presentersModule.getErrorHandlerOutputPort(gh<_i5.AppControlCubit>()));
+  gh.lazySingleton<_i7.TripsOutputPort>(
+      () => presentersModule.getTripsOutputPort(
+            gh<_i5.TripsTabCubit>(),
+            gh<_i5.TripsFiltersPageCubit>(),
+            gh<_i5.TripDetailsPageCubit>(),
+          ));
   gh.lazySingleton<_i7.RoutesOutputPort>(
       () => presentersModule.getRoutesOutputPort(
             gh<_i5.RoutesTabCubit>(),
@@ -156,14 +166,7 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.FavoriteRoutesTabCubit>(),
             gh<_i5.MyOwnRoutesTabCubit>(),
             gh<_i5.CachedRoutesTabCubit>(),
-          ));
-  gh.lazySingleton<_i7.ErrorHandlerOutputPort>(() =>
-      presentersModule.getErrorHandlerOutputPort(gh<_i5.AppControlCubit>()));
-  gh.lazySingleton<_i7.TripsOutputPort>(
-      () => presentersModule.getTripsOutputPort(
-            gh<_i5.TripsTabCubit>(),
-            gh<_i5.TripsFiltersPageCubit>(),
-            gh<_i5.TripDetailsPageCubit>(),
+            gh<_i5.CachedRouteDetailsPageCubit>(),
           ));
   gh.lazySingleton<_i7.PreferencesRepository>(
     () => preferencesRepositoryModule
