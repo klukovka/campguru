@@ -31,6 +31,6 @@ class UserDto extends Dto<User> {
         email: email,
         name: name,
         surname: surname,
-        photo: photo != null ? utf8.encode(photo!) : null,
+        photo: photo != null ? base64.decode(photo!) : null,
       );
 }
