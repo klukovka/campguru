@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                   if (item == HomePageTabType.profile) {
                     return BottomNavigationBarItem(
                       icon: BottomNavigationBarAvatar(
-                        imageUrl: userAvatar,
+                        imageBytes: userAvatar,
                         isCurrent: tabsRouter.activeIndex ==
                             HomePageTabType.profile.index,
                       ),

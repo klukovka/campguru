@@ -55,8 +55,11 @@ class _StartPageState extends State<StartPage> {
                   slivers: [
                     SliverPadding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 24, horizontal: 16),
+                        vertical: 24,
+                        horizontal: 16,
+                      ),
                       sliver: SliverFillRemaining(
+                        hasScrollBody: false,
                         child: Column(
                           children: [
                             const Spacer(),

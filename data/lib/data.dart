@@ -2,6 +2,7 @@ library data;
 
 export 'src/data_source/hive_data_source.dart';
 export 'src/data_source/test_data_source.dart';
+export 'src/iterceptors/auth_interceptor.dart';
 export 'src/repositories/app_settings_repository/stable_app_settings_repository.dart';
 export 'src/repositories/auth_repository/api_auth_repository.dart';
 export 'src/repositories/auth_repository/proxy_test_auth_repository.dart';
@@ -13,4 +14,5 @@ export 'src/repositories/preferences_repository/stable_preferences_repository.da
 export 'src/repositories/reviews_repository/test_reviews_repository.dart';
 export 'src/repositories/routes_repository/test_routes_repository.dart';
 export 'src/repositories/trips_repository/test_trips_repository.dart';
-export 'src/repositories/users_repository/test_users_repository.dart';
+export 'src/repositories/users_repository/api_users_repository.dart';
+export 'src/repositories/users_repository/proxy_test_users_repository.dart';

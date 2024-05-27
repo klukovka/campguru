@@ -14,7 +14,7 @@ class ReviewTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircleIconPreview.user(
-          imageUrl: review.user.photo,
+          imageBytes: review.user.photo,
         ),
         const SizedBox(width: 12),
         Expanded(

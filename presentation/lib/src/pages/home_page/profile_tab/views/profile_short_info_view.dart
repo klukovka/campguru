@@ -15,7 +15,7 @@ class ProfileShortInfoView extends StatelessWidget {
       children: [
         CircleIconPreview.user(
           radius: 36,
-          imageUrl: user.photo,
+          imageBytes: user.photo,
         ),
         const SizedBox(width: 16),
         Expanded(
