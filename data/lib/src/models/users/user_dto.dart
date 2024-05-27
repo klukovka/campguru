@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'dart:convert';
 
 import 'package:data/src/core/dto.dart';
 import 'package:domain/domain.dart';
@@ -12,7 +12,7 @@ class UserDto extends Dto<User> {
   final String email;
   final String name;
   final String surname;
-  final List<int>? photo;
+  final String? photo;
 
   UserDto({
     required this.id,
@@ -31,6 +31,6 @@ class UserDto extends Dto<User> {
         email: email,
         name: name,
         surname: surname,
-        photo: photo != null ? Uint8List.fromList(photo!) : null,
+        photo: photo != null ? utf8.encode(photo!) : null,
       );
 }

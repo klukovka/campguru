@@ -11,7 +11,5 @@ UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
       email: json['email'] as String,
       name: json['name'] as String,
       surname: json['surname'] as String,
-      photo: (json['photo'] as List<dynamic>?)
-          ?.map((e) => (e as num).toInt())
-          .toList(),
+      photo: json['photo'] as String?,
     );
