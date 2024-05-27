@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
@@ -42,6 +43,8 @@ class _CachedRouteDetailsPageState extends State<CachedRouteDetailsPage> {
     return BlocBuilder<CachedRouteDetailsPageCubit,
         CachedRouteDetailsPageState>(
       builder: (context, state) {
+        final description = state.route.description ?? '';
+        final labels = state.route.labels ?? [];
         return Scaffold(
           body: CustomScrollView(
             slivers: [
@@ -51,6 +54,30 @@ class _CachedRouteDetailsPageState extends State<CachedRouteDetailsPage> {
                 onStretch: () => context.appRouter.pushRouteMap(widget.routeId),
                 rightButton: const SizedBox.shrink(),
               ),
+              if (description.isNotEmpty)
+                SliverPadding(
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                  sliver: SliverToBoxAdapter(
+                    child: Text(description),
+                  ),
+                ),
+              SliverPadding(
+                padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                sliver: SliverToBoxAdapter(
+                  child: Text(
+                    //TODO: Add correct formatting and localizations
+                    '${state.route.distance.toStringAsFixed(2)} km (${state.route.duration.toStringAsFixed(2)} hours)',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
+              ),
+              if (labels.isNotEmpty)
+                SliverPadding(
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                  sliver: SliverToBoxAdapter(
+                    child: StyledChips(labels: labels),
+                  ),
+                ),
             ],
           ),
         );
