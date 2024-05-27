@@ -39,23 +39,31 @@ class RoundedNetworkImage extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: Theme.of(context).colorScheme.primary,
+        image: imageUrl != null
+            ? DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(imageUrl),
+              )
+            : null,
       ),
       //TODO: Add Localization
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
         child: isLoading
             ? SpinKitThreeBounce(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.onPrimary,
                 size: 16,
               )
-            : Text(
-                'Not available',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
+            : imageUrl == null
+                ? Text(
+                    'Not available',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  )
+                : null,
       ),
     );
   }
