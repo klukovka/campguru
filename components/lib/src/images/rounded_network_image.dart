@@ -7,6 +7,7 @@ class RoundedNetworkImage extends StatelessWidget {
   final double? width;
   final double? height;
   final bool isLoading;
+  final bool useCachedImage;
 
   const RoundedNetworkImage({
     super.key,
@@ -14,13 +15,14 @@ class RoundedNetworkImage extends StatelessWidget {
     this.height,
     this.width,
     this.isLoading = false,
+    this.useCachedImage = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final imageUrl = this.imageUrl;
 
-    if (imageUrl != null && !isLoading) {
+    if (imageUrl != null && !isLoading && useCachedImage) {
       return Center(
         child: CustomNetworkImage(
           borderRadius: BorderRadius.circular(8),
