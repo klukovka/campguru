@@ -1,3 +1,4 @@
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -6,6 +7,7 @@ class RoundedNetworkImage extends StatelessWidget {
   final double? width;
   final double? height;
   final bool isLoading;
+  final bool useCachedImage;
 
   const RoundedNetworkImage({
     super.key,
@@ -13,11 +15,23 @@ class RoundedNetworkImage extends StatelessWidget {
     this.height,
     this.width,
     this.isLoading = false,
+    this.useCachedImage = true,
   });
 
   @override
   Widget build(BuildContext context) {
     final imageUrl = this.imageUrl;
+
+    if (imageUrl != null && !isLoading && useCachedImage) {
+      return Center(
+        child: CustomNetworkImage(
+          borderRadius: BorderRadius.circular(8),
+          imageUrl: imageUrl,
+          width: width,
+          height: height,
+        ),
+      );
+    }
     return Container(
       width: width,
       height: height,

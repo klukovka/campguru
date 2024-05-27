@@ -22,6 +22,7 @@ export 'src/images/avatar.dart';
 export 'src/images/avatar_picker.dart';
 export 'src/images/circle_icon_preview.dart';
 export 'src/images/circle_network_image.dart';
+export 'src/images/custom_network_image.dart';
 export 'src/images/images_preview.dart';
 export 'src/images/rounded_network_image.dart';
 export 'src/rating/rating_info_name_app_bar.dart';

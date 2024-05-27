@@ -96,6 +96,7 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
           width: 120,
           isLoading: state.isPreviewLoading,
           imageUrl: state.preview,
+          useCachedImage: false,
         ),
         const SizedBox(width: 12),
         Expanded(
