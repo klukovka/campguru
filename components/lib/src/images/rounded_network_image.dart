@@ -15,7 +15,7 @@ class RoundedNetworkImage extends StatelessWidget {
     this.height,
     this.width,
     this.isLoading = false,
-    this.useCachedImage = false,
+    this.useCachedImage = true,
   });
 
   @override
