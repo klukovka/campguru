@@ -312,16 +312,15 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i7.RoutesOutputPort>(),
             gh<_i7.ErrorHandlerOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetCachedRouteDetailsUseCase>(
-      () => routeUseCasesModule.getCachedRouteDetailsUseCase(
-            gh<_i7.CacheRepository>(),
-            gh<_i7.RoutesOutputPort>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-          ));
   gh.lazySingleton<_i5.RouteReviewsPageController>(() => controllersModule
       .getRouteReviewsPageController(gh<_i7.GetRouteReviewsUseCase>()));
   gh.lazySingleton<_i7.GetCachedRoutesUseCase>(
       () => routeUseCasesModule.getCachedRoutesUseCase(
+            gh<_i7.CacheRepository>(),
+            gh<_i7.RoutesOutputPort>(),
+          ));
+  gh.lazySingleton<_i7.GetCachedRouteDetailsUseCase>(
+      () => routeUseCasesModule.getCachedRouteDetailsUseCase(
             gh<_i7.CacheRepository>(),
             gh<_i7.RoutesOutputPort>(),
           ));

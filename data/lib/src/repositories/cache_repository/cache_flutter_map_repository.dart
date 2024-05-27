@@ -86,4 +86,7 @@ class CacheFlutterMapRepository implements CacheRepository {
     if (failure != null) return failure;
     return FailureOrResult.success(null);
   }
+
+  @override
+  Route getRoute(int id) => _dataSource.getRoute(id)!.toDomain();
 }
