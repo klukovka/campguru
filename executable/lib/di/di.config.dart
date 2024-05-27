@@ -332,6 +332,9 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i7.GetCachedRoutesUseCase>(),
             gh<_i7.DeleteCachedRouteUseCase>(),
           ));
+  gh.lazySingleton<_i5.CachedRouteDetailsPageController>(() =>
+      controllersModule.cachedRouteDetailsPageController(
+          gh<_i7.GetCachedRouteDetailsUseCase>()));
   gh.lazySingleton<_i5.ProfileTabController>(
       () => controllersModule.profileTabController(gh<_i7.LogoutUseCase>()));
   gh.lazySingleton<_i7.GetAppVersion>(

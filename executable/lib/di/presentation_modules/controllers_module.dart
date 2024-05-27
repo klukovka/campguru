@@ -192,4 +192,10 @@ abstract class ControllersModule {
       ProfileTabController(
         logoutUseCase: logoutUseCase,
       );
+
+  @lazySingleton
+  CachedRouteDetailsPageController cachedRouteDetailsPageController(
+    GetCachedRouteDetailsUseCase getCachedRouteDetailsUseCase,
+  ) =>
+      CachedRouteDetailsPageController(getCachedRouteDetailsUseCase);
 }

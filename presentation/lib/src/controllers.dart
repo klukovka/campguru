@@ -9,6 +9,7 @@ export 'pages/locations/route_locations_page/route_locations_page_controller.dar
 export 'pages/locations/views/location_favorite_button/location_favorite_button_controller.dart';
 export 'pages/reviews/location_reviews_page/location_reviews_page_controller.dart';
 export 'pages/reviews/route_reviews_page/route_reviews_page_controller.dart';
+export 'pages/routes/cached_route_details_page/cached_route_details_page_controller.dart';
 export 'pages/routes/create_route_page/create_route_page_controller.dart';
 export 'pages/routes/my_routes_page/cached_routes_tab/cached_routes_tab_controller.dart';
 export 'pages/routes/my_routes_page/favorite_routes_tab/favorite_routes_tab_controller.dart';
