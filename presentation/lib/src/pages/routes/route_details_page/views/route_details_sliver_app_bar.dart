@@ -25,9 +25,8 @@ class RouteDetailsSliverAppBar extends StatelessWidget {
     final image = LayoutBuilder(builder: (context, constraints) {
       return GestureDetector(
         onTap: onStretch,
-        child: Image.network(
-          route.mapUrl,
-          fit: BoxFit.cover,
+        child: CustomNetworkImage(
+          imageUrl: route.mapUrl,
           height: constraints.maxHeight,
           width: constraints.maxWidth,
         ),

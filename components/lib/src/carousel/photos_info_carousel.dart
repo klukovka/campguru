@@ -20,9 +20,8 @@ class PhotosInfoCarousel extends StatelessWidget {
       itemCount: images.length,
       itemBuilder: (index) => SkeletonReplacement(
         borderRadius: BorderRadius.zero,
-        child: Image.network(
-          images[index],
-          fit: BoxFit.cover,
+        child: CustomNetworkImage(
+          imageUrl: images[index],
         ),
       ),
       decorator: CarouselDecorator(

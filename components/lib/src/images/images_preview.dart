@@ -30,16 +30,11 @@ class ImagesPreview extends StatelessWidget {
                   width: size,
                   height: size,
                   borderRadius: borderRadius,
-                  child: Container(
+                  child: CustomNetworkImage(
                     width: size,
+                    borderRadius: borderRadius,
                     height: size,
-                    decoration: BoxDecoration(
-                      borderRadius: borderRadius,
-                      image: DecorationImage(
-                        image: NetworkImage(url),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    imageUrl: url,
                   ),
                 ),
               )

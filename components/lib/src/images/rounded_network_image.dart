@@ -1,3 +1,4 @@
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -18,6 +19,17 @@ class RoundedNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageUrl = this.imageUrl;
+
+    if (imageUrl != null && !isLoading) {
+      return Center(
+        child: CustomNetworkImage(
+          borderRadius: BorderRadius.circular(8),
+          imageUrl: imageUrl,
+          width: width,
+          height: height,
+        ),
+      );
+    }
     return Container(
       width: width,
       height: height,
@@ -25,31 +37,23 @@ class RoundedNetworkImage extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).colorScheme.primary,
-        image: imageUrl != null
-            ? DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(imageUrl),
-              )
-            : null,
+        color: Theme.of(context).colorScheme.onPrimary,
       ),
       //TODO: Add Localization
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
         child: isLoading
             ? SpinKitThreeBounce(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.primary,
                 size: 16,
               )
-            : imageUrl == null
-                ? Text(
-                    'Not available',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                  )
-                : null,
+            : Text(
+                'Not available',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
       ),
     );
   }

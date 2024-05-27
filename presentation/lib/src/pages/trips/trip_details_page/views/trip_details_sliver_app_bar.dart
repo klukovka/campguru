@@ -22,9 +22,8 @@ class TripDetailsSliverAppBar extends StatelessWidget {
     final safeTopPadding = MediaQuery.paddingOf(context).top;
 
     final image = LayoutBuilder(builder: (context, constraints) {
-      return Image.network(
-        trip.route.mapUrl,
-        fit: BoxFit.cover,
+      return CustomNetworkImage(
+        imageUrl: trip.route.mapUrl,
         height: constraints.maxHeight,
         width: constraints.maxWidth,
       );
