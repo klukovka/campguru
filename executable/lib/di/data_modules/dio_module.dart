@@ -1,14 +1,20 @@
+import 'package:data/data.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
 @module
 abstract class DioModule {
   @lazySingleton
+  AuthInterceptor authInterceptor(
+    PreferencesRepository preferencesRepository,
+  ) =>
+      AuthInterceptor(preferencesRepository);
+
+  @lazySingleton
   @test
   @dev
-  Dio dio(
-      //TODO: Add auth interceptor
-      ) {
+  Dio dio(AuthInterceptor authInterceptor) {
     return Dio()
       ..options.baseUrl = 'http://localhost:8087'
       ..options.sendTimeout = const Duration(milliseconds: 180000)
@@ -22,14 +28,13 @@ abstract class DioModule {
           requestHeader: true,
         ),
       )
+      ..interceptors.add(authInterceptor)
       ..options.validateStatus = (status) => true;
   }
 
   @lazySingleton
   @prod
-  Dio prodDio(
-      //TODO: Add auth interceptor
-      ) {
+  Dio prodDio(AuthInterceptor authInterceptor) {
     return Dio()
       ..options.baseUrl = 'http://localhost:8087'
       ..options.sendTimeout = const Duration(milliseconds: 180000)
@@ -43,6 +48,7 @@ abstract class DioModule {
           requestHeader: true,
         ),
       )
+      ..interceptors.add(authInterceptor)
       ..options.validateStatus = (status) => true;
   }
 }

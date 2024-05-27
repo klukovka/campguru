@@ -2,6 +2,7 @@ library data;
 
 export 'src/data_source/hive_data_source.dart';
 export 'src/data_source/test_data_source.dart';
+export 'src/iterceptors/auth_interceptor.dart';
 export 'src/repositories/app_settings_repository/stable_app_settings_repository.dart';
 export 'src/repositories/auth_repository/api_auth_repository.dart';
 export 'src/repositories/auth_repository/proxy_test_auth_repository.dart';
