@@ -1,7 +1,7 @@
 part of 'home_page_cubit.dart';
 
 class HomePageState extends Equatable {
-  final String? userAvatar;
+  final Uint8List? userAvatar;
   final bool isCompleted;
 
   const HomePageState({
@@ -10,7 +10,7 @@ class HomePageState extends Equatable {
   });
 
   HomePageState copyWith({
-    ValueGetter<String?>? userAvatar,
+    ValueGetter<Uint8List?>? userAvatar,
     bool? isCompleted,
   }) {
     return HomePageState(

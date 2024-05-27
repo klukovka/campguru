@@ -13,7 +13,7 @@ class UserTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleIconPreview.user(imageUrl: user.photo),
+        CircleIconPreview.user(imageBytes: user.photo),
         const SizedBox(width: 12),
         Expanded(
           child: Column(

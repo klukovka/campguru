@@ -203,7 +203,6 @@ class TestDataSource {
       email: 'noah.sebastian+$device@badomens.io',
       name: 'Noah',
       surname: 'Sebastian',
-      photo: 'https://pbs.twimg.com/media/GBpiaxpWwAA9dXw.jpg',
     );
   }
 
@@ -218,11 +217,6 @@ class TestDataSource {
       email: 'mock.email+$index@gmail.com',
       name: index % 2 == 0 ? 'Oli' : 'Chris',
       surname: index % 2 == 0 ? 'Sykes' : 'Motionless',
-      photo: index % 2 == 0
-          ? 'https://townsquare.media/site/366/files/2022/02/attachment-oli_sykes_bmth_2022_red_carpet_photo.jpg'
-          : index % 3 == 0
-              ? null
-              : 'https://pbs.twimg.com/profile_images/1700188099366580224/le9XC-fH_400x400.jpg',
     );
   }
 

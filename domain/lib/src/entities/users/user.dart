@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
@@ -5,13 +7,13 @@ class User extends Equatable {
   final String email;
   final String name;
   final String surname;
-  final String? photo;
+  final Uint8List? photo;
 
   const User({
     required this.id,
     required this.email,
     required this.name,
-    required this.photo,
+    this.photo,
     required this.surname,
   });
 

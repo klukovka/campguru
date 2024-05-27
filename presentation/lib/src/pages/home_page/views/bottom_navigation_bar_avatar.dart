@@ -1,13 +1,15 @@
+import 'dart:typed_data';
+
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarAvatar extends StatelessWidget {
-  final String? imageUrl;
+  final Uint8List? imageBytes;
   final bool isCurrent;
 
   const BottomNavigationBarAvatar({
     super.key,
-    required this.imageUrl,
+    required this.imageBytes,
     required this.isCurrent,
   });
 
@@ -24,7 +26,7 @@ class BottomNavigationBarAvatar extends StatelessWidget {
       ),
       child: CircleIconPreview.user(
         radius: 16,
-        imageUrl: imageUrl,
+        imageBytes: imageBytes,
         color: color,
       ),
     );
