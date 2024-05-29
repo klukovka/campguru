@@ -50,8 +50,8 @@ class _CachedRouteDetailsPageState extends State<CachedRouteDetailsPage> {
             slivers: [
               RouteDetailsSliverAppBar(
                 route: state.route,
-                //TODO: Push cached route map
-                onStretch: () => context.appRouter.pushRouteMap(widget.routeId),
+                onStretch: () =>
+                    context.appRouter.pushCachedRouteMap(widget.routeId),
                 rightButton: const SizedBox.shrink(),
               ),
               if (description.isNotEmpty)

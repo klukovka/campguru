@@ -126,5 +126,9 @@ class AppAutoRouter extends $AppAutoRouter {
       page: CachedRouteDetailsRoute.page,
       path: '/home/my_routes/cached/:id',
     ),
+    AutoRoute(
+      page: CachedRouteMapRoute.page,
+      path: '/home/my_routes/cached/:id/map',
+    ),
   ];
 }
