@@ -531,6 +531,11 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i7.GetRouteDetailsUseCase>(),
             gh<_i7.GetGeopositionUseCase>(),
           ));
+  gh.lazySingleton<_i5.CreateTripPageController>(
+      () => controllersModule.createTripPageController(
+            gh<_i7.GetUserByEmailUseCase>(),
+            gh<_i7.RemoveUserFromCreatingTripUseCase>(),
+          ));
   gh.lazySingleton<_i5.SplashPageController>(
       () => controllersModule.getSplashPageController(
             gh<_i7.IsAuthorizedUseCase>(),

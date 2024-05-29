@@ -208,4 +208,14 @@ abstract class ControllersModule {
         getCachedRouteDetailsUseCase: getCachedRouteDetailsUseCase,
         getGeopositionUseCase: getGeopositionUseCase,
       );
+
+  @lazySingleton
+  CreateTripPageController createTripPageController(
+    GetUserByEmailUseCase getUserByEmailUseCase,
+    RemoveUserFromCreatingTripUseCase removeUserFromCreatingTripUseCase,
+  ) =>
+      CreateTripPageController(
+        getUserByEmailUseCase: getUserByEmailUseCase,
+        removeUserFromCreatingTripUseCase: removeUserFromCreatingTripUseCase,
+      );
 }

@@ -135,7 +135,7 @@ abstract class $AppAutoRouter extends _i31.RootStackRouter {
     CreateTripRoute.name: (routeData) {
       return _i31.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.CreateTripPage(),
+        child: _i31.WrappedRoute(child: const _i6.CreateTripPage()),
       );
     },
     FavoriteLocationsRoute.name: (routeData) {
