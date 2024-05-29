@@ -1,18 +1,18 @@
 import 'package:domain/domain.dart';
+import 'package:presentation/presentation.dart';
 
 class UsersPresenter implements UsersOutputPort {
-  @override
-  void addUserToList(User user) {
-    // TODO: implement addUserToList
-  }
+  final CreateTripPageCubit createTripPageCubit;
+
+  UsersPresenter({required this.createTripPageCubit});
 
   @override
-  void clearUsers() {
-    // TODO: implement clearUsers
+  void addUserToList(User user) {
+    createTripPageCubit.addUser(user);
   }
 
   @override
   void removeUser(User user) {
-    // TODO: implement removeUser
+    createTripPageCubit.removeUser(user);
   }
 }

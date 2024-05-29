@@ -113,5 +113,10 @@ abstract class PresentersModule {
       );
 
   @lazySingleton
-  UsersOutputPort usersOutputPort() => UsersPresenter();
+  UsersOutputPort usersOutputPort(
+    CreateTripPageCubit createTripPageCubit,
+  ) =>
+      UsersPresenter(
+        createTripPageCubit: createTripPageCubit,
+      );
 }
