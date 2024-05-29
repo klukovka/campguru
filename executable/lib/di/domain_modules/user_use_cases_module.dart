@@ -18,12 +18,12 @@ abstract class UserUseCasesModule {
       );
 
   @lazySingleton
-  GetUserSubscriptionStatus getUserSubscriptionStatus(
+  GetUserSubscriptionStatusUseCase getUserSubscriptionStatus(
     UsersRepository usersRepository,
     LocationsOutputPort locationsOutputPort,
     ErrorHandlerOutputPort errorHandlerOutputPort,
   ) =>
-      GetUserSubscriptionStatus(
+      GetUserSubscriptionStatusUseCase(
         usersRepository: usersRepository,
         locationsOutputPort: locationsOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
@@ -65,5 +65,17 @@ abstract class UserUseCasesModule {
       LogoutUseCase(
         preferencesRepository: preferencesRepository,
         cacheRepository: cacheRepository,
+      );
+
+  @lazySingleton
+  GetUserByEmailUseCase getUserByEmailUseCase(
+    UsersRepository usersRepository,
+    UsersOutputPort usersOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+  ) =>
+      GetUserByEmailUseCase(
+        usersRepository: usersRepository,
+        usersOutputPort: usersOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
       );
 }

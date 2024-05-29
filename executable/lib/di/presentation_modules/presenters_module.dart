@@ -111,4 +111,7 @@ abstract class PresentersModule {
         routeMapPageCubit: routeMapPageCubit,
         cachedRouteMapPageCubit: cachedRouteMapPageCubit,
       );
+
+  @lazySingleton
+  UsersOutputPort usersOutputPort() => UsersPresenter();
 }

@@ -1,11 +1,11 @@
 import 'package:domain/domain.dart';
 
-class GetUserSubscriptionStatus {
+class GetUserSubscriptionStatusUseCase {
   final UsersRepository usersRepository;
   final LocationsOutputPort locationsOutputPort;
   final ErrorHandlerOutputPort errorHandlerOutputPort;
 
-  GetUserSubscriptionStatus({
+  GetUserSubscriptionStatusUseCase({
     required this.usersRepository,
     required this.locationsOutputPort,
     required this.errorHandlerOutputPort,
