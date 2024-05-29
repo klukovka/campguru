@@ -58,58 +58,13 @@ class _RouteMapPageState extends State<RouteMapPage> {
                 )
               : Stack(
                   children: [
-                    FlutterMap(
-                      mapController: _controller,
-                      options: MapOptions(
-                        initialCenter: state.bounds.center,
-                        initialCameraFit:
-                            CameraFit.bounds(bounds: state.bounds),
-                      ),
-                      children: [
-                        TileLayer(
-                          userAgentPackageName: 'com.example.campguru',
-                          urlTemplate:
-                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                        ),
-                        PolylineLayer(
-                          polylines: [
-                            Polyline(
-                              points: state.polyline,
-                              strokeWidth: 5,
-                              strokeJoin: StrokeJoin.round,
-                              color: Colors.black,
-                            ),
-                          ],
-                        ),
-                        MarkerLayer(
-                          markers: [
-                            ...state.locations.map(
-                              (e) => Marker(
-                                point: e,
-                                rotate: false,
-                                child: Icon(
-                                  MdiIcons.mapMarker,
-                                  size: 32,
-                                  color: Colors.red,
-                                ),
-                              ),
-                            ),
-                            if (state.isGeopositionEnabled)
-                              Marker(
-                                point: state.mapCurrentPosition,
-                                child: Container(
-                                  width: 32,
-                                  height: 32,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.blue,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(MdiIcons.human),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ],
+                    RouteMap(
+                      controller: _controller,
+                      isGeopositionEnabled: state.isGeopositionEnabled,
+                      mapCurrentPosition: state.mapCurrentPosition,
+                      locations: state.locations,
+                      polyline: state.polyline,
+                      bounds: state.bounds,
                     ),
                     SafeArea(
                       child: Padding(

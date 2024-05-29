@@ -24,6 +24,10 @@ final themeExtensions = <ThemeExtension<dynamic>>[
   AvatarThemeData(
     defaultIcon: HomePageTabType.profile.iconData,
   ),
+  MapThemeData(
+    mapMarker: MdiIcons.mapMarker,
+    humanMarker: MdiIcons.human,
+  ),
 ];
 
 final lightTheme = FlexThemeData.light(
