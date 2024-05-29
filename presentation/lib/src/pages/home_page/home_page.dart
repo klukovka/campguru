@@ -64,6 +64,11 @@ class _HomePageState extends State<HomePage> {
                     onPressed: context.appRouter.pushCreateRoutePage,
                     child: const Icon(Icons.add),
                   ),
+                int x when x == HomePageTabType.trips.index =>
+                  FloatingActionButton(
+                    onPressed: context.appRouter.pushCreateTripPage,
+                    child: const Icon(Icons.add),
+                  ),
                 _ => null,
               },
               bottomNavigationBar: BottomNavigationBar(
