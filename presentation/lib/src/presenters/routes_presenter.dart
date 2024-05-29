@@ -13,6 +13,7 @@ class RoutesPresenter extends RoutesOutputPort {
   final MyOwnRoutesTabCubit myOwnRoutesTabCubit;
   final CachedRoutesTabCubit cachedRoutesTabCubit;
   final CachedRouteDetailsPageCubit cachedRouteDetailsPageCubit;
+  final CachedRouteMapPageCubit cachedRouteMapPageCubit;
 
   RoutesPresenter({
     required this.routesTabCubit,
@@ -26,6 +27,7 @@ class RoutesPresenter extends RoutesOutputPort {
     required this.myOwnRoutesTabCubit,
     required this.cachedRoutesTabCubit,
     required this.cachedRouteDetailsPageCubit,
+    required this.cachedRouteMapPageCubit,
   });
 
   @override
@@ -213,5 +215,6 @@ class RoutesPresenter extends RoutesOutputPort {
   @override
   void updateCachedRouteDetails(Route route) {
     cachedRouteDetailsPageCubit.updateRoute(route);
+    cachedRouteMapPageCubit.updateRoute(route);
   }
 }

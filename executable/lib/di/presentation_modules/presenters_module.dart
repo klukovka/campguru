@@ -67,6 +67,7 @@ abstract class PresentersModule {
     MyOwnRoutesTabCubit myOwnRoutesTabCubit,
     CachedRoutesTabCubit cachedRoutesTabCubit,
     CachedRouteDetailsPageCubit cachedRouteDetailsPageCubit,
+    CachedRouteMapPageCubit cachedRouteMapPageCubit,
   ) =>
       RoutesPresenter(
         routesTabCubit: routesTabCubit,
@@ -80,6 +81,7 @@ abstract class PresentersModule {
         myOwnRoutesTabCubit: myOwnRoutesTabCubit,
         cachedRoutesTabCubit: cachedRoutesTabCubit,
         cachedRouteDetailsPageCubit: cachedRouteDetailsPageCubit,
+        cachedRouteMapPageCubit: cachedRouteMapPageCubit,
       );
 
   @lazySingleton
@@ -103,8 +105,10 @@ abstract class PresentersModule {
   @lazySingleton
   GeopositionOutputPort geopositionPresenter(
     RouteMapPageCubit routeMapPageCubit,
+    CachedRouteMapPageCubit cachedRouteMapPageCubit,
   ) =>
       GeopositionPresenter(
         routeMapPageCubit: routeMapPageCubit,
+        cachedRouteMapPageCubit: cachedRouteMapPageCubit,
       );
 }
