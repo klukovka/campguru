@@ -38,4 +38,6 @@ abstract class RoutesOutputPort {
   void updateCachedRoutes(List<Route> routes);
 
   void deleteCachedRoute(int routeId);
+
+  void updateCachedRouteDetails(Route route);
 }

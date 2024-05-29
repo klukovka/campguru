@@ -29,6 +29,7 @@ dependencies:
   latlong2: ^0.9.1
   flutter_spinkit: ^5.2.1
   cached_network_image: ^3.3.1
+  flutter_map_tile_caching: ^9.0.1
   
 dev_dependencies:
   flutter_test:

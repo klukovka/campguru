@@ -122,5 +122,13 @@ class AppAutoRouter extends $AppAutoRouter {
       fullscreenDialog: true,
       opaque: false,
     ),
+    AutoRoute(
+      page: CachedRouteDetailsRoute.page,
+      path: '/home/my_routes/cached/:id',
+    ),
+    AutoRoute(
+      page: CachedRouteMapRoute.page,
+      path: '/home/my_routes/cached/:id/map',
+    ),
   ];
 }

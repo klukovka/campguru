@@ -83,4 +83,12 @@ abstract class BlocModule {
 
   @lazySingleton
   AppControlCubit get appControlCubit => AppControlCubit();
+
+  @lazySingleton
+  CachedRouteDetailsPageCubit get cachedRouteDetailsPageCubit =>
+      CachedRouteDetailsPageCubit();
+
+  @lazySingleton
+  CachedRouteMapPageCubit get cachedRouteMapPageCubit =>
+      CachedRouteMapPageCubit();
 }

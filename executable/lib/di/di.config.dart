@@ -128,6 +128,10 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i5.SignUpPageCubit>(() => blocModule.signUpPageCubit);
   gh.lazySingleton<_i5.StartPageCubit>(() => blocModule.startPageCubit);
   gh.lazySingleton<_i5.AppControlCubit>(() => blocModule.appControlCubit);
+  gh.lazySingleton<_i5.CachedRouteDetailsPageCubit>(
+      () => blocModule.cachedRouteDetailsPageCubit);
+  gh.lazySingleton<_i5.CachedRouteMapPageCubit>(
+      () => blocModule.cachedRouteMapPageCubit);
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -144,19 +148,6 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i5.CampguruRouter>(
       () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
-  gh.lazySingleton<_i7.RoutesOutputPort>(
-      () => presentersModule.getRoutesOutputPort(
-            gh<_i5.RoutesTabCubit>(),
-            gh<_i5.RouteDetailsPageCubit>(),
-            gh<_i5.RoutesFiltersPageCubit>(),
-            gh<_i5.HomePageCubit>(),
-            gh<_i5.RouteCacheProgressViewCubit>(),
-            gh<_i5.RouteMapPageCubit>(),
-            gh<_i5.CreateRoutePageCubit>(),
-            gh<_i5.FavoriteRoutesTabCubit>(),
-            gh<_i5.MyOwnRoutesTabCubit>(),
-            gh<_i5.CachedRoutesTabCubit>(),
-          ));
   gh.lazySingleton<_i7.ErrorHandlerOutputPort>(() =>
       presentersModule.getErrorHandlerOutputPort(gh<_i5.AppControlCubit>()));
   gh.lazySingleton<_i7.TripsOutputPort>(
@@ -164,6 +155,11 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.TripsTabCubit>(),
             gh<_i5.TripsFiltersPageCubit>(),
             gh<_i5.TripDetailsPageCubit>(),
+          ));
+  gh.lazySingleton<_i7.GeopositionOutputPort>(
+      () => presentersModule.geopositionPresenter(
+            gh<_i5.RouteMapPageCubit>(),
+            gh<_i5.CachedRouteMapPageCubit>(),
           ));
   gh.lazySingleton<_i7.PreferencesRepository>(
     () => preferencesRepositoryModule
@@ -173,8 +169,6 @@ Future<_i1.GetIt> $configureDependencies(
       _prod,
     },
   );
-  gh.lazySingleton<_i7.GeopositionOutputPort>(
-      () => presentersModule.geopositionPresenter(gh<_i5.RouteMapPageCubit>()));
   gh.lazySingleton<_i7.ReviewsOutputPort>(
       () => presentersModule.getReviewsOutputPort(
             gh<_i5.LocationReviewsPageCubit>(),
@@ -199,6 +193,21 @@ Future<_i1.GetIt> $configureDependencies(
     () => dataSourceModule.getTestDataSource(gh<_i3.DeviceInfoPlugin>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i7.RoutesOutputPort>(
+      () => presentersModule.getRoutesOutputPort(
+            gh<_i5.RoutesTabCubit>(),
+            gh<_i5.RouteDetailsPageCubit>(),
+            gh<_i5.RoutesFiltersPageCubit>(),
+            gh<_i5.HomePageCubit>(),
+            gh<_i5.RouteCacheProgressViewCubit>(),
+            gh<_i5.RouteMapPageCubit>(),
+            gh<_i5.CreateRoutePageCubit>(),
+            gh<_i5.FavoriteRoutesTabCubit>(),
+            gh<_i5.MyOwnRoutesTabCubit>(),
+            gh<_i5.CachedRoutesTabCubit>(),
+            gh<_i5.CachedRouteDetailsPageCubit>(),
+            gh<_i5.CachedRouteMapPageCubit>(),
+          ));
   gh.lazySingleton<_i7.SettingsOutputPort>(
       () => presentersModule.getSettingsOutputPort(gh<_i5.ProfileTabCubit>()));
   await gh.lazySingletonAsync<_i7.CacheRepository>(
@@ -319,13 +328,26 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i7.CacheRepository>(),
             gh<_i7.RoutesOutputPort>(),
           ));
+  gh.lazySingleton<_i7.GetCachedRouteDetailsUseCase>(
+      () => routeUseCasesModule.getCachedRouteDetailsUseCase(
+            gh<_i7.CacheRepository>(),
+            gh<_i7.RoutesOutputPort>(),
+          ));
   gh.lazySingleton<_i5.CachedRoutesTabController>(
       () => controllersModule.cachedRoutesTabController(
             gh<_i7.GetCachedRoutesUseCase>(),
             gh<_i7.DeleteCachedRouteUseCase>(),
           ));
+  gh.lazySingleton<_i5.CachedRouteDetailsPageController>(() =>
+      controllersModule.cachedRouteDetailsPageController(
+          gh<_i7.GetCachedRouteDetailsUseCase>()));
   gh.lazySingleton<_i5.ProfileTabController>(
       () => controllersModule.profileTabController(gh<_i7.LogoutUseCase>()));
+  gh.lazySingleton<_i5.CachedRouteMapPageController>(
+      () => controllersModule.cachedRouteMapPageController(
+            gh<_i7.GetCachedRouteDetailsUseCase>(),
+            gh<_i7.GetGeopositionUseCase>(),
+          ));
   gh.lazySingleton<_i7.GetAppVersion>(
       () => settingsUseCasesModule.getAppVersion(
             gh<_i7.AppSettingsRepository>(),

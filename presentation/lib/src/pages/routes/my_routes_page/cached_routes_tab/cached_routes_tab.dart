@@ -59,9 +59,9 @@ class _CachedRoutesTabState extends State<CachedRoutesTab> {
                       state.searchQuery,
                     ),
                   ),
-                  onPressed: () {
-                    //TODO: Open cached location map
-                  },
+                  onPressed: () => context.appRouter.pushCachedRouteDetailsPage(
+                    state.routes[index].id,
+                  ),
                 ),
                 itemCount: state.routes.length,
               ),

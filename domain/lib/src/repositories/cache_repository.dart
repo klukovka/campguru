@@ -5,4 +5,5 @@ abstract class CacheRepository {
   List<Route> getCachedRoutes({String searchQuery = ''});
   Future<FailureOrResult<void>> deleteRoute(int routeId);
   Future<FailureOrResult<void>> clearRoutes();
+  Route getRoute(int id);
 }
