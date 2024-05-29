@@ -78,4 +78,12 @@ abstract class UserUseCasesModule {
         usersOutputPort: usersOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
       );
+
+  @lazySingleton
+  RemoveUserFromCreatingTripUseCase removeUserFromCreatingTripUseCase(
+    UsersOutputPort usersOutputPort,
+  ) =>
+      RemoveUserFromCreatingTripUseCase(
+        usersOutputPort: usersOutputPort,
+      );
 }
