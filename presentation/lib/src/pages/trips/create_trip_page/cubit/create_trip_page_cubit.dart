@@ -24,4 +24,8 @@ class CreateTripPageCubit extends Cubit<CreateTripPageState> {
   void startLoading() => emit(state.copyWith(isLoading: true));
 
   void stopLoading() => emit(state.copyWith(isLoading: false));
+
+  void setTrip(Trip trip) => emit(state.copyWith(trip: trip, isLoading: false));
+
+  void resetState() => emit(const CreateTripPageState());
 }
