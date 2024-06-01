@@ -22,9 +22,7 @@ class ApiUsersRepository implements UsersRepository {
 
   @override
   Future<FailureOrResult<User>> getUserByEmail(String email) async {
-    throw UnimplementedError();
-
-    final response = await client.get('/users/email/$email');
+    final response = await client.get('/api/user/email/$email');
     return response.toFailureOrResult(UserDto.fromJson);
   }
 }
