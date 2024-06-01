@@ -154,9 +154,11 @@ abstract class ControllersModule {
   @lazySingleton
   FavoriteRoutesTabController favoriteRoutesTabController(
     GetFavoriteRoutesUseCase getFavoriteRoutesUseCase,
+    SetTripRouteUseCase setTripRouteUseCase,
   ) =>
       FavoriteRoutesTabController(
-        getFavoriteRoutesUseCase,
+        getFavoriteRoutesUseCase: getFavoriteRoutesUseCase,
+        setTripRouteUseCase: setTripRouteUseCase,
       );
 
   @lazySingleton

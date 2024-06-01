@@ -95,11 +95,13 @@ abstract class PresentersModule {
     TripsTabCubit tripsTabCubit,
     TripsFiltersPageCubit tripsFiltersPageCubit,
     TripDetailsPageCubit tripDetailsPageCubit,
+    CreateTripPageCubit createTripPageCubit,
   ) =>
       TripsPresenter(
         tripsTabCubit: tripsTabCubit,
         tripsFiltersPageCubit: tripsFiltersPageCubit,
         tripDetailsPageCubit: tripDetailsPageCubit,
+        createTripPageCubit: createTripPageCubit,
       );
 
   @lazySingleton

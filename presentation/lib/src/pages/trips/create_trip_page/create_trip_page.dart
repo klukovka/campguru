@@ -75,7 +75,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
                   children: state.users
                       .map((user) => TripUserChip(user: user))
                       .toList(),
-                )
+                ),
               ],
             ),
           ),

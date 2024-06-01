@@ -38,4 +38,8 @@ abstract class TripUseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         tripsOutputPort: tripsOutputPort,
       );
+
+  @lazySingleton
+  SetTripRouteUseCase setTripRouteUseCase(TripsOutputPort tripsOutputPort) =>
+      SetTripRouteUseCase(tripsOutputPort);
 }
