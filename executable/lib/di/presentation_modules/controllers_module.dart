@@ -215,9 +215,11 @@ abstract class ControllersModule {
   CreateTripPageController createTripPageController(
     GetUserByEmailUseCase getUserByEmailUseCase,
     RemoveUserFromCreatingTripUseCase removeUserFromCreatingTripUseCase,
+    SetTripRouteUseCase setTripRouteUseCase,
   ) =>
       CreateTripPageController(
         getUserByEmailUseCase: getUserByEmailUseCase,
         removeUserFromCreatingTripUseCase: removeUserFromCreatingTripUseCase,
+        setTripRouteUseCase: setTripRouteUseCase,
       );
 }

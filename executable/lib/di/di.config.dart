@@ -537,11 +537,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i7.GetRouteDetailsUseCase>(),
             gh<_i7.GetGeopositionUseCase>(),
           ));
-  gh.lazySingleton<_i5.CreateTripPageController>(
-      () => controllersModule.createTripPageController(
-            gh<_i7.GetUserByEmailUseCase>(),
-            gh<_i7.RemoveUserFromCreatingTripUseCase>(),
-          ));
   gh.lazySingleton<_i5.SplashPageController>(
       () => controllersModule.getSplashPageController(
             gh<_i7.IsAuthorizedUseCase>(),
@@ -555,6 +550,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i7.GetFavoriteRoutesUseCase>(),
             gh<_i7.GetMyOwnRoutesUseCase>(),
             gh<_i7.GetCachedRoutesUseCase>(),
+          ));
+  gh.lazySingleton<_i5.CreateTripPageController>(
+      () => controllersModule.createTripPageController(
+            gh<_i7.GetUserByEmailUseCase>(),
+            gh<_i7.RemoveUserFromCreatingTripUseCase>(),
+            gh<_i7.SetTripRouteUseCase>(),
           ));
   return getIt;
 }
