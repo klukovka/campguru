@@ -32,4 +32,20 @@ class TestTripsRepository implements TripsRepository {
       completed: true,
     ));
   }
+
+  @override
+  Future<FailureOrResult<Trip>> createNewTrip(NewTrip newTrip) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(
+      Trip(
+        id: 32334,
+        name: newTrip.title,
+        date: newTrip.date,
+        completed: false,
+        route: newTrip.route,
+        users: newTrip.users,
+        usersAmount: newTrip.users.length,
+      ),
+    );
+  }
 }

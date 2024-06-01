@@ -18,6 +18,7 @@ export 'src/entities/reviews/review.dart';
 export 'src/entities/routes/lat_lng.dart';
 export 'src/entities/routes/new_route.dart';
 export 'src/entities/routes/route.dart';
+export 'src/entities/trips/new_trip.dart';
 export 'src/entities/trips/trip.dart';
 export 'src/entities/users/login_user.dart';
 export 'src/entities/users/new_user.dart';
