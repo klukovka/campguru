@@ -76,4 +76,21 @@ class TripsPresenter extends TripsOutputPort {
         ? createTripPageCubit.setRoute(route)
         : createTripPageCubit.clearRoute();
   }
+
+  @override
+  void completeTripCreation(Trip trip) {
+    createTripPageCubit
+      ..setTrip(trip)
+      ..resetState();
+  }
+
+  @override
+  void startCreateTripLoading() {
+    createTripPageCubit.startLoading();
+  }
+
+  @override
+  void stopCreateTripLoading() {
+    createTripPageCubit.startLoading();
+  }
 }

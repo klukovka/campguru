@@ -42,4 +42,16 @@ abstract class TripUseCasesModule {
   @lazySingleton
   SetTripRouteUseCase setTripRouteUseCase(TripsOutputPort tripsOutputPort) =>
       SetTripRouteUseCase(tripsOutputPort);
+
+  @lazySingleton
+  CreateTripUseCase createTripUseCase(
+    TripsRepository tripsRepository,
+    TripsOutputPort tripsOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+  ) =>
+      CreateTripUseCase(
+        tripsRepository: tripsRepository,
+        tripsOutputPort: tripsOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+      );
 }
