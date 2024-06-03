@@ -154,9 +154,11 @@ abstract class ControllersModule {
   @lazySingleton
   FavoriteRoutesTabController favoriteRoutesTabController(
     GetFavoriteRoutesUseCase getFavoriteRoutesUseCase,
+    SetTripRouteUseCase setTripRouteUseCase,
   ) =>
       FavoriteRoutesTabController(
-        getFavoriteRoutesUseCase,
+        getFavoriteRoutesUseCase: getFavoriteRoutesUseCase,
+        setTripRouteUseCase: setTripRouteUseCase,
       );
 
   @lazySingleton
@@ -207,5 +209,19 @@ abstract class ControllersModule {
       CachedRouteMapPageController(
         getCachedRouteDetailsUseCase: getCachedRouteDetailsUseCase,
         getGeopositionUseCase: getGeopositionUseCase,
+      );
+
+  @lazySingleton
+  CreateTripPageController createTripPageController(
+    GetUserByEmailUseCase getUserByEmailUseCase,
+    RemoveUserFromCreatingTripUseCase removeUserFromCreatingTripUseCase,
+    SetTripRouteUseCase setTripRouteUseCase,
+    CreateTripUseCase createTripUseCase,
+  ) =>
+      CreateTripPageController(
+        getUserByEmailUseCase: getUserByEmailUseCase,
+        removeUserFromCreatingTripUseCase: removeUserFromCreatingTripUseCase,
+        setTripRouteUseCase: setTripRouteUseCase,
+        createTripUseCase: createTripUseCase,
       );
 }

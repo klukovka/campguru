@@ -28,4 +28,12 @@ class ProxyTestUsersRepository extends ProxyTestRepository
       testRequest: () async => await testUsersRepository.hasPremium(),
     );
   }
+
+  @override
+  Future<FailureOrResult<User>> getUserByEmail(String email) async {
+    return await makeSafeRequest(
+      apiRequest: () async => await apiUsersRepository.getUserByEmail(email),
+      testRequest: () async => await testUsersRepository.getUserByEmail(email),
+    );
+  }
 }

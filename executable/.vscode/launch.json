@@ -8,7 +8,6 @@
       "flutterMode": "debug",
       "args": [
         "--dart-define=LOCAL=true",
-        "--dart-define=GOOGLE_API_KEY=AIzaSyB8a2PNU5nCuDkWsJn1o5Q7tdjG-xybI7A",
         "--debug"
       ]
     },

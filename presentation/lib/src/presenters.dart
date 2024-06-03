@@ -6,3 +6,4 @@ export 'presenters/reviews_presenter.dart';
 export 'presenters/routes_presenter.dart';
 export 'presenters/settings_presenter.dart';
 export 'presenters/trips_presenter.dart';
+export 'presenters/users_presenter.dart';

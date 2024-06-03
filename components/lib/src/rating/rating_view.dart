@@ -26,7 +26,12 @@ class RatingView extends StatelessWidget {
             );
           }),
           const SizedBox(width: 4),
-          Text('(${rate.toStringAsFixed(2)})'),
+          Flexible(
+            child: Text(
+              '(${rate.toStringAsFixed(2)})',
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ),
     );

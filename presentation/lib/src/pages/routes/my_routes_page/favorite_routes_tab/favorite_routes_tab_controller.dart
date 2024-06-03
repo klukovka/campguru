@@ -2,8 +2,12 @@ import 'package:domain/domain.dart';
 
 class FavoriteRoutesTabController {
   final GetFavoriteRoutesUseCase getFavoriteRoutesUseCase;
+  final SetTripRouteUseCase setTripRouteUseCase;
 
-  FavoriteRoutesTabController(this.getFavoriteRoutesUseCase);
+  FavoriteRoutesTabController({
+    required this.getFavoriteRoutesUseCase,
+    required this.setTripRouteUseCase,
+  });
 
   void initialLoading() {
     getFavoriteRoutesUseCase(const Filter());
@@ -23,5 +27,9 @@ class FavoriteRoutesTabController {
       search: searchValue,
       page: 0,
     ));
+  }
+
+  void selectRoute(Route? route) {
+    setTripRouteUseCase(route);
   }
 }

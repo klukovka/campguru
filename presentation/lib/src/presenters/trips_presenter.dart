@@ -5,11 +5,13 @@ class TripsPresenter extends TripsOutputPort {
   final TripsTabCubit tripsTabCubit;
   final TripDetailsPageCubit tripDetailsPageCubit;
   final TripsFiltersPageCubit tripsFiltersPageCubit;
+  final CreateTripPageCubit createTripPageCubit;
 
   TripsPresenter({
     required this.tripsTabCubit,
     required this.tripDetailsPageCubit,
     required this.tripsFiltersPageCubit,
+    required this.createTripPageCubit,
   });
 
   @override
@@ -66,5 +68,29 @@ class TripsPresenter extends TripsOutputPort {
   @override
   void startCompeteTrip() {
     tripDetailsPageCubit.startComplete();
+  }
+
+  @override
+  void setTripRoute(Route? route) {
+    route != null
+        ? createTripPageCubit.setRoute(route)
+        : createTripPageCubit.clearRoute();
+  }
+
+  @override
+  void completeTripCreation(Trip trip) {
+    createTripPageCubit
+      ..setTrip(trip)
+      ..resetState();
+  }
+
+  @override
+  void startCreateTripLoading() {
+    createTripPageCubit.startLoading();
+  }
+
+  @override
+  void stopCreateTripLoading() {
+    createTripPageCubit.startLoading();
   }
 }

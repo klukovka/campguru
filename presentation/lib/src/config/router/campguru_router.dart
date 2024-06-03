@@ -46,6 +46,9 @@ class CampguruRouter extends BaseRouter {
   Future<void> pushTripDetailsPage(int id) =>
       push(TripDetailsRoute(tripId: id));
 
+  Future<void> replaceTripDetailsPage(int id) =>
+      replaceLast([TripDetailsRoute(tripId: id)]);
+
   Future<void> pushFavoriteLocationsPage() =>
       push(const FavoriteLocationsRoute());
 
@@ -79,5 +82,11 @@ class CampguruRouter extends BaseRouter {
 
   Future<void> pushCachedRouteMap(int id) => push(
         CachedRouteMapRoute(routeId: id),
+      );
+
+  Future<void> pushCreateTripPage() => push(const CreateTripRoute());
+
+  Future<void> pushSelectableRoutePage(Route? route) => push(
+        SelectableRoutesRoute(route: route),
       );
 }

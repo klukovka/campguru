@@ -8,4 +8,8 @@ abstract class TripsOutputPort {
   void updateTripDetails(Trip trip);
   void updateTripDetailsBriefly(int tripId);
   void startCompeteTrip();
+  void setTripRoute(Route? route);
+  void startCreateTripLoading();
+  void completeTripCreation(Trip trip);
+  void stopCreateTripLoading();
 }

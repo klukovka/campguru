@@ -19,4 +19,10 @@ class ApiUsersRepository implements UsersRepository {
     // TODO: implement hasPremium
     throw UnimplementedError();
   }
+
+  @override
+  Future<FailureOrResult<User>> getUserByEmail(String email) async {
+    final response = await client.get('/api/user/email/$email');
+    return response.toFailureOrResult(UserDto.fromJson);
+  }
 }
