@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data/src/models/chats/new_chat_dto.dart';
+import 'package:data/src/models/chats/new_message_dto.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +23,19 @@ class FirebaseChatsRepository extends ChatsRepository {
       await doc.set(chat.toJson());
     });
     return result;
+  }
+
+  @override
+  Future<FailureOrResult<void>> sendMessage(NewMessage newMessage) async {
+    return await _makeErrorHandledCall(() async {
+      final messages =
+          firestore.collection('chats/${newMessage.chatId}/messages');
+      final message = messages.doc();
+      await message.set({
+        'id': message.id,
+        ...NewMessageDto.fromDomain(newMessage).toJson(),
+      });
+    });
   }
 }
 

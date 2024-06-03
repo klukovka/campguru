@@ -1,6 +1,8 @@
 library domain;
 
 export 'src/entities/auth/authentication_details.dart';
+export 'src/entities/chat/message.dart';
+export 'src/entities/chat/new_message.dart';
 export 'src/entities/core/application_error_type.dart';
 export 'src/entities/core/chunk.dart';
 export 'src/entities/core/failure.dart';

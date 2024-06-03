@@ -5,4 +5,6 @@ abstract class ChatsRepository {
     Trip trip,
     String currentUserId,
   );
+
+  Future<FailureOrResult<void>> sendMessage(NewMessage newMessage);
 }
