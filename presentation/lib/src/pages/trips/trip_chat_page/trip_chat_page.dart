@@ -50,10 +50,11 @@ class _TripChatPageState extends State<TripChatPage> {
   }
 
   DateTime _getMessageDateTime(Message message) {
+    final sentAt = message.sentAt.toLocal();
     return DateTime(
-      message.sentAt.year,
-      message.sentAt.month,
-      message.sentAt.day,
+      sentAt.year,
+      sentAt.month,
+      sentAt.day,
     );
   }
 
