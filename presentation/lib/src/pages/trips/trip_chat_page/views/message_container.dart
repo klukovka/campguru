@@ -9,12 +9,12 @@ class MessageContainer extends StatelessWidget {
   final Widget child;
 
   const MessageContainer({
-    Key? key,
+    super.key,
     required this.isLast,
     required this.background,
     this.side = MessageSide.right,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

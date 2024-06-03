@@ -148,15 +148,18 @@ class _TripChatPageState extends State<TripChatPage> {
   }
 
   Widget _buildMessage(TripChatPageState state, Message message) {
+    final user = state.getUser(message.userId);
     if (message.isCurrentUser(state.currentUserId)) {
       return CurrentUserMessageTile(
         isLast: message.isLastInGroup(state.messages),
         message: message,
+        user: user,
       );
     }
     return ParticipantMessageTile(
       isLast: message.isLastInGroup(state.messages),
       message: message,
+      user: user,
     );
   }
 }

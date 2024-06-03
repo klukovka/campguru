@@ -7,11 +7,13 @@ import 'message_container.dart';
 class CurrentUserMessageTile extends StatelessWidget {
   final Message message;
   final bool isLast;
+  final User? user;
 
   const CurrentUserMessageTile({
     super.key,
     required this.isLast,
     required this.message,
+    required this.user,
   });
 
   @override
@@ -35,13 +37,22 @@ class CurrentUserMessageTile extends StatelessWidget {
       background: Theme.of(context).colorScheme.primary.withOpacity(0.5),
       isLast: isLast,
       child: Container(
-        margin: const EdgeInsets.fromLTRB(16, 24, 16, 28),
+        margin: const EdgeInsets.fromLTRB(16, 8, 16, 16),
         constraints: const BoxConstraints(minWidth: 92),
-        child: Text(
-          message.text,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        child: DefaultTextStyle(
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                user?.fullname ?? '',
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+              Text(message.text),
+            ],
+          ),
         ),
       ),
     );

@@ -23,6 +23,9 @@ class TripChatPageState extends Equatable {
         currentUserId,
       ];
 
+  User? getUser(String userId) =>
+      trip?.users?.firstWhereOrNull((user) => user.id.toString() == userId);
+
   TripChatPageState copyWith({
     Trip? trip,
     List<Message>? paginatedMessages,

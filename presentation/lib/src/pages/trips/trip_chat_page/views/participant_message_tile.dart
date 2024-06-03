@@ -1,3 +1,4 @@
+import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/src/utils/extensions/date_formatter_extension.dart';
@@ -7,20 +8,36 @@ import 'message_container.dart';
 class ParticipantMessageTile extends StatelessWidget {
   final Message message;
   final bool isLast;
+  final User? user;
 
   const ParticipantMessageTile({
     super.key,
     required this.isLast,
     required this.message,
+    required this.user,
   });
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          Offstage(
+            offstage: isLast,
+            child: const SizedBox(width: 40),
+          ),
+          Offstage(
+            offstage: !isLast,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 4),
+              child: CircleIconPreview.user(
+                radius: 16,
+                imageBytes: user?.photo,
+              ),
+            ),
+          ),
           Stack(
             children: [
               Padding(
@@ -42,13 +59,22 @@ class ParticipantMessageTile extends StatelessWidget {
       isLast: isLast,
       side: MessageSide.left,
       child: Container(
-        margin: const EdgeInsets.fromLTRB(16, 24, 16, 28),
+        margin: const EdgeInsets.fromLTRB(16, 8, 16, 16),
         constraints: const BoxConstraints(minWidth: 92),
-        child: Text(
-          message.text,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        child: DefaultTextStyle(
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
               ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                user?.fullname ?? '',
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+              Text(message.text),
+            ],
+          ),
         ),
       ),
     );
