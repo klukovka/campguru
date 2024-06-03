@@ -20,7 +20,7 @@ import 'package:package_info_plus/package_info_plus.dart' as _i4;
 import 'package:presentation/presentation.dart' as _i5;
 
 import 'data_modules/app_settings_repository_module.dart' as _i20;
-import 'data_modules/auth_repository_module.dart' as _i34;
+import 'data_modules/auth_repository_module.dart' as _i35;
 import 'data_modules/cache_repository_module.dart' as _i22;
 import 'data_modules/chats_repository_module.dart' as _i26;
 import 'data_modules/data_packages_module.dart' as _i11;
@@ -32,13 +32,14 @@ import 'data_modules/locations_repository_module.dart' as _i23;
 import 'data_modules/preferences_repository_module.dart' as _i19;
 import 'data_modules/reviews_repository_module.dart' as _i25;
 import 'data_modules/routes_repository_module.dart' as _i24;
-import 'data_modules/trips_repository_module.dart' as _i36;
-import 'data_modules/users_repository_module.dart' as _i35;
+import 'data_modules/trips_repository_module.dart' as _i37;
+import 'data_modules/users_repository_module.dart' as _i36;
+import 'domain_modules/chats_use_cases_module.dart' as _i32;
 import 'domain_modules/geoposition_use_cases_module.dart' as _i29;
 import 'domain_modules/location_use_cases_module.dart' as _i30;
 import 'domain_modules/review_use_cases_module.dart' as _i27;
-import 'domain_modules/route_use_cases_module.dart' as _i32;
-import 'domain_modules/settings_use_cases_module.dart' as _i33;
+import 'domain_modules/route_use_cases_module.dart' as _i33;
+import 'domain_modules/settings_use_cases_module.dart' as _i34;
 import 'domain_modules/trip_use_cases_module.dart' as _i28;
 import 'domain_modules/user_use_cases_module.dart' as _i21;
 import 'presentation_modules/auto_router_module.dart' as _i12;
@@ -82,6 +83,7 @@ Future<_i1.GetIt> $configureDependencies(
   final geopositionUseCasesModule = _$GeopositionUseCasesModule();
   final locationUseCasesCasesModule = _$LocationUseCasesCasesModule();
   final dioModule = _$DioModule();
+  final chatsUseCasesModule = _$ChatsUseCasesModule();
   final routeUseCasesModule = _$RouteUseCasesModule();
   final settingsUseCasesModule = _$SettingsUseCasesModule();
   final authRepositoryModule = _$AuthRepositoryModule();
@@ -322,6 +324,12 @@ Future<_i1.GetIt> $configureDependencies(
     () => dioModule.prodDio(gh<_i6.AuthInterceptor>()),
     registerFor: {_prod},
   );
+  gh.lazySingleton<_i8.SendMessageUseCase>(
+      () => chatsUseCasesModule.sendMessageUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.PreferencesRepository>(),
+          ));
   gh.lazySingleton<_i10.Dio>(
     () => dioModule.dio(gh<_i6.AuthInterceptor>()),
     registerFor: {
@@ -632,12 +640,14 @@ class _$LocationUseCasesCasesModule extends _i30.LocationUseCasesCasesModule {}
 
 class _$DioModule extends _i31.DioModule {}
 
-class _$RouteUseCasesModule extends _i32.RouteUseCasesModule {}
+class _$ChatsUseCasesModule extends _i32.ChatsUseCasesModule {}
 
-class _$SettingsUseCasesModule extends _i33.SettingsUseCasesModule {}
+class _$RouteUseCasesModule extends _i33.RouteUseCasesModule {}
 
-class _$AuthRepositoryModule extends _i34.AuthRepositoryModule {}
+class _$SettingsUseCasesModule extends _i34.SettingsUseCasesModule {}
 
-class _$UsersRepositoryModule extends _i35.UsersRepositoryModule {}
+class _$AuthRepositoryModule extends _i35.AuthRepositoryModule {}
 
-class _$TripsRepositoryModule extends _i36.TripsRepositoryModule {}
+class _$UsersRepositoryModule extends _i36.UsersRepositoryModule {}
+
+class _$TripsRepositoryModule extends _i37.TripsRepositoryModule {}

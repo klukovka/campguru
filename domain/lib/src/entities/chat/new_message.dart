@@ -19,4 +19,16 @@ class NewMessage extends Equatable {
       chatId,
     ];
   }
+
+  NewMessage copyWith({
+    String? userId,
+    String? text,
+    String? chatId,
+  }) {
+    return NewMessage(
+      userId: userId ?? this.userId,
+      text: text ?? this.text,
+      chatId: chatId ?? this.chatId,
+    );
+  }
 }

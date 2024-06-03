@@ -45,6 +45,7 @@ export 'src/repositories/reviews_repository.dart';
 export 'src/repositories/routes_repository.dart';
 export 'src/repositories/trips_repository.dart';
 export 'src/repositories/users_repository.dart';
+export 'src/use_cases/chats/send_message_use_case.dart';
 export 'src/use_cases/geoposition/get_geoposition_use_case.dart';
 export 'src/use_cases/locations/get_all_locations_use_case.dart';
 export 'src/use_cases/locations/get_favorite_locations_use_case.dart';
