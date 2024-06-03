@@ -33,6 +33,7 @@ class _TripChatPageState extends State<TripChatPage> {
     super.initState();
     _controller = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.locator<TripChatController>().init(widget.tripId.toString());
       context.locator<TripDetailsPageController>().getDetails(widget.tripId);
     });
   }
@@ -52,6 +53,11 @@ class _TripChatPageState extends State<TripChatPage> {
           appBar: AppBar(
             title: const Text('Chat'),
           ),
+          body: Column(
+            children: [
+              ...state.paginatedMessages.map((e) => Text(e.text)),
+            ],
+          ),
           bottomNavigationBar: Container(
             padding: const EdgeInsets.all(8),
             color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
@@ -66,16 +72,18 @@ class _TripChatPageState extends State<TripChatPage> {
                   ),
                   const SizedBox(width: 8),
                   IconButton(
-                      onPressed: () {
-                        if (_controller.text.isNotEmpty) {
-                          context.locator<TripChatController>().sendMessage(
-                                text: _controller.text,
-                                chatId: widget.tripId.toString(),
-                              );
-                          _controller.text = '';
-                        }
-                      },
-                      icon: Icon(MdiIcons.send))
+                    onPressed: () {
+                      if (_controller.text.isNotEmpty) {
+                        context.locator<TripChatController>().sendMessage(
+                              text: _controller.text,
+                              chatId: widget.tripId.toString(),
+                              users: state.trip?.users,
+                            );
+                        _controller.text = '';
+                      }
+                    },
+                    icon: Icon(MdiIcons.send),
+                  ),
                 ],
               ),
             ),

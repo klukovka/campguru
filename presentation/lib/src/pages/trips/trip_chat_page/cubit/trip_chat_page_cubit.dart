@@ -8,4 +8,16 @@ class TripChatPageCubit extends Cubit<TripChatPageState> {
   TripChatPageCubit() : super(const TripChatPageState());
 
   void updateTrip(Trip trip) => emit(state.copyWith(trip: trip));
+
+  void startLoading() => emit(state.copyWith(
+        isLoading: true,
+        paginatedMessages: [],
+      ));
+
+  void stopLoading() => emit(state.copyWith(isLoading: false));
+
+  void updateFirstPage(List<Message> messages) => emit(state.copyWith(
+        paginatedMessages: messages,
+        isLoading: false,
+      ));
 }

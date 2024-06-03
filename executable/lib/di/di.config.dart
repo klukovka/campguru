@@ -153,6 +153,8 @@ Future<_i1.GetIt> $configureDependencies(
   );
   gh.lazySingleton<_i8.GeopositionRepository>(
       () => geopositionRepositoryModule.geopositionRepository);
+  gh.lazySingleton<_i8.ChatsOutputPort>(
+      () => presentersModule.chatsOutputPort(gh<_i5.TripChatPageCubit>()));
   gh.lazySingleton<_i8.UsersOutputPort>(
       () => presentersModule.usersOutputPort(gh<_i5.CreateTripPageCubit>()));
   gh.lazySingleton<_i8.CurrentUserOutputPort>(
@@ -353,6 +355,13 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i5.RouteReviewsPageController>(() => controllersModule
       .getRouteReviewsPageController(gh<_i8.GetRouteReviewsUseCase>()));
+  gh.lazySingleton<_i8.GetFirstMessagesPageUseCase>(
+      () => chatsUseCasesModule.getFirstMessagesPageUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.PreferencesRepository>(),
+            gh<_i8.ChatsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i8.GetCachedRoutesUseCase>(
       () => routeUseCasesModule.getCachedRoutesUseCase(
             gh<_i8.CacheRepository>(),
@@ -431,6 +440,11 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ErrorHandlerOutputPort>(),
             gh<_i8.RoutesOutputPort>(),
           ));
+  gh.lazySingleton<_i5.TripChatController>(
+      () => controllersModule.tripChatController(
+            gh<_i8.SendMessageUseCase>(),
+            gh<_i8.GetFirstMessagesPageUseCase>(),
+          ));
   gh.lazySingleton<_i5.RouteLocationsPageController>(() => controllersModule
       .getRouteLocationsController(gh<_i8.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i5.RouteDetailsPageController>(() => controllersModule
@@ -447,8 +461,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.GetFavoriteRoutesUseCase>(),
             gh<_i8.SetTripRouteUseCase>(),
           ));
-  gh.lazySingleton<_i5.TripChatController>(
-      () => controllersModule.tripChatController(gh<_i8.SendMessageUseCase>()));
   gh.lazySingleton<_i8.UsersRepository>(
     () => usersRepositoryModule.apiUsersRepository(gh<_i10.Dio>()),
     registerFor: {

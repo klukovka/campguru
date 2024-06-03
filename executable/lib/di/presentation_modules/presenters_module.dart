@@ -123,4 +123,10 @@ abstract class PresentersModule {
       UsersPresenter(
         createTripPageCubit: createTripPageCubit,
       );
+
+  @lazySingleton
+  ChatsOutputPort chatsOutputPort(
+    TripChatPageCubit tripChatPageCubit,
+  ) =>
+      ChatsPresenter(tripChatPageCubit: tripChatPageCubit);
 }

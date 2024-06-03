@@ -14,4 +14,18 @@ abstract class ChatsUseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         preferencesRepository: preferencesRepository,
       );
+
+  @lazySingleton
+  GetFirstMessagesPageUseCase getFirstMessagesPageUseCase(
+    ChatsRepository chatsRepository,
+    PreferencesRepository preferencesRepository,
+    ChatsOutputPort chatsOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+  ) =>
+      GetFirstMessagesPageUseCase(
+        chatsRepository: chatsRepository,
+        preferencesRepository: preferencesRepository,
+        chatsOutputPort: chatsOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+      );
 }

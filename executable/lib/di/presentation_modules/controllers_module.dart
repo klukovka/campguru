@@ -228,8 +228,10 @@ abstract class ControllersModule {
   @lazySingleton
   TripChatController tripChatController(
     SendMessageUseCase sendMessageUseCase,
+    GetFirstMessagesPageUseCase getFirstMessagesPageUseCase,
   ) =>
       TripChatController(
         sendMessageUseCase: sendMessageUseCase,
+        getFirstMessagesPageUseCase: getFirstMessagesPageUseCase,
       );
 }

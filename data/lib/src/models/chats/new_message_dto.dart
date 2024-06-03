@@ -12,20 +12,20 @@ class NewMessageDto {
   final String userId;
   final String text;
   final DateTime sentAt;
-  final List<String> read;
+  final List<String> unread;
 
   NewMessageDto({
     required this.sentAt,
     required this.text,
     required this.userId,
-    required this.read,
+    required this.unread,
   });
 
   factory NewMessageDto.fromDomain(NewMessage message) => NewMessageDto(
         sentAt: DateTime.now().toUtc(),
         text: message.text,
         userId: message.userId,
-        read: [message.userId],
+        unread: message.unread,
       );
 
   Map<String, dynamic> toJson() => _$NewMessageDtoToJson(this);

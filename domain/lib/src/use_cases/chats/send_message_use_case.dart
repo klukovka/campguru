@@ -12,8 +12,10 @@ class SendMessageUseCase {
   });
 
   Future<void> call(NewMessage newMessage) async {
+    final userId = preferencesRepository.userId.toString();
     final message = newMessage.copyWith(
-      userId: preferencesRepository.userId.toString(),
+      userId: userId,
+      unread: List.from(newMessage.unread)..remove(userId),
     );
 
     final result = await chatsRepository.sendMessage(message);

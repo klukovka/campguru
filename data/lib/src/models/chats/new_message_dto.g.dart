@@ -11,5 +11,5 @@ Map<String, dynamic> _$NewMessageDtoToJson(NewMessageDto instance) =>
       'user_id': instance.userId,
       'text': instance.text,
       'sent_at': instance.sentAt.toIso8601String(),
-      'read': instance.read,
+      'unread': instance.unread,
     };

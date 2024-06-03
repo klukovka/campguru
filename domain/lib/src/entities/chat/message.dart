@@ -5,14 +5,14 @@ class Message extends Equatable {
   final String text;
   final DateTime sentAt;
   final String userId;
-  final List<String> read;
+  final List<String> unread;
   final List<String>? attachments;
 
   Message({
     required this.id,
     required this.text,
     required this.sentAt,
-    required this.read,
+    required this.unread,
     required this.userId,
     this.attachments,
   });
@@ -24,7 +24,7 @@ class Message extends Equatable {
       text,
       userId,
       sentAt,
-      read,
+      unread,
       attachments,
     ];
   }

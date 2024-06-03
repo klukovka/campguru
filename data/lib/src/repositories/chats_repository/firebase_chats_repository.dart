@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:data/src/models/chats/message_dto.dart';
 import 'package:data/src/models/chats/new_chat_dto.dart';
 import 'package:data/src/models/chats/new_message_dto.dart';
 import 'package:domain/domain.dart';
@@ -35,6 +36,70 @@ class FirebaseChatsRepository extends ChatsRepository {
         'id': message.id,
         ...NewMessageDto.fromDomain(newMessage).toJson(),
       });
+    });
+  }
+
+  @override
+  Future<FailureOrResult<Message?>> getFirstUnreadMessage({
+    required String userId,
+    required String chatId,
+  }) async {
+    return await _makeErrorHandledCall(() async {
+      final messages = await firestore
+          .collection('chats/$chatId/messages')
+          .orderBy('sent_at')
+          .where('unread', arrayContains: userId)
+          .limit(1)
+          .get();
+      final messageData = messages.docs.firstOrNull()?.data();
+      if (messageData == null) return null;
+      return MessageDto.fromJson(messageData).toDomain();
+    });
+  }
+
+  @override
+  Future<FailureOrResult<List<Message>>> getAfterMessage({
+    required String chatId,
+    required String messageId,
+  }) async {
+    return _makeErrorHandledCall(() async {
+      final message =
+          await firestore.doc('chats/$chatId/messages/$messageId').get();
+      final messages = await firestore
+          .collection('chats/$chatId/messages')
+          .orderBy('sent_at')
+          .startAfterDocument(message)
+          .limit(20)
+          .get();
+
+      return messages.docs
+          .map((e) => MessageDto.fromJson(e.data()).toDomain())
+          .toList();
+    });
+  }
+
+  @override
+  Future<FailureOrResult<List<Message>>> getBeforeMessage({
+    required String chatId,
+    String? messageId,
+  }) async {
+    return _makeErrorHandledCall(() async {
+      final messages =
+          firestore.collection('chats/$chatId/messages').orderBy('sent_at');
+
+      final message = messageId != null
+          ? await firestore.doc('chats/$chatId/messages/$messageId').get()
+          : null;
+
+      final query =
+          message != null ? messages.endBeforeDocument(message) : messages;
+      final docs = (await query.limit(20).get()).docs;
+
+      return docs
+          .map((e) => MessageDto.fromJson(e.data()).toDomain())
+          .toList()
+          .reversed
+          .toList();
     });
   }
 }
