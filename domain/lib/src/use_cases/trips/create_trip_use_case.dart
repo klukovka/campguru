@@ -25,10 +25,14 @@ class CreateTripUseCase {
       return;
     }
 
-    await chatsRepository.createTripChat(
+    final chat = await chatsRepository.createTripChat(
       result.result!,
       preferencesRepository.userId.toString(),
     );
+
     tripsOutputPort.completeTripCreation(result.result!);
+    if (chat.hasFailed) {
+      errorHandlerOutputPort.setError(chat.failure!);
+    }
   }
 }
