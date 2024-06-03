@@ -95,4 +95,6 @@ extension DateFormatterExtension on DateTime {
   /// DateFormat('d MMM yyy').format(DateTime(2023, 6, 13)) /// returns "13 Jun 2023"
   /// ```
   String get dayAbbreviatedMonthYear => DateFormat('d MMM yyyy').format(this);
+
+  String get messageFormattedTime => DateFormat('hh:mm a').format(this);
 }

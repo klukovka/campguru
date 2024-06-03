@@ -37,4 +37,17 @@ class Message extends Equatable {
   }
 
   bool isCurrentUser(String currentUserId) => userId == currentUserId;
+
+  int comparator(Message message) {
+    return sentAt.compareTo(message.sentAt);
+  }
+
+  Message read(String currentUserId) => Message(
+        id: id,
+        text: text,
+        sentAt: sentAt,
+        unread: unread..remove(currentUserId),
+        userId: userId,
+        attachments: attachments,
+      );
 }
