@@ -13,6 +13,8 @@ class TripChatPageState extends Equatable {
     this.currentUserId = '',
   });
 
+  List<Message> get messages => [...paginatedMessages];
+
   @override
   List<Object?> get props => [
         trip,
