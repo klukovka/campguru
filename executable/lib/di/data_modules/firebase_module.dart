@@ -7,10 +7,11 @@ import 'package:injectable/injectable.dart';
 abstract class FirebaseModule {
   @lazySingleton
   @preResolve
-  Future<FirebaseApp> app() async => await Firebase.initializeApp(
+  Future<FirebaseApp> app() => Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
 
   @lazySingleton
-  FirebaseFirestore firebaseFirestore() => FirebaseFirestore.instance;
+  FirebaseFirestore firebaseFirestore(FirebaseApp app) =>
+      FirebaseFirestore.instanceFor(app: app);
 }

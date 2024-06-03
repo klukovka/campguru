@@ -1,6 +1,7 @@
 import 'package:data/data.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 @module
@@ -16,7 +17,8 @@ abstract class DioModule {
   @dev
   Dio dio(AuthInterceptor authInterceptor) {
     return Dio()
-      ..options.baseUrl = 'http://localhost:8087'
+      ..options.baseUrl =
+          'http://${defaultTargetPlatform == TargetPlatform.iOS ? 'localhost' : '127.0.0.1'}:8087'
       ..options.sendTimeout = const Duration(milliseconds: 180000)
       ..options.receiveTimeout = const Duration(milliseconds: 180000)
       ..options.receiveDataWhenStatusError = true
@@ -36,7 +38,8 @@ abstract class DioModule {
   @prod
   Dio prodDio(AuthInterceptor authInterceptor) {
     return Dio()
-      ..options.baseUrl = 'http://localhost:8087'
+      ..options.baseUrl =
+          'http://${defaultTargetPlatform == TargetPlatform.iOS ? 'localhost' : '127.0.0.1'}:8087'
       ..options.sendTimeout = const Duration(milliseconds: 180000)
       ..options.receiveTimeout = const Duration(milliseconds: 180000)
       ..options.receiveDataWhenStatusError = true

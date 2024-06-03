@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '762662268011',
     projectId: 'campguru-chat',
     storageBucket: 'campguru-chat.appspot.com',
-    // iosClientId: '',
     iosBundleId: 'com.example.campguru',
   );
+
 }
