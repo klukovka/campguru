@@ -24,5 +24,6 @@ export 'pages/sign_up_page/cubit/sign_up_page_cubit.dart';
 export 'pages/splash_page/cubit/splash_page_cubit.dart';
 export 'pages/start_page/cubit/start_page_cubit.dart';
 export 'pages/trips/create_trip_page/cubit/create_trip_page_cubit.dart';
+export 'pages/trips/trip_chat_page/cubit/trip_chat_page_cubit.dart';
 export 'pages/trips/trip_details_page/cubit/trip_details_page_cubit.dart';
 export 'pages/trips/trips_filters_page/cubit/trips_filters_page_cubit.dart';

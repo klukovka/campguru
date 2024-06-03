@@ -224,4 +224,7 @@ abstract class ControllersModule {
         setTripRouteUseCase: setTripRouteUseCase,
         createTripUseCase: createTripUseCase,
       );
+
+  @lazySingleton
+  TripChatController tripChatController() => TripChatController();
 }

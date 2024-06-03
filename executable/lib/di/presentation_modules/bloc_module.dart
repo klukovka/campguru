@@ -94,4 +94,7 @@ abstract class BlocModule {
 
   @lazySingleton
   CreateTripPageCubit get createTripPageCubit => CreateTripPageCubit();
+
+  @lazySingleton
+  TripChatPageCubit get tripChatPageCubit => TripChatPageCubit();
 }
