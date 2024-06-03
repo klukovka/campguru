@@ -84,8 +84,9 @@ class FirebaseChatsRepository extends ChatsRepository {
     String? messageId,
   }) async {
     return _makeErrorHandledCall(() async {
-      final messages =
-          firestore.collection('chats/$chatId/messages').orderBy('sent_at');
+      final messages = firestore
+          .collection('chats/$chatId/messages')
+          .orderBy('sent_at', descending: true);
 
       final message = messageId != null
           ? await firestore.doc('chats/$chatId/messages/$messageId').get()
