@@ -15,6 +15,7 @@ class GetFirstMessagesPageUseCase {
 
   Future<void> call(String chatId) async {
     final userId = preferencesRepository.userId.toString();
+    chatsOutputPort.startChatLoading(userId);
     final firstMessage = await chatsRepository.getFirstUnreadMessage(
       userId: userId,
       chatId: chatId,

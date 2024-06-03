@@ -28,4 +28,13 @@ class Message extends Equatable {
       attachments,
     ];
   }
+
+  bool isLastInGroup(List<Message> messages) {
+    if (messages.isEmpty) return false;
+    if (messages.last == this) return true;
+    final nextMessage = messages[messages.indexOf(this) + 1];
+    return nextMessage.userId != userId;
+  }
+
+  bool isCurrentUser(String currentUserId) => userId == currentUserId;
 }

@@ -9,9 +9,10 @@ class TripChatPageCubit extends Cubit<TripChatPageState> {
 
   void updateTrip(Trip trip) => emit(state.copyWith(trip: trip));
 
-  void startLoading() => emit(state.copyWith(
+  void startLoading(String currentUserId) => emit(state.copyWith(
         isLoading: true,
         paginatedMessages: [],
+        currentUserId: currentUserId,
       ));
 
   void stopLoading() => emit(state.copyWith(isLoading: false));

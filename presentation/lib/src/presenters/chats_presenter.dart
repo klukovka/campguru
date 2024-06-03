@@ -7,8 +7,8 @@ class ChatsPresenter implements ChatsOutputPort {
   ChatsPresenter({required this.tripChatPageCubit});
 
   @override
-  void startChatLoading() {
-    tripChatPageCubit.startLoading();
+  void startChatLoading(String currentUserId) {
+    tripChatPageCubit.startLoading(currentUserId);
   }
 
   @override
