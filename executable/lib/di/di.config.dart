@@ -478,6 +478,12 @@ Future<_i1.GetIt> $configureDependencies(
         gh<_i7.CurrentUserOutputPort>(),
         gh<_i7.ErrorHandlerOutputPort>(),
       ));
+  gh.lazySingleton<_i7.CreateTripUseCase>(
+      () => tripUseCasesModule.createTripUseCase(
+            gh<_i7.TripsRepository>(),
+            gh<_i7.TripsOutputPort>(),
+            gh<_i7.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i5.MyOwnRoutesTabController>(() => controllersModule
       .myOwnRoutesTabController(gh<_i7.GetMyOwnRoutesUseCase>()));
   gh.lazySingleton<_i5.SignUpPageController>(
@@ -556,6 +562,7 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i7.GetUserByEmailUseCase>(),
             gh<_i7.RemoveUserFromCreatingTripUseCase>(),
             gh<_i7.SetTripRouteUseCase>(),
+            gh<_i7.CreateTripUseCase>(),
           ));
   return getIt;
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
@@ -67,7 +65,9 @@ class _CreateTripPageState extends State<CreateTripPage> {
           CreateTripPageField.users.name: state.users.toList(),
         });
         _fbState?.save();
-        log(_fbValues.toString());
+        if (!state.isLoading && state.trip != null) {
+          context.appRouter.replaceTripDetailsPage(state.trip!.id);
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -252,19 +252,15 @@ class _CreateTripPageState extends State<CreateTripPage> {
           AutovalidateModeNotification(
             AutovalidateMode.onUserInteraction,
           ).dispatch(context);
-          if (_fbState?.saveAndValidate() ?? false) {}
-          // if (state.users.isEmpty || state.route == null) {
-          //   const title = 'Trip Creation Error!';
-          //   final message = [
-          //     if (state.users.isEmpty) 'Select at least 1 user.',
-          //     if (state.route == null) 'Route is required.'
-          //   ].join('\n');
-          //   context.appRouter.pushErrorDialog(
-          //     title: title,
-          //     message: message,
-          //   );
-          //   return;
-          // }
+          if (_fbState?.saveAndValidate() ?? false) {
+            final newTrip = NewTrip(
+              users: _fbValues[CreateTripPageField.users.name],
+              route: _fbValues[CreateTripPageField.route.name],
+              date: _fbValues[CreateTripPageField.date.name],
+              title: _fbValues[CreateTripPageField.title.name],
+            );
+            _controller.createTrip(newTrip);
+          }
         },
         child: state.isLoading
             ? const Padding(
