@@ -48,10 +48,14 @@ abstract class TripUseCasesModule {
     TripsRepository tripsRepository,
     TripsOutputPort tripsOutputPort,
     ErrorHandlerOutputPort errorHandlerOutputPort,
+    ChatsRepository chatsRepository,
+    PreferencesRepository preferencesRepository,
   ) =>
       CreateTripUseCase(
         tripsRepository: tripsRepository,
         tripsOutputPort: tripsOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
+        chatsRepository: chatsRepository,
+        preferencesRepository: preferencesRepository,
       );
 }

@@ -35,6 +35,7 @@ export 'src/output_ports/users_output_port.dart';
 export 'src/repositories/app_settings_repository.dart';
 export 'src/repositories/auth_repository.dart';
 export 'src/repositories/cache_repository.dart';
+export 'src/repositories/chats_repository.dart';
 export 'src/repositories/geoposition_repository.dart';
 export 'src/repositories/locations_repository.dart';
 export 'src/repositories/preferences_repository.dart';
