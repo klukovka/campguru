@@ -226,5 +226,10 @@ abstract class ControllersModule {
       );
 
   @lazySingleton
-  TripChatController tripChatController() => TripChatController();
+  TripChatController tripChatController(
+    SendMessageUseCase sendMessageUseCase,
+  ) =>
+      TripChatController(
+        sendMessageUseCase: sendMessageUseCase,
+      );
 }

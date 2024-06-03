@@ -19,33 +19,33 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:package_info_plus/package_info_plus.dart' as _i4;
 import 'package:presentation/presentation.dart' as _i5;
 
-import 'data_modules/app_settings_repository_module.dart' as _i20;
+import 'data_modules/app_settings_repository_module.dart' as _i19;
 import 'data_modules/auth_repository_module.dart' as _i35;
-import 'data_modules/cache_repository_module.dart' as _i22;
-import 'data_modules/chats_repository_module.dart' as _i26;
+import 'data_modules/cache_repository_module.dart' as _i21;
+import 'data_modules/chats_repository_module.dart' as _i25;
 import 'data_modules/data_packages_module.dart' as _i11;
-import 'data_modules/data_source_module.dart' as _i15;
-import 'data_modules/dio_module.dart' as _i31;
-import 'data_modules/firebase_module.dart' as _i16;
-import 'data_modules/geoposition_repository_module.dart' as _i17;
-import 'data_modules/locations_repository_module.dart' as _i23;
-import 'data_modules/preferences_repository_module.dart' as _i19;
-import 'data_modules/reviews_repository_module.dart' as _i25;
-import 'data_modules/routes_repository_module.dart' as _i24;
+import 'data_modules/data_source_module.dart' as _i14;
+import 'data_modules/dio_module.dart' as _i30;
+import 'data_modules/firebase_module.dart' as _i15;
+import 'data_modules/geoposition_repository_module.dart' as _i16;
+import 'data_modules/locations_repository_module.dart' as _i22;
+import 'data_modules/preferences_repository_module.dart' as _i18;
+import 'data_modules/reviews_repository_module.dart' as _i24;
+import 'data_modules/routes_repository_module.dart' as _i23;
 import 'data_modules/trips_repository_module.dart' as _i37;
 import 'data_modules/users_repository_module.dart' as _i36;
 import 'domain_modules/chats_use_cases_module.dart' as _i32;
-import 'domain_modules/geoposition_use_cases_module.dart' as _i29;
-import 'domain_modules/location_use_cases_module.dart' as _i30;
-import 'domain_modules/review_use_cases_module.dart' as _i27;
+import 'domain_modules/geoposition_use_cases_module.dart' as _i28;
+import 'domain_modules/location_use_cases_module.dart' as _i29;
+import 'domain_modules/review_use_cases_module.dart' as _i26;
 import 'domain_modules/route_use_cases_module.dart' as _i33;
 import 'domain_modules/settings_use_cases_module.dart' as _i34;
-import 'domain_modules/trip_use_cases_module.dart' as _i28;
-import 'domain_modules/user_use_cases_module.dart' as _i21;
+import 'domain_modules/trip_use_cases_module.dart' as _i27;
+import 'domain_modules/user_use_cases_module.dart' as _i20;
 import 'presentation_modules/auto_router_module.dart' as _i12;
 import 'presentation_modules/bloc_module.dart' as _i13;
-import 'presentation_modules/controllers_module.dart' as _i14;
-import 'presentation_modules/presenters_module.dart' as _i18;
+import 'presentation_modules/controllers_module.dart' as _i31;
+import 'presentation_modules/presenters_module.dart' as _i17;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -65,7 +65,6 @@ Future<_i1.GetIt> $configureDependencies(
   final dataPackagesModule = _$DataPackagesModule();
   final autoRouterModule = _$AutoRouterModule();
   final blocModule = _$BlocModule();
-  final controllersModule = _$ControllersModule();
   final dataSourceModule = _$DataSourceModule();
   final firebaseModule = _$FirebaseModule();
   final geopositionRepositoryModule = _$GeopositionRepositoryModule();
@@ -83,6 +82,7 @@ Future<_i1.GetIt> $configureDependencies(
   final geopositionUseCasesModule = _$GeopositionUseCasesModule();
   final locationUseCasesCasesModule = _$LocationUseCasesCasesModule();
   final dioModule = _$DioModule();
+  final controllersModule = _$ControllersModule();
   final chatsUseCasesModule = _$ChatsUseCasesModule();
   final routeUseCasesModule = _$RouteUseCasesModule();
   final settingsUseCasesModule = _$SettingsUseCasesModule();
@@ -143,8 +143,6 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i5.CreateTripPageCubit>(
       () => blocModule.createTripPageCubit);
   gh.lazySingleton<_i5.TripChatPageCubit>(() => blocModule.tripChatPageCubit);
-  gh.lazySingleton<_i5.TripChatController>(
-      () => controllersModule.tripChatController());
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -449,6 +447,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.GetFavoriteRoutesUseCase>(),
             gh<_i8.SetTripRouteUseCase>(),
           ));
+  gh.lazySingleton<_i5.TripChatController>(
+      () => controllersModule.tripChatController(gh<_i8.SendMessageUseCase>()));
   gh.lazySingleton<_i8.UsersRepository>(
     () => usersRepositoryModule.apiUsersRepository(gh<_i10.Dio>()),
     registerFor: {
@@ -604,41 +604,41 @@ class _$AutoRouterModule extends _i12.AutoRouterModule {}
 
 class _$BlocModule extends _i13.BlocModule {}
 
-class _$ControllersModule extends _i14.ControllersModule {}
+class _$DataSourceModule extends _i14.DataSourceModule {}
 
-class _$DataSourceModule extends _i15.DataSourceModule {}
+class _$FirebaseModule extends _i15.FirebaseModule {}
 
-class _$FirebaseModule extends _i16.FirebaseModule {}
+class _$GeopositionRepositoryModule extends _i16.GeopositionRepositoryModule {}
 
-class _$GeopositionRepositoryModule extends _i17.GeopositionRepositoryModule {}
+class _$PresentersModule extends _i17.PresentersModule {}
 
-class _$PresentersModule extends _i18.PresentersModule {}
+class _$PreferencesRepositoryModule extends _i18.PreferencesRepositoryModule {}
 
-class _$PreferencesRepositoryModule extends _i19.PreferencesRepositoryModule {}
+class _$AppSettingsRepositoryModule extends _i19.AppSettingsRepositoryModule {}
 
-class _$AppSettingsRepositoryModule extends _i20.AppSettingsRepositoryModule {}
+class _$UserUseCasesModule extends _i20.UserUseCasesModule {}
 
-class _$UserUseCasesModule extends _i21.UserUseCasesModule {}
+class _$CacheRepositoryModule extends _i21.CacheRepositoryModule {}
 
-class _$CacheRepositoryModule extends _i22.CacheRepositoryModule {}
+class _$LocationsRepositoryModule extends _i22.LocationsRepositoryModule {}
 
-class _$LocationsRepositoryModule extends _i23.LocationsRepositoryModule {}
+class _$RoutesRepositoryModule extends _i23.RoutesRepositoryModule {}
 
-class _$RoutesRepositoryModule extends _i24.RoutesRepositoryModule {}
+class _$ReviewsRepositoryModule extends _i24.ReviewsRepositoryModule {}
 
-class _$ReviewsRepositoryModule extends _i25.ReviewsRepositoryModule {}
+class _$ChatsRepositoryModule extends _i25.ChatsRepositoryModule {}
 
-class _$ChatsRepositoryModule extends _i26.ChatsRepositoryModule {}
+class _$ReviewUseCasesModule extends _i26.ReviewUseCasesModule {}
 
-class _$ReviewUseCasesModule extends _i27.ReviewUseCasesModule {}
+class _$TripUseCasesModule extends _i27.TripUseCasesModule {}
 
-class _$TripUseCasesModule extends _i28.TripUseCasesModule {}
+class _$GeopositionUseCasesModule extends _i28.GeopositionUseCasesModule {}
 
-class _$GeopositionUseCasesModule extends _i29.GeopositionUseCasesModule {}
+class _$LocationUseCasesCasesModule extends _i29.LocationUseCasesCasesModule {}
 
-class _$LocationUseCasesCasesModule extends _i30.LocationUseCasesCasesModule {}
+class _$DioModule extends _i30.DioModule {}
 
-class _$DioModule extends _i31.DioModule {}
+class _$ControllersModule extends _i31.ControllersModule {}
 
 class _$ChatsUseCasesModule extends _i32.ChatsUseCasesModule {}
 
