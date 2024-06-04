@@ -81,20 +81,34 @@ class _TripChatPageState extends State<TripChatPage> {
       FocusManager.instance.primaryFocus?.unfocus();
     }
 
-    if (cubit.state.isLoading || cubit.state.messages.isEmpty) return;
+    final state = cubit.state;
+
+    if (state.isLoading) return;
 
     if (_scrollController.position.pixels < minPosition &&
-        !cubit.state.isAllPreviousMessagesUploaded) {
+        !state.isAllPreviousMessagesUploaded &&
+        state.messages.isNotEmpty) {
       _controller.uploadPreviousPage(
         chatId: widget.tripId.toString(),
-        lastMessageId: cubit.state.paginatedMessages.first.id,
+        lastMessageId: state.messages.first.id,
       );
     }
     if (_scrollController.position.pixels > maxPosition &&
-        !cubit.state.isAllNewMessagesUploaded) {
+        !state.isAllNewMessagesUploaded &&
+        state.messages.isNotEmpty &&
+        !state.isStreamInited) {
       _controller.uploadNextPage(
         chatId: widget.tripId.toString(),
-        lastMessageId: cubit.state.paginatedMessages.last.id,
+        lastMessageId: state.messages.last.id,
+      );
+    }
+
+    if (_scrollController.position.pixels > maxPosition &&
+        state.isAllNewMessagesUploaded &&
+        !state.isStreamInited) {
+      _controller.initStream(
+        chatId: widget.tripId.toString(),
+        lastMessageId: state.messages.lastOrNull()?.id,
       );
     }
   }

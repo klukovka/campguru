@@ -125,16 +125,16 @@ class FirebaseChatsRepository extends ChatsRepository {
     required String? lastMessageId,
   }) async {
     return await _makeErrorHandledCall(() async {
-      final message =
-          await firestore.doc('chats/$chatId/messages/$lastMessageId').get();
-      return firestore
-          .collection('chats/$chatId/messages')
-          .orderBy('sent_at')
-          .startAfterDocument(message)
-          .snapshots()
-          .map((event) => event.docs
-              .map((e) => MessageDto.fromJson(e.data()).toDomain())
-              .toList());
+      final message = lastMessageId != null
+          ? await firestore.doc('chats/$chatId/messages/$lastMessageId').get()
+          : null;
+      final sorted =
+          firestore.collection('chats/$chatId/messages').orderBy('sent_at');
+      final query =
+          message != null ? sorted.startAfterDocument(message) : sorted;
+      return query.snapshots().map((event) => event.docs
+          .map((e) => MessageDto.fromJson(e.data()).toDomain())
+          .toList());
     });
   }
 }
