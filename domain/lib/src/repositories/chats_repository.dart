@@ -28,4 +28,9 @@ abstract class ChatsRepository {
     required String messageId,
     required String userId,
   });
+
+  Future<FailureOrResult<Stream<List<Message>>>> getNewMessagesStream({
+    required String chatId,
+    required String? lastMessageId,
+  });
 }

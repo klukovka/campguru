@@ -30,4 +30,14 @@ class ChatsPresenter implements ChatsOutputPort {
   void addPreviousMessagesPage(List<Message> messages) {
     tripChatPageCubit.addPreviousMessagesPage(messages);
   }
+
+  @override
+  void setInitedStream(bool isInited) {
+    tripChatPageCubit.initStream(isInited);
+  }
+
+  @override
+  void updateStreamMessages(List<Message> messages) {
+    tripChatPageCubit.updateStreamMessages(messages);
+  }
 }

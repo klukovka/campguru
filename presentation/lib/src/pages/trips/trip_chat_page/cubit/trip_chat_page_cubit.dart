@@ -12,6 +12,8 @@ class TripChatPageCubit extends Cubit<TripChatPageState> {
   void startLoading(String? currentUserId) => emit(state.copyWith(
         isLoading: true,
         paginatedMessages: currentUserId != null ? [] : null,
+        streamMessages: currentUserId != null ? [] : null,
+        isStreamInited: currentUserId != null ? false : null,
         currentUserId: currentUserId,
       ));
 
@@ -31,4 +33,11 @@ class TripChatPageCubit extends Cubit<TripChatPageState> {
         paginatedMessages: [...messages, ...state.paginatedMessages],
         isAllPreviousMessagesUploaded: messages.isEmpty,
       ));
+
+  void updateStreamMessages(List<Message> messages) => emit(state.copyWith(
+        streamMessages: messages,
+      ));
+
+  void initStream(bool isInited) =>
+      emit(state.copyWith(isStreamInited: isInited));
 }

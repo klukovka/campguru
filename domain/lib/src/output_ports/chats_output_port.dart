@@ -6,4 +6,6 @@ abstract class ChatsOutputPort {
   void addNextMessagesPage(List<Message> messages);
   void addPreviousMessagesPage(List<Message> messages);
   void stopChatLoading();
+  void setInitedStream(bool isInited);
+  void updateStreamMessages(List<Message> messages);
 }

@@ -118,6 +118,25 @@ class FirebaseChatsRepository extends ChatsRepository {
           .update({'unread': List.from(message.unread)..remove(userId)});
     });
   }
+
+  @override
+  Future<FailureOrResult<Stream<List<Message>>>> getNewMessagesStream({
+    required String chatId,
+    required String? lastMessageId,
+  }) async {
+    return await _makeErrorHandledCall(() async {
+      final message =
+          await firestore.doc('chats/$chatId/messages/$lastMessageId').get();
+      return firestore
+          .collection('chats/$chatId/messages')
+          .orderBy('sent_at')
+          .startAfterDocument(message)
+          .snapshots()
+          .map((event) => event.docs
+              .map((e) => MessageDto.fromJson(e.data()).toDomain())
+              .toList());
+    });
+  }
 }
 
 Future<FailureOrResult<T>> _makeErrorHandledCall<T>(

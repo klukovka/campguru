@@ -454,6 +454,13 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ErrorHandlerOutputPort>(),
             gh<_i8.PreferencesRepository>(),
           ));
+  gh.lazySingleton<_i8.GetNewMessagesStreamUseCase>(
+      () => chatsUseCasesModule.getNewMessagesStreamUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.ChatsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.PreferencesRepository>(),
+          ));
   gh.lazySingleton<_i5.RouteLocationsPageController>(() => controllersModule
       .getRouteLocationsController(gh<_i8.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i5.RouteDetailsPageController>(() => controllersModule
@@ -498,6 +505,14 @@ Future<_i1.GetIt> $configureDependencies(
     ),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i5.TripChatController>(
+      () => controllersModule.tripChatController(
+            gh<_i8.SendMessageUseCase>(),
+            gh<_i8.GetFirstMessagesPageUseCase>(),
+            gh<_i8.GetNextMessagesPageUseCase>(),
+            gh<_i8.GetPreviousMessagesPageUseCase>(),
+            gh<_i8.GetNewMessagesStreamUseCase>(),
+          ));
   gh.lazySingleton<_i8.SignUpUseCase>(() => userUseCasesModule.signUpUseCase(
         gh<_i8.PreferencesRepository>(),
         gh<_i8.AuthRepository>(),
@@ -540,13 +555,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.AuthRepository>(),
             gh<_i8.UsersRepository>(),
             gh<_i8.CurrentUserOutputPort>(),
-          ));
-  gh.lazySingleton<_i5.TripChatController>(
-      () => controllersModule.tripChatController(
-            gh<_i8.SendMessageUseCase>(),
-            gh<_i8.GetFirstMessagesPageUseCase>(),
-            gh<_i8.GetNextMessagesPageUseCase>(),
-            gh<_i8.GetPreviousMessagesPageUseCase>(),
           ));
   gh.lazySingleton<_i5.StartPageController>(
       () => controllersModule.startPageController(gh<_i8.LoginUseCase>()));
