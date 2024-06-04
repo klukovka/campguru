@@ -7,6 +7,7 @@ export 'src/repositories/app_settings_repository/stable_app_settings_repository.
 export 'src/repositories/auth_repository/api_auth_repository.dart';
 export 'src/repositories/auth_repository/proxy_test_auth_repository.dart';
 export 'src/repositories/cache_repository/cache_flutter_map_repository.dart';
+export 'src/repositories/chats_repository/firebase_chats_repository.dart';
 export 'src/repositories/geoposition_repository/geolocator_geoposition_repository.dart';
 export 'src/repositories/locations_repository/test_locations_repository.dart';
 export 'src/repositories/preferences_repository/proxy_test_preferences_repository.dart';

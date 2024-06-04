@@ -96,12 +96,14 @@ abstract class PresentersModule {
     TripsFiltersPageCubit tripsFiltersPageCubit,
     TripDetailsPageCubit tripDetailsPageCubit,
     CreateTripPageCubit createTripPageCubit,
+    TripChatPageCubit tripChatPageCubit,
   ) =>
       TripsPresenter(
         tripsTabCubit: tripsTabCubit,
         tripsFiltersPageCubit: tripsFiltersPageCubit,
         tripDetailsPageCubit: tripDetailsPageCubit,
         createTripPageCubit: createTripPageCubit,
+        tripChatPageCubit: tripChatPageCubit,
       );
 
   @lazySingleton
@@ -121,4 +123,10 @@ abstract class PresentersModule {
       UsersPresenter(
         createTripPageCubit: createTripPageCubit,
       );
+
+  @lazySingleton
+  ChatsOutputPort chatsOutputPort(
+    TripChatPageCubit tripChatPageCubit,
+  ) =>
+      ChatsPresenter(tripChatPageCubit: tripChatPageCubit);
 }

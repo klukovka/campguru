@@ -6,12 +6,14 @@ class TripsPresenter extends TripsOutputPort {
   final TripDetailsPageCubit tripDetailsPageCubit;
   final TripsFiltersPageCubit tripsFiltersPageCubit;
   final CreateTripPageCubit createTripPageCubit;
+  final TripChatPageCubit tripChatPageCubit;
 
   TripsPresenter({
     required this.tripsTabCubit,
     required this.tripDetailsPageCubit,
     required this.tripsFiltersPageCubit,
     required this.createTripPageCubit,
+    required this.tripChatPageCubit,
   });
 
   @override
@@ -45,6 +47,7 @@ class TripsPresenter extends TripsOutputPort {
 
     tripsTabCubit.setTrips(allTrips);
     tripDetailsPageCubit.updateTrip(trip);
+    tripChatPageCubit.updateTrip(trip);
   }
 
   @override
@@ -60,6 +63,7 @@ class TripsPresenter extends TripsOutputPort {
 
     if (trip != null) {
       tripDetailsPageCubit.updateTrip(trip);
+      tripChatPageCubit.updateTrip(trip);
     } else {
       tripDetailsPageCubit.setHasError();
     }

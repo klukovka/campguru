@@ -95,6 +95,10 @@ class AppAutoRouter extends $AppAutoRouter {
       path: '/home/trips/:id',
     ),
     AutoRoute(
+      page: TripChatRoute.page,
+      path: '/home/trips/:id/chat',
+    ),
+    AutoRoute(
       page: FavoriteLocationsRoute.page,
       path: '/home/profile/favorite_locations',
     ),

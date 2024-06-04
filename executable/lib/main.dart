@@ -6,6 +6,7 @@ import 'package:presentation/presentation.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await configureDependencies(test.name);
   runApp(CampguruApp(locator: locator));
 }

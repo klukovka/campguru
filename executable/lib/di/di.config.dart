@@ -8,39 +8,44 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:cloud_firestore/cloud_firestore.dart' as _i9;
 import 'package:data/data.dart' as _i6;
 import 'package:device_info_plus/device_info_plus.dart' as _i3;
-import 'package:dio/dio.dart' as _i8;
-import 'package:domain/domain.dart' as _i7;
+import 'package:dio/dio.dart' as _i10;
+import 'package:domain/domain.dart' as _i8;
+import 'package:firebase_core/firebase_core.dart' as _i7;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:package_info_plus/package_info_plus.dart' as _i4;
 import 'package:presentation/presentation.dart' as _i5;
 
-import 'data_modules/app_settings_repository_module.dart' as _i16;
-import 'data_modules/auth_repository_module.dart' as _i31;
-import 'data_modules/cache_repository_module.dart' as _i18;
-import 'data_modules/data_packages_module.dart' as _i9;
-import 'data_modules/data_source_module.dart' as _i12;
-import 'data_modules/dio_module.dart' as _i26;
-import 'data_modules/geoposition_repository_module.dart' as _i13;
-import 'data_modules/locations_repository_module.dart' as _i19;
-import 'data_modules/preferences_repository_module.dart' as _i15;
-import 'data_modules/reviews_repository_module.dart' as _i21;
-import 'data_modules/routes_repository_module.dart' as _i20;
-import 'data_modules/trips_repository_module.dart' as _i28;
-import 'data_modules/users_repository_module.dart' as _i32;
-import 'domain_modules/geoposition_use_cases_module.dart' as _i24;
-import 'domain_modules/location_use_cases_module.dart' as _i25;
-import 'domain_modules/review_use_cases_module.dart' as _i22;
-import 'domain_modules/route_use_cases_module.dart' as _i29;
-import 'domain_modules/settings_use_cases_module.dart' as _i30;
-import 'domain_modules/trip_use_cases_module.dart' as _i23;
-import 'domain_modules/user_use_cases_module.dart' as _i17;
-import 'presentation_modules/auto_router_module.dart' as _i10;
-import 'presentation_modules/bloc_module.dart' as _i11;
-import 'presentation_modules/controllers_module.dart' as _i27;
-import 'presentation_modules/presenters_module.dart' as _i14;
+import 'data_modules/app_settings_repository_module.dart' as _i19;
+import 'data_modules/auth_repository_module.dart' as _i35;
+import 'data_modules/cache_repository_module.dart' as _i21;
+import 'data_modules/chats_repository_module.dart' as _i25;
+import 'data_modules/data_packages_module.dart' as _i11;
+import 'data_modules/data_source_module.dart' as _i14;
+import 'data_modules/dio_module.dart' as _i30;
+import 'data_modules/firebase_module.dart' as _i15;
+import 'data_modules/geoposition_repository_module.dart' as _i16;
+import 'data_modules/locations_repository_module.dart' as _i22;
+import 'data_modules/preferences_repository_module.dart' as _i18;
+import 'data_modules/reviews_repository_module.dart' as _i24;
+import 'data_modules/routes_repository_module.dart' as _i23;
+import 'data_modules/trips_repository_module.dart' as _i37;
+import 'data_modules/users_repository_module.dart' as _i36;
+import 'domain_modules/chats_use_cases_module.dart' as _i32;
+import 'domain_modules/geoposition_use_cases_module.dart' as _i28;
+import 'domain_modules/location_use_cases_module.dart' as _i29;
+import 'domain_modules/review_use_cases_module.dart' as _i26;
+import 'domain_modules/route_use_cases_module.dart' as _i33;
+import 'domain_modules/settings_use_cases_module.dart' as _i34;
+import 'domain_modules/trip_use_cases_module.dart' as _i27;
+import 'domain_modules/user_use_cases_module.dart' as _i20;
+import 'presentation_modules/auto_router_module.dart' as _i12;
+import 'presentation_modules/bloc_module.dart' as _i13;
+import 'presentation_modules/controllers_module.dart' as _i31;
+import 'presentation_modules/presenters_module.dart' as _i17;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -61,6 +66,7 @@ Future<_i1.GetIt> $configureDependencies(
   final autoRouterModule = _$AutoRouterModule();
   final blocModule = _$BlocModule();
   final dataSourceModule = _$DataSourceModule();
+  final firebaseModule = _$FirebaseModule();
   final geopositionRepositoryModule = _$GeopositionRepositoryModule();
   final presentersModule = _$PresentersModule();
   final preferencesRepositoryModule = _$PreferencesRepositoryModule();
@@ -70,17 +76,19 @@ Future<_i1.GetIt> $configureDependencies(
   final locationsRepositoryModule = _$LocationsRepositoryModule();
   final routesRepositoryModule = _$RoutesRepositoryModule();
   final reviewsRepositoryModule = _$ReviewsRepositoryModule();
+  final chatsRepositoryModule = _$ChatsRepositoryModule();
   final reviewUseCasesModule = _$ReviewUseCasesModule();
   final tripUseCasesModule = _$TripUseCasesModule();
   final geopositionUseCasesModule = _$GeopositionUseCasesModule();
   final locationUseCasesCasesModule = _$LocationUseCasesCasesModule();
   final dioModule = _$DioModule();
   final controllersModule = _$ControllersModule();
-  final tripsRepositoryModule = _$TripsRepositoryModule();
+  final chatsUseCasesModule = _$ChatsUseCasesModule();
   final routeUseCasesModule = _$RouteUseCasesModule();
   final settingsUseCasesModule = _$SettingsUseCasesModule();
   final authRepositoryModule = _$AuthRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
+  final tripsRepositoryModule = _$TripsRepositoryModule();
   gh.singleton<_i3.DeviceInfoPlugin>(() => dataPackagesModule.deviceInfoPlugin);
   await gh.singletonAsync<_i4.PackageInfo>(
     () => dataPackagesModule.packageInfo(),
@@ -134,15 +142,22 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.cachedRouteMapPageCubit);
   gh.lazySingleton<_i5.CreateTripPageCubit>(
       () => blocModule.createTripPageCubit);
+  gh.lazySingleton<_i5.TripChatPageCubit>(() => blocModule.tripChatPageCubit);
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
   );
-  gh.lazySingleton<_i7.GeopositionRepository>(
+  await gh.lazySingletonAsync<_i7.FirebaseApp>(
+    () => firebaseModule.app(),
+    preResolve: true,
+  );
+  gh.lazySingleton<_i8.GeopositionRepository>(
       () => geopositionRepositoryModule.geopositionRepository);
-  gh.lazySingleton<_i7.UsersOutputPort>(
+  gh.lazySingleton<_i8.ChatsOutputPort>(
+      () => presentersModule.chatsOutputPort(gh<_i5.TripChatPageCubit>()));
+  gh.lazySingleton<_i8.UsersOutputPort>(
       () => presentersModule.usersOutputPort(gh<_i5.CreateTripPageCubit>()));
-  gh.lazySingleton<_i7.CurrentUserOutputPort>(
+  gh.lazySingleton<_i8.CurrentUserOutputPort>(
       () => presentersModule.getCurrentUserOutputPort(
             gh<_i5.SplashPageCubit>(),
             gh<_i5.HomePageCubit>(),
@@ -152,14 +167,14 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i5.CampguruRouter>(
       () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
-  gh.lazySingleton<_i7.ErrorHandlerOutputPort>(() =>
+  gh.lazySingleton<_i8.ErrorHandlerOutputPort>(() =>
       presentersModule.getErrorHandlerOutputPort(gh<_i5.AppControlCubit>()));
-  gh.lazySingleton<_i7.GeopositionOutputPort>(
+  gh.lazySingleton<_i8.GeopositionOutputPort>(
       () => presentersModule.geopositionPresenter(
             gh<_i5.RouteMapPageCubit>(),
             gh<_i5.CachedRouteMapPageCubit>(),
           ));
-  gh.lazySingleton<_i7.PreferencesRepository>(
+  gh.lazySingleton<_i8.PreferencesRepository>(
     () => preferencesRepositoryModule
         .stablePreferencesRepository(gh<_i6.HiveDataSource>()),
     registerFor: {
@@ -167,29 +182,32 @@ Future<_i1.GetIt> $configureDependencies(
       _prod,
     },
   );
-  gh.lazySingleton<_i7.ReviewsOutputPort>(
+  gh.lazySingleton<_i8.ReviewsOutputPort>(
       () => presentersModule.getReviewsOutputPort(
             gh<_i5.LocationReviewsPageCubit>(),
             gh<_i5.RouteReviewsPageCubit>(),
           ));
-  gh.lazySingleton<_i7.AppSettingsRepository>(() => appSettingsRepositoryModule
+  gh.lazySingleton<_i8.AppSettingsRepository>(() => appSettingsRepositoryModule
       .getAppSettingsRepository(gh<_i4.PackageInfo>()));
-  gh.lazySingleton<_i7.PreferencesRepository>(
+  gh.lazySingleton<_i8.PreferencesRepository>(
     () => preferencesRepositoryModule
         .testPreferencesRepository(gh<_i6.HiveDataSource>()),
     registerFor: {_test},
   );
-  gh.lazySingleton<_i7.TripsOutputPort>(
+  gh.lazySingleton<_i9.FirebaseFirestore>(
+      () => firebaseModule.firebaseFirestore(gh<_i7.FirebaseApp>()));
+  gh.lazySingleton<_i8.RemoveUserFromCreatingTripUseCase>(() =>
+      userUseCasesModule
+          .removeUserFromCreatingTripUseCase(gh<_i8.UsersOutputPort>()));
+  gh.lazySingleton<_i8.TripsOutputPort>(
       () => presentersModule.getTripsOutputPort(
             gh<_i5.TripsTabCubit>(),
             gh<_i5.TripsFiltersPageCubit>(),
             gh<_i5.TripDetailsPageCubit>(),
             gh<_i5.CreateTripPageCubit>(),
+            gh<_i5.TripChatPageCubit>(),
           ));
-  gh.lazySingleton<_i7.RemoveUserFromCreatingTripUseCase>(() =>
-      userUseCasesModule
-          .removeUserFromCreatingTripUseCase(gh<_i7.UsersOutputPort>()));
-  gh.lazySingleton<_i7.LocationsOutputPort>(
+  gh.lazySingleton<_i8.LocationsOutputPort>(
       () => presentersModule.getLocationsOutputPort(
             gh<_i5.LocationsTabCubit>(),
             gh<_i5.LocationDetailsPageCubit>(),
@@ -201,7 +219,7 @@ Future<_i1.GetIt> $configureDependencies(
     () => dataSourceModule.getTestDataSource(gh<_i3.DeviceInfoPlugin>()),
     registerFor: {_test},
   );
-  gh.lazySingleton<_i7.RoutesOutputPort>(
+  gh.lazySingleton<_i8.RoutesOutputPort>(
       () => presentersModule.getRoutesOutputPort(
             gh<_i5.RoutesTabCubit>(),
             gh<_i5.RouteDetailsPageCubit>(),
@@ -216,95 +234,103 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.CachedRouteDetailsPageCubit>(),
             gh<_i5.CachedRouteMapPageCubit>(),
           ));
-  gh.lazySingleton<_i7.SettingsOutputPort>(
+  gh.lazySingleton<_i8.SettingsOutputPort>(
       () => presentersModule.getSettingsOutputPort(gh<_i5.ProfileTabCubit>()));
-  await gh.lazySingletonAsync<_i7.CacheRepository>(
+  await gh.lazySingletonAsync<_i8.CacheRepository>(
     () => cacheRepositoryModule.getCacheRepository(gh<_i6.HiveDataSource>()),
     preResolve: true,
   );
-  gh.lazySingleton<_i7.LocationsRepository>(
+  gh.lazySingleton<_i8.LocationsRepository>(
     () => locationsRepositoryModule
         .getTestLocationsRepository(gh<_i6.TestDataSource>()),
     registerFor: {_test},
   );
-  gh.lazySingleton<_i7.RoutesRepository>(
+  gh.lazySingleton<_i8.RoutesRepository>(
     () => routesRepositoryModule
         .getTestRoutesRepository(gh<_i6.TestDataSource>()),
     registerFor: {_test},
   );
-  gh.lazySingleton<_i7.ReviewsRepository>(
+  gh.lazySingleton<_i8.ReviewsRepository>(
     () => reviewsRepositoryModule
         .getTestReviewsRepository(gh<_i6.TestDataSource>()),
     registerFor: {_test},
   );
-  gh.lazySingleton<_i7.GetLocationReviewsUseCase>(
+  gh.lazySingleton<_i8.ChatsRepository>(
+      () => chatsRepositoryModule.chatsRepository(gh<_i9.FirebaseFirestore>()));
+  gh.lazySingleton<_i8.GetLocationReviewsUseCase>(
       () => reviewUseCasesModule.getLocationReviewsUseCase(
-            gh<_i7.ReviewsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.ReviewsOutputPort>(),
+            gh<_i8.ReviewsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.ReviewsOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetRouteReviewsUseCase>(
+  gh.lazySingleton<_i8.GetRouteReviewsUseCase>(
       () => reviewUseCasesModule.getRouteReviewsUseCase(
-            gh<_i7.ReviewsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.ReviewsOutputPort>(),
+            gh<_i8.ReviewsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.ReviewsOutputPort>(),
           ));
-  gh.lazySingleton<_i7.SetTripRouteUseCase>(
-      () => tripUseCasesModule.setTripRouteUseCase(gh<_i7.TripsOutputPort>()));
-  gh.lazySingleton<_i7.GetGeopositionUseCase>(
+  gh.lazySingleton<_i8.SetTripRouteUseCase>(
+      () => tripUseCasesModule.setTripRouteUseCase(gh<_i8.TripsOutputPort>()));
+  gh.lazySingleton<_i8.GetGeopositionUseCase>(
       () => geopositionUseCasesModule.getGeopositionUseCase(
-            gh<_i7.GeopositionRepository>(),
-            gh<_i7.GeopositionOutputPort>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
+            gh<_i8.GeopositionRepository>(),
+            gh<_i8.GeopositionOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
           ));
-  gh.factory<_i7.GetLocationsAvailableFiltersUseCase>(
+  gh.factory<_i8.GetLocationsAvailableFiltersUseCase>(
       () => locationUseCasesCasesModule.getLocationsAvailableFiltersUseCase(
-            gh<_i7.LocationsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.LocationsOutputPort>(),
+            gh<_i8.LocationsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.LocationsOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetAllLocationsUseCase>(
+  gh.lazySingleton<_i8.GetAllLocationsUseCase>(
       () => locationUseCasesCasesModule.getAllLocationsUseCase(
-            gh<_i7.LocationsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.LocationsOutputPort>(),
+            gh<_i8.LocationsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.LocationsOutputPort>(),
           ));
-  gh.lazySingleton<_i7.UpdateLocationFavoriteStatusUseCase>(
+  gh.lazySingleton<_i8.UpdateLocationFavoriteStatusUseCase>(
       () => locationUseCasesCasesModule.getUpdateLocationFavoriteStatusUseCase(
-            gh<_i7.LocationsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.LocationsOutputPort>(),
+            gh<_i8.LocationsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.LocationsOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetLocationDetailsUseCase>(
+  gh.lazySingleton<_i8.GetLocationDetailsUseCase>(
       () => locationUseCasesCasesModule.getLocationDetailsUseCase(
-            gh<_i7.LocationsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.LocationsOutputPort>(),
+            gh<_i8.LocationsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.LocationsOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetRouteLocationsUseCase>(
+  gh.lazySingleton<_i8.GetRouteLocationsUseCase>(
       () => locationUseCasesCasesModule.getRouteLocationsUseCase(
-            gh<_i7.LocationsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.LocationsOutputPort>(),
+            gh<_i8.LocationsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.LocationsOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetFavoriteLocationsUseCase>(
+  gh.lazySingleton<_i8.GetFavoriteLocationsUseCase>(
       () => locationUseCasesCasesModule.getFavoriteLocationsUseCase(
-            gh<_i7.LocationsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.LocationsOutputPort>(),
+            gh<_i8.LocationsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.LocationsOutputPort>(),
           ));
   gh.lazySingleton<_i6.AuthInterceptor>(
-      () => dioModule.authInterceptor(gh<_i7.PreferencesRepository>()));
+      () => dioModule.authInterceptor(gh<_i8.PreferencesRepository>()));
   gh.lazySingleton<_i5.LocationDetailsPageController>(() => controllersModule
-      .getLocationDetailsPageController(gh<_i7.GetLocationDetailsUseCase>()));
+      .getLocationDetailsPageController(gh<_i8.GetLocationDetailsUseCase>()));
   gh.lazySingleton<_i5.LocationFavoriteButtonController>(() =>
       controllersModule.getLocationFavoriteButtonController(
-          gh<_i7.UpdateLocationFavoriteStatusUseCase>()));
-  gh.lazySingleton<_i8.Dio>(
+          gh<_i8.UpdateLocationFavoriteStatusUseCase>()));
+  gh.lazySingleton<_i10.Dio>(
     () => dioModule.prodDio(gh<_i6.AuthInterceptor>()),
     registerFor: {_prod},
   );
-  gh.lazySingleton<_i8.Dio>(
+  gh.lazySingleton<_i8.SendMessageUseCase>(
+      () => chatsUseCasesModule.sendMessageUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.PreferencesRepository>(),
+          ));
+  gh.lazySingleton<_i10.Dio>(
     () => dioModule.dio(gh<_i6.AuthInterceptor>()),
     registerFor: {
       _test,
@@ -312,305 +338,352 @@ Future<_i1.GetIt> $configureDependencies(
     },
   );
   gh.lazySingleton<_i5.LocationReviewsPageController>(() => controllersModule
-      .getLocationReviewsPageController(gh<_i7.GetLocationReviewsUseCase>()));
+      .getLocationReviewsPageController(gh<_i8.GetLocationReviewsUseCase>()));
   gh.lazySingleton<_i5.LocationsTabController>(() => controllersModule
-      .getLocationsTabController(gh<_i7.GetAllLocationsUseCase>()));
+      .getLocationsTabController(gh<_i8.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i5.LocationFiltersPageController>(() => controllersModule
-      .getLocationFiltersPageController(gh<_i7.GetAllLocationsUseCase>()));
-  gh.lazySingleton<_i7.LogoutUseCase>(() => userUseCasesModule.logoutUseCase(
-        gh<_i7.PreferencesRepository>(),
-        gh<_i7.CacheRepository>(),
+      .getLocationFiltersPageController(gh<_i8.GetAllLocationsUseCase>()));
+  gh.lazySingleton<_i8.LogoutUseCase>(() => userUseCasesModule.logoutUseCase(
+        gh<_i8.PreferencesRepository>(),
+        gh<_i8.CacheRepository>(),
       ));
-  gh.lazySingleton<_i7.TripsRepository>(
-    () => tripsRepositoryModule.getTripsRepository(gh<_i6.TestDataSource>()),
-    registerFor: {_test},
-  );
-  gh.lazySingleton<_i7.DeleteCachedRouteUseCase>(
+  gh.lazySingleton<_i8.DeleteCachedRouteUseCase>(
       () => routeUseCasesModule.deleteCachedRouteUseCase(
-            gh<_i7.CacheRepository>(),
-            gh<_i7.RoutesOutputPort>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
+            gh<_i8.CacheRepository>(),
+            gh<_i8.RoutesOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
           ));
   gh.lazySingleton<_i5.RouteReviewsPageController>(() => controllersModule
-      .getRouteReviewsPageController(gh<_i7.GetRouteReviewsUseCase>()));
-  gh.lazySingleton<_i7.GetCachedRoutesUseCase>(
-      () => routeUseCasesModule.getCachedRoutesUseCase(
-            gh<_i7.CacheRepository>(),
-            gh<_i7.RoutesOutputPort>(),
+      .getRouteReviewsPageController(gh<_i8.GetRouteReviewsUseCase>()));
+  gh.lazySingleton<_i8.GetFirstMessagesPageUseCase>(
+      () => chatsUseCasesModule.getFirstMessagesPageUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.PreferencesRepository>(),
+            gh<_i8.ChatsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetCachedRouteDetailsUseCase>(
+  gh.lazySingleton<_i8.GetCachedRoutesUseCase>(
+      () => routeUseCasesModule.getCachedRoutesUseCase(
+            gh<_i8.CacheRepository>(),
+            gh<_i8.RoutesOutputPort>(),
+          ));
+  gh.lazySingleton<_i8.GetCachedRouteDetailsUseCase>(
       () => routeUseCasesModule.getCachedRouteDetailsUseCase(
-            gh<_i7.CacheRepository>(),
-            gh<_i7.RoutesOutputPort>(),
+            gh<_i8.CacheRepository>(),
+            gh<_i8.RoutesOutputPort>(),
           ));
   gh.lazySingleton<_i5.CachedRoutesTabController>(
       () => controllersModule.cachedRoutesTabController(
-            gh<_i7.GetCachedRoutesUseCase>(),
-            gh<_i7.DeleteCachedRouteUseCase>(),
+            gh<_i8.GetCachedRoutesUseCase>(),
+            gh<_i8.DeleteCachedRouteUseCase>(),
           ));
   gh.lazySingleton<_i5.CachedRouteDetailsPageController>(() =>
       controllersModule.cachedRouteDetailsPageController(
-          gh<_i7.GetCachedRouteDetailsUseCase>()));
+          gh<_i8.GetCachedRouteDetailsUseCase>()));
   gh.lazySingleton<_i5.ProfileTabController>(
-      () => controllersModule.profileTabController(gh<_i7.LogoutUseCase>()));
+      () => controllersModule.profileTabController(gh<_i8.LogoutUseCase>()));
   gh.lazySingleton<_i5.CachedRouteMapPageController>(
       () => controllersModule.cachedRouteMapPageController(
-            gh<_i7.GetCachedRouteDetailsUseCase>(),
-            gh<_i7.GetGeopositionUseCase>(),
+            gh<_i8.GetCachedRouteDetailsUseCase>(),
+            gh<_i8.GetGeopositionUseCase>(),
           ));
-  gh.lazySingleton<_i7.GetAppVersion>(
+  gh.lazySingleton<_i8.GetAppVersion>(
       () => settingsUseCasesModule.getAppVersion(
-            gh<_i7.AppSettingsRepository>(),
-            gh<_i7.SettingsOutputPort>(),
+            gh<_i8.AppSettingsRepository>(),
+            gh<_i8.SettingsOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetAllRoutesUseCase>(
+  gh.lazySingleton<_i8.GetAllRoutesUseCase>(
       () => routeUseCasesModule.getAllRoutesUseCase(
-            gh<_i7.RoutesRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.RoutesOutputPort>(),
+            gh<_i8.RoutesRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.RoutesOutputPort>(),
           ));
-  gh.lazySingleton<_i7.UpdateRouteFavoriteStatusUseCase>(
+  gh.lazySingleton<_i8.UpdateRouteFavoriteStatusUseCase>(
       () => routeUseCasesModule.getUpdateRouteFavoriteStatusUseCase(
-            gh<_i7.RoutesRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.RoutesOutputPort>(),
+            gh<_i8.RoutesRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.RoutesOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetRouteDetailsUseCase>(
+  gh.lazySingleton<_i8.GetRouteDetailsUseCase>(
       () => routeUseCasesModule.getRouteDetailsUseCase(
-            gh<_i7.RoutesRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.RoutesOutputPort>(),
+            gh<_i8.RoutesRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.RoutesOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetRoutesAvailableFiltersUseCase>(
+  gh.lazySingleton<_i8.GetRoutesAvailableFiltersUseCase>(
       () => routeUseCasesModule.getRoutesAvailableFiltersUseCase(
-            gh<_i7.RoutesRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.RoutesOutputPort>(),
+            gh<_i8.RoutesRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.RoutesOutputPort>(),
           ));
-  gh.lazySingleton<_i7.CreateNewRouteUseCase>(
+  gh.lazySingleton<_i8.CreateNewRouteUseCase>(
       () => routeUseCasesModule.getCreateNewRouteUseCase(
-            gh<_i7.RoutesRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.RoutesOutputPort>(),
+            gh<_i8.RoutesRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.RoutesOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetRoutePreviewUseCase>(
+  gh.lazySingleton<_i8.GetRoutePreviewUseCase>(
       () => routeUseCasesModule.getGetRoutePreviewUseCase(
-            gh<_i7.RoutesRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.RoutesOutputPort>(),
+            gh<_i8.RoutesRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.RoutesOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetFavoriteRoutesUseCase>(
+  gh.lazySingleton<_i8.GetFavoriteRoutesUseCase>(
       () => routeUseCasesModule.getFavoriteRoutesUseCase(
-            gh<_i7.RoutesRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.RoutesOutputPort>(),
+            gh<_i8.RoutesRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.RoutesOutputPort>(),
           ));
-  gh.lazySingleton<_i7.GetMyOwnRoutesUseCase>(
+  gh.lazySingleton<_i8.GetMyOwnRoutesUseCase>(
       () => routeUseCasesModule.getMyOwnRoutesUseCase(
-            gh<_i7.RoutesRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.RoutesOutputPort>(),
+            gh<_i8.RoutesRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.RoutesOutputPort>(),
+          ));
+  gh.lazySingleton<_i8.GetNextMessagesPageUseCase>(
+      () => chatsUseCasesModule.getNextMessagesPageUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.ChatsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.PreferencesRepository>(),
+          ));
+  gh.lazySingleton<_i8.GetPreviousMessagesPageUseCase>(
+      () => chatsUseCasesModule.getPreviousMessagesPageUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.ChatsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.PreferencesRepository>(),
+          ));
+  gh.lazySingleton<_i8.GetNewMessagesStreamUseCase>(
+      () => chatsUseCasesModule.getNewMessagesStreamUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.ChatsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.PreferencesRepository>(),
           ));
   gh.lazySingleton<_i5.RouteLocationsPageController>(() => controllersModule
-      .getRouteLocationsController(gh<_i7.GetRouteLocationsUseCase>()));
+      .getRouteLocationsController(gh<_i8.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i5.RouteDetailsPageController>(() => controllersModule
-      .getRouteDetailsPageController(gh<_i7.GetRouteDetailsUseCase>()));
+      .getRouteDetailsPageController(gh<_i8.GetRouteDetailsUseCase>()));
   gh.lazySingleton<_i5.FavoriteLocationsPageController>(() =>
       controllersModule.getFavoriteLocationsPageController(
-          gh<_i7.GetFavoriteLocationsUseCase>()));
-  gh.lazySingleton<_i7.AuthRepository>(
-    () => authRepositoryModule.testAuthRepository(gh<_i8.Dio>()),
+          gh<_i8.GetFavoriteLocationsUseCase>()));
+  gh.lazySingleton<_i8.AuthRepository>(
+    () => authRepositoryModule.testAuthRepository(gh<_i10.Dio>()),
     registerFor: {_test},
   );
   gh.lazySingleton<_i5.FavoriteRoutesTabController>(
       () => controllersModule.favoriteRoutesTabController(
-            gh<_i7.GetFavoriteRoutesUseCase>(),
-            gh<_i7.SetTripRouteUseCase>(),
+            gh<_i8.GetFavoriteRoutesUseCase>(),
+            gh<_i8.SetTripRouteUseCase>(),
           ));
-  gh.lazySingleton<_i7.UsersRepository>(
-    () => usersRepositoryModule.apiUsersRepository(gh<_i8.Dio>()),
+  gh.lazySingleton<_i8.UsersRepository>(
+    () => usersRepositoryModule.apiUsersRepository(gh<_i10.Dio>()),
     registerFor: {
       _dev,
       _prod,
     },
   );
-  gh.lazySingleton<_i7.AuthRepository>(
-    () => authRepositoryModule.apiAuthRepository(gh<_i8.Dio>()),
+  gh.lazySingleton<_i8.AuthRepository>(
+    () => authRepositoryModule.apiAuthRepository(gh<_i10.Dio>()),
     registerFor: {
       _dev,
       _prod,
     },
   );
-  gh.lazySingleton<_i7.UsersRepository>(
+  gh.lazySingleton<_i8.UsersRepository>(
     () => usersRepositoryModule.getTestUsersRepository(
       gh<_i6.TestDataSource>(),
-      gh<_i8.Dio>(),
+      gh<_i10.Dio>(),
     ),
     registerFor: {_test},
   );
-  gh.lazySingleton<_i7.GetTripsUseCase>(
-      () => tripUseCasesModule.getAllTripsUseCase(
-            gh<_i7.TripsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.TripsOutputPort>(),
+  gh.lazySingleton<_i8.TripsRepository>(
+    () => tripsRepositoryModule.getTripsRepository(
+      gh<_i6.TestDataSource>(),
+      gh<_i10.Dio>(),
+    ),
+    registerFor: {_test},
+  );
+  gh.lazySingleton<_i5.TripChatController>(
+      () => controllersModule.tripChatController(
+            gh<_i8.SendMessageUseCase>(),
+            gh<_i8.GetFirstMessagesPageUseCase>(),
+            gh<_i8.GetNextMessagesPageUseCase>(),
+            gh<_i8.GetPreviousMessagesPageUseCase>(),
+            gh<_i8.GetNewMessagesStreamUseCase>(),
           ));
-  gh.lazySingleton<_i7.GetTripDetailsUseCase>(
-      () => tripUseCasesModule.getTripDetailsUseCase(
-            gh<_i7.TripsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.TripsOutputPort>(),
-          ));
-  gh.lazySingleton<_i7.CompleteTripUseCase>(
-      () => tripUseCasesModule.completeTripUseCase(
-            gh<_i7.TripsRepository>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.TripsOutputPort>(),
-          ));
-  gh.lazySingleton<_i7.SignUpUseCase>(() => userUseCasesModule.signUpUseCase(
-        gh<_i7.PreferencesRepository>(),
-        gh<_i7.AuthRepository>(),
-        gh<_i7.CurrentUserOutputPort>(),
-        gh<_i7.ErrorHandlerOutputPort>(),
+  gh.lazySingleton<_i8.SignUpUseCase>(() => userUseCasesModule.signUpUseCase(
+        gh<_i8.PreferencesRepository>(),
+        gh<_i8.AuthRepository>(),
+        gh<_i8.CurrentUserOutputPort>(),
+        gh<_i8.ErrorHandlerOutputPort>(),
       ));
-  gh.lazySingleton<_i7.LoginUseCase>(() => userUseCasesModule.loginUseCase(
-        gh<_i7.PreferencesRepository>(),
-        gh<_i7.AuthRepository>(),
-        gh<_i7.CurrentUserOutputPort>(),
-        gh<_i7.ErrorHandlerOutputPort>(),
+  gh.lazySingleton<_i8.LoginUseCase>(() => userUseCasesModule.loginUseCase(
+        gh<_i8.PreferencesRepository>(),
+        gh<_i8.AuthRepository>(),
+        gh<_i8.CurrentUserOutputPort>(),
+        gh<_i8.ErrorHandlerOutputPort>(),
       ));
-  gh.lazySingleton<_i7.CreateTripUseCase>(
-      () => tripUseCasesModule.createTripUseCase(
-            gh<_i7.TripsRepository>(),
-            gh<_i7.TripsOutputPort>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
-          ));
   gh.lazySingleton<_i5.MyOwnRoutesTabController>(() => controllersModule
-      .myOwnRoutesTabController(gh<_i7.GetMyOwnRoutesUseCase>()));
+      .myOwnRoutesTabController(gh<_i8.GetMyOwnRoutesUseCase>()));
   gh.lazySingleton<_i5.SignUpPageController>(
-      () => controllersModule.signUpPageController(gh<_i7.SignUpUseCase>()));
+      () => controllersModule.signUpPageController(gh<_i8.SignUpUseCase>()));
   gh.lazySingleton<_i5.RoutesTabController>(() =>
-      controllersModule.getRoutesTabController(gh<_i7.GetAllRoutesUseCase>()));
+      controllersModule.getRoutesTabController(gh<_i8.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i5.RouteFiltersPageController>(() => controllersModule
-      .getRouteFiltersPageController(gh<_i7.GetAllRoutesUseCase>()));
+      .getRouteFiltersPageController(gh<_i8.GetAllRoutesUseCase>()));
+  gh.lazySingleton<_i8.CreateTripUseCase>(
+      () => tripUseCasesModule.createTripUseCase(
+            gh<_i8.TripsRepository>(),
+            gh<_i8.TripsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.PreferencesRepository>(),
+          ));
   gh.lazySingleton<_i5.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(
-          gh<_i7.UpdateRouteFavoriteStatusUseCase>()));
+          gh<_i8.UpdateRouteFavoriteStatusUseCase>()));
   gh.lazySingleton<_i5.CreateRoutePageController>(
       () => controllersModule.createRoutePageController(
-            gh<_i7.GetRoutePreviewUseCase>(),
-            gh<_i7.CreateNewRouteUseCase>(),
+            gh<_i8.GetRoutePreviewUseCase>(),
+            gh<_i8.CreateNewRouteUseCase>(),
           ));
-  gh.lazySingleton<_i7.IsAuthorizedUseCase>(
+  gh.lazySingleton<_i8.IsAuthorizedUseCase>(
       () => userUseCasesModule.getIsAuthorizedUseCase(
-            gh<_i7.PreferencesRepository>(),
-            gh<_i7.AuthRepository>(),
-            gh<_i7.UsersRepository>(),
-            gh<_i7.CurrentUserOutputPort>(),
-          ));
-  gh.lazySingleton<_i5.TripDetailsPageController>(
-      () => controllersModule.getTripDetailsPageController(
-            gh<_i7.GetTripDetailsUseCase>(),
-            gh<_i7.CompleteTripUseCase>(),
+            gh<_i8.PreferencesRepository>(),
+            gh<_i8.AuthRepository>(),
+            gh<_i8.UsersRepository>(),
+            gh<_i8.CurrentUserOutputPort>(),
           ));
   gh.lazySingleton<_i5.StartPageController>(
-      () => controllersModule.startPageController(gh<_i7.LoginUseCase>()));
-  gh.lazySingleton<_i7.CacheRouteUseCase>(
+      () => controllersModule.startPageController(gh<_i8.LoginUseCase>()));
+  gh.lazySingleton<_i8.CacheRouteUseCase>(
       () => routeUseCasesModule.cacheRouteUseCase(
-            gh<_i7.ErrorHandlerOutputPort>(),
-            gh<_i7.RoutesOutputPort>(),
-            gh<_i7.CacheRepository>(),
-            gh<_i7.UsersRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.RoutesOutputPort>(),
+            gh<_i8.CacheRepository>(),
+            gh<_i8.UsersRepository>(),
           ));
-  gh.lazySingleton<_i7.GetUserSubscriptionStatusUseCase>(
+  gh.lazySingleton<_i8.GetUserSubscriptionStatusUseCase>(
       () => userUseCasesModule.getUserSubscriptionStatus(
-            gh<_i7.UsersRepository>(),
-            gh<_i7.LocationsOutputPort>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
+            gh<_i8.UsersRepository>(),
+            gh<_i8.LocationsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
           ));
-  gh.lazySingleton<_i5.TripsTabController>(
-      () => controllersModule.getTripsTabController(gh<_i7.GetTripsUseCase>()));
-  gh.lazySingleton<_i5.TripFiltersPageController>(() => controllersModule
-      .getTripFiltersPageController(gh<_i7.GetTripsUseCase>()));
-  gh.lazySingleton<_i7.GetUserByEmailUseCase>(
+  gh.lazySingleton<_i8.GetUserByEmailUseCase>(
       () => userUseCasesModule.getUserByEmailUseCase(
-            gh<_i7.UsersRepository>(),
-            gh<_i7.UsersOutputPort>(),
-            gh<_i7.ErrorHandlerOutputPort>(),
+            gh<_i8.UsersRepository>(),
+            gh<_i8.UsersOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
           ));
   gh.lazySingleton<_i5.RouteMapPageController>(
       () => controllersModule.getRouteMapPageController(
-            gh<_i7.CacheRouteUseCase>(),
-            gh<_i7.GetRouteDetailsUseCase>(),
-            gh<_i7.GetGeopositionUseCase>(),
+            gh<_i8.CacheRouteUseCase>(),
+            gh<_i8.GetRouteDetailsUseCase>(),
+            gh<_i8.GetGeopositionUseCase>(),
+          ));
+  gh.lazySingleton<_i8.GetTripsUseCase>(
+      () => tripUseCasesModule.getAllTripsUseCase(
+            gh<_i8.TripsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.TripsOutputPort>(),
+          ));
+  gh.lazySingleton<_i8.GetTripDetailsUseCase>(
+      () => tripUseCasesModule.getTripDetailsUseCase(
+            gh<_i8.TripsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.TripsOutputPort>(),
+          ));
+  gh.lazySingleton<_i8.CompleteTripUseCase>(
+      () => tripUseCasesModule.completeTripUseCase(
+            gh<_i8.TripsRepository>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.TripsOutputPort>(),
           ));
   gh.lazySingleton<_i5.SplashPageController>(
       () => controllersModule.getSplashPageController(
-            gh<_i7.IsAuthorizedUseCase>(),
-            gh<_i7.GetAllLocationsUseCase>(),
-            gh<_i7.GetAllRoutesUseCase>(),
-            gh<_i7.GetLocationsAvailableFiltersUseCase>(),
-            gh<_i7.GetRoutesAvailableFiltersUseCase>(),
-            gh<_i7.GetAppVersion>(),
-            gh<_i7.GetTripsUseCase>(),
-            gh<_i7.GetFavoriteLocationsUseCase>(),
-            gh<_i7.GetFavoriteRoutesUseCase>(),
-            gh<_i7.GetMyOwnRoutesUseCase>(),
-            gh<_i7.GetCachedRoutesUseCase>(),
+            gh<_i8.IsAuthorizedUseCase>(),
+            gh<_i8.GetAllLocationsUseCase>(),
+            gh<_i8.GetAllRoutesUseCase>(),
+            gh<_i8.GetLocationsAvailableFiltersUseCase>(),
+            gh<_i8.GetRoutesAvailableFiltersUseCase>(),
+            gh<_i8.GetAppVersion>(),
+            gh<_i8.GetTripsUseCase>(),
+            gh<_i8.GetFavoriteLocationsUseCase>(),
+            gh<_i8.GetFavoriteRoutesUseCase>(),
+            gh<_i8.GetMyOwnRoutesUseCase>(),
+            gh<_i8.GetCachedRoutesUseCase>(),
           ));
   gh.lazySingleton<_i5.CreateTripPageController>(
       () => controllersModule.createTripPageController(
-            gh<_i7.GetUserByEmailUseCase>(),
-            gh<_i7.RemoveUserFromCreatingTripUseCase>(),
-            gh<_i7.SetTripRouteUseCase>(),
-            gh<_i7.CreateTripUseCase>(),
+            gh<_i8.GetUserByEmailUseCase>(),
+            gh<_i8.RemoveUserFromCreatingTripUseCase>(),
+            gh<_i8.SetTripRouteUseCase>(),
+            gh<_i8.CreateTripUseCase>(),
           ));
+  gh.lazySingleton<_i5.TripDetailsPageController>(
+      () => controllersModule.getTripDetailsPageController(
+            gh<_i8.GetTripDetailsUseCase>(),
+            gh<_i8.CompleteTripUseCase>(),
+          ));
+  gh.lazySingleton<_i5.TripsTabController>(
+      () => controllersModule.getTripsTabController(gh<_i8.GetTripsUseCase>()));
+  gh.lazySingleton<_i5.TripFiltersPageController>(() => controllersModule
+      .getTripFiltersPageController(gh<_i8.GetTripsUseCase>()));
   return getIt;
 }
 
-class _$DataPackagesModule extends _i9.DataPackagesModule {}
+class _$DataPackagesModule extends _i11.DataPackagesModule {}
 
-class _$AutoRouterModule extends _i10.AutoRouterModule {}
+class _$AutoRouterModule extends _i12.AutoRouterModule {}
 
-class _$BlocModule extends _i11.BlocModule {}
+class _$BlocModule extends _i13.BlocModule {}
 
-class _$DataSourceModule extends _i12.DataSourceModule {}
+class _$DataSourceModule extends _i14.DataSourceModule {}
 
-class _$GeopositionRepositoryModule extends _i13.GeopositionRepositoryModule {}
+class _$FirebaseModule extends _i15.FirebaseModule {}
 
-class _$PresentersModule extends _i14.PresentersModule {}
+class _$GeopositionRepositoryModule extends _i16.GeopositionRepositoryModule {}
 
-class _$PreferencesRepositoryModule extends _i15.PreferencesRepositoryModule {}
+class _$PresentersModule extends _i17.PresentersModule {}
 
-class _$AppSettingsRepositoryModule extends _i16.AppSettingsRepositoryModule {}
+class _$PreferencesRepositoryModule extends _i18.PreferencesRepositoryModule {}
 
-class _$UserUseCasesModule extends _i17.UserUseCasesModule {}
+class _$AppSettingsRepositoryModule extends _i19.AppSettingsRepositoryModule {}
 
-class _$CacheRepositoryModule extends _i18.CacheRepositoryModule {}
+class _$UserUseCasesModule extends _i20.UserUseCasesModule {}
 
-class _$LocationsRepositoryModule extends _i19.LocationsRepositoryModule {}
+class _$CacheRepositoryModule extends _i21.CacheRepositoryModule {}
 
-class _$RoutesRepositoryModule extends _i20.RoutesRepositoryModule {}
+class _$LocationsRepositoryModule extends _i22.LocationsRepositoryModule {}
 
-class _$ReviewsRepositoryModule extends _i21.ReviewsRepositoryModule {}
+class _$RoutesRepositoryModule extends _i23.RoutesRepositoryModule {}
 
-class _$ReviewUseCasesModule extends _i22.ReviewUseCasesModule {}
+class _$ReviewsRepositoryModule extends _i24.ReviewsRepositoryModule {}
 
-class _$TripUseCasesModule extends _i23.TripUseCasesModule {}
+class _$ChatsRepositoryModule extends _i25.ChatsRepositoryModule {}
 
-class _$GeopositionUseCasesModule extends _i24.GeopositionUseCasesModule {}
+class _$ReviewUseCasesModule extends _i26.ReviewUseCasesModule {}
 
-class _$LocationUseCasesCasesModule extends _i25.LocationUseCasesCasesModule {}
+class _$TripUseCasesModule extends _i27.TripUseCasesModule {}
 
-class _$DioModule extends _i26.DioModule {}
+class _$GeopositionUseCasesModule extends _i28.GeopositionUseCasesModule {}
 
-class _$ControllersModule extends _i27.ControllersModule {}
+class _$LocationUseCasesCasesModule extends _i29.LocationUseCasesCasesModule {}
 
-class _$TripsRepositoryModule extends _i28.TripsRepositoryModule {}
+class _$DioModule extends _i30.DioModule {}
 
-class _$RouteUseCasesModule extends _i29.RouteUseCasesModule {}
+class _$ControllersModule extends _i31.ControllersModule {}
 
-class _$SettingsUseCasesModule extends _i30.SettingsUseCasesModule {}
+class _$ChatsUseCasesModule extends _i32.ChatsUseCasesModule {}
 
-class _$AuthRepositoryModule extends _i31.AuthRepositoryModule {}
+class _$RouteUseCasesModule extends _i33.RouteUseCasesModule {}
 
-class _$UsersRepositoryModule extends _i32.UsersRepositoryModule {}
+class _$SettingsUseCasesModule extends _i34.SettingsUseCasesModule {}
+
+class _$AuthRepositoryModule extends _i35.AuthRepositoryModule {}
+
+class _$UsersRepositoryModule extends _i36.UsersRepositoryModule {}
+
+class _$TripsRepositoryModule extends _i37.TripsRepositoryModule {}

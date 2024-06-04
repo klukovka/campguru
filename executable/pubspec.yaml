@@ -1,7 +1,7 @@
 name: executable
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 0.1.19+19
+version: 0.1.20+20
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -24,6 +24,8 @@ dependencies:
   package_info_plus: ^8.0.0
   device_info_plus: ^10.1.0
   dio: ^5.4.1
+  firebase_core: ^2.32.0
+  cloud_firestore: ^4.17.5
 
 dev_dependencies:
   flutter_test:

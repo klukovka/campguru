@@ -1,3 +1,5 @@
+import 'package:dart_date/dart_date.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 extension DateFormatterExtension on DateTime {
@@ -95,4 +97,21 @@ extension DateFormatterExtension on DateTime {
   /// DateFormat('d MMM yyy').format(DateTime(2023, 6, 13)) /// returns "13 Jun 2023"
   /// ```
   String get dayAbbreviatedMonthYear => DateFormat('d MMM yyyy').format(this);
+
+  String get messageFormattedTime => DateFormat('hh:mm a').format(this);
+
+  String getChatPinnedDate(BuildContext context) {
+    //TODO: Add localizations
+    // final localizations = context.commonStrings;
+
+    if (isToday) {
+      return 'TODAY';
+      // return localizations.today.toTitleCase();
+    }
+    if (isYesterday) {
+      return 'Yesterday'.toUpperCase();
+      // return localizations.yesterday.toTitleCase();
+    }
+    return DateFormat('MMM, d').format(this);
+  }
 }

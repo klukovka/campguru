@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "762662268011",
+    "project_id": "campguru-chat",
+    "storage_bucket": "campguru-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762662268011:android:08a6a74fd498965255552e",
+        "android_client_info": {
+          "package_name": "com.example.campguru"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3qdmOZL-DfEb6Vk2CEvs0r684iO0HirM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
