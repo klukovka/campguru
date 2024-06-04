@@ -14,8 +14,6 @@ enum EditProfilePageField {
   name,
   surname,
   email,
-  password,
-  confirmPassword,
 }
 
 @RoutePage()
@@ -45,7 +43,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return BlocConsumer<EditProfilePageCubit, EditProfilePageState>(
       listener: (context, state) {
         if (state.status == EditProfilePageStatus.success) {
-          context.appRouter.replaceToSplashPage();
+          context.appRouter.pop();
         }
       },
       builder: (context, state) {
@@ -73,13 +71,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             AvatarPickerFormField(
                               name: EditProfilePageField.photo.name,
                               radius: 52,
+                              initialValue: state.user?.photo,
                             ),
                             const SizedBox(height: 32),
-                            _buildNameField(),
+                            _buildNameField(state),
                             const SizedBox(height: 12),
-                            _buildSurnameField(),
+                            _buildSurnameField(state),
                             const SizedBox(height: 12),
-                            _buildEmailField(),
+                            _buildEmailField(state),
                             const SizedBox(height: 12),
                             const Spacer(),
                             Builder(
@@ -103,9 +102,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
-  Widget _buildNameField() {
+  Widget _buildNameField(EditProfilePageState state) {
     return FormBuilderTextField(
       name: EditProfilePageField.name.name,
+      initialValue: state.user?.name,
       validator: (value) {
         if (value?.isEmpty ?? true) {
           return 'Field is required';
@@ -119,9 +119,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
-  Widget _buildSurnameField() {
+  Widget _buildSurnameField(EditProfilePageState state) {
     return FormBuilderTextField(
       name: EditProfilePageField.surname.name,
+      initialValue: state.user?.surname,
       validator: (value) {
         if (value?.isEmpty ?? true) {
           return 'Field is required';
@@ -135,9 +136,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
-  Widget _buildEmailField() {
+  Widget _buildEmailField(EditProfilePageState state) {
     return FormBuilderTextField(
       name: EditProfilePageField.email.name,
+      initialValue: state.user?.email,
       validator: (value) => switch (value) {
         String? x when x == null || x.isEmpty => 'Email Address is required',
         String? x when !x!.isValidEmail =>
@@ -168,9 +170,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
           ).dispatch(context);
           if (_fbState?.saveAndValidate() ?? false) {
             context.locator<EditProfilePageController>()(
-              NewUser(
+              PatchUser(
                 email: _fbValues[EditProfilePageField.email.name],
-                password: _fbValues[EditProfilePageField.password.name],
                 name: _fbValues[EditProfilePageField.name.name],
                 surname: _fbValues[EditProfilePageField.surname.name],
                 photo: _fbValues[EditProfilePageField.photo.name],

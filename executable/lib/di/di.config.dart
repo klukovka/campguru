@@ -143,6 +143,8 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i5.CreateTripPageCubit>(
       () => blocModule.createTripPageCubit);
   gh.lazySingleton<_i5.TripChatPageCubit>(() => blocModule.tripChatPageCubit);
+  gh.lazySingleton<_i5.EditProfilePageCubit>(
+      () => blocModule.editProfilePageCubit);
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -157,6 +159,10 @@ Future<_i1.GetIt> $configureDependencies(
       () => presentersModule.chatsOutputPort(gh<_i5.TripChatPageCubit>()));
   gh.lazySingleton<_i8.UsersOutputPort>(
       () => presentersModule.usersOutputPort(gh<_i5.CreateTripPageCubit>()));
+  gh.lazySingleton<_i5.CampguruRouter>(
+      () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
+  gh.lazySingleton<_i8.ErrorHandlerOutputPort>(() =>
+      presentersModule.getErrorHandlerOutputPort(gh<_i5.AppControlCubit>()));
   gh.lazySingleton<_i8.CurrentUserOutputPort>(
       () => presentersModule.getCurrentUserOutputPort(
             gh<_i5.SplashPageCubit>(),
@@ -164,11 +170,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.ProfileTabCubit>(),
             gh<_i5.SignUpPageCubit>(),
             gh<_i5.StartPageCubit>(),
+            gh<_i5.EditProfilePageCubit>(),
           ));
-  gh.lazySingleton<_i5.CampguruRouter>(
-      () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
-  gh.lazySingleton<_i8.ErrorHandlerOutputPort>(() =>
-      presentersModule.getErrorHandlerOutputPort(gh<_i5.AppControlCubit>()));
   gh.lazySingleton<_i8.GeopositionOutputPort>(
       () => presentersModule.geopositionPresenter(
             gh<_i5.RouteMapPageCubit>(),
@@ -558,6 +561,12 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i5.StartPageController>(
       () => controllersModule.startPageController(gh<_i8.LoginUseCase>()));
+  gh.lazySingleton<_i8.EditProfileUseCase>(
+      () => userUseCasesModule.editProfileUseCase(
+            gh<_i8.UsersRepository>(),
+            gh<_i8.CurrentUserOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i8.CacheRouteUseCase>(
       () => routeUseCasesModule.cacheRouteUseCase(
             gh<_i8.ErrorHandlerOutputPort>(),
@@ -615,6 +624,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.GetMyOwnRoutesUseCase>(),
             gh<_i8.GetCachedRoutesUseCase>(),
           ));
+  gh.lazySingleton<_i5.EditProfilePageController>(() => controllersModule
+      .editProfilePageController(gh<_i8.EditProfileUseCase>()));
   gh.lazySingleton<_i5.CreateTripPageController>(
       () => controllersModule.createTripPageController(
             gh<_i8.GetUserByEmailUseCase>(),

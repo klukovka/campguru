@@ -5,7 +5,7 @@ class EditProfilePageController {
 
   EditProfilePageController(this.editProfileUseCase);
 
-  void call(NewUser newUser) {
-    editProfileUseCase(newUser);
+  void call(PatchUser patchUser) {
+    editProfileUseCase(patchUser);
   }
 }
