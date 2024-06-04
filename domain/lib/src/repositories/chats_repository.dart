@@ -22,4 +22,10 @@ abstract class ChatsRepository {
     required String chatId,
     String? messageId,
   });
+
+  Future<FailureOrResult<void>> readMessage({
+    required String chatId,
+    required String messageId,
+    required String userId,
+  });
 }

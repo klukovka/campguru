@@ -103,6 +103,21 @@ class FirebaseChatsRepository extends ChatsRepository {
           .toList();
     });
   }
+
+  @override
+  Future<FailureOrResult<void>> readMessage({
+    required String chatId,
+    required String messageId,
+    required String userId,
+  }) async {
+    return await _makeErrorHandledCall(() async {
+      final messageDoc = firestore.doc('chats/$chatId/messages/$messageId');
+      final message =
+          MessageDto.fromJson((await messageDoc.get()).data() ?? {});
+      await messageDoc
+          .update({'unread': List.from(message.unread)..remove(userId)});
+    });
+  }
 }
 
 Future<FailureOrResult<T>> _makeErrorHandledCall<T>(
