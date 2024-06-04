@@ -217,8 +217,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 password: _fbValues[SignUpPageField.password.name],
                 name: _fbValues[SignUpPageField.name.name],
                 surname: _fbValues[SignUpPageField.surname.name],
-                photo: (_fbValues[SignUpPageField.photo.name] as PickedImage?)
-                    ?.bytes,
+                photo: _fbValues[SignUpPageField.photo.name],
               ),
             );
           }
