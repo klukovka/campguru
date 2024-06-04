@@ -3,10 +3,12 @@ import 'package:domain/domain.dart';
 class TripChatController {
   final SendMessageUseCase sendMessageUseCase;
   final GetFirstMessagesPageUseCase getFirstMessagesPageUseCase;
+  final GetNextMessagesPageUseCase getNextMessagesPageUseCase;
 
   TripChatController({
     required this.sendMessageUseCase,
     required this.getFirstMessagesPageUseCase,
+    required this.getNextMessagesPageUseCase,
   });
 
   void init(String chatId) {
@@ -26,5 +28,12 @@ class TripChatController {
         unread: (users ?? []).map((e) => e.id.toString()).toList(),
       ),
     );
+  }
+
+  void uploadNextPage({
+    required String chatId,
+    required String lastMessageId,
+  }) {
+    getNextMessagesPageUseCase(chatId, lastMessageId);
   }
 }

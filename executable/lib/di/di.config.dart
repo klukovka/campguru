@@ -446,11 +446,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ErrorHandlerOutputPort>(),
             gh<_i8.RoutesOutputPort>(),
           ));
-  gh.lazySingleton<_i5.TripChatController>(
-      () => controllersModule.tripChatController(
-            gh<_i8.SendMessageUseCase>(),
-            gh<_i8.GetFirstMessagesPageUseCase>(),
-          ));
   gh.lazySingleton<_i5.RouteLocationsPageController>(() => controllersModule
       .getRouteLocationsController(gh<_i8.GetRouteLocationsUseCase>()));
   gh.lazySingleton<_i5.RouteDetailsPageController>(() => controllersModule
@@ -522,6 +517,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ErrorHandlerOutputPort>(),
             gh<_i8.ChatsRepository>(),
             gh<_i8.PreferencesRepository>(),
+          ));
+  gh.lazySingleton<_i5.TripChatController>(
+      () => controllersModule.tripChatController(
+            gh<_i8.SendMessageUseCase>(),
+            gh<_i8.GetFirstMessagesPageUseCase>(),
+            gh<_i8.GetNextMessagesPageUseCase>(),
           ));
   gh.lazySingleton<_i5.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(

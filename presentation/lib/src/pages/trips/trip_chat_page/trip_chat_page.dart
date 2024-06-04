@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -31,21 +34,27 @@ class TripChatPage extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _TripChatPageState extends State<TripChatPage> {
-  late final TextEditingController _controller;
+  late final TextEditingController _textController;
+  late final ScrollController _scrollController;
+
+  TripChatPageCubit get cubit => context.read();
+  TripChatController get _controller => context.locator<TripChatController>();
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
+    _textController = TextEditingController();
+    _scrollController = ScrollController()..addListener(_onScroll);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.locator<TripChatController>().init(widget.tripId.toString());
+      _controller.init(widget.tripId.toString());
       context.locator<TripDetailsPageController>().getDetails(widget.tripId);
     });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _textController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -60,6 +69,29 @@ class _TripChatPageState extends State<TripChatPage> {
 
   int _getMessagesComparator(Message current, Message next) {
     return current.comparator(next);
+  }
+
+  Future<void> _onScroll() async {
+    log(_scrollController.position.pixels.toString());
+    final maxPosition = _scrollController.position.maxScrollExtent - 100;
+    final minPosition = _scrollController.position.minScrollExtent + 100;
+
+    if (_scrollController.position.userScrollDirection ==
+        ScrollDirection.reverse) {
+      FocusManager.instance.primaryFocus?.unfocus();
+    }
+
+    if (_scrollController.position.pixels == minPosition) {
+      //TODO: Load old messages
+    }
+    if (_scrollController.position.pixels > maxPosition &&
+        !cubit.state.isLoading &&
+        !cubit.state.isAllNewMessagesUploaded) {
+      _controller.uploadNextPage(
+        chatId: widget.tripId.toString(),
+        lastMessageId: cubit.state.paginatedMessages.last.id,
+      );
+    }
   }
 
   @override
@@ -80,20 +112,20 @@ class _TripChatPageState extends State<TripChatPage> {
                 children: [
                   Expanded(
                     child: TextField(
-                      controller: _controller,
+                      controller: _textController,
                       maxLines: null,
                     ),
                   ),
                   const SizedBox(width: 8),
                   IconButton(
                     onPressed: () {
-                      if (_controller.text.isNotEmpty) {
-                        context.locator<TripChatController>().sendMessage(
-                              text: _controller.text,
-                              chatId: widget.tripId.toString(),
-                              users: state.trip?.users,
-                            );
-                        _controller.text = '';
+                      if (_textController.text.isNotEmpty) {
+                        _controller.sendMessage(
+                          text: _textController.text,
+                          chatId: widget.tripId.toString(),
+                          users: state.trip?.users,
+                        );
+                        _textController.text = '';
                       }
                     },
                     icon: Icon(MdiIcons.send),
@@ -109,6 +141,7 @@ class _TripChatPageState extends State<TripChatPage> {
 
   Widget _buildMessagesList(TripChatPageState state) {
     return GroupedListView<Message, DateTime>(
+      controller: _scrollController,
       elements: state.messages,
       reverse: false,
       padding: const EdgeInsets.symmetric(horizontal: 16),
