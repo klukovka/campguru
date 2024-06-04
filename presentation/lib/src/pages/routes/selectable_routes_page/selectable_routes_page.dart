@@ -3,6 +3,7 @@ import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart' hide Route;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/routes/views/route_tile.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
@@ -53,8 +54,7 @@ class _SelectableRoutesPageState extends State<SelectableRoutesPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: SearchField(
                   isLoading: state.isLoading,
-                  //TODO: Localizations
-                  hintText: 'Search Routes',
+                  hintText: context.strings.searchRoutes,
                   search: (value) => controller.search(
                     currentFilter: state.filter,
                     searchValue: value,

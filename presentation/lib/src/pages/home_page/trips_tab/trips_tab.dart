@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/bloc.dart';
 import 'package:presentation/src/controllers.dart';
 import 'package:presentation/src/pages/trips/views/trip_tile.dart';
@@ -34,8 +35,7 @@ class TripsTab extends StatelessWidget implements AutoRouteWrapper {
                     Expanded(
                       child: SearchField(
                         isLoading: state.isLoading,
-                        //TODO: Localizations
-                        hintText: 'Search Trips',
+                        hintText: context.strings.searchTrips,
                         search: (value) => controller.search(
                           state.filter,
                           value,

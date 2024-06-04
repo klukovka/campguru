@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart' as domain;
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/pages/reviews/views/loading_reviews_list.dart';
 import 'package:presentation/src/pages/reviews/views/more_reviews_button.dart';
 import 'package:presentation/src/pages/routes/route_details_page/views/route_details_sliver_app_bar.dart';
@@ -36,8 +37,8 @@ class LoadingRouteDetailsPage extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
                     child: Text(
-                      //TODO: Add correct formatting and localizations
-                      '${route.distance.toStringAsFixed(2)} km (${route.duration.toStringAsFixed(2)} hours)',
+                      '${route.distance.toStringAsFixed(2)} ${context.strings.km} '
+                      '(${route.duration.toStringAsFixed(2)} ${context.strings.h})',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
@@ -48,8 +49,10 @@ class LoadingRouteDetailsPage extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
                     child: ArrowButton.large(
-                      //TODO: Add localization
-                      child: Text('Locations (${route.locationsAmount})'),
+                      child: Text(
+                        context.strings
+                            .locationsAmount(route.locationsAmount ?? 0),
+                      ),
                     ),
                   ),
                 ),

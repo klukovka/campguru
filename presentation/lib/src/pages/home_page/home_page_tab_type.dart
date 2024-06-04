@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
+import 'package:localizations/localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/src/config/router/app_auto_router.gr.dart';
 
@@ -22,11 +23,10 @@ enum HomePageTabType {
         HomePageTabType.locations => MdiIcons.mapMarker,
       };
 
-  //TODO: Add localization
   String getDisplayText(BuildContext context) => switch (this) {
-        HomePageTabType.routes => 'Routes',
-        HomePageTabType.trips => 'Trips',
-        HomePageTabType.profile => 'Profile',
-        HomePageTabType.locations => 'Locations',
+        HomePageTabType.routes => context.strings.routes,
+        HomePageTabType.trips => context.strings.trips,
+        HomePageTabType.profile => context.strings.profile,
+        HomePageTabType.locations => context.strings.locations,
       };
 }

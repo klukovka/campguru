@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/locations/location_details_page/views/loading_location_details_page.dart';
 import 'package:presentation/src/pages/locations/location_details_page/views/location_details_header_delegate.dart';
@@ -76,8 +77,7 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                       lat: state.location.lat,
                       lng: state.location.lng,
                     ),
-                    //TODO: Add localization
-                    child: const Text('View on Map'),
+                    child: Text(context.strings.viewOnMap),
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 
 class FilterButtons extends StatelessWidget {
   final VoidCallback onResetPressed;
@@ -30,20 +31,18 @@ class FilterButtons extends StatelessWidget {
             Expanded(
               child: TextButton(
                 onPressed: onResetPressed,
-                //TODO: Add localizations
-                child: const Text('Reset'),
+                child: Text(context.strings.reset),
               ),
             ),
             Expanded(
               child: ElevatedButton(
                 onPressed: isLoading ? null : onApplyPressed,
-                //TODO: Add localizations
                 child: isLoading
                     ? const Padding(
                         padding: EdgeInsets.all(4),
                         child: CircularProgressIndicator(),
                       )
-                    : const Text('Apply'),
+                    : Text(context.strings.apply),
               ),
             ),
           ],

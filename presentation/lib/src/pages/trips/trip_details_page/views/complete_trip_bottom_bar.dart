@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 
 class CompleteTripBottomBar extends StatelessWidget {
   final VoidCallback onPressed;
@@ -27,13 +28,12 @@ class CompleteTripBottomBar extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: isLoading ? null : onPressed,
-            //TODO: Add localizations
             child: isLoading
                 ? const Padding(
                     padding: EdgeInsets.all(4),
                     child: CircularProgressIndicator(),
                   )
-                : const Text('Complete'),
+                : Text(context.strings.complete),
           ),
         ),
       ),

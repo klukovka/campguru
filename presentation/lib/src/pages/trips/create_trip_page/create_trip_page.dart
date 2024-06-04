@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart' hide Route;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/trips/create_trip_page/views/trip_route_view.dart';
 import 'package:presentation/src/pages/trips/create_trip_page/views/trip_user_chip.dart';
@@ -57,7 +58,6 @@ class _CreateTripPageState extends State<CreateTripPage> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Add localizations
     return BlocConsumer<CreateTripPageCubit, CreateTripPageState>(
       listener: (context, state) {
         _fbState?.patchValue({
@@ -72,7 +72,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Create Trip'),
+            title: Text(context.strings.createTrip),
           ),
           body: AutovalidateModeNotificationBuilder(
             builder: (context, autovalidateMode, child) => FormBuilder(
@@ -88,14 +88,14 @@ class _CreateTripPageState extends State<CreateTripPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Title',
+                            context.strings.title,
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const SizedBox(height: 8),
                           _buildTitleField(),
                           const SizedBox(height: 12),
                           Text(
-                            'Users',
+                            context.strings.users,
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const SizedBox(height: 8),
@@ -104,14 +104,14 @@ class _CreateTripPageState extends State<CreateTripPage> {
                           _buildUsersField(),
                           const SizedBox(height: 12),
                           Text(
-                            'Route',
+                            context.strings.route,
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const SizedBox(height: 8),
                           _buildRouteField(),
                           const SizedBox(height: 12),
                           Text(
-                            'Date',
+                            context.strings.date,
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const SizedBox(height: 8),
@@ -139,7 +139,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
       name: CreateTripPageField.title.name,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return 'Title is required.';
+          return context.strings.titleRequired;
         }
         return null;
       },
@@ -149,8 +149,8 @@ class _CreateTripPageState extends State<CreateTripPage> {
   Widget _buildSearchUsersField() {
     return TextField(
       controller: _textEditingController,
-      decoration: const InputDecoration(
-        hintText: 'Enter user\'s email',
+      decoration: InputDecoration(
+        hintText: context.strings.enterUserEmail,
       ),
       onSubmitted: (value) {
         _controller.getUserByEmail(value);
@@ -164,7 +164,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
         name: CreateTripPageField.users.name,
         validator: (value) {
           if (value?.isEmpty ?? true) {
-            return 'Select at least 1 user.';
+            return context.strings.selectAtLeastOneUser;
           }
           return null;
         },
@@ -200,7 +200,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
       name: CreateTripPageField.route.name,
       validator: (value) {
         if (value == null) {
-          return 'Route is required.';
+          return context.strings.routeRequired;
         }
         return null;
       },
@@ -230,7 +230,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
       name: CreateTripPageField.date.name,
       validator: (value) {
         if (value == null) {
-          return 'Date is required.';
+          return context.strings.dateRequired;
         }
         return null;
       },
@@ -267,7 +267,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
                 padding: EdgeInsets.all(4),
                 child: CircularProgressIndicator(),
               )
-            : const Text('Save'),
+            : Text(context.strings.save),
       ),
     );
   }

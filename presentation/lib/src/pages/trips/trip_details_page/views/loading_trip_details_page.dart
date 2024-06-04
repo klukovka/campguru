@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/pages/trips/trip_details_page/views/loading_users_list.dart';
 import 'package:presentation/src/pages/trips/trip_details_page/views/trip_details_sliver_app_bar.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
@@ -27,8 +28,8 @@ class LoadingTripDetailsPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   sliver: SliverToBoxAdapter(
                     child: Text(
-                      //TODO: Add correct formatting and localizations
-                      '${trip.route.distance.toStringAsFixed(2)} km (${trip.route.duration.toStringAsFixed(2)} hours)',
+                      '${trip.route.distance.toStringAsFixed(2)} ${context.strings.km} '
+                      '(${trip.route.duration.toStringAsFixed(2)} ${context.strings.h})',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
@@ -39,19 +40,20 @@ class LoadingTripDetailsPage extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
                     child: ArrowButton.large(
-                      //TODO: Add localization
-                      child: Text('Locations (${trip.route.locationsAmount})'),
+                      child: Text(
+                        context.strings
+                            .locationsAmount(trip.route.locationsAmount ?? 0),
+                      ),
                     ),
                   ),
                 ),
               ),
-              //TODO: Add localization
               Skeletonizer.sliver(
                 child: SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
                     child: Text(
-                      'Users (${trip.usersAmount})',
+                      context.strings.usersAmount(trip.usersAmount),
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),

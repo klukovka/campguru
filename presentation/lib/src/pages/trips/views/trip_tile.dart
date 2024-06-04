@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/utils/extensions/date_formatter_extension.dart';
 
@@ -26,21 +27,23 @@ class TripTile extends StatelessWidget {
             style: Theme.of(context).textTheme.labelLarge,
           ),
           const SizedBox(height: 8),
-          //TODO: Add correct formatting and localizations
           Text(
-            '${trip.route.distance.toStringAsFixed(2)} km (${trip.route.duration.toStringAsFixed(2)} hours)',
+            '${trip.route.distance.toStringAsFixed(2)} ${context.strings.km} '
+            '(${trip.route.duration.toStringAsFixed(2)} ${context.strings.h})',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 8),
-          //TODO: Add localization
-          Text('${trip.usersAmount} Users'),
+          Text(context.strings.usersAmount(trip.usersAmount)),
           const SizedBox(height: 8),
           Row(
             children: [
               Icon(trip.completed ? Icons.check : Icons.close),
               const SizedBox(width: 8),
-              //TODO: Add localizations
-              Text(trip.completed ? 'Completed' : 'Uncompleted'),
+              Text(
+                trip.completed
+                    ? context.strings.completed
+                    : context.strings.uncompleted,
+              ),
             ],
           ),
         ],

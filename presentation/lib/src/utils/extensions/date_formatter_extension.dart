@@ -1,6 +1,7 @@
 import 'package:dart_date/dart_date.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:localizations/localizations.dart';
 
 extension DateFormatterExtension on DateTime {
   /// Returns DateTime in ['MMM d, yyy'] format
@@ -101,16 +102,13 @@ extension DateFormatterExtension on DateTime {
   String get messageFormattedTime => DateFormat('hh:mm a').format(this);
 
   String getChatPinnedDate(BuildContext context) {
-    //TODO: Add localizations
-    // final localizations = context.commonStrings;
+    final localizations = context.strings;
 
     if (isToday) {
-      return 'TODAY';
-      // return localizations.today.toTitleCase();
+      return localizations.today.toUpperCase();
     }
     if (isYesterday) {
-      return 'Yesterday'.toUpperCase();
-      // return localizations.yesterday.toTitleCase();
+      return localizations.yesterday.toUpperCase();
     }
     return DateFormat('MMM, d').format(this);
   }

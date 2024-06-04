@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:localizations/localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/start_page/views/auth_buttons.dart';
@@ -37,7 +38,6 @@ class _StartPageState extends State<StartPage> {
   Map<String, dynamic> get _fbValues => _fbState?.value ?? {};
   @override
   Widget build(BuildContext context) {
-    //TODO: Add localizations
     return BlocConsumer<StartPageCubit, StartPageState>(
       listener: (context, state) {
         if (state.status == StartPageStatus.success) {
@@ -64,7 +64,7 @@ class _StartPageState extends State<StartPage> {
                           children: [
                             const Spacer(),
                             Text(
-                              'Camp-Guru',
+                              context.strings.appName,
                               style: Theme.of(context).textTheme.displayLarge,
                             ),
                             const Spacer(),
@@ -101,12 +101,12 @@ class _StartPageState extends State<StartPage> {
       name: StartPageField.email.name,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return 'Email Address is required';
+          return context.strings.surname;
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: 'Email',
+        labelText: context.strings.email,
         prefixIcon: Icon(MdiIcons.email),
       ),
     );
@@ -119,12 +119,12 @@ class _StartPageState extends State<StartPage> {
       obscureText: true,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return 'Password is required';
+          return context.strings.passwordRequired;
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: 'Password',
+        labelText: context.strings.password,
         prefixIcon: Icon(MdiIcons.key),
       ),
     );
@@ -159,7 +159,7 @@ class _StartPageState extends State<StartPage> {
                 padding: EdgeInsets.all(4),
                 child: CircularProgressIndicator(),
               )
-            : const Text('Login'),
+            : Text(context.strings.login),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:localizations/localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
@@ -41,7 +42,6 @@ class _SignUpPageState extends State<SignUpPage> {
   Map<String, dynamic> get _fbValues => _fbState?.value ?? {};
   @override
   Widget build(BuildContext context) {
-    //TODO: Add localizations
     return BlocConsumer<SignUpPageCubit, SignUpPageState>(
       listener: (context, state) {
         if (state.status == SignUpPageStatus.success) {
@@ -51,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Sign Up'),
+            title: Text(context.strings.signUp),
           ),
           body: AutovalidateModeNotificationBuilder(
             builder: (context, autovalidateMode, child) => FormBuilder(
@@ -112,12 +112,12 @@ class _SignUpPageState extends State<SignUpPage> {
       name: SignUpPageField.name.name,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return 'Field is required';
+          return context.strings.fieldRequired;
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: 'Name',
+        labelText: context.strings.name,
         prefixIcon: Icon(MdiIcons.account),
       ),
     );
@@ -128,12 +128,12 @@ class _SignUpPageState extends State<SignUpPage> {
       name: SignUpPageField.surname.name,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return 'Field is required';
+          return context.strings.fieldRequired;
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: 'Surname',
+        labelText: context.strings.surname,
         prefixIcon: Icon(MdiIcons.account),
       ),
     );
@@ -143,13 +143,12 @@ class _SignUpPageState extends State<SignUpPage> {
     return FormBuilderTextField(
       name: SignUpPageField.email.name,
       validator: (value) => switch (value) {
-        String? x when x == null || x.isEmpty => 'Email Address is required',
-        String? x when !x!.isValidEmail =>
-          'Email must be a valid email address',
+        String? x when x == null || x.isEmpty => context.strings.surname,
+        String? x when !x!.isValidEmail => context.strings.emailMustBeValid,
         _ => null,
       },
       decoration: InputDecoration(
-        labelText: 'Email',
+        labelText: context.strings.email,
         prefixIcon: Icon(MdiIcons.email),
       ),
     );
@@ -161,18 +160,19 @@ class _SignUpPageState extends State<SignUpPage> {
       onChanged: (value) => _fbState?.save(),
       obscureText: true,
       validator: (value) => switch (value) {
-        String? x when x == null || x.isEmpty => 'Password is required',
+        String? x when x == null || x.isEmpty =>
+          context.strings.passwordRequired,
         String x when !x.isPasswordValid =>
-          'Passwords must include at least 8 characters combining\nlower and uppercase letters, numbers, and symbols.',
+          context.strings.passwordRequirements,
         String x
             when !RegExp(
                     r'''^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$''')
                 .hasMatch(x) =>
-          'Password is too simple',
+          context.strings.passwordTooSimple,
         _ => null,
       },
       decoration: InputDecoration(
-        labelText: 'Password',
+        labelText: context.strings.password,
         prefixIcon: Icon(MdiIcons.key),
       ),
     );
@@ -184,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
       obscureText: true,
       validator: (value) {
         if (value != _fbValues[SignUpPageField.password.name]) {
-          return 'Passwords do not match';
+          return context.strings.passwordsNotMatch;
         }
         return null;
       },
@@ -227,7 +227,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 padding: EdgeInsets.all(4),
                 child: CircularProgressIndicator(),
               )
-            : const Text('Complete'),
+            : Text(context.strings.complete),
       ),
     );
   }

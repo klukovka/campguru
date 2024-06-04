@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
@@ -24,8 +25,7 @@ class TripChatButton extends StatelessWidget {
       ),
       onPressed: () => context.appRouter.pushTripChatPage(tripId),
       icon: Icon(MdiIcons.chat),
-      //TODO: Add localizations
-      label: const Text('Chat'),
+      label: Text(context.strings.chat),
     );
   }
 }

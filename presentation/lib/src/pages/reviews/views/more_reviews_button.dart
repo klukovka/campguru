@@ -1,5 +1,6 @@
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 
 class MoreReviewsButton extends StatelessWidget {
   final VoidCallback? onMorePressed;
@@ -14,18 +15,16 @@ class MoreReviewsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      //TODO: Add localization
       children: [
         Expanded(
           child: Text(
-            'Reviews ($reviewsAmount)',
+            context.strings.reviewsAmount(reviewsAmount),
             style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         ArrowButton.small(
           onPressed: onMorePressed,
-          //TODO: Add localization
-          child: const Text('more'),
+          child: Text(context.strings.more.toLowerCase()),
         )
       ],
     );

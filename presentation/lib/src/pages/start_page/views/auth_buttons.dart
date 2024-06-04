@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 class AuthButtons extends StatelessWidget {
@@ -6,7 +7,6 @@ class AuthButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Add localizations
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -19,7 +19,7 @@ class AuthButtons extends StatelessWidget {
               onPressed: () {
                 //TODO: Add forgot password
               },
-              child: const Text('Forgot password?'),
+              child: Text(context.strings.forgotPassword),
             ),
           ),
         ),
@@ -29,13 +29,16 @@ class AuthButtons extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 14, right: 10),
-                child: Text('Don\'t have an account yet?'),
+              Padding(
+                padding: const EdgeInsets.only(top: 14, right: 10),
+                child: Text(
+                  context.strings.dontHaveAccount,
+                  textAlign: TextAlign.end,
+                ),
               ),
               TextButton(
                 onPressed: context.appRouter.pushSignUpPage,
-                child: const Text('Register now!'),
+                child: Text(context.strings.registerNow),
               ),
             ],
           ),

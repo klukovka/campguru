@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 @RoutePage()
@@ -81,9 +82,8 @@ class AppUnexpectedErrorDialog extends StatelessWidget {
                     width: double.infinity,
                     child: PopUpButton.secondary(
                       onPressed: context.appRouter.pop,
-                      child: const Text(
-                        //TODO: Add localizations
-                        'Close',
+                      child: Text(
+                        context.strings.close,
                         textAlign: TextAlign.center,
                       ),
                     ),

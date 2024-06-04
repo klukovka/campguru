@@ -3,6 +3,7 @@ import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/locations/views/selectable_locations_list.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
@@ -57,8 +58,7 @@ class _SelectableLocationsPageState extends State<SelectableLocationsPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: SearchField(
                   isLoading: state.isLoading,
-                  //TODO: Localizations
-                  hintText: 'Search Locations',
+                  hintText: context.strings.searchLocations,
                   search: (value) => controller.search(
                     currentFilter: state.filter,
                     searchValue: value,
