@@ -9,7 +9,7 @@ class TripChatPageCubit extends Cubit<TripChatPageState> {
 
   void updateTrip(Trip trip) => emit(state.copyWith(trip: trip));
 
-  void startLoading(String currentUserId) => emit(state.copyWith(
+  void startLoading(String? currentUserId) => emit(state.copyWith(
         isLoading: true,
         paginatedMessages: [],
         currentUserId: currentUserId,
@@ -20,5 +20,10 @@ class TripChatPageCubit extends Cubit<TripChatPageState> {
   void updateFirstPage(List<Message> messages) => emit(state.copyWith(
         paginatedMessages: messages,
         isLoading: false,
+      ));
+
+  void addMessagesAfter(List<Message> messages) => emit(state.copyWith(
+        paginatedMessages: [...state.paginatedMessages, ...messages],
+        isAllNewMessagesUploaded: messages.isEmpty,
       ));
 }

@@ -7,7 +7,7 @@ class ChatsPresenter implements ChatsOutputPort {
   ChatsPresenter({required this.tripChatPageCubit});
 
   @override
-  void startChatLoading(String currentUserId) {
+  void startChatLoading([String? currentUserId]) {
     tripChatPageCubit.startLoading(currentUserId);
   }
 
@@ -19,5 +19,10 @@ class ChatsPresenter implements ChatsOutputPort {
   @override
   void stopChatLoading() {
     tripChatPageCubit.stopLoading();
+  }
+
+  @override
+  void addNextMessagesPage(List<Message> messages) {
+    tripChatPageCubit.addMessagesAfter(messages);
   }
 }

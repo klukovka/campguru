@@ -372,6 +372,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.CacheRepository>(),
             gh<_i8.RoutesOutputPort>(),
           ));
+  gh.lazySingleton<_i8.GetNextMessagesPageUseCase>(
+      () => chatsUseCasesModule.getNextMessagesPageUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.ChatsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i5.CachedRoutesTabController>(
       () => controllersModule.cachedRoutesTabController(
             gh<_i8.GetCachedRoutesUseCase>(),
