@@ -9,32 +9,30 @@ import 'package:presentation/presentation.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/utils/extensions/credentials_validation_extension.dart';
 
-enum SignUpPageField {
+enum EditProfilePageField {
   photo,
   name,
   surname,
   email,
-  password,
-  confirmPassword,
 }
 
 @RoutePage()
-class SignUpPage extends StatefulWidget implements AutoRouteWrapper {
-  const SignUpPage({super.key});
+class EditProfilePage extends StatefulWidget implements AutoRouteWrapper {
+  const EditProfilePage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<EditProfilePage> createState() => _EditProfilePageState();
 
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: context.locator<SignUpPageCubit>(),
+      value: context.locator<EditProfilePageCubit>(),
       child: this,
     );
   }
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _EditProfilePageState extends State<EditProfilePage> {
   final _fbKey = GlobalKey<FormBuilderState>();
 
   FormBuilderState? get _fbState => _fbKey.currentState;
@@ -42,16 +40,16 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     //TODO: Add localizations
-    return BlocConsumer<SignUpPageCubit, SignUpPageState>(
+    return BlocConsumer<EditProfilePageCubit, EditProfilePageState>(
       listener: (context, state) {
-        if (state.status == SignUpPageStatus.success) {
-          context.appRouter.replaceToSplashPage();
+        if (state.status == EditProfilePageStatus.success) {
+          context.appRouter.pop();
         }
       },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Sign Up'),
+            title: const Text('Edit Profile'),
           ),
           body: AutovalidateModeNotificationBuilder(
             builder: (context, autovalidateMode, child) => FormBuilder(
@@ -71,26 +69,23 @@ class _SignUpPageState extends State<SignUpPage> {
                           children: [
                             const Spacer(),
                             AvatarPickerFormField(
-                              name: SignUpPageField.photo.name,
+                              name: EditProfilePageField.photo.name,
                               radius: 52,
+                              initialValue: state.user?.photo,
                             ),
                             const SizedBox(height: 32),
-                            _buildNameField(),
+                            _buildNameField(state),
                             const SizedBox(height: 12),
-                            _buildSurnameField(),
+                            _buildSurnameField(state),
                             const SizedBox(height: 12),
-                            _buildEmailField(),
-                            const SizedBox(height: 12),
-                            _buildPasswordField(),
-                            const SizedBox(height: 12),
-                            _buildConfirmPasswordField(),
+                            _buildEmailField(state),
                             const SizedBox(height: 12),
                             const Spacer(),
                             Builder(
                               builder: (context) => _buildSaveButton(
                                 context,
-                                isLoading:
-                                    state.status == SignUpPageStatus.loading,
+                                isLoading: state.status ==
+                                    EditProfilePageStatus.loading,
                               ),
                             ),
                           ],
@@ -107,9 +102,10 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildNameField() {
+  Widget _buildNameField(EditProfilePageState state) {
     return FormBuilderTextField(
-      name: SignUpPageField.name.name,
+      name: EditProfilePageField.name.name,
+      initialValue: state.user?.name,
       validator: (value) {
         if (value?.isEmpty ?? true) {
           return 'Field is required';
@@ -123,9 +119,10 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildSurnameField() {
+  Widget _buildSurnameField(EditProfilePageState state) {
     return FormBuilderTextField(
-      name: SignUpPageField.surname.name,
+      name: EditProfilePageField.surname.name,
+      initialValue: state.user?.surname,
       validator: (value) {
         if (value?.isEmpty ?? true) {
           return 'Field is required';
@@ -139,9 +136,10 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildEmailField() {
+  Widget _buildEmailField(EditProfilePageState state) {
     return FormBuilderTextField(
-      name: SignUpPageField.email.name,
+      name: EditProfilePageField.email.name,
+      initialValue: state.user?.email,
       validator: (value) => switch (value) {
         String? x when x == null || x.isEmpty => 'Email Address is required',
         String? x when !x!.isValidEmail =>
@@ -151,46 +149,6 @@ class _SignUpPageState extends State<SignUpPage> {
       decoration: InputDecoration(
         labelText: 'Email',
         prefixIcon: Icon(MdiIcons.email),
-      ),
-    );
-  }
-
-  Widget _buildPasswordField() {
-    return FormBuilderTextField(
-      name: SignUpPageField.password.name,
-      onChanged: (value) => _fbState?.save(),
-      obscureText: true,
-      validator: (value) => switch (value) {
-        String? x when x == null || x.isEmpty => 'Password is required',
-        String x when !x.isPasswordValid =>
-          'Passwords must include at least 8 characters combining\nlower and uppercase letters, numbers, and symbols.',
-        String x
-            when !RegExp(
-                    r'''^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$''')
-                .hasMatch(x) =>
-          'Password is too simple',
-        _ => null,
-      },
-      decoration: InputDecoration(
-        labelText: 'Password',
-        prefixIcon: Icon(MdiIcons.key),
-      ),
-    );
-  }
-
-  Widget _buildConfirmPasswordField() {
-    return FormBuilderTextField(
-      name: SignUpPageField.confirmPassword.name,
-      obscureText: true,
-      validator: (value) {
-        if (value != _fbValues[SignUpPageField.password.name]) {
-          return 'Passwords do not match';
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: 'Confirm Password',
-        prefixIcon: Icon(MdiIcons.key),
       ),
     );
   }
@@ -211,13 +169,12 @@ class _SignUpPageState extends State<SignUpPage> {
             AutovalidateMode.onUserInteraction,
           ).dispatch(context);
           if (_fbState?.saveAndValidate() ?? false) {
-            context.locator<SignUpPageController>()(
-              NewUser(
-                email: _fbValues[SignUpPageField.email.name],
-                password: _fbValues[SignUpPageField.password.name],
-                name: _fbValues[SignUpPageField.name.name],
-                surname: _fbValues[SignUpPageField.surname.name],
-                photo: _fbValues[SignUpPageField.photo.name],
+            context.locator<EditProfilePageController>()(
+              PatchUser(
+                email: _fbValues[EditProfilePageField.email.name],
+                name: _fbValues[EditProfilePageField.name.name],
+                surname: _fbValues[EditProfilePageField.surname.name],
+                photo: _fbValues[EditProfilePageField.photo.name],
               ),
             );
           }

@@ -7,6 +7,7 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
   final ProfileTabCubit profileTabCubit;
   final SignUpPageCubit signUpPageCubit;
   final StartPageCubit startPageCubit;
+  final EditProfilePageCubit editProfilePageCubit;
 
   CurrentUserPresenter({
     required this.splashPageCubit,
@@ -14,6 +15,7 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
     required this.profileTabCubit,
     required this.signUpPageCubit,
     required this.startPageCubit,
+    required this.editProfilePageCubit,
   });
   @override
   void setCurrentUser(User? user) {
@@ -21,6 +23,7 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
     homePageCubit.updateAvatar(user?.photo);
     if (user != null) {
       profileTabCubit.updateUser(user);
+      editProfilePageCubit.setUser(user);
     }
   }
 
@@ -52,5 +55,20 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
   @override
   void startLogin() {
     startPageCubit.startLogin();
+  }
+
+  @override
+  void editProfileCompleted() {
+    editProfilePageCubit.editProfileCompleted();
+  }
+
+  @override
+  void editProfileFailed() {
+    editProfilePageCubit.editProfileFailed();
+  }
+
+  @override
+  void startEditProfile() {
+    editProfilePageCubit.startEditProfile();
   }
 }

@@ -27,9 +27,7 @@ class ProfileTab extends StatelessWidget implements AutoRouteWrapper {
       NavigationTile(
         leading: Icon(MdiIcons.account),
         title: const Text('Edit Profile'),
-        onPressed: () {
-          //TODO: Add navigation to edit
-        },
+        onPressed: context.appRouter.pushEditProfilePage,
       ),
       NavigationTile(
         leading: Icon(MdiIcons.accountCash),

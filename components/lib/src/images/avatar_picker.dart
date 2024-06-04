@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 class AvatarPicker extends StatefulWidget {
   final Uint8List? imageBytes;
-  final ValueChanged<PickedImage?> onPick;
+  final ValueChanged<Uint8List?> onPick;
   final String? imageUrl;
   final double radius;
 
@@ -24,7 +24,7 @@ class AvatarPicker extends StatefulWidget {
 class _AvatarPickerState extends State<AvatarPicker> {
   static final imagePicker = ImagePicker();
 
-  Future<PickedImage?> _pickImage() async {
+  Future<Uint8List?> _pickImage() async {
     return imagePicker
         .pickImage(
           source: ImageSource.gallery,
@@ -34,11 +34,7 @@ class _AvatarPickerState extends State<AvatarPicker> {
         .timeout(const Duration(minutes: 3))
         .then((file) async {
       if (file != null) {
-        return PickedImage(
-          file.name,
-          file.mimeType ?? '',
-          await file.readAsBytes(),
-        );
+        return await file.readAsBytes();
       }
       return null;
     });
@@ -60,12 +56,4 @@ class _AvatarPickerState extends State<AvatarPicker> {
       ),
     );
   }
-}
-
-class PickedImage {
-  final String name;
-  final String mimeType;
-  final Uint8List bytes;
-
-  PickedImage(this.name, this.mimeType, this.bytes);
 }

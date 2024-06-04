@@ -26,3 +26,4 @@ export 'pages/trips/create_trip_page/create_trip_page_controller.dart';
 export 'pages/trips/trip_chat_page/trip_chat_page_controller.dart';
 export 'pages/trips/trip_details_page/trip_details_page_controller.dart';
 export 'pages/trips/trips_filters_page/trips_filters_page_controller.dart';
+export 'pages/user/edit_profile_page/edit_profile_page_controller.dart';

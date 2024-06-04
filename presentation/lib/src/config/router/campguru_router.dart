@@ -91,4 +91,6 @@ class CampguruRouter extends BaseRouter {
   Future<void> pushSelectableRoutePage(Route? route) => push(
         SelectableRoutesRoute(route: route),
       );
+
+  Future<void> pushEditProfilePage() => push(const EditProfileRoute());
 }

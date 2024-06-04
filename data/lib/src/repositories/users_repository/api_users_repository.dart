@@ -25,4 +25,10 @@ class ApiUsersRepository implements UsersRepository {
     final response = await client.get('/api/user/email/$email');
     return response.toFailureOrResult(UserDto.fromJson);
   }
+
+  @override
+  Future<FailureOrResult<User>> updateUser(PatchUser patchUser) {
+    // TODO: implement updateUser
+    throw UnimplementedError();
+  }
 }

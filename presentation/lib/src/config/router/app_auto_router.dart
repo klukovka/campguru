@@ -142,5 +142,9 @@ class AppAutoRouter extends $AppAutoRouter {
       page: SelectableRoutesRoute.page,
       path: '/home/trips/create/routes',
     ),
+    AutoRoute(
+      page: EditProfileRoute.page,
+      path: '/home/profile/edit',
+    ),
   ];
 }

@@ -33,4 +33,12 @@ class TestUsersRepository implements UsersRepository {
       ),
     );
   }
+
+  @override
+  Future<FailureOrResult<User>> updateUser(PatchUser patchUser) async {
+    await Future.delayed(const Duration(seconds: 1));
+    return FailureOrResult.failure(ApplicationFailure(
+      type: ApplicationErrorType.general,
+    ));
+  }
 }
