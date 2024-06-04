@@ -6,6 +6,7 @@ class TripChatPageState extends Equatable {
   final bool isLoading;
   final String currentUserId;
   final bool isAllNewMessagesUploaded;
+  final bool isAllPreviousMessagesUploaded;
 
   const TripChatPageState({
     this.trip,
@@ -13,6 +14,7 @@ class TripChatPageState extends Equatable {
     this.isLoading = false,
     this.currentUserId = '',
     this.isAllNewMessagesUploaded = false,
+    this.isAllPreviousMessagesUploaded = false,
   });
 
   List<Message> get messages => [...paginatedMessages];
@@ -24,6 +26,7 @@ class TripChatPageState extends Equatable {
         isLoading,
         currentUserId,
         isAllNewMessagesUploaded,
+        isAllPreviousMessagesUploaded,
       ];
 
   User? getUser(String userId) =>
@@ -35,6 +38,7 @@ class TripChatPageState extends Equatable {
     bool? isLoading,
     String? currentUserId,
     bool? isAllNewMessagesUploaded,
+    bool? isAllPreviousMessagesUploaded,
   }) {
     return TripChatPageState(
       trip: trip ?? this.trip,
@@ -43,6 +47,8 @@ class TripChatPageState extends Equatable {
       currentUserId: currentUserId ?? this.currentUserId,
       isAllNewMessagesUploaded:
           isAllNewMessagesUploaded ?? this.isAllNewMessagesUploaded,
+      isAllPreviousMessagesUploaded:
+          isAllPreviousMessagesUploaded ?? this.isAllPreviousMessagesUploaded,
     );
   }
 }

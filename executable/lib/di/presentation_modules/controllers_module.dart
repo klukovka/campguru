@@ -230,10 +230,12 @@ abstract class ControllersModule {
     SendMessageUseCase sendMessageUseCase,
     GetFirstMessagesPageUseCase getFirstMessagesPageUseCase,
     GetNextMessagesPageUseCase getNextMessagesPageUseCase,
+    GetPreviousMessagesPageUseCase getPreviousMessagesPageUseCase,
   ) =>
       TripChatController(
         sendMessageUseCase: sendMessageUseCase,
         getFirstMessagesPageUseCase: getFirstMessagesPageUseCase,
         getNextMessagesPageUseCase: getNextMessagesPageUseCase,
+        getPreviousMessagesPageUseCase: getPreviousMessagesPageUseCase,
       );
 }

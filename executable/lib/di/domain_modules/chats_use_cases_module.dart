@@ -40,4 +40,16 @@ abstract class ChatsUseCasesModule {
         chatsOutputPort: chatsOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
       );
+
+  @lazySingleton
+  GetPreviousMessagesPageUseCase getPreviousMessagesPageUseCase(
+    ChatsRepository chatsRepository,
+    ChatsOutputPort chatsOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+  ) =>
+      GetPreviousMessagesPageUseCase(
+        chatsRepository: chatsRepository,
+        chatsOutputPort: chatsOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+      );
 }

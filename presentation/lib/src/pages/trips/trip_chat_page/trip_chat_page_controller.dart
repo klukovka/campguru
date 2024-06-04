@@ -4,11 +4,13 @@ class TripChatController {
   final SendMessageUseCase sendMessageUseCase;
   final GetFirstMessagesPageUseCase getFirstMessagesPageUseCase;
   final GetNextMessagesPageUseCase getNextMessagesPageUseCase;
+  final GetPreviousMessagesPageUseCase getPreviousMessagesPageUseCase;
 
   TripChatController({
     required this.sendMessageUseCase,
     required this.getFirstMessagesPageUseCase,
     required this.getNextMessagesPageUseCase,
+    required this.getPreviousMessagesPageUseCase,
   });
 
   void init(String chatId) {
@@ -35,5 +37,12 @@ class TripChatController {
     required String lastMessageId,
   }) {
     getNextMessagesPageUseCase(chatId, lastMessageId);
+  }
+
+  void uploadPreviousPage({
+    required String chatId,
+    required String lastMessageId,
+  }) {
+    getPreviousMessagesPageUseCase(chatId, lastMessageId);
   }
 }

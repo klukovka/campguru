@@ -93,7 +93,7 @@ class FirebaseChatsRepository extends ChatsRepository {
           : null;
 
       final query =
-          message != null ? messages.endBeforeDocument(message) : messages;
+          message != null ? messages.startAfterDocument(message) : messages;
       final docs = (await query.limit(20).get()).docs;
 
       return docs

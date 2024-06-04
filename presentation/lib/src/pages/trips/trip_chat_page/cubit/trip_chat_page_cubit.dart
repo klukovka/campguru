@@ -22,8 +22,13 @@ class TripChatPageCubit extends Cubit<TripChatPageState> {
         isLoading: false,
       ));
 
-  void addMessagesAfter(List<Message> messages) => emit(state.copyWith(
+  void addNextMessagesPage(List<Message> messages) => emit(state.copyWith(
         paginatedMessages: [...state.paginatedMessages, ...messages],
         isAllNewMessagesUploaded: messages.isEmpty,
+      ));
+
+  void addPreviousMessagesPage(List<Message> messages) => emit(state.copyWith(
+        paginatedMessages: [...messages, ...state.paginatedMessages],
+        isAllPreviousMessagesUploaded: messages.isEmpty,
       ));
 }

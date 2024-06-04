@@ -378,6 +378,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ChatsOutputPort>(),
             gh<_i8.ErrorHandlerOutputPort>(),
           ));
+  gh.lazySingleton<_i8.GetPreviousMessagesPageUseCase>(
+      () => chatsUseCasesModule.getPreviousMessagesPageUseCase(
+            gh<_i8.ChatsRepository>(),
+            gh<_i8.ChatsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i5.CachedRoutesTabController>(
       () => controllersModule.cachedRoutesTabController(
             gh<_i8.GetCachedRoutesUseCase>(),
@@ -397,6 +403,13 @@ Future<_i1.GetIt> $configureDependencies(
       () => settingsUseCasesModule.getAppVersion(
             gh<_i8.AppSettingsRepository>(),
             gh<_i8.SettingsOutputPort>(),
+          ));
+  gh.lazySingleton<_i5.TripChatController>(
+      () => controllersModule.tripChatController(
+            gh<_i8.SendMessageUseCase>(),
+            gh<_i8.GetFirstMessagesPageUseCase>(),
+            gh<_i8.GetNextMessagesPageUseCase>(),
+            gh<_i8.GetPreviousMessagesPageUseCase>(),
           ));
   gh.lazySingleton<_i8.GetAllRoutesUseCase>(
       () => routeUseCasesModule.getAllRoutesUseCase(
@@ -517,12 +530,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ErrorHandlerOutputPort>(),
             gh<_i8.ChatsRepository>(),
             gh<_i8.PreferencesRepository>(),
-          ));
-  gh.lazySingleton<_i5.TripChatController>(
-      () => controllersModule.tripChatController(
-            gh<_i8.SendMessageUseCase>(),
-            gh<_i8.GetFirstMessagesPageUseCase>(),
-            gh<_i8.GetNextMessagesPageUseCase>(),
           ));
   gh.lazySingleton<_i5.RouteFavoriteButtonController>(() =>
       controllersModule.getRouteFavoriteButtonController(

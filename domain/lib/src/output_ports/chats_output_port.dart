@@ -4,5 +4,6 @@ abstract class ChatsOutputPort {
   void startChatLoading([String? currentUserId]);
   void updateFirstPage(List<Message> messages);
   void addNextMessagesPage(List<Message> messages);
+  void addPreviousMessagesPage(List<Message> messages);
   void stopChatLoading();
 }

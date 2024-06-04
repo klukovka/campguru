@@ -23,6 +23,11 @@ class ChatsPresenter implements ChatsOutputPort {
 
   @override
   void addNextMessagesPage(List<Message> messages) {
-    tripChatPageCubit.addMessagesAfter(messages);
+    tripChatPageCubit.addNextMessagesPage(messages);
+  }
+
+  @override
+  void addPreviousMessagesPage(List<Message> messages) {
+    tripChatPageCubit.addPreviousMessagesPage(messages);
   }
 }
