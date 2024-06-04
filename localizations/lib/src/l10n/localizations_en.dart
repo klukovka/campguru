@@ -2,7 +2,7 @@ import 'localizations.dart';
 
 /// The translations for English (`en`).
 class CampguruLocalizationsEn extends CampguruLocalizations {
-  CampguruLocalizationsEn([String locale = 'en']) : super(locale);
+  CampguruLocalizationsEn([super.locale = 'en']);
 
   @override
   String get language => 'English';
