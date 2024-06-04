@@ -49,7 +49,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Sign Up'),
+            title: const Text('Edit Profile'),
           ),
           body: AutovalidateModeNotificationBuilder(
             builder: (context, autovalidateMode, child) => FormBuilder(
