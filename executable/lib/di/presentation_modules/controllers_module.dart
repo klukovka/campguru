@@ -240,4 +240,10 @@ abstract class ControllersModule {
         getPreviousMessagesPageUseCase: getPreviousMessagesPageUseCase,
         getNewMessagesStreamUseCase: getNewMessagesStreamUseCase,
       );
+
+  @lazySingleton
+  EditProfilePageController editProfilePageController(
+    EditProfileUseCase editProfileUseCase,
+  ) =>
+      EditProfilePageController(editProfileUseCase);
 }
