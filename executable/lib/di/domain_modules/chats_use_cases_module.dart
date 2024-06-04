@@ -34,11 +34,13 @@ abstract class ChatsUseCasesModule {
     ChatsRepository chatsRepository,
     ChatsOutputPort chatsOutputPort,
     ErrorHandlerOutputPort errorHandlerOutputPort,
+    PreferencesRepository preferencesRepository,
   ) =>
       GetNextMessagesPageUseCase(
         chatsRepository: chatsRepository,
         chatsOutputPort: chatsOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
+        preferencesRepository: preferencesRepository,
       );
 
   @lazySingleton
@@ -46,10 +48,12 @@ abstract class ChatsUseCasesModule {
     ChatsRepository chatsRepository,
     ChatsOutputPort chatsOutputPort,
     ErrorHandlerOutputPort errorHandlerOutputPort,
+    PreferencesRepository preferencesRepository,
   ) =>
       GetPreviousMessagesPageUseCase(
         chatsRepository: chatsRepository,
         chatsOutputPort: chatsOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
+        preferencesRepository: preferencesRepository,
       );
 }

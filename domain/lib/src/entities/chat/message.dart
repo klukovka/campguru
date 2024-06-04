@@ -42,6 +42,8 @@ class Message extends Equatable {
     return sentAt.compareTo(message.sentAt);
   }
 
+  bool isRead(String currentUserId) => !unread.contains(currentUserId);
+
   Message read(String currentUserId) => Message(
         id: id,
         text: text,

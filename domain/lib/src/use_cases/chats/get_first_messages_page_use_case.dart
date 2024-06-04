@@ -38,6 +38,16 @@ class GetFirstMessagesPageUseCase {
       chatsOutputPort.updateFirstPage(
         [firstMessage.result!, ...messages.result!],
       );
+
+      for (final message in [firstMessage.result!, ...messages.result!]) {
+        if (!message.isRead(userId)) {
+          chatsRepository.readMessage(
+            chatId: chatId,
+            messageId: message.id,
+            userId: userId,
+          );
+        }
+      }
     } else {
       final messages = await chatsRepository.getBeforeMessage(
         chatId: chatId,
