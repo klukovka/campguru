@@ -12,4 +12,14 @@ abstract class SettingsUseCasesModule {
         appSettingsRepository: appSettingsRepository,
         settingsOutputPort: settingsOutputPort,
       );
+
+  @lazySingleton
+  GetInitialSettingsUseCase getInitialSettingsUseCase(
+    PreferencesRepository preferencesRepository,
+    SettingsOutputPort settingsOutputPort,
+  ) =>
+      GetInitialSettingsUseCase(
+        preferencesRepository: preferencesRepository,
+        settingsOutputPort: settingsOutputPort,
+      );
 }

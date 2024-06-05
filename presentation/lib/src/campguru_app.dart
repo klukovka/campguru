@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/config/di/get_it_data.dart';
 import 'package:presentation/src/config/theme/app_theme.dart';
@@ -35,6 +36,10 @@ class CampguruApp extends StatelessWidget {
               }
             },
             builder: (context, state) => MaterialApp.router(
+              localizationsDelegates:
+                  CampguruLocalizations.localizationsDelegates,
+              supportedLocales: CampguruLocalizations.supportedLocales,
+              locale: state.currentLocale,
               theme: lightTheme,
               darkTheme: darkTheme,
               themeMode: themeMode,

@@ -34,12 +34,12 @@ import 'data_modules/reviews_repository_module.dart' as _i24;
 import 'data_modules/routes_repository_module.dart' as _i23;
 import 'data_modules/trips_repository_module.dart' as _i37;
 import 'data_modules/users_repository_module.dart' as _i36;
-import 'domain_modules/chats_use_cases_module.dart' as _i32;
+import 'domain_modules/chats_use_cases_module.dart' as _i33;
 import 'domain_modules/geoposition_use_cases_module.dart' as _i28;
 import 'domain_modules/location_use_cases_module.dart' as _i29;
 import 'domain_modules/review_use_cases_module.dart' as _i26;
-import 'domain_modules/route_use_cases_module.dart' as _i33;
-import 'domain_modules/settings_use_cases_module.dart' as _i34;
+import 'domain_modules/route_use_cases_module.dart' as _i34;
+import 'domain_modules/settings_use_cases_module.dart' as _i32;
 import 'domain_modules/trip_use_cases_module.dart' as _i27;
 import 'domain_modules/user_use_cases_module.dart' as _i20;
 import 'presentation_modules/auto_router_module.dart' as _i12;
@@ -83,9 +83,9 @@ Future<_i1.GetIt> $configureDependencies(
   final locationUseCasesCasesModule = _$LocationUseCasesCasesModule();
   final dioModule = _$DioModule();
   final controllersModule = _$ControllersModule();
+  final settingsUseCasesModule = _$SettingsUseCasesModule();
   final chatsUseCasesModule = _$ChatsUseCasesModule();
   final routeUseCasesModule = _$RouteUseCasesModule();
-  final settingsUseCasesModule = _$SettingsUseCasesModule();
   final authRepositoryModule = _$AuthRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
   final tripsRepositoryModule = _$TripsRepositoryModule();
@@ -330,6 +330,11 @@ Future<_i1.GetIt> $configureDependencies(
     () => dioModule.prodDio(gh<_i6.AuthInterceptor>()),
     registerFor: {_prod},
   );
+  gh.lazySingleton<_i8.GetInitialSettingsUseCase>(
+      () => settingsUseCasesModule.getInitialSettingsUseCase(
+            gh<_i8.PreferencesRepository>(),
+            gh<_i8.SettingsOutputPort>(),
+          ));
   gh.lazySingleton<_i8.SendMessageUseCase>(
       () => chatsUseCasesModule.sendMessageUseCase(
             gh<_i8.ChatsRepository>(),
@@ -626,6 +631,7 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.GetFavoriteRoutesUseCase>(),
             gh<_i8.GetMyOwnRoutesUseCase>(),
             gh<_i8.GetCachedRoutesUseCase>(),
+            gh<_i8.GetInitialSettingsUseCase>(),
           ));
   gh.lazySingleton<_i5.EditProfilePageController>(() => controllersModule
       .editProfilePageController(gh<_i8.EditProfileUseCase>()));
@@ -690,11 +696,11 @@ class _$DioModule extends _i30.DioModule {}
 
 class _$ControllersModule extends _i31.ControllersModule {}
 
-class _$ChatsUseCasesModule extends _i32.ChatsUseCasesModule {}
+class _$SettingsUseCasesModule extends _i32.SettingsUseCasesModule {}
 
-class _$RouteUseCasesModule extends _i33.RouteUseCasesModule {}
+class _$ChatsUseCasesModule extends _i33.ChatsUseCasesModule {}
 
-class _$SettingsUseCasesModule extends _i34.SettingsUseCasesModule {}
+class _$RouteUseCasesModule extends _i34.RouteUseCasesModule {}
 
 class _$AuthRepositoryModule extends _i35.AuthRepositoryModule {}
 
