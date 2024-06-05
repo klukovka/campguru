@@ -23,8 +23,36 @@ Route<T> popUpRouteBuilder<T>(
   );
 }
 
+Route<T> bottomSheetRouteBuilder<T>(
+  BuildContext context,
+  Widget child,
+  AutoRoutePage<T> page,
+) {
+  return ModalBottomSheetRoute<T>(
+    builder: (context) {
+      return Material(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(16.0),
+          topRight: Radius.circular(16.0),
+        ),
+        child: child,
+      );
+    },
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(16.0),
+        topRight: Radius.circular(16.0),
+      ),
+    ),
+    settings: page,
+    isScrollControlled: false,
+    useSafeArea: true,
+  );
+}
+
 @AutoRouterConfig(
-  replaceInRouteName: 'Page|Tab|Dialog,Route',
+  replaceInRouteName: 'Page|Tab|Dialog|BottomSheet,Route',
 )
 class AppAutoRouter extends $AppAutoRouter {
   @override
@@ -145,6 +173,12 @@ class AppAutoRouter extends $AppAutoRouter {
     AutoRoute(
       page: EditProfileRoute.page,
       path: '/home/profile/edit',
+    ),
+    CustomRoute(
+      page: LanguageRoute.page,
+      path: '/home/profile/language',
+      customRouteBuilder: bottomSheetRouteBuilder,
+      opaque: false,
     ),
   ];
 }

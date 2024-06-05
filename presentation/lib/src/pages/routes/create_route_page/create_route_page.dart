@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/routes/create_route_page/views/locations_selector_form_field.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
@@ -39,7 +40,6 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Add localization
     return BlocConsumer<CreateRoutePageCubit, CreateRoutePageState>(
       listener: (context, state) {
         final routeId = state.routeId;
@@ -49,7 +49,7 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: const Text('Create Route')),
+          appBar: AppBar(title: Text(context.strings.createRoute)),
           body: AutovalidateModeNotificationBuilder(
             builder: (context, autovalidateMode, child) => FormBuilder(
               key: _fbKey,
@@ -105,7 +105,7 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
             onChanged: context.locator<CreateRoutePageController>().getPreview,
             validator: (value) {
               if ((value?.length ?? 0) < 2) {
-                return 'Select at least 2 locations';
+                return context.strings.selectAtLeastTwoLocations;
               }
               return null;
             },
@@ -121,11 +121,11 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
       maxLength: 30,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return 'Field is required';
+          return context.strings.fieldRequired;
         }
         return null;
       },
-      decoration: const InputDecoration(labelText: 'Name'),
+      decoration: InputDecoration(labelText: context.strings.name),
     );
   }
 
@@ -136,18 +136,18 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
       maxLength: 120,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return 'Field is required';
+          return context.strings.fieldRequired;
         }
         return null;
       },
-      decoration: const InputDecoration(labelText: 'Description'),
+      decoration: InputDecoration(labelText: context.strings.description),
     );
   }
 
   Widget _buildPrivateField() {
     return FormBuilderCheckbox(
       name: CreateRoutePageField.private.name,
-      title: const Text('Private'),
+      title: Text(context.strings.private),
       initialValue: false,
       decoration: const InputDecoration(),
     );
@@ -192,7 +192,7 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
                 padding: EdgeInsets.all(4),
                 child: CircularProgressIndicator(),
               )
-            : const Text('Save'),
+            : Text(context.strings.save),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart' as domain;
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/pages/routes/views/route_favorite_button/route_favorite_button.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
@@ -36,14 +37,13 @@ class RouteTile extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          //TODO: Add correct formatting and localizations
           Text(
-            '${route.distance.toStringAsFixed(2)} km (${route.duration.toStringAsFixed(2)} hours)',
+            '${route.distance.toStringAsFixed(2)} ${context.strings.km} '
+            '(${route.duration.toStringAsFixed(2)} ${context.strings.h})',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 8),
-          //TODO: Add localization
-          Text('${route.reviewsAmount} Reviews'),
+          Text(context.strings.amountReviews(route.reviewsAmount)),
         ],
       ),
       favoriteButton: buttonBelow ?? RouteFavoriteButton(route: route),

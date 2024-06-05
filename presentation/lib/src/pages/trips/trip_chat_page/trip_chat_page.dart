@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:localizations/localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/trips/trip_chat_page/views/current_user_message_tile.dart';
@@ -72,7 +71,6 @@ class _TripChatPageState extends State<TripChatPage> {
   }
 
   Future<void> _onScroll() async {
-    log(_scrollController.position.pixels.toString());
     final maxPosition = _scrollController.position.maxScrollExtent - 50;
     final minPosition = _scrollController.position.minScrollExtent + 50;
 
@@ -115,12 +113,11 @@ class _TripChatPageState extends State<TripChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Add localizations
     return BlocBuilder<TripChatPageCubit, TripChatPageState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Chat'),
+            title: Text(context.strings.chat),
           ),
           body: _buildMessagesList(state),
           bottomNavigationBar: Container(

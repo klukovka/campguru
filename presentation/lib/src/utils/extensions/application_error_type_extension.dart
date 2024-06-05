@@ -1,18 +1,19 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 
 extension ApplicationErrorTypeExtension on ApplicationErrorType {
-  //TODO: Add localizations
   String getLabel(BuildContext context) => switch (this) {
-        ApplicationErrorType.noInternetConnection => 'No Internet Connection',
-        ApplicationErrorType.general => 'Mobile Application Error has occured!',
+        ApplicationErrorType.noInternetConnection =>
+          context.strings.noInternetConnectionError,
+        ApplicationErrorType.general => context.strings.generalMobileError,
         ApplicationErrorType.toSaveMoreRoutesBuyPremium =>
-          'Buy premium to save more routes!',
+          context.strings.toSaveMoreRoutesBuyPremiumError,
         ApplicationErrorType.geolocatorServiceDisabled =>
-          'Geolocator Service Disabled.',
+          context.strings.geolocatorServiceDisabledError,
         ApplicationErrorType.permissionDenied =>
-          'Permission is denied. Please, turn on it in phone settings.',
+          context.strings.permissionDeniedError,
         ApplicationErrorType.permissionDeniedForever =>
-          'Permission is forever denied. Please, turn on it in phone settings.',
+          context.strings.permissionDeniedForeverError,
       };
 }

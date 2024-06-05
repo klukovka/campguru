@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/pages/locations/views/location_favorite_button/location_favorite_button.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
@@ -34,8 +35,7 @@ class LocationTile extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          //TODO: Add localization
-          Text('${location.reviewsAmount} Reviews'),
+          Text(context.strings.amountReviews(location.reviewsAmount)),
         ],
       ),
       favoriteButton: buttonBelow ?? LocationFavoriteButton(location: location),

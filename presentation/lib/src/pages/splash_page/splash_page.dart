@@ -31,7 +31,9 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     _exitTimer = Timer(
       const Duration(seconds: 1),
-      () => context.locator<SplashPageController>().checkIfAuthorized(),
+      () => context.locator<SplashPageController>()
+        ..getSettings()
+        ..checkIfAuthorized(),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:localizations/localizations.dart';
 
 class CacheProgressView extends StatefulWidget {
   final double progress;
@@ -61,8 +62,7 @@ class _CacheProgressViewState extends State<CacheProgressView> {
                             ? Padding(
                                 padding: const EdgeInsets.only(left: 12),
                                 child: Text(
-                                  //TODO: add localizations
-                                  'Caching ${progress.toStringAsFixed(2)}%',
+                                  '${context.strings.caching} ${progress.toStringAsFixed(2)}%',
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge

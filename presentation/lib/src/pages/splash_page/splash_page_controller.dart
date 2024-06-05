@@ -12,6 +12,7 @@ class SplashPageController {
   final GetFavoriteRoutesUseCase getFavoriteRoutesUseCase;
   final GetMyOwnRoutesUseCase getMyOwnRoutesUseCase;
   final GetCachedRoutesUseCase getCachedRoutesUseCase;
+  final GetInitialSettingsUseCase getInitialSettingsUseCase;
 
   SplashPageController({
     required this.isAuthorizedUseCase,
@@ -25,7 +26,10 @@ class SplashPageController {
     required this.getFavoriteRoutesUseCase,
     required this.getMyOwnRoutesUseCase,
     required this.getCachedRoutesUseCase,
+    required this.getInitialSettingsUseCase,
   });
+
+  void getSettings() => getInitialSettingsUseCase();
 
   void checkIfAuthorized() => isAuthorizedUseCase();
 

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/trips/trip_details_page/views/complete_trip_bottom_bar.dart';
 import 'package:presentation/src/pages/trips/trip_details_page/views/loading_trip_details_page.dart';
@@ -60,8 +61,8 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 sliver: SliverToBoxAdapter(
                   child: Text(
-                    //TODO: Add correct formatting and localizations
-                    '${state.route.distance.toStringAsFixed(2)} km (${state.route.duration.toStringAsFixed(2)} hours)',
+                    '${state.route.distance.toStringAsFixed(2)} ${context.strings.km} '
+                    '(${state.route.duration.toStringAsFixed(2)} ${context.strings.h})',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
@@ -73,8 +74,10 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
                     onPressed: () => context.appRouter.pushRouteLocationsPage(
                       state.route.id,
                     ),
-                    //TODO: Add localization
-                    child: Text('Locations (${state.route.locationsAmount})'),
+                    child: Text(
+                      context.strings
+                          .locationsAmount(state.route.locationsAmount ?? 0),
+                    ),
                   ),
                 ),
               ),
@@ -82,9 +85,7 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                 sliver: SliverToBoxAdapter(
                   child: Text(
-                    //TODO: Add localization
-
-                    'Users (${state.trip.usersAmount})',
+                    context.strings.usersAmount(state.trip.usersAmount),
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),

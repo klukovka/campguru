@@ -10,6 +10,7 @@ class HiveDataSource {
   static const _userIdKey = '_userIdKey';
   static const _accessTokenKey = '_accessTokenKey';
   static const _refreshTokenKey = '_refreshTokenKey';
+  static const _localeKey = '_localeKey';
 
   final Box<dynamic> _preferencesBox;
   final Box<RouteHiveDto> _routesBox;
@@ -67,4 +68,13 @@ class HiveDataSource {
   Future<void> deleteRoute(int id) async {
     await _routesBox.delete(id);
   }
+
+  ///
+  /// Locales
+  ///
+
+  String? getLanguageCode() => _preferencesBox.get(_localeKey);
+
+  Future<void> setLanguageCode(String languageCode) async =>
+      await _preferencesBox.put(_localeKey, languageCode);
 }

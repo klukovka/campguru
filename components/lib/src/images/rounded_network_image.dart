@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:localizations/localizations.dart';
 
 class RoundedNetworkImage extends StatelessWidget {
   final String? imageUrl;
@@ -47,7 +48,6 @@ class RoundedNetworkImage extends StatelessWidget {
               )
             : null,
       ),
-      //TODO: Add Localization
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
         child: isLoading
@@ -57,7 +57,7 @@ class RoundedNetworkImage extends StatelessWidget {
               )
             : imageUrl == null
                 ? Text(
-                    'Not available',
+                    context.strings.notAvailable,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimary,

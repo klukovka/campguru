@@ -17,6 +17,7 @@ abstract class ControllersModule {
     GetFavoriteRoutesUseCase getFavoriteRoutesUseCase,
     GetMyOwnRoutesUseCase getMyOwnRoutesUseCase,
     GetCachedRoutesUseCase getCachedRoutesUseCase,
+    GetInitialSettingsUseCase getInitialSettingsUseCase,
   ) =>
       SplashPageController(
         isAuthorizedUseCase: isAuthorizedUseCase,
@@ -31,6 +32,7 @@ abstract class ControllersModule {
         getFavoriteRoutesUseCase: getFavoriteRoutesUseCase,
         getMyOwnRoutesUseCase: getMyOwnRoutesUseCase,
         getCachedRoutesUseCase: getCachedRoutesUseCase,
+        getInitialSettingsUseCase: getInitialSettingsUseCase,
       );
 
   @lazySingleton
@@ -190,9 +192,13 @@ abstract class ControllersModule {
       StartPageController(loginUseCase);
 
   @lazySingleton
-  ProfileTabController profileTabController(LogoutUseCase logoutUseCase) =>
+  ProfileTabController profileTabController(
+    LogoutUseCase logoutUseCase,
+    ChangeLocaleUseCase changeLocaleUseCase,
+  ) =>
       ProfileTabController(
         logoutUseCase: logoutUseCase,
+        changeLocaleUseCase: changeLocaleUseCase,
       );
 
   @lazySingleton

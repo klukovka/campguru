@@ -69,4 +69,11 @@ class ProxyTestPreferencesRepository extends ProxyTestRepository
         apiRequest: () => stableRepository.userId,
         testRequest: () => testRepository.userId,
       );
+
+  @override
+  String getLanguageCode() => stableRepository.getLanguageCode();
+
+  @override
+  Future<void> setLanguageCode(String languageCode) async =>
+      await stableRepository.setLanguageCode(languageCode);
 }

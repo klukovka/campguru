@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/utils/extensions/filter_label_extension.dart';
@@ -47,8 +48,7 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
           _buildFiltersField(state),
         ];
         return Scaffold(
-          //TODO: Add localizations
-          appBar: AppBar(title: const Text('Filters')),
+          appBar: AppBar(title: Text(context.strings.filters)),
           body: FormBuilder(
             key: _fbKey,
             child: ListView.separated(
@@ -73,12 +73,10 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
       initialValue: state.distance,
       decoration: InputDecoration(
         fillColor: Colors.transparent,
-
-        //TODO: Add localizations
-        labelText: 'Distance (m)',
+        labelText: context.strings.distanceMertes,
         helperText: state.hasPremium
             ? null
-            : '* available only for users with subscription',
+            : context.strings.onlyForUsersWithSubscription,
       ),
     );
   }
@@ -88,11 +86,9 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
       name: _RoutesFiltersPageField.sortBy.name,
       orientation: OptionsOrientation.vertical,
       initialValue: state.filter.sortBy,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         fillColor: Colors.transparent,
-
-        //TODO: Add localizations
-        labelText: 'Sort By',
+        labelText: context.strings.sortBy,
       ),
       options: [SortBy.rating, SortBy.routes, SortBy.reviews]
           .map(
@@ -122,18 +118,17 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
       },
       decoration: InputDecoration(
         fillColor: Colors.transparent,
-        //TODO: Add localizations
-        labelText: 'Filter By',
+        labelText: context.strings.filterBy,
         helperText: values.length < 3 && !state.hasPremium
             ? null
-            : '* users without subscription can select only 3 filters simultaneously',
+            : context.strings.onlyThreeFiltersSimultaneously,
         helperMaxLines: 2,
       ),
       options: state.filterLabels
           .map((e) => FormBuilderFieldOption(
                 value: e,
                 child: Text(
-                    '${e.getLabel(context)}${state.isLabelAvailable(e) ? '' : ' (premium)'}'),
+                    '${e.getLabel(context)}${state.isLabelAvailable(e) ? '' : ' (${context.strings.premium})'}'),
               ))
           .toList(),
     );

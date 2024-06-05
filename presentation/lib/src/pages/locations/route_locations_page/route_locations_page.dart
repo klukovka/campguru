@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/locations/views/locations_list.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
@@ -52,8 +53,7 @@ class _RouteLocationsPageState extends State<RouteLocationsPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: SearchField(
                   isLoading: state.isLoading,
-                  //TODO: Localizations
-                  hintText: 'Search Locations',
+                  hintText: context.strings.searchLocations,
                   search: (value) => controller.search(
                     widget.routeId,
                     currentFilter: state.filter,
