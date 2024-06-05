@@ -192,9 +192,13 @@ abstract class ControllersModule {
       StartPageController(loginUseCase);
 
   @lazySingleton
-  ProfileTabController profileTabController(LogoutUseCase logoutUseCase) =>
+  ProfileTabController profileTabController(
+    LogoutUseCase logoutUseCase,
+    ChangeLocaleUseCase changeLocaleUseCase,
+  ) =>
       ProfileTabController(
         logoutUseCase: logoutUseCase,
+        changeLocaleUseCase: changeLocaleUseCase,
       );
 
   @lazySingleton

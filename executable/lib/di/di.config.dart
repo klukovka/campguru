@@ -369,6 +369,11 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.RoutesOutputPort>(),
             gh<_i8.ErrorHandlerOutputPort>(),
           ));
+  gh.lazySingleton<_i5.ProfileTabController>(
+      () => controllersModule.profileTabController(
+            gh<_i8.LogoutUseCase>(),
+            gh<_i8.ChangeLocaleUseCase>(),
+          ));
   gh.lazySingleton<_i5.RouteReviewsPageController>(() => controllersModule
       .getRouteReviewsPageController(gh<_i8.GetRouteReviewsUseCase>()));
   gh.lazySingleton<_i8.GetFirstMessagesPageUseCase>(
@@ -396,8 +401,6 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i5.CachedRouteDetailsPageController>(() =>
       controllersModule.cachedRouteDetailsPageController(
           gh<_i8.GetCachedRouteDetailsUseCase>()));
-  gh.lazySingleton<_i5.ProfileTabController>(
-      () => controllersModule.profileTabController(gh<_i8.LogoutUseCase>()));
   gh.lazySingleton<_i5.CachedRouteMapPageController>(
       () => controllersModule.cachedRouteMapPageController(
             gh<_i8.GetCachedRouteDetailsUseCase>(),

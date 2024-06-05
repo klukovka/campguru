@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 @RoutePage()
 class LanguageDialog extends StatelessWidget {
@@ -11,6 +12,7 @@ class LanguageDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.locator<ProfileTabController>();
     return BlocBuilder<AppControlCubit, AppControlState>(
       builder: (context, state) {
         return Padding(
@@ -22,16 +24,12 @@ class LanguageDialog extends StatelessWidget {
             children: [
               SettingsTile(
                 isActive: state.currentLocale.languageCode == 'uk',
-                onTap: () {
-                  // cubit.setLocale(const Locale('uk'));
-                },
+                onTap: () => controller.setLocale('uk'),
                 title: context.strings.ukrainian,
               ),
               SettingsTile(
                 isActive: state.currentLocale.languageCode == 'en',
-                onTap: () {
-                  // cubit.setLocale(const Locale('en'));
-                },
+                onTap: () => controller.setLocale('en'),
                 title: context.strings.english,
               ),
             ],
