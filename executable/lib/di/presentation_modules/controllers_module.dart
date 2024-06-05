@@ -195,10 +195,12 @@ abstract class ControllersModule {
   ProfileTabController profileTabController(
     LogoutUseCase logoutUseCase,
     ChangeLocaleUseCase changeLocaleUseCase,
+    ChangeThemeModeUseCase changeThemeModeUseCase,
   ) =>
       ProfileTabController(
         logoutUseCase: logoutUseCase,
         changeLocaleUseCase: changeLocaleUseCase,
+        changeThemeModeUseCase: changeThemeModeUseCase,
       );
 
   @lazySingleton

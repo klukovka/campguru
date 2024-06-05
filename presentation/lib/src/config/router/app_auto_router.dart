@@ -180,5 +180,11 @@ class AppAutoRouter extends $AppAutoRouter {
       customRouteBuilder: bottomSheetRouteBuilder,
       opaque: false,
     ),
+    CustomRoute(
+      page: ThemeRoute.page,
+      path: '/home/profile/theme',
+      customRouteBuilder: bottomSheetRouteBuilder,
+      opaque: false,
+    ),
   ];
 }

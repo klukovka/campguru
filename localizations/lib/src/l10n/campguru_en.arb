@@ -141,5 +141,8 @@
     "searchRoutes": "Search Routes",
     "searchTrips": "Search Trips",
     "english": "English",
-    "ukrainian": "Українська"
+    "ukrainian": "Українська",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
 }

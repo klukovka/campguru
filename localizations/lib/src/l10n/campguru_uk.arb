@@ -138,5 +138,8 @@
     "showUncompleted": "Показати незавершені",
     "searchLocations": "Шукати локації",
     "searchRoutes": "Шукати маршрути",
-    "searchTrips": "Шукати поїздки"
+    "searchTrips": "Шукати поїздки",
+    "system": "Системна",
+    "light": "Світла",
+    "dark": "Темна"
 }
