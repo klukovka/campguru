@@ -335,6 +335,11 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.PreferencesRepository>(),
             gh<_i8.SettingsOutputPort>(),
           ));
+  gh.lazySingleton<_i8.ChangeLocaleUseCase>(
+      () => settingsUseCasesModule.changeLocaleUseCase(
+            gh<_i8.PreferencesRepository>(),
+            gh<_i8.SettingsOutputPort>(),
+          ));
   gh.lazySingleton<_i8.SendMessageUseCase>(
       () => chatsUseCasesModule.sendMessageUseCase(
             gh<_i8.ChatsRepository>(),

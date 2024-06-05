@@ -22,4 +22,14 @@ abstract class SettingsUseCasesModule {
         preferencesRepository: preferencesRepository,
         settingsOutputPort: settingsOutputPort,
       );
+
+  @lazySingleton
+  ChangeLocaleUseCase changeLocaleUseCase(
+    PreferencesRepository preferencesRepository,
+    SettingsOutputPort settingsOutputPort,
+  ) =>
+      ChangeLocaleUseCase(
+        preferencesRepository: preferencesRepository,
+        settingsOutputPort: settingsOutputPort,
+      );
 }
