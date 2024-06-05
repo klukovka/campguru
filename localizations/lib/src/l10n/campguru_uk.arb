@@ -25,7 +25,7 @@
     "routeRequired": "Маршрут обов'язковий.",
     "dateRequired": "Дата обов'язкова.",
     "save": "Зберегти",
-    "createRoute": "Створити ьаршрут",
+    "createRoute": "Створити маршрут",
     "selectAtLeastTwoLocations": "Виберіть принаймні 2 локації.",
     "fieldRequired": "Поле обов'язкове.",
     "name": "Ім'я",
