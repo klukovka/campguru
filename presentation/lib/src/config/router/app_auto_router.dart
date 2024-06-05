@@ -23,8 +23,38 @@ Route<T> popUpRouteBuilder<T>(
   );
 }
 
+Route<T> bottomSheetRouteBuilder<T>(
+  BuildContext context,
+  Widget child,
+  AutoRoutePage<T> page,
+) {
+  return ModalBottomSheetRoute<T>(
+    builder: (context) {
+      return Material(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(16.0),
+          topRight: Radius.circular(16.0),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: child,
+        ),
+      );
+    },
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(16.0),
+        topRight: Radius.circular(16.0),
+      ),
+    ),
+    settings: page,
+    isScrollControlled: false,
+  );
+}
+
 @AutoRouterConfig(
-  replaceInRouteName: 'Page|Tab|Dialog,Route',
+  replaceInRouteName: 'Page|Tab|Dialog|BottomSheet,Route',
 )
 class AppAutoRouter extends $AppAutoRouter {
   @override
