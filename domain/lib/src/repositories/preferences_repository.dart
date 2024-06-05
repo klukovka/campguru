@@ -14,4 +14,11 @@ abstract class PreferencesRepository {
   int get userId;
   Future<void> setAuthDetails(AuthenticationDetails details);
   Future<void> clearTokens();
+
+  ///
+  /// Locales
+  ///
+
+  String getLanguageCode();
+  Future<void> setLanguageCode(String languageCode);
 }

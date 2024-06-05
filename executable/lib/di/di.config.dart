@@ -237,12 +237,15 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.CachedRouteDetailsPageCubit>(),
             gh<_i5.CachedRouteMapPageCubit>(),
           ));
-  gh.lazySingleton<_i8.SettingsOutputPort>(
-      () => presentersModule.getSettingsOutputPort(gh<_i5.ProfileTabCubit>()));
   await gh.lazySingletonAsync<_i8.CacheRepository>(
     () => cacheRepositoryModule.getCacheRepository(gh<_i6.HiveDataSource>()),
     preResolve: true,
   );
+  gh.lazySingleton<_i8.SettingsOutputPort>(
+      () => presentersModule.getSettingsOutputPort(
+            gh<_i5.ProfileTabCubit>(),
+            gh<_i5.AppControlCubit>(),
+          ));
   gh.lazySingleton<_i8.LocationsRepository>(
     () => locationsRepositoryModule
         .getTestLocationsRepository(gh<_i6.TestDataSource>()),

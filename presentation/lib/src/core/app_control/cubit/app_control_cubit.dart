@@ -2,6 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localizations/localizations.dart';
 
 part 'app_control_state.dart';
 
@@ -14,5 +15,9 @@ class AppControlCubit extends Cubit<AppControlState> {
 
   void resetFailure() => emit(state.copyWith(
         failue: () => null,
+      ));
+
+  void setLanguageCode(String languageCode) => emit(state.copyWith(
+        languageCode: languageCode,
       ));
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:data/src/data_source/hive_data_source.dart';
 import 'package:domain/domain.dart';
 
@@ -33,4 +35,13 @@ class TestPreferencesRepository implements PreferencesRepository {
 
   @override
   int get userId => _dataSource.userId;
+
+  @override
+  String getLanguageCode() =>
+      _dataSource.getLanguageCode() ?? Platform.localeName;
+
+  @override
+  Future<void> setLanguageCode(String languageCode) async {
+    await _dataSource.setLanguageCode(languageCode);
+  }
 }
