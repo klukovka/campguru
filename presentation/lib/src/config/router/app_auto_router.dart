@@ -36,10 +36,7 @@ Route<T> bottomSheetRouteBuilder<T>(
           topLeft: Radius.circular(16.0),
           topRight: Radius.circular(16.0),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: child,
-        ),
+        child: child,
       );
     },
     shape: const RoundedRectangleBorder(
@@ -50,6 +47,7 @@ Route<T> bottomSheetRouteBuilder<T>(
     ),
     settings: page,
     isScrollControlled: false,
+    useSafeArea: true,
   );
 }
 
@@ -175,6 +173,12 @@ class AppAutoRouter extends $AppAutoRouter {
     AutoRoute(
       page: EditProfileRoute.page,
       path: '/home/profile/edit',
+    ),
+    CustomRoute(
+      page: LanguageRoute.page,
+      path: '/home/profile/language',
+      customRouteBuilder: bottomSheetRouteBuilder,
+      opaque: false,
     ),
   ];
 }

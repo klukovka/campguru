@@ -353,4 +353,10 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get searchTrips => 'Search Trips';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get ukrainian => 'Українська';
 }

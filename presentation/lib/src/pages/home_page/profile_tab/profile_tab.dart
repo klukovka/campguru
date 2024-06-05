@@ -56,9 +56,7 @@ class ProfileTab extends StatelessWidget implements AutoRouteWrapper {
       NavigationTile(
         leading: const Icon(Icons.language),
         title: Text(context.strings.language),
-        onPressed: () {
-          //TODO: Add navigation to settings
-        },
+        onPressed: context.appRouter.pushLanguageDialog,
       ),
       NavigationTile(
         leading: Icon(MdiIcons.themeLightDark),

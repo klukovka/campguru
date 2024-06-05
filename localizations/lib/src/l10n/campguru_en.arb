@@ -139,5 +139,7 @@
     "showUncompleted": "Show Uncompleted",
     "searchLocations": "Search Locations",
     "searchRoutes": "Search Routes",
-    "searchTrips": "Search Trips"
+    "searchTrips": "Search Trips",
+    "english": "English",
+    "ukrainian": "Українська"
 }

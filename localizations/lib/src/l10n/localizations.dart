@@ -60,15 +60,18 @@ import 'localizations_uk.dart';
 /// be consistent with the languages listed in the CampguruLocalizations.supportedLocales
 /// property.
 abstract class CampguruLocalizations {
-  CampguruLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  CampguruLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static CampguruLocalizations of(BuildContext context) {
-    return Localizations.of<CampguruLocalizations>(context, CampguruLocalizations)!;
+    return Localizations.of<CampguruLocalizations>(
+        context, CampguruLocalizations)!;
   }
 
-  static const LocalizationsDelegate<CampguruLocalizations> delegate = _CampguruLocalizationsDelegate();
+  static const LocalizationsDelegate<CampguruLocalizations> delegate =
+      _CampguruLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -80,7 +83,8 @@ abstract class CampguruLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -692,36 +696,50 @@ abstract class CampguruLocalizations {
   /// In en, this message translates to:
   /// **'Search Trips'**
   String get searchTrips;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @ukrainian.
+  ///
+  /// In en, this message translates to:
+  /// **'Українська'**
+  String get ukrainian;
 }
 
-class _CampguruLocalizationsDelegate extends LocalizationsDelegate<CampguruLocalizations> {
+class _CampguruLocalizationsDelegate
+    extends LocalizationsDelegate<CampguruLocalizations> {
   const _CampguruLocalizationsDelegate();
 
   @override
   Future<CampguruLocalizations> load(Locale locale) {
-    return SynchronousFuture<CampguruLocalizations>(lookupCampguruLocalizations(locale));
+    return SynchronousFuture<CampguruLocalizations>(
+        lookupCampguruLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'uk'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en', 'uk'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_CampguruLocalizationsDelegate old) => false;
 }
 
 CampguruLocalizations lookupCampguruLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return CampguruLocalizationsEn();
-    case 'uk': return CampguruLocalizationsUk();
+    case 'en':
+      return CampguruLocalizationsEn();
+    case 'uk':
+      return CampguruLocalizationsUk();
   }
 
   throw FlutterError(
-    'CampguruLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'CampguruLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

@@ -13,6 +13,7 @@ export 'src/buttons/pop_up_button.dart';
 export 'src/cache_progress_view.dart';
 export 'src/cards/item_card.dart';
 export 'src/cards/navigation_tile.dart';
+export 'src/cards/settings_tile.dart';
 export 'src/carousel/carousel.dart';
 export 'src/carousel/photos_info_carousel.dart';
 export 'src/default_app_bar.dart';
