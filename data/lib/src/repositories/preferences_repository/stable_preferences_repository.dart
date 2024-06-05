@@ -55,4 +55,11 @@ class StablePreferencesRepository implements PreferencesRepository {
   Future<void> setLanguageCode(String languageCode) async {
     await _dataSource.setLanguageCode(languageCode);
   }
+
+  @override
+  String getThemeMode() => _dataSource.getThemeMode();
+
+  @override
+  Future<void> setThemeMode(String themeMode) async =>
+      await _dataSource.setThemeMode(themeMode);
 }

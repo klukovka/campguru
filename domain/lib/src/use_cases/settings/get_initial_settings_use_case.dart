@@ -10,7 +10,8 @@ class GetInitialSettingsUseCase {
   });
 
   void call() {
-    final languageCode = preferencesRepository.getLanguageCode();
-    settingsOutputPort.updateLanguageCode(languageCode);
+    settingsOutputPort
+      ..updateLanguageCode(preferencesRepository.getLanguageCode())
+      ..updateThemeMode(preferencesRepository.getThemeMode());
   }
 }
