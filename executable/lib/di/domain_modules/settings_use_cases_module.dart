@@ -32,4 +32,14 @@ abstract class SettingsUseCasesModule {
         preferencesRepository: preferencesRepository,
         settingsOutputPort: settingsOutputPort,
       );
+
+  @lazySingleton
+  ChangeThemeModeUseCase changeThemeModeUseCase(
+    PreferencesRepository preferencesRepository,
+    SettingsOutputPort settingsOutputPort,
+  ) =>
+      ChangeThemeModeUseCase(
+        preferencesRepository: preferencesRepository,
+        settingsOutputPort: settingsOutputPort,
+      );
 }
