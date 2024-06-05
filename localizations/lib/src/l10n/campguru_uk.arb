@@ -59,7 +59,7 @@
     "premium": "преміум",
     "distanceMertes": "Відстань (м)",
     "onlyForUsersWithSubscription": "* доступно лише для користувачів з підпискою",
-    "amountReviews": "{amount,plural, one{{amount} Відгук} other{{amount} Відгуки} few{{amount} Відгуки} many{{amount} Вігуків}}",
+    "amountReviews": "{amount,plural, one{{amount} Відгук} other{{amount} Відгуки} few{{amount} Відгуки} many{{amount} Відгуків}}",
     "@amountReviews": {
         "placeholders": {
             "amount": {

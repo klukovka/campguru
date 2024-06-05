@@ -198,7 +198,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
     String temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
-      many: '$amountString Вігуків',
+      many: '$amountString Відгуків',
       few: '$amountString Відгуки',
       other: '$amountString Відгуки',
       one: '$amountString Відгук',
