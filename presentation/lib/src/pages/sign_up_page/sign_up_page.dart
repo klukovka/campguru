@@ -143,7 +143,8 @@ class _SignUpPageState extends State<SignUpPage> {
     return FormBuilderTextField(
       name: SignUpPageField.email.name,
       validator: (value) => switch (value) {
-        String? x when x == null || x.isEmpty => context.strings.surname,
+        String? x when x == null || x.isEmpty =>
+          context.strings.emailAddressRequired,
         String? x when !x!.isValidEmail => context.strings.emailMustBeValid,
         _ => null,
       },

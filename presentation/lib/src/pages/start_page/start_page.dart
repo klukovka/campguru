@@ -101,7 +101,7 @@ class _StartPageState extends State<StartPage> {
       name: StartPageField.email.name,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return context.strings.surname;
+          return context.strings.emailAddressRequired;
         }
         return null;
       },

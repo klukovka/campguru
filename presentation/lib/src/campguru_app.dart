@@ -29,12 +29,7 @@ class CampguruApp extends StatelessWidget {
         data: const SkeletonizerConfigData(),
         child: BlocProvider.value(
           value: locator<AppControlCubit>(),
-          child: BlocConsumer<AppControlCubit, AppControlState>(
-            listener: (context, state) {
-              if (state.failue != null) {
-                context.showError(state.failue!);
-              }
-            },
+          child: BlocBuilder<AppControlCubit, AppControlState>(
             builder: (context, state) => MaterialApp.router(
               localizationsDelegates:
                   CampguruLocalizations.localizationsDelegates,
@@ -51,6 +46,16 @@ class CampguruApp extends StatelessWidget {
                   AutoRouteObserver(),
                 ],
               ),
+              builder: (context, child) {
+                return BlocListener<AppControlCubit, AppControlState>(
+                  listener: (context, state) {
+                    if (state.failue != null) {
+                      context.showError(state.failue!);
+                    }
+                  },
+                  child: child,
+                );
+              },
             ),
           ),
         ),
