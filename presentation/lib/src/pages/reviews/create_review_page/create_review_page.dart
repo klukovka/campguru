@@ -35,17 +35,32 @@ class _CreateReviewPageState extends State<CreateReviewPage> {
   FormBuilderState? get _fbState => _fbKey.currentState;
   Map<String, dynamic> get _fbValues => _fbState?.value ?? {};
 
+  void _onStateChanged(BuildContext context, CreateReviewPageState state) {
+    if (_buttonPressed && !state.isLoading && !state.hasError) {
+      _buttonPressed = false;
+      switch (widget.type) {
+        case ReviewType.location:
+          context
+              .locator<LocationReviewsPageController>()
+              .initalLoading(widget.id);
+          break;
+
+        case ReviewType.route:
+          context
+              .locator<RouteReviewsPageController>()
+              .initalLoading(widget.id);
+          break;
+      }
+      context.appRouter.pop();
+    } else if (_buttonPressed && !state.isLoading && state.hasError) {
+      _buttonPressed = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CreateReviewPageCubit, CreateReviewPageState>(
-      listener: (context, state) {
-        if (_buttonPressed && !state.isLoading && !state.hasError) {
-          _buttonPressed = false;
-          context.appRouter.pop();
-        } else if (_buttonPressed && !state.isLoading && state.hasError) {
-          _buttonPressed = false;
-        }
-      },
+      listener: _onStateChanged,
       builder: (context, state) {
         return Scaffold(
           appBar: DefaultAppBar(onPop: context.appRouter.pop),
