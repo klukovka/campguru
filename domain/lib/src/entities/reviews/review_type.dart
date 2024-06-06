@@ -1,0 +1,4 @@
+enum ReviewType {
+  location,
+  route;
+}

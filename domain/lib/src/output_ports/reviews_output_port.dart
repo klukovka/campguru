@@ -7,4 +7,8 @@ abstract class ReviewsOutputPort {
   void setRouteReviewsFilter(Filter filter);
   void updateRouteReviews(List<Review> reviews, int amount);
   void stopRouteReviewsLoading();
+
+  void startReviewCreationLoading();
+  void reviewCreationFailed();
+  void reviewCreationcompletedSuccessfully();
 }

@@ -794,6 +794,18 @@ abstract class CampguruLocalizations {
   /// In en, this message translates to:
   /// **'Subscription expires on\n{date}.'**
   String subscriptionExpiresOn(DateTime date);
+
+  /// No description provided for @pickImagesFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick Images from Gallery'**
+  String get pickImagesFromGallery;
+
+  /// No description provided for @review.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get review;
 }
 
 class _CampguruLocalizationsDelegate extends LocalizationsDelegate<CampguruLocalizations> {

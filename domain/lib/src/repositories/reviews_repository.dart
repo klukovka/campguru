@@ -10,4 +10,8 @@ abstract class ReviewsRepository {
     int routeId,
     Filter filter,
   );
+
+  Future<FailureOrResult<void>> createLocationReview(NewReview newReview);
+
+  Future<FailureOrResult<void>> createRouteReview(NewReview newReview);
 }

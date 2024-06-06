@@ -42,7 +42,7 @@ class TripDetailsHeaderDelegate extends SliverPersistentHeaderDelegate {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Skeleton.ignore(
-                  child: ArrowCircleButton.back(
+                  child: IconCircleButton.arrowBack(
                     onPressed: context.appRouter.pop,
                   ),
                 ),

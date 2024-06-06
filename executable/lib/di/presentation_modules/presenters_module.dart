@@ -56,10 +56,12 @@ abstract class PresentersModule {
   ReviewsOutputPort getReviewsOutputPort(
     LocationReviewsPageCubit locationReviewsPageCubit,
     RouteReviewsPageCubit routeReviewsPageCubit,
+    CreateReviewPageCubit createReviewPageCubit,
   ) =>
       ReviewsPresenter(
         locationReviewsPageCubit: locationReviewsPageCubit,
         routeReviewsPageCubit: routeReviewsPageCubit,
+        createReviewPageCubit: createReviewPageCubit,
       );
 
   @lazySingleton

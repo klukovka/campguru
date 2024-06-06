@@ -48,6 +48,11 @@ class _LocationReviewsPageState extends State<LocationReviewsPage> {
         return Scaffold(
           appBar: DefaultAppBar(
             onPop: context.appRouter.pop,
+            trailing: IconCircleButton.add(
+              onPressed: () => context.appRouter.pushCreateLocationReviewPage(
+                widget.locationId,
+              ),
+            ),
           ),
           body: state.isFirstLoading
               ? const LoadingReviewsList()

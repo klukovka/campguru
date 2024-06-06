@@ -26,4 +26,16 @@ abstract class ReviewUseCasesModule {
         errorHandlerOutputPort: errorHandlerOutputPort,
         reviewsOutputPort: reviewsOutputPort,
       );
+
+  @lazySingleton
+  CreateReviewUseCase createReviewUseCase(
+    ReviewsRepository reviewsRepository,
+    ReviewsOutputPort reviewsOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+  ) =>
+      CreateReviewUseCase(
+        reviewsRepository: reviewsRepository,
+        reviewsOutputPort: reviewsOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+      );
 }

@@ -65,7 +65,7 @@ class LoadingTripDetailsPage extends StatelessWidget {
           Positioned(
             top: MediaQuery.paddingOf(context).top,
             left: 16,
-            child: ArrowCircleButton.back(
+            child: IconCircleButton.arrowBack(
               onPressed: context.appRouter.pop,
             ),
           ),

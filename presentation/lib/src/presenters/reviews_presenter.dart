@@ -4,10 +4,12 @@ import 'package:presentation/presentation.dart';
 class ReviewsPresenter extends ReviewsOutputPort {
   final LocationReviewsPageCubit locationReviewsPageCubit;
   final RouteReviewsPageCubit routeReviewsPageCubit;
+  final CreateReviewPageCubit createReviewPageCubit;
 
   ReviewsPresenter({
     required this.locationReviewsPageCubit,
     required this.routeReviewsPageCubit,
+    required this.createReviewPageCubit,
   });
 
   @override
@@ -48,5 +50,20 @@ class ReviewsPresenter extends ReviewsOutputPort {
     } else {
       routeReviewsPageCubit.setReviews(reviews, amount: amount);
     }
+  }
+
+  @override
+  void reviewCreationcompletedSuccessfully() {
+    createReviewPageCubit.completedSuccessfully();
+  }
+
+  @override
+  void reviewCreationFailed() {
+    createReviewPageCubit.completedWithError();
+  }
+
+  @override
+  void startReviewCreationLoading() {
+    createReviewPageCubit.startLoading();
   }
 }

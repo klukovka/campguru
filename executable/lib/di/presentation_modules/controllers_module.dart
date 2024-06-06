@@ -262,4 +262,10 @@ abstract class ControllersModule {
     CreateSubscriptionUseCase createSubscriptionUseCase,
   ) =>
       SubscriptionPageController(createSubscriptionUseCase);
+
+  @lazySingleton
+  CreateReviewPageController createReviewPageController(
+    CreateReviewUseCase createReviewUseCase,
+  ) =>
+      CreateReviewPageController(createReviewUseCase);
 }

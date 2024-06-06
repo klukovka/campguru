@@ -161,5 +161,7 @@
                 "isCustomDateFormat": "true"
             }
         }
-    }
+    },
+    "pickImagesFromGallery": "Оберіть фото з галереї",
+    "review": "Відгук"
 }

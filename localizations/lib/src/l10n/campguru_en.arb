@@ -165,5 +165,7 @@
                 "isCustomDateFormat": "true"
             }
         }
-    }
+    },
+    "pickImagesFromGallery": "Pick Images from Gallery",
+    "review": "Review"
 }
