@@ -27,16 +27,6 @@ class ProxyTestSubscriptionRepository extends ProxyTestRepository
   }
 
   @override
-  Future<FailureOrResult<Subscription>> getSubscription(int id) async {
-    return await makeSafeRequest(
-      apiRequest: () async =>
-          await apiSubscriptionRepository.getSubscription(id),
-      testRequest: () async =>
-          await testSubscriptionRepository.getSubscription(id),
-    );
-  }
-
-  @override
   Future<FailureOrResult<List<Subscription>>> getSubscriptions() async {
     return await makeSafeRequest(
       apiRequest: () async =>

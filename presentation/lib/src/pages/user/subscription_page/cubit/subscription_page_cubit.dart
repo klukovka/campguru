@@ -10,4 +10,7 @@ class SubscriptionPageCubit extends Cubit<SubscriptionPageState> {
   void updateExpirationDate(DateTime? expirationDate) => emit(state.copyWith(
         expirationDate: Nullable(expirationDate),
       ));
+
+  void setSubscriptions(List<Subscription> subscriptions) =>
+      emit(state.copyWith(subscriptions: subscriptions));
 }

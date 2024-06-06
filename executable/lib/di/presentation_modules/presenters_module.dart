@@ -141,4 +141,10 @@ abstract class PresentersModule {
     TripChatPageCubit tripChatPageCubit,
   ) =>
       ChatsPresenter(tripChatPageCubit: tripChatPageCubit);
+
+  @lazySingleton
+  SubscriptionsOutputPort subscriptionsOutputPort(
+    SubscriptionPageCubit subscriptionPageCubit,
+  ) =>
+      SubscriptionsPresenter(subscriptionPageCubit: subscriptionPageCubit);
 }

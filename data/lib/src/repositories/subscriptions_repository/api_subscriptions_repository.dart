@@ -18,13 +18,6 @@ class ApiSubscriptionRepository implements SubscriptionsRepository {
   }
 
   @override
-  Future<FailureOrResult<Subscription>> getSubscription(int id) async {
-    return FailureOrResult.success(
-      source.availableSubscriptions.firstWhere((element) => element.id == id),
-    );
-  }
-
-  @override
   Future<FailureOrResult<List<Subscription>>> getSubscriptions() async {
     return FailureOrResult.success(source.availableSubscriptions);
   }

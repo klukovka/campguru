@@ -33,7 +33,7 @@ import 'data_modules/preferences_repository_module.dart' as _i18;
 import 'data_modules/reviews_repository_module.dart' as _i24;
 import 'data_modules/routes_repository_module.dart' as _i23;
 import 'data_modules/subscriptions_repository_module.dart' as _i34;
-import 'data_modules/trips_repository_module.dart' as _i38;
+import 'data_modules/trips_repository_module.dart' as _i39;
 import 'data_modules/users_repository_module.dart' as _i37;
 import 'domain_modules/chats_use_cases_module.dart' as _i33;
 import 'domain_modules/geoposition_use_cases_module.dart' as _i28;
@@ -41,6 +41,7 @@ import 'domain_modules/location_use_cases_module.dart' as _i29;
 import 'domain_modules/review_use_cases_module.dart' as _i26;
 import 'domain_modules/route_use_cases_module.dart' as _i35;
 import 'domain_modules/settings_use_cases_module.dart' as _i32;
+import 'domain_modules/subscriptions_use_cases_module.dart' as _i38;
 import 'domain_modules/trip_use_cases_module.dart' as _i27;
 import 'domain_modules/user_use_cases_module.dart' as _i20;
 import 'presentation_modules/auto_router_module.dart' as _i12;
@@ -90,6 +91,7 @@ Future<_i1.GetIt> $configureDependencies(
   final routeUseCasesModule = _$RouteUseCasesModule();
   final authRepositoryModule = _$AuthRepositoryModule();
   final usersRepositoryModule = _$UsersRepositoryModule();
+  final subscriptionsUseCasesModule = _$SubscriptionsUseCasesModule();
   final tripsRepositoryModule = _$TripsRepositoryModule();
   gh.singleton<_i3.DeviceInfoPlugin>(() => dataPackagesModule.deviceInfoPlugin);
   await gh.singletonAsync<_i4.PackageInfo>(
@@ -181,6 +183,8 @@ Future<_i1.GetIt> $configureDependencies(
       () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
   gh.lazySingleton<_i8.ErrorHandlerOutputPort>(() =>
       presentersModule.getErrorHandlerOutputPort(gh<_i5.AppControlCubit>()));
+  gh.lazySingleton<_i8.SubscriptionsOutputPort>(() => presentersModule
+      .subscriptionsOutputPort(gh<_i5.SubscriptionPageCubit>()));
   gh.lazySingleton<_i8.GeopositionOutputPort>(
       () => presentersModule.geopositionPresenter(
             gh<_i5.RouteMapPageCubit>(),
@@ -542,6 +546,12 @@ Future<_i1.GetIt> $configureDependencies(
       _prod,
     },
   );
+  gh.lazySingleton<_i8.GetAvailableSubscriptionsUseCase>(
+      () => subscriptionsUseCasesModule.getAvailableSubscriptionsUseCase(
+            gh<_i8.SubscriptionsRepository>(),
+            gh<_i8.SubscriptionsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i8.UsersRepository>(
     () => usersRepositoryModule.getTestUsersRepository(
       gh<_i6.TestDataSource>(),
@@ -652,21 +662,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ErrorHandlerOutputPort>(),
             gh<_i8.TripsOutputPort>(),
           ));
-  gh.lazySingleton<_i5.SplashPageController>(
-      () => controllersModule.getSplashPageController(
-            gh<_i8.IsAuthorizedUseCase>(),
-            gh<_i8.GetAllLocationsUseCase>(),
-            gh<_i8.GetAllRoutesUseCase>(),
-            gh<_i8.GetLocationsAvailableFiltersUseCase>(),
-            gh<_i8.GetRoutesAvailableFiltersUseCase>(),
-            gh<_i8.GetAppVersion>(),
-            gh<_i8.GetTripsUseCase>(),
-            gh<_i8.GetFavoriteLocationsUseCase>(),
-            gh<_i8.GetFavoriteRoutesUseCase>(),
-            gh<_i8.GetMyOwnRoutesUseCase>(),
-            gh<_i8.GetCachedRoutesUseCase>(),
-            gh<_i8.GetInitialSettingsUseCase>(),
-          ));
   gh.lazySingleton<_i5.EditProfilePageController>(() => controllersModule
       .editProfilePageController(gh<_i8.EditProfileUseCase>()));
   gh.lazySingleton<_i5.CreateTripPageController>(
@@ -685,6 +680,22 @@ Future<_i1.GetIt> $configureDependencies(
       () => controllersModule.getTripsTabController(gh<_i8.GetTripsUseCase>()));
   gh.lazySingleton<_i5.TripFiltersPageController>(() => controllersModule
       .getTripFiltersPageController(gh<_i8.GetTripsUseCase>()));
+  gh.lazySingleton<_i5.SplashPageController>(
+      () => controllersModule.getSplashPageController(
+            gh<_i8.IsAuthorizedUseCase>(),
+            gh<_i8.GetAllLocationsUseCase>(),
+            gh<_i8.GetAllRoutesUseCase>(),
+            gh<_i8.GetLocationsAvailableFiltersUseCase>(),
+            gh<_i8.GetRoutesAvailableFiltersUseCase>(),
+            gh<_i8.GetAppVersion>(),
+            gh<_i8.GetTripsUseCase>(),
+            gh<_i8.GetFavoriteLocationsUseCase>(),
+            gh<_i8.GetFavoriteRoutesUseCase>(),
+            gh<_i8.GetMyOwnRoutesUseCase>(),
+            gh<_i8.GetCachedRoutesUseCase>(),
+            gh<_i8.GetInitialSettingsUseCase>(),
+            gh<_i8.GetAvailableSubscriptionsUseCase>(),
+          ));
   return getIt;
 }
 
@@ -743,4 +754,6 @@ class _$AuthRepositoryModule extends _i36.AuthRepositoryModule {}
 
 class _$UsersRepositoryModule extends _i37.UsersRepositoryModule {}
 
-class _$TripsRepositoryModule extends _i38.TripsRepositoryModule {}
+class _$SubscriptionsUseCasesModule extends _i38.SubscriptionsUseCasesModule {}
+
+class _$TripsRepositoryModule extends _i39.TripsRepositoryModule {}
