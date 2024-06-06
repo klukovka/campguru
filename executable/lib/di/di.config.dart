@@ -169,6 +169,12 @@ Future<_i1.GetIt> $configureDependencies(
       () => presentersModule.chatsOutputPort(gh<_i5.TripChatPageCubit>()));
   gh.lazySingleton<_i8.UsersOutputPort>(
       () => presentersModule.usersOutputPort(gh<_i5.CreateTripPageCubit>()));
+  gh.lazySingleton<_i8.ReviewsOutputPort>(
+      () => presentersModule.getReviewsOutputPort(
+            gh<_i5.LocationReviewsPageCubit>(),
+            gh<_i5.RouteReviewsPageCubit>(),
+            gh<_i5.CreateReviewPageCubit>(),
+          ));
   gh.lazySingleton<_i8.CurrentUserOutputPort>(
       () => presentersModule.getCurrentUserOutputPort(
             gh<_i5.SplashPageCubit>(),
@@ -200,11 +206,6 @@ Future<_i1.GetIt> $configureDependencies(
       _prod,
     },
   );
-  gh.lazySingleton<_i8.ReviewsOutputPort>(
-      () => presentersModule.getReviewsOutputPort(
-            gh<_i5.LocationReviewsPageCubit>(),
-            gh<_i5.RouteReviewsPageCubit>(),
-          ));
   gh.lazySingleton<_i8.AppSettingsRepository>(() => appSettingsRepositoryModule
       .getAppSettingsRepository(gh<_i4.PackageInfo>()));
   gh.lazySingleton<_i8.PreferencesRepository>(
@@ -481,6 +482,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ErrorHandlerOutputPort>(),
             gh<_i8.RoutesOutputPort>(),
           ));
+  gh.lazySingleton<_i8.CreateReviewUseCase>(
+      () => reviewUseCasesModule.createReviewUseCase(
+            gh<_i8.ReviewsRepository>(),
+            gh<_i8.ReviewsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i8.GetNextMessagesPageUseCase>(
       () => chatsUseCasesModule.getNextMessagesPageUseCase(
             gh<_i8.ChatsRepository>(),
@@ -553,6 +560,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.SubscriptionsOutputPort>(),
             gh<_i8.ErrorHandlerOutputPort>(),
           ));
+  gh.lazySingleton<_i5.CreateReviewPageController>(() => controllersModule
+      .createReviewPageController(gh<_i8.CreateReviewUseCase>()));
   gh.lazySingleton<_i8.UsersRepository>(
     () => usersRepositoryModule.getTestUsersRepository(
       gh<_i6.TestDataSource>(),

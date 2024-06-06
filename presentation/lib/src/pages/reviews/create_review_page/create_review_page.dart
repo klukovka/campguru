@@ -114,6 +114,15 @@ class _CreateReviewPageState extends State<CreateReviewPage> {
           ).dispatch(context);
           if (_fbState?.saveAndValidate() ?? false) {
             _buttonPressed = true;
+            final controller = context.locator<CreateReviewPageController>();
+            controller(
+              NewReview(
+                reviewType: widget.type,
+                text: _fbValues[CreateReviewPageField.text.name],
+                rating: _fbValues[CreateReviewPageField.rating.name],
+                photos: _fbValues[CreateReviewPageField.photos.name],
+              ),
+            );
           }
         },
         child: state.isLoading

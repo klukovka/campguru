@@ -27,4 +27,18 @@ class TestReviewsRepository implements ReviewsRepository {
       _dataSource.generateReviews(size: filter.size, page: filter.page),
     );
   }
+
+  @override
+  Future<FailureOrResult<void>> createLocationReview(
+    NewReview newReview,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(null);
+  }
+
+  @override
+  Future<FailureOrResult<void>> createRouteReview(NewReview newReview) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(null);
+  }
 }
