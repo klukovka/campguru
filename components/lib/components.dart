@@ -28,6 +28,7 @@ export 'src/images/images_preview.dart';
 export 'src/images/rounded_network_image.dart';
 export 'src/maps/map_theme_data.dart';
 export 'src/maps/route_map.dart';
+export 'src/rating/rating_field.dart';
 export 'src/rating/rating_info_name_app_bar.dart';
 export 'src/rating/rating_name_info_bar.dart';
 export 'src/rating/rating_view.dart';

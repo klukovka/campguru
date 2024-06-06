@@ -7,6 +7,10 @@ enum CreateReviewPageType {
   route;
 }
 
+enum CreateReviewPageField {
+  rating,
+}
+
 abstract class CreateReviewPage extends StatelessWidget {
   const CreateReviewPage({
     super.key,
@@ -18,6 +22,13 @@ abstract class CreateReviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(onPop: context.appRouter.pop),
+      body: Column(
+        children: [
+          RatingField(
+            name: CreateReviewPageField.rating.name,
+          ),
+        ],
+      ),
     );
   }
 }
