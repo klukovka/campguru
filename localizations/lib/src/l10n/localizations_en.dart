@@ -368,4 +368,10 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get dark => 'Dark';
+
+  @override
+  String get monthly => 'Monthly';
+
+  @override
+  String get yearly => 'Yearly';
 }

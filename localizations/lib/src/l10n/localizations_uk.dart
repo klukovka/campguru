@@ -372,4 +372,10 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String get dark => 'Темна';
+
+  @override
+  String get monthly => 'Місячна';
+
+  @override
+  String get yearly => 'Річна';
 }
