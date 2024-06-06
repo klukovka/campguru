@@ -37,7 +37,7 @@ class TripDetailsSliverAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Skeleton.ignore(
-            child: ArrowCircleButton.back(
+            child: IconCircleButton.arrowBack(
               onPressed: context.appRouter.pop,
             ),
           ),

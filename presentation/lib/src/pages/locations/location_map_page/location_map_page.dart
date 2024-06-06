@@ -72,7 +72,7 @@ class LocationMapPageState extends State<LocationMapPage> {
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.only(left: 16),
-              child: ArrowCircleButton.back(
+              child: IconCircleButton.arrowBack(
                 onPressed: context.appRouter.pop,
               ),
             ),

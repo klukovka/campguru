@@ -35,7 +35,7 @@ class ItemCard extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ArrowCircleButton.forward(onPressed: onPressed),
+                  IconCircleButton.arrowForward(onPressed: onPressed),
                   favoriteButton ?? const SizedBox.shrink(),
                 ],
               ),

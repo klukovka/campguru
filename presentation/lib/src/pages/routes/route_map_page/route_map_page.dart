@@ -69,7 +69,7 @@ class _RouteMapPageState extends State<RouteMapPage> {
                     SafeArea(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16),
-                        child: ArrowCircleButton.back(
+                        child: IconCircleButton.arrowBack(
                           onPressed: context.appRouter.pop,
                         ),
                       ),
