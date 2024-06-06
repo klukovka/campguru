@@ -8,6 +8,7 @@ class User extends Equatable {
   final String name;
   final String surname;
   final Uint8List? photo;
+  final DateTime? premiumExpirationDate;
 
   const User({
     required this.id,
@@ -15,6 +16,7 @@ class User extends Equatable {
     required this.name,
     this.photo,
     required this.surname,
+    this.premiumExpirationDate,
   });
 
   String get fullname => '$name $surname';
