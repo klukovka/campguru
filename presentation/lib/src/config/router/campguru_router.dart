@@ -99,4 +99,10 @@ class CampguruRouter extends BaseRouter {
   Future<void> pushThemeDialog() => push(const ThemeRoute());
 
   Future<void> pushSubscriptionPage() => push(const SubscriptionRoute());
+
+  Future<void> pushCreateLocationReviewPage(int id) =>
+      push(CreateLocationReviewRoute(id: id));
+
+  Future<void> pushCreateRouteReviewPage(int id) =>
+      push(CreateRouteReviewRoute(id: id));
 }

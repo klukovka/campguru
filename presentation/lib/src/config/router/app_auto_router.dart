@@ -190,5 +190,13 @@ class AppAutoRouter extends $AppAutoRouter {
       page: SubscriptionRoute.page,
       path: '/home/profile/subscription',
     ),
+    AutoRoute(
+      page: CreateLocationReviewRoute.page,
+      path: '/home/locations/:id/reviews/create',
+    ),
+    AutoRoute(
+      page: CreateLocationReviewRoute.page,
+      path: '/home/routes/:id/reviews/create',
+    ),
   ];
 }
