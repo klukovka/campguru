@@ -151,6 +151,8 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.editProfilePageCubit);
   gh.lazySingleton<_i5.SubscriptionPageCubit>(
       () => blocModule.subscriptionPageCubit);
+  gh.lazySingleton<_i5.CreateReviewPageCubit>(
+      () => blocModule.createReviewPageCubit);
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,

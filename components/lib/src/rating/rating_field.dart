@@ -27,30 +27,44 @@ class RatingField extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       builder: (state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        return Column(
           children: [
-            ...List.generate(
-              _starCount,
-              (index) {
-                final currentValue = state.value ?? 0;
-                final isFilled = index < currentValue;
-                return GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    state.didChange(index + 1);
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ...List.generate(
+                  _starCount,
+                  (index) {
+                    final currentValue = state.value ?? 0;
+                    final isFilled = index < currentValue;
+                    return GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {
+                        state.didChange(index + 1);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Icon(
+                          isFilled ? Icons.star : Icons.star_border_outlined,
+                          size: starIconSize,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    );
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Icon(
-                      isFilled ? Icons.star : Icons.star_border_outlined,
-                      size: starIconSize,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                );
-              },
+                ),
+              ],
             ),
+            if (state.hasError)
+              Padding(
+                padding: const EdgeInsets.only(top: 4, left: 8),
+                child: Text(
+                  state.errorText ?? '',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                ),
+              ),
           ],
         );
       },

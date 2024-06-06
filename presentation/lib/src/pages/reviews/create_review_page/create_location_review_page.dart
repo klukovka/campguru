@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/reviews/create_review_page/create_review_page.dart';
+import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 @RoutePage()
-class CreateLocationReviewPage extends CreateReviewPage {
+class CreateLocationReviewPage extends StatelessWidget {
   final int id;
 
   const CreateLocationReviewPage({
@@ -11,5 +15,13 @@ class CreateLocationReviewPage extends CreateReviewPage {
   });
 
   @override
-  CreateReviewPageType get type => CreateReviewPageType.location;
+  Widget build(BuildContext context) {
+    return BlocProvider.value(
+      value: context.locator<CreateReviewPageCubit>(),
+      child: CreateReviewPage(
+        id: id,
+        type: CreateReviewPageType.location,
+      ),
+    );
+  }
 }
