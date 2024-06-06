@@ -370,7 +370,7 @@ abstract class $AppAutoRouter extends _i37.RootStackRouter {
     SubscriptionRoute.name: (routeData) {
       return _i37.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i31.SubscriptionPage(),
+        child: _i37.WrappedRoute(child: const _i31.SubscriptionPage()),
       );
     },
     ThemeRoute.name: (routeData) {

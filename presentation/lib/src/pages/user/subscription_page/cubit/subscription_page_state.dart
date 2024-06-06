@@ -1,25 +1,32 @@
 part of 'subscription_page_cubit.dart';
 
 class SubscriptionPageState extends Equatable {
-  final DateTime? expirationDate;
+  final User? user;
   final List<Subscription> subscriptions;
+  final bool isLoading;
+  final bool hasError;
 
   const SubscriptionPageState({
-    this.expirationDate,
+    this.user,
     this.subscriptions = const [],
+    this.isLoading = false,
+    this.hasError = false,
   });
 
   @override
-  List<Object?> get props => [expirationDate, subscriptions];
+  List<Object?> get props => [user, subscriptions];
 
   SubscriptionPageState copyWith({
-    Nullable<DateTime>? expirationDate,
+    Nullable<User>? user,
     List<Subscription>? subscriptions,
+    bool? isLoading,
+    bool? hasError,
   }) {
     return SubscriptionPageState(
-      expirationDate:
-          expirationDate == null ? this.expirationDate : expirationDate.value,
+      user: user == null ? this.user : user.value,
       subscriptions: subscriptions ?? this.subscriptions,
+      isLoading: isLoading ?? this.isLoading,
+      hasError: hasError ?? this.hasError,
     );
   }
 }

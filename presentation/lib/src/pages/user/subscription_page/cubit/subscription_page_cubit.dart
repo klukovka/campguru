@@ -7,8 +7,8 @@ part 'subscription_page_state.dart';
 class SubscriptionPageCubit extends Cubit<SubscriptionPageState> {
   SubscriptionPageCubit() : super(const SubscriptionPageState());
 
-  void updateExpirationDate(DateTime? expirationDate) => emit(state.copyWith(
-        expirationDate: Nullable(expirationDate),
+  void updateUser(User? user) => emit(state.copyWith(
+        user: Nullable(user),
       ));
 
   void setSubscriptions(List<Subscription> subscriptions) =>

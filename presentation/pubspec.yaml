@@ -34,6 +34,8 @@ dependencies:
   dart_date: ^1.3.3
   localizations:
     path: ../localizations
+  flutter_credit_card: ^4.0.1
+  form_builder_validators: ^9.1.0
   
 dev_dependencies:
   flutter_test:

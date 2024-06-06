@@ -32,7 +32,7 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
       editProfilePageCubit.setUser(user);
       locationsFiltersPageCubit.updatePremiumStatus(user.hasPremium);
       routesFiltersPageCubit.updatePremiumStatus(user.hasPremium);
-      subscriptionPageCubit.updateExpirationDate(user.premiumExpirationDate);
+      subscriptionPageCubit.updateUser(user);
     }
   }
 
