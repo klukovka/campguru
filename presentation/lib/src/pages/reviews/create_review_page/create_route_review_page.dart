@@ -21,7 +21,7 @@ class CreateRouteReviewPage extends StatelessWidget {
       value: context.locator<CreateReviewPageCubit>(),
       child: CreateReviewPage(
         id: id,
-        type: ReviewType.location,
+        type: ReviewType.route,
       ),
     );
   }
