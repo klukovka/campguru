@@ -117,6 +117,7 @@ class _CreateReviewPageState extends State<CreateReviewPage> {
             final controller = context.locator<CreateReviewPageController>();
             controller(
               NewReview(
+                id: widget.id,
                 reviewType: widget.type,
                 text: _fbValues[CreateReviewPageField.text.name],
                 rating: _fbValues[CreateReviewPageField.rating.name],
