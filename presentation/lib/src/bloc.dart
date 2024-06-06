@@ -1,4 +1,6 @@
 export 'core/app_control/cubit/app_control_cubit.dart';
+export 'pages/auth/sign_up_page/cubit/sign_up_page_cubit.dart';
+export 'pages/auth/start_page/cubit/start_page_cubit.dart';
 export 'pages/home_page/cubit/home_page_cubit.dart';
 export 'pages/home_page/locations_tab/cubit/locations_tab_cubit.dart';
 export 'pages/home_page/profile_tab/cubit/profile_tab_cubit.dart';
@@ -20,9 +22,7 @@ export 'pages/routes/route_details_page/cubit/route_details_page_cubit.dart';
 export 'pages/routes/route_map_page/cubit/route_map_page_cubit.dart';
 export 'pages/routes/routes_filters_page/cubit/routes_filters_page_cubit.dart';
 export 'pages/routes/views/route_cache_progress/cubit/route_cache_progress_view_cubit.dart';
-export 'pages/sign_up_page/cubit/sign_up_page_cubit.dart';
 export 'pages/splash_page/cubit/splash_page_cubit.dart';
-export 'pages/start_page/cubit/start_page_cubit.dart';
 export 'pages/trips/create_trip_page/cubit/create_trip_page_cubit.dart';
 export 'pages/trips/trip_chat_page/cubit/trip_chat_page_cubit.dart';
 export 'pages/trips/trip_details_page/cubit/trip_details_page_cubit.dart';

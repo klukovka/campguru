@@ -15,6 +15,9 @@ import 'package:presentation/src/dialogs/app_unexpected_error_dialog.dart'
     as _i1;
 import 'package:presentation/src/dialogs/language_dialog.dart' as _i11;
 import 'package:presentation/src/dialogs/theme_dialog.dart' as _i31;
+import 'package:presentation/src/pages/auth/sign_up_page/sign_up_page.dart'
+    as _i28;
+import 'package:presentation/src/pages/auth/start_page/start_page.dart' as _i30;
 import 'package:presentation/src/pages/home_page/home_page.dart' as _i10;
 import 'package:presentation/src/pages/home_page/locations_tab/locations_tab.dart'
     as _i16;
@@ -62,9 +65,7 @@ import 'package:presentation/src/pages/routes/routes_filters_page/routes_filters
     as _i24;
 import 'package:presentation/src/pages/routes/selectable_routes_page/selectable_routes_page.dart'
     as _i27;
-import 'package:presentation/src/pages/sign_up_page/sign_up_page.dart' as _i28;
 import 'package:presentation/src/pages/splash_page/splash_page.dart' as _i29;
-import 'package:presentation/src/pages/start_page/start_page.dart' as _i30;
 import 'package:presentation/src/pages/trips/create_trip_page/create_trip_page.dart'
     as _i6;
 import 'package:presentation/src/pages/trips/trip_chat_page/trip_chat_page.dart'
