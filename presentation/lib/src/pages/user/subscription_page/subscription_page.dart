@@ -45,12 +45,8 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SubscriptionPageCubit, SubscriptionPageState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+    return BlocBuilder<SubscriptionPageCubit, SubscriptionPageState>(
       builder: (context, state) {
-        //TODO: Add case if user has subs
         return Scaffold(
           appBar: AppBar(
             title: Text(context.strings.subscription),
@@ -59,37 +55,58 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
             builder: (context, autovalidateMode, child) => FormBuilder(
               key: _fbKey,
               autovalidateMode: autovalidateMode,
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    _buildCreditCard(),
-                    const SizedBox(height: 16),
-                    _buildCreditCardField(),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        Expanded(child: _buildMonthField()),
-                        const SizedBox(width: 16),
-                        Expanded(child: _buildYearField()),
-                        const SizedBox(width: 16),
-                        Expanded(child: _buildCvvField())
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    _buildPhoneField(),
-                    const SizedBox(height: 16),
-                    _buildCardHolderNameField(),
-                    const SizedBox(height: 16),
-                    _buildSubscriptionType(state),
-                    _buildSaveButton(context, state),
-                  ],
-                ),
-              ),
+              child: (state.user?.hasPremium ?? false)
+                  ? _buildExpirationDate(state)
+                  : _buildFormContent(context, state),
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget _buildExpirationDate(SubscriptionPageState state) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Text(
+          context.strings.subscriptionExpiresOn(
+            state.user?.premiumExpirationDate ?? DateTime.now(),
+          ),
+          style: Theme.of(context).textTheme.titleLarge,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFormContent(BuildContext context, SubscriptionPageState state) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          _buildCreditCard(),
+          const SizedBox(height: 16),
+          _buildCreditCardField(),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(child: _buildMonthField()),
+              const SizedBox(width: 16),
+              Expanded(child: _buildYearField()),
+              const SizedBox(width: 16),
+              Expanded(child: _buildCvvField())
+            ],
+          ),
+          const SizedBox(height: 16),
+          _buildPhoneField(),
+          const SizedBox(height: 16),
+          _buildCardHolderNameField(),
+          const SizedBox(height: 16),
+          _buildSubscriptionType(state),
+          _buildSaveButton(context, state),
+        ],
+      ),
     );
   }
 

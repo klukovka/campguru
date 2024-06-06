@@ -792,8 +792,8 @@ abstract class CampguruLocalizations {
   /// No description provided for @subscriptionExpiresOn.
   ///
   /// In en, this message translates to:
-  /// **'Subscription expires on {date}.'**
-  String subscriptionExpiresOn(Object date);
+  /// **'Subscription expires on\n{date}.'**
+  String subscriptionExpiresOn(DateTime date);
 }
 
 class _CampguruLocalizationsDelegate extends LocalizationsDelegate<CampguruLocalizations> {

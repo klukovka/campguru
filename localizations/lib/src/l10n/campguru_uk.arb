@@ -152,8 +152,8 @@
     "year": "Рік",
     "month": "Місяць",
     "creditCardNumber": "Номер кредитної картки",
-    "subscriptionExpiresOn": "Підписка активна до: {date}.",
-    "@depositAvailableOnDate": {
+    "subscriptionExpiresOn": "Підписка активна до:\n{date}.",
+    "@subscriptionExpiresOn": {
         "placeholders": {
             "date": {
                 "type": "DateTime",

@@ -156,8 +156,8 @@
     "month": "Month",
     "creditCardNumber": "Credit Card Number",
     "cvv": "CVV",
-    "subscriptionExpiresOn": "Subscription expires on {date}.",
-    "@depositAvailableOnDate": {
+    "subscriptionExpiresOn": "Subscription expires on\n{date}.",
+    "@subscriptionExpiresOn": {
         "placeholders": {
             "date": {
                 "type": "DateTime",

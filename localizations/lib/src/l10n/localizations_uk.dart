@@ -407,7 +407,11 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
   String get cvv => 'CVV';
 
   @override
-  String subscriptionExpiresOn(Object date) {
-    return 'Підписка активна до: $date.';
+  String subscriptionExpiresOn(DateTime date) {
+    final intl.DateFormat dateDateFormat =
+        intl.DateFormat('d MMMM yyyy', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Підписка активна до:\n$dateString.';
   }
 }

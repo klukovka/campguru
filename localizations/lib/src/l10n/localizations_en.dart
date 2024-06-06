@@ -4,7 +4,7 @@ import 'localizations.dart';
 
 /// The translations for English (`en`).
 class CampguruLocalizationsEn extends CampguruLocalizations {
-  CampguruLocalizationsEn([String locale = 'en']) : super(locale);
+  CampguruLocalizationsEn([super.locale = 'en']);
 
   @override
   String get languageName => 'English';
@@ -195,13 +195,13 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
         intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String _temp0 = intl.Intl.pluralLogic(
+    String temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       other: '$amountString Reviews',
       one: '1 Review',
     );
-    return '$_temp0';
+    return temp0;
   }
 
   @override
@@ -270,13 +270,13 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
         intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String _temp0 = intl.Intl.pluralLogic(
+    String temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       other: '$amountString Users',
       one: '1 User',
     );
-    return '$_temp0';
+    return temp0;
   }
 
   @override
@@ -403,7 +403,11 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
   String get cvv => 'CVV';
 
   @override
-  String subscriptionExpiresOn(Object date) {
-    return 'Subscription expires on $date.';
+  String subscriptionExpiresOn(DateTime date) {
+    final intl.DateFormat dateDateFormat =
+        intl.DateFormat('d MMMM yyyy', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Subscription expires on\n$dateString.';
   }
 }
