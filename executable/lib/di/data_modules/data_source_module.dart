@@ -15,4 +15,8 @@ abstract class DataSourceModule {
     DeviceInfoPlugin deviceInfoPlugin,
   ) =>
       TestDataSource(deviceInfoPlugin);
+
+  @lazySingleton
+  SubscriptionsDataSource subscriptionsDataSource() =>
+      SubscriptionsDataSource();
 }
