@@ -163,15 +163,6 @@ Future<_i1.GetIt> $configureDependencies(
       () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
   gh.lazySingleton<_i8.ErrorHandlerOutputPort>(() =>
       presentersModule.getErrorHandlerOutputPort(gh<_i5.AppControlCubit>()));
-  gh.lazySingleton<_i8.CurrentUserOutputPort>(
-      () => presentersModule.getCurrentUserOutputPort(
-            gh<_i5.SplashPageCubit>(),
-            gh<_i5.HomePageCubit>(),
-            gh<_i5.ProfileTabCubit>(),
-            gh<_i5.SignUpPageCubit>(),
-            gh<_i5.StartPageCubit>(),
-            gh<_i5.EditProfilePageCubit>(),
-          ));
   gh.lazySingleton<_i8.GeopositionOutputPort>(
       () => presentersModule.geopositionPresenter(
             gh<_i5.RouteMapPageCubit>(),
@@ -222,6 +213,17 @@ Future<_i1.GetIt> $configureDependencies(
     () => dataSourceModule.getTestDataSource(gh<_i3.DeviceInfoPlugin>()),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i8.CurrentUserOutputPort>(
+      () => presentersModule.getCurrentUserOutputPort(
+            gh<_i5.SplashPageCubit>(),
+            gh<_i5.HomePageCubit>(),
+            gh<_i5.ProfileTabCubit>(),
+            gh<_i5.SignUpPageCubit>(),
+            gh<_i5.StartPageCubit>(),
+            gh<_i5.EditProfilePageCubit>(),
+            gh<_i5.LocationsFiltersPageCubit>(),
+            gh<_i5.RoutesFiltersPageCubit>(),
+          ));
   gh.lazySingleton<_i8.RoutesOutputPort>(
       () => presentersModule.getRoutesOutputPort(
             gh<_i5.RoutesTabCubit>(),
@@ -595,12 +597,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.RoutesOutputPort>(),
             gh<_i8.CacheRepository>(),
             gh<_i8.UsersRepository>(),
-          ));
-  gh.lazySingleton<_i8.GetUserSubscriptionStatusUseCase>(
-      () => userUseCasesModule.getUserSubscriptionStatus(
-            gh<_i8.UsersRepository>(),
-            gh<_i8.LocationsOutputPort>(),
-            gh<_i8.ErrorHandlerOutputPort>(),
           ));
   gh.lazySingleton<_i8.GetUserByEmailUseCase>(
       () => userUseCasesModule.getUserByEmailUseCase(

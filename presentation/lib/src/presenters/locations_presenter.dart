@@ -126,11 +126,6 @@ class LocationsPresenter extends LocationsOutputPort {
   }
 
   @override
-  void updatePremiumStatus(bool hasPremium) {
-    locationsFiltersPageCubit.updatePremiumStatus(hasPremium);
-  }
-
-  @override
   void setFavoriteLocationsFilter(Filter filter) {
     favoriteLocationsPageCubit.setFilter(filter);
   }

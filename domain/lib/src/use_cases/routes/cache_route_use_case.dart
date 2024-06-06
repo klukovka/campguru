@@ -16,10 +16,10 @@ class CacheRouteUseCase {
   Future<void> call(Route route) async {
     routesOutputPort.updateCacheProgress(cacheProgress: 0, isCompleted: false);
 
-    final hasPremium = await usersRepository.hasPremium();
+    final user = await usersRepository.getCurrentUser();
 
-    if (hasPremium.hasFailed) {
-      errorHandlerOutputPort.setError(hasPremium.failure!);
+    if (user.hasFailed) {
+      errorHandlerOutputPort.setError(user.failure!);
       routesOutputPort.updateCacheProgress(
         cacheProgress: 0,
         isCompleted: true,
@@ -29,7 +29,7 @@ class CacheRouteUseCase {
 
     final cachedRoutesAmount = cacheRepository.getCachedRoutes().length;
 
-    if (!hasPremium.result! && cachedRoutesAmount >= 3) {
+    if (!user.result!.hasPremium && cachedRoutesAmount >= 3) {
       errorHandlerOutputPort.setError(ApplicationFailure(
         type: ApplicationErrorType.toSaveMoreRoutesBuyPremium,
       ));

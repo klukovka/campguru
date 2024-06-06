@@ -84,7 +84,6 @@ export 'src/use_cases/trips/get_trips_use_case.dart';
 export 'src/use_cases/trips/set_trip_route_use_case.dart';
 export 'src/use_cases/users/edit_profile_use_case.dart';
 export 'src/use_cases/users/get_user_by_email_use_case.dart';
-export 'src/use_cases/users/get_user_subscription_status_use_case.dart';
 export 'src/use_cases/users/is_authorized_use_case.dart';
 export 'src/use_cases/users/login_use_case.dart';
 export 'src/use_cases/users/logout_use_case.dart';

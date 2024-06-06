@@ -21,6 +21,13 @@ class User extends Equatable {
 
   String get fullname => '$name $surname';
 
+  bool get hasPremium {
+    final expirationDate = premiumExpirationDate;
+
+    if (expirationDate == null) return false;
+    return DateTime.now().compareTo(expirationDate) < 1;
+  }
+
   @override
   List<Object?> get props => [id, email, name, photo, surname];
 }

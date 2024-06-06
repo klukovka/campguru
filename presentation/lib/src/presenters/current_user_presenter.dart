@@ -8,6 +8,8 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
   final SignUpPageCubit signUpPageCubit;
   final StartPageCubit startPageCubit;
   final EditProfilePageCubit editProfilePageCubit;
+  final LocationsFiltersPageCubit locationsFiltersPageCubit;
+  final RoutesFiltersPageCubit routesFiltersPageCubit;
 
   CurrentUserPresenter({
     required this.splashPageCubit,
@@ -16,6 +18,8 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
     required this.signUpPageCubit,
     required this.startPageCubit,
     required this.editProfilePageCubit,
+    required this.locationsFiltersPageCubit,
+    required this.routesFiltersPageCubit,
   });
   @override
   void setCurrentUser(User? user) {
@@ -24,6 +28,8 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
     if (user != null) {
       profileTabCubit.updateUser(user);
       editProfilePageCubit.setUser(user);
+      locationsFiltersPageCubit.updatePremiumStatus(user.hasPremium);
+      routesFiltersPageCubit.updatePremiumStatus(user.hasPremium);
     }
   }
 

@@ -15,18 +15,6 @@ class ApiUsersRepository implements UsersRepository {
   }
 
   @override
-  Future<FailureOrResult<bool>> hasPremium() async {
-    final response = await client.get('/auth/current-user');
-    final user = response.toFailureOrResult(UserDto.fromJson);
-    if (user.hasFailed) return FailureOrResult.failure(user.failure!);
-    final expirationDate = user.result?.premiumExpirationDate;
-    if (expirationDate == null) return FailureOrResult.success(false);
-    return FailureOrResult.success(
-      DateTime.now().compareTo(expirationDate) < 1,
-    );
-  }
-
-  @override
   Future<FailureOrResult<User>> getUserByEmail(String email) async {
     final response = await client.get('/api/user/email/$email');
     return response.toFailureOrResult(UserDto.fromJson);

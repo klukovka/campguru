@@ -22,14 +22,6 @@ class ProxyTestUsersRepository extends ProxyTestRepository
   }
 
   @override
-  Future<FailureOrResult<bool>> hasPremium() async {
-    return await makeSafeRequest(
-      apiRequest: () async => await apiUsersRepository.hasPremium(),
-      testRequest: () async => await testUsersRepository.hasPremium(),
-    );
-  }
-
-  @override
   Future<FailureOrResult<User>> getUserByEmail(String email) async {
     return await makeSafeRequest(
       apiRequest: () async => await apiUsersRepository.getUserByEmail(email),

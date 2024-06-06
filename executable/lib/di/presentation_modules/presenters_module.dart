@@ -12,6 +12,8 @@ abstract class PresentersModule {
     SignUpPageCubit signUpPageCubit,
     StartPageCubit startPageCubit,
     EditProfilePageCubit editProfilePageCubit,
+    LocationsFiltersPageCubit locationsFiltersPageCubit,
+    RoutesFiltersPageCubit routesFiltersPageCubit,
   ) =>
       CurrentUserPresenter(
         splashPageCubit: splashPageCubit,
@@ -20,6 +22,8 @@ abstract class PresentersModule {
         signUpPageCubit: signUpPageCubit,
         startPageCubit: startPageCubit,
         editProfilePageCubit: editProfilePageCubit,
+        locationsFiltersPageCubit: locationsFiltersPageCubit,
+        routesFiltersPageCubit: routesFiltersPageCubit,
       );
 
   @lazySingleton
