@@ -413,20 +413,10 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ChatsOutputPort>(),
             gh<_i8.ErrorHandlerOutputPort>(),
           ));
-  gh.lazySingleton<_i8.GetCachedRoutesUseCase>(
-      () => routeUseCasesModule.getCachedRoutesUseCase(
-            gh<_i8.CacheRepository>(),
-            gh<_i8.RoutesOutputPort>(),
-          ));
   gh.lazySingleton<_i8.GetCachedRouteDetailsUseCase>(
       () => routeUseCasesModule.getCachedRouteDetailsUseCase(
             gh<_i8.CacheRepository>(),
             gh<_i8.RoutesOutputPort>(),
-          ));
-  gh.lazySingleton<_i5.CachedRoutesTabController>(
-      () => controllersModule.cachedRoutesTabController(
-            gh<_i8.GetCachedRoutesUseCase>(),
-            gh<_i8.DeleteCachedRouteUseCase>(),
           ));
   gh.lazySingleton<_i5.CachedRouteDetailsPageController>(() =>
       controllersModule.cachedRouteDetailsPageController(
@@ -575,6 +565,12 @@ Future<_i1.GetIt> $configureDependencies(
     ),
     registerFor: {_test},
   );
+  gh.lazySingleton<_i8.GetCachedRoutesUseCase>(
+      () => routeUseCasesModule.getCachedRoutesUseCase(
+            gh<_i8.CacheRepository>(),
+            gh<_i8.RoutesOutputPort>(),
+            gh<_i8.UsersRepository>(),
+          ));
   gh.lazySingleton<_i5.TripChatController>(
       () => controllersModule.tripChatController(
             gh<_i8.SendMessageUseCase>(),
@@ -625,6 +621,11 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.AuthRepository>(),
             gh<_i8.UsersRepository>(),
             gh<_i8.CurrentUserOutputPort>(),
+          ));
+  gh.lazySingleton<_i5.CachedRoutesTabController>(
+      () => controllersModule.cachedRoutesTabController(
+            gh<_i8.GetCachedRoutesUseCase>(),
+            gh<_i8.DeleteCachedRouteUseCase>(),
           ));
   gh.lazySingleton<_i5.StartPageController>(
       () => controllersModule.startPageController(gh<_i8.LoginUseCase>()));
