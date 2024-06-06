@@ -17,6 +17,7 @@ export 'src/entities/filters/premium_based_filter_label.dart';
 export 'src/entities/filters/sort_by.dart';
 export 'src/entities/locations/location.dart';
 export 'src/entities/reviews/review.dart';
+export 'src/entities/reviews/review_type.dart';
 export 'src/entities/routes/lat_lng.dart';
 export 'src/entities/routes/new_route.dart';
 export 'src/entities/routes/route.dart';

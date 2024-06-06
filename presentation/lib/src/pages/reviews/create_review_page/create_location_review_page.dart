@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/presentation.dart';
@@ -20,7 +21,7 @@ class CreateLocationReviewPage extends StatelessWidget {
       value: context.locator<CreateReviewPageCubit>(),
       child: CreateReviewPage(
         id: id,
-        type: CreateReviewPageType.location,
+        type: ReviewType.location,
       ),
     );
   }
