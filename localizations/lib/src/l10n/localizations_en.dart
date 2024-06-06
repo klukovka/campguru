@@ -359,4 +359,13 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get ukrainian => 'Українська';
+
+  @override
+  String get system => 'System';
+
+  @override
+  String get light => 'Light';
+
+  @override
+  String get dark => 'Dark';
 }

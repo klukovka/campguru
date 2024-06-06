@@ -21,4 +21,11 @@ abstract class PreferencesRepository {
 
   String getLanguageCode();
   Future<void> setLanguageCode(String languageCode);
+
+  ///
+  /// Theme
+  ///
+
+  String getThemeMode();
+  Future<void> setThemeMode(String themeMode);
 }

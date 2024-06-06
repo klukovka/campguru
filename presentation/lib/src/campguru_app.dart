@@ -21,8 +21,6 @@ class CampguruApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = locator<AppAutoRouter>();
 
-    const themeMode = ThemeMode.system;
-
     return GetItData(
       locator: locator,
       child: SkeletonizerConfig(
@@ -37,7 +35,7 @@ class CampguruApp extends StatelessWidget {
               locale: state.currentLocale,
               theme: lightTheme,
               darkTheme: darkTheme,
-              themeMode: themeMode,
+              themeMode: state.theme,
               debugShowCheckedModeBanner: false,
               routeInformationParser: appRouter.defaultRouteParser(),
               routeInformationProvider: appRouter.routeInfoProvider(),

@@ -76,4 +76,11 @@ class ProxyTestPreferencesRepository extends ProxyTestRepository
   @override
   Future<void> setLanguageCode(String languageCode) async =>
       await stableRepository.setLanguageCode(languageCode);
+
+  @override
+  String getThemeMode() => stableRepository.getThemeMode();
+
+  @override
+  Future<void> setThemeMode(String themeMode) async =>
+      await stableRepository.setThemeMode(themeMode);
 }

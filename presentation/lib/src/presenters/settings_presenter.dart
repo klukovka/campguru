@@ -19,4 +19,9 @@ class SettingsPresenter implements SettingsOutputPort {
   void updateLanguageCode(String languageCode) {
     appControlCubit.setLanguageCode(languageCode);
   }
+
+  @override
+  void updateThemeMode(String themeMode) {
+    appControlCubit.setThemeMode(themeMode);
+  }
 }

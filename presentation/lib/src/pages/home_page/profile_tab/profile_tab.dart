@@ -61,9 +61,7 @@ class ProfileTab extends StatelessWidget implements AutoRouteWrapper {
       NavigationTile(
         leading: Icon(MdiIcons.themeLightDark),
         title: Text(context.strings.theme),
-        onPressed: () {
-          //TODO: Add navigation to change theme
-        },
+        onPressed: context.appRouter.pushThemeDialog,
       ),
     ];
     return SafeArea(

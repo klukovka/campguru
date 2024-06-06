@@ -11,6 +11,7 @@ class HiveDataSource {
   static const _accessTokenKey = '_accessTokenKey';
   static const _refreshTokenKey = '_refreshTokenKey';
   static const _localeKey = '_localeKey';
+  static const _themeModeKey = '_themeModeKey';
 
   final Box<dynamic> _preferencesBox;
   final Box<RouteHiveDto> _routesBox;
@@ -77,4 +78,12 @@ class HiveDataSource {
 
   Future<void> setLanguageCode(String languageCode) async =>
       await _preferencesBox.put(_localeKey, languageCode);
+
+  ///
+  /// Theme Mode
+  ///
+
+  String getThemeMode() => _preferencesBox.get(_themeModeKey) ?? 'system';
+  Future<void> setThemeMode(String themeMode) async =>
+      await _preferencesBox.put(_themeModeKey, themeMode);
 }

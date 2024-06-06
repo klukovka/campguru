@@ -20,4 +20,8 @@ class AppControlCubit extends Cubit<AppControlState> {
   void setLanguageCode(String languageCode) => emit(state.copyWith(
         languageCode: languageCode,
       ));
+
+  void setThemeMode(String themeMode) => emit(state.copyWith(
+        themeMode: themeMode,
+      ));
 }
