@@ -145,6 +145,8 @@ Future<_i1.GetIt> $configureDependencies(
   gh.lazySingleton<_i5.TripChatPageCubit>(() => blocModule.tripChatPageCubit);
   gh.lazySingleton<_i5.EditProfilePageCubit>(
       () => blocModule.editProfilePageCubit);
+  gh.lazySingleton<_i5.SubscriptionPageCubit>(
+      () => blocModule.subscriptionPageCubit);
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -159,6 +161,18 @@ Future<_i1.GetIt> $configureDependencies(
       () => presentersModule.chatsOutputPort(gh<_i5.TripChatPageCubit>()));
   gh.lazySingleton<_i8.UsersOutputPort>(
       () => presentersModule.usersOutputPort(gh<_i5.CreateTripPageCubit>()));
+  gh.lazySingleton<_i8.CurrentUserOutputPort>(
+      () => presentersModule.getCurrentUserOutputPort(
+            gh<_i5.SplashPageCubit>(),
+            gh<_i5.HomePageCubit>(),
+            gh<_i5.ProfileTabCubit>(),
+            gh<_i5.SignUpPageCubit>(),
+            gh<_i5.StartPageCubit>(),
+            gh<_i5.EditProfilePageCubit>(),
+            gh<_i5.LocationsFiltersPageCubit>(),
+            gh<_i5.RoutesFiltersPageCubit>(),
+            gh<_i5.SubscriptionPageCubit>(),
+          ));
   gh.lazySingleton<_i5.CampguruRouter>(
       () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
   gh.lazySingleton<_i8.ErrorHandlerOutputPort>(() =>
@@ -213,17 +227,6 @@ Future<_i1.GetIt> $configureDependencies(
     () => dataSourceModule.getTestDataSource(gh<_i3.DeviceInfoPlugin>()),
     registerFor: {_test},
   );
-  gh.lazySingleton<_i8.CurrentUserOutputPort>(
-      () => presentersModule.getCurrentUserOutputPort(
-            gh<_i5.SplashPageCubit>(),
-            gh<_i5.HomePageCubit>(),
-            gh<_i5.ProfileTabCubit>(),
-            gh<_i5.SignUpPageCubit>(),
-            gh<_i5.StartPageCubit>(),
-            gh<_i5.EditProfilePageCubit>(),
-            gh<_i5.LocationsFiltersPageCubit>(),
-            gh<_i5.RoutesFiltersPageCubit>(),
-          ));
   gh.lazySingleton<_i8.RoutesOutputPort>(
       () => presentersModule.getRoutesOutputPort(
             gh<_i5.RoutesTabCubit>(),

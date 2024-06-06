@@ -28,3 +28,4 @@ export 'pages/trips/trip_chat_page/cubit/trip_chat_page_cubit.dart';
 export 'pages/trips/trip_details_page/cubit/trip_details_page_cubit.dart';
 export 'pages/trips/trips_filters_page/cubit/trips_filters_page_cubit.dart';
 export 'pages/user/edit_profile_page/cubit/edit_profile_page_cubit.dart';
+export 'pages/user/subscription_page/cubit/subscription_page_cubit.dart';

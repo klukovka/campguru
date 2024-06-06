@@ -100,4 +100,7 @@ abstract class BlocModule {
 
   @lazySingleton
   EditProfilePageCubit get editProfilePageCubit => EditProfilePageCubit();
+
+  @lazySingleton
+  SubscriptionPageCubit get subscriptionPageCubit => SubscriptionPageCubit();
 }
