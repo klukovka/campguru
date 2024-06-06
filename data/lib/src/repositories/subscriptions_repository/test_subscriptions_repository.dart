@@ -8,7 +8,7 @@ class TestSubscriptionRepository implements SubscriptionsRepository {
 
   @override
   Future<FailureOrResult<User>> createSubscription(Payment payment) async {
-    await Future.delayed(const Duration(milliseconds: 1000));
+    await Future.delayed(const Duration(milliseconds: 2000));
     return FailureOrResult.failure(ApplicationFailure(
       type: ApplicationErrorType.general,
     ));

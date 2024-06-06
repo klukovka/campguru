@@ -14,4 +14,18 @@ abstract class SubscriptionsUseCasesModule {
         subscriptionsOutputPort: subscriptionsOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
       );
+
+  @lazySingleton
+  CreateSubscriptionUseCase createSubscriptionUseCase(
+    SubscriptionsRepository subscriptionsRepository,
+    SubscriptionsOutputPort subscriptionsOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+    CurrentUserOutputPort currentUserOutputPort,
+  ) =>
+      CreateSubscriptionUseCase(
+        subscriptionsRepository: subscriptionsRepository,
+        subscriptionsOutputPort: subscriptionsOutputPort,
+        currentUserOutputPort: currentUserOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+      );
 }

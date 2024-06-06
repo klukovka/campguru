@@ -34,14 +34,14 @@ import 'data_modules/reviews_repository_module.dart' as _i24;
 import 'data_modules/routes_repository_module.dart' as _i23;
 import 'data_modules/subscriptions_repository_module.dart' as _i34;
 import 'data_modules/trips_repository_module.dart' as _i39;
-import 'data_modules/users_repository_module.dart' as _i37;
+import 'data_modules/users_repository_module.dart' as _i38;
 import 'domain_modules/chats_use_cases_module.dart' as _i33;
 import 'domain_modules/geoposition_use_cases_module.dart' as _i28;
 import 'domain_modules/location_use_cases_module.dart' as _i29;
 import 'domain_modules/review_use_cases_module.dart' as _i26;
 import 'domain_modules/route_use_cases_module.dart' as _i35;
 import 'domain_modules/settings_use_cases_module.dart' as _i32;
-import 'domain_modules/subscriptions_use_cases_module.dart' as _i38;
+import 'domain_modules/subscriptions_use_cases_module.dart' as _i37;
 import 'domain_modules/trip_use_cases_module.dart' as _i27;
 import 'domain_modules/user_use_cases_module.dart' as _i20;
 import 'presentation_modules/auto_router_module.dart' as _i12;
@@ -90,8 +90,8 @@ Future<_i1.GetIt> $configureDependencies(
   final subscriptionsRepositoryModule = _$SubscriptionsRepositoryModule();
   final routeUseCasesModule = _$RouteUseCasesModule();
   final authRepositoryModule = _$AuthRepositoryModule();
-  final usersRepositoryModule = _$UsersRepositoryModule();
   final subscriptionsUseCasesModule = _$SubscriptionsUseCasesModule();
+  final usersRepositoryModule = _$UsersRepositoryModule();
   final tripsRepositoryModule = _$TripsRepositoryModule();
   gh.singleton<_i3.DeviceInfoPlugin>(() => dataPackagesModule.deviceInfoPlugin);
   await gh.singletonAsync<_i4.PackageInfo>(
@@ -532,6 +532,13 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.GetFavoriteRoutesUseCase>(),
             gh<_i8.SetTripRouteUseCase>(),
           ));
+  gh.lazySingleton<_i8.CreateSubscriptionUseCase>(
+      () => subscriptionsUseCasesModule.createSubscriptionUseCase(
+            gh<_i8.SubscriptionsRepository>(),
+            gh<_i8.SubscriptionsOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+            gh<_i8.CurrentUserOutputPort>(),
+          ));
   gh.lazySingleton<_i8.UsersRepository>(
     () => usersRepositoryModule.apiUsersRepository(gh<_i10.Dio>()),
     registerFor: {
@@ -546,6 +553,8 @@ Future<_i1.GetIt> $configureDependencies(
       _prod,
     },
   );
+  gh.lazySingleton<_i5.SubscriptionPageController>(() => controllersModule
+      .subscriptionPageController(gh<_i8.CreateSubscriptionUseCase>()));
   gh.lazySingleton<_i8.GetAvailableSubscriptionsUseCase>(
       () => subscriptionsUseCasesModule.getAvailableSubscriptionsUseCase(
             gh<_i8.SubscriptionsRepository>(),
@@ -752,8 +761,8 @@ class _$RouteUseCasesModule extends _i35.RouteUseCasesModule {}
 
 class _$AuthRepositoryModule extends _i36.AuthRepositoryModule {}
 
-class _$UsersRepositoryModule extends _i37.UsersRepositoryModule {}
+class _$SubscriptionsUseCasesModule extends _i37.SubscriptionsUseCasesModule {}
 
-class _$SubscriptionsUseCasesModule extends _i38.SubscriptionsUseCasesModule {}
+class _$UsersRepositoryModule extends _i38.UsersRepositoryModule {}
 
 class _$TripsRepositoryModule extends _i39.TripsRepositoryModule {}

@@ -256,4 +256,10 @@ abstract class ControllersModule {
     EditProfileUseCase editProfileUseCase,
   ) =>
       EditProfilePageController(editProfileUseCase);
+
+  @lazySingleton
+  SubscriptionPageController subscriptionPageController(
+    CreateSubscriptionUseCase createSubscriptionUseCase,
+  ) =>
+      SubscriptionPageController(createSubscriptionUseCase);
 }

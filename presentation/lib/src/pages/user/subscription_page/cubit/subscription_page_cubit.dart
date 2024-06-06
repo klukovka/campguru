@@ -13,4 +13,8 @@ class SubscriptionPageCubit extends Cubit<SubscriptionPageState> {
 
   void setSubscriptions(List<Subscription> subscriptions) =>
       emit(state.copyWith(subscriptions: subscriptions));
+
+  void startLoading() => emit(state.copyWith(isLoading: true));
+
+  void stopLoading() => emit(state.copyWith(isLoading: false));
 }

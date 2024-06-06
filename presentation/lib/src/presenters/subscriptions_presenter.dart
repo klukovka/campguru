@@ -11,4 +11,14 @@ class SubscriptionsPresenter implements SubscriptionsOutputPort {
   void setSubscriptions(List<Subscription> subscriptions) {
     subscriptionPageCubit.setSubscriptions(subscriptions);
   }
+
+  @override
+  void startLoading() {
+    subscriptionPageCubit.startLoading();
+  }
+
+  @override
+  void stopLoading() {
+    subscriptionPageCubit.stopLoading();
+  }
 }

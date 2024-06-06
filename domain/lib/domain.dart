@@ -82,6 +82,7 @@ export 'src/use_cases/settings/change_locale_use_case.dart';
 export 'src/use_cases/settings/change_theme_mode_use_case.dart';
 export 'src/use_cases/settings/get_app_version.dart';
 export 'src/use_cases/settings/get_initial_settings_use_case.dart';
+export 'src/use_cases/subscriptions/create_subscription_use_case.dart';
 export 'src/use_cases/subscriptions/get_available_subscriptions_use_case.dart';
 export 'src/use_cases/trips/complete_trip_use_case.dart';
 export 'src/use_cases/trips/create_trip_use_case.dart';

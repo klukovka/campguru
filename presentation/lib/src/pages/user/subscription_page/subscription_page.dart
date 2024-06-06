@@ -300,7 +300,18 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
           AutovalidateModeNotification(
             AutovalidateMode.onUserInteraction,
           ).dispatch(context);
-          if (_fbState?.saveAndValidate() ?? false) {}
+          if (_fbState?.saveAndValidate() ?? false) {
+            final controller = context.locator<SubscriptionPageController>();
+            controller(
+              phone: _fbValues[SubscriptionPageField.phone.name],
+              card: _fbValues[SubscriptionPageField.card.name],
+              cardExpMonth: _fbValues[SubscriptionPageField.cardExpMonth.name],
+              cardExpYear: _fbValues[SubscriptionPageField.cardExpYear.name],
+              cardCvv: _fbValues[SubscriptionPageField.cardCvv.name],
+              cardHolderName: _fbValues[SubscriptionPageField.cardHolderName.name],
+              subscription: _fbValues[SubscriptionPageField.subscription.name],
+            );
+          }
         },
         child: state.isLoading
             ? const Padding(
