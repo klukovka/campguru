@@ -143,5 +143,23 @@
     "light": "Світла",
     "dark": "Темна",
     "monthly": "Місячна",
-    "yearly": "Річна"
+    "yearly": "Річна",
+    "uah": "грн.",
+    "discount": "Знижка",
+    "subscriptionType": "Тип підписки",
+    "cardHolderName": "Імʼя власника картки",
+    "phone": "Телефон",
+    "year": "Рік",
+    "month": "Місяць",
+    "creditCardNumber": "Номер кредитної картки",
+    "subscriptionExpiresOn": "Підписка активна до: {date}.",
+    "@depositAvailableOnDate": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d MMMM yyyy",
+                "isCustomDateFormat": "true"
+            }
+        }
+    }
 }

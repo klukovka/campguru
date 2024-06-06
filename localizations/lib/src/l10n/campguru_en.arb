@@ -146,5 +146,24 @@
     "light": "Light",
     "dark": "Dark",
     "monthly": "Monthly",
-    "yearly": "Yearly"
+    "yearly": "Yearly",
+    "uah": "UAH",
+    "discount": "Discount",
+    "subscriptionType": "Subscription Type",
+    "cardHolderName": "Card Holder Name",
+    "phone": "Phone",
+    "year": "Year",
+    "month": "Month",
+    "creditCardNumber": "Credit Card Number",
+    "cvv": "CVV",
+    "subscriptionExpiresOn": "Subscription expires on {date}.",
+    "@depositAvailableOnDate": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d MMMM yyyy",
+                "isCustomDateFormat": "true"
+            }
+        }
+    }
 }

@@ -97,8 +97,8 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
     return FormBuilderRadioGroup(
       name: SubscriptionPageField.subscription.name,
       orientation: OptionsOrientation.vertical,
-      decoration: const InputDecoration(
-        labelText: 'Subscription Type',
+      decoration: InputDecoration(
+        labelText: context.strings.subscriptionType,
       ),
       validator: FormBuilderValidators.required(),
       options: state.subscriptions
@@ -115,7 +115,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   Widget _buildCardHolderNameField() {
     return FormBuilderTextField(
       name: SubscriptionPageField.cardHolderName.name,
-      decoration: const InputDecoration(labelText: 'Card Holder Name'),
+      decoration: InputDecoration(labelText: context.strings.cardHolderName),
       validator: FormBuilderValidators.required(),
       onChanged: (value) {
         setState(() {
@@ -129,7 +129,8 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
     return FormBuilderTextField(
       name: SubscriptionPageField.phone.name,
       keyboardType: TextInputType.number,
-      decoration: const InputDecoration(labelText: 'Phone', prefixText: '+38'),
+      decoration:
+          InputDecoration(labelText: context.strings.phone, prefixText: '+38'),
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
         LengthLimitingTextInputFormatter(10),
@@ -146,7 +147,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   Widget _buildYearField() {
     return FormBuilderDropdown(
       name: SubscriptionPageField.cardExpYear.name,
-      decoration: const InputDecoration(labelText: 'Year'),
+      decoration: InputDecoration(labelText: context.strings.year),
       validator: FormBuilderValidators.required(),
       items: [
         '24',
@@ -173,7 +174,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   Widget _buildMonthField() {
     return FormBuilderDropdown(
       name: SubscriptionPageField.cardExpMonth.name,
-      decoration: const InputDecoration(labelText: 'Month'),
+      decoration: InputDecoration(labelText: context.strings.month),
       validator: FormBuilderValidators.required(),
       items: [
         '01',
@@ -206,7 +207,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
     return FormBuilderTextField(
       name: SubscriptionPageField.card.name,
       keyboardType: TextInputType.number,
-      decoration: const InputDecoration(labelText: 'Credit card'),
+      decoration: InputDecoration(labelText: context.strings.creditCardNumber),
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
         LengthLimitingTextInputFormatter(16),
@@ -229,7 +230,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
     return FormBuilderTextField(
       name: SubscriptionPageField.cardCvv.name,
       keyboardType: TextInputType.number,
-      decoration: const InputDecoration(labelText: 'CVV'),
+      decoration: InputDecoration(labelText: context.strings.cvv),
       inputFormatters: [
         LengthLimitingTextInputFormatter(3),
       ],

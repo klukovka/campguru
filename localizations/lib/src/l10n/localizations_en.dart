@@ -4,7 +4,7 @@ import 'localizations.dart';
 
 /// The translations for English (`en`).
 class CampguruLocalizationsEn extends CampguruLocalizations {
-  CampguruLocalizationsEn([super.locale = 'en']);
+  CampguruLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
   String get languageName => 'English';
@@ -195,13 +195,13 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
         intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String temp0 = intl.Intl.pluralLogic(
+    String _temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       other: '$amountString Reviews',
       one: '1 Review',
     );
-    return temp0;
+    return '$_temp0';
   }
 
   @override
@@ -270,13 +270,13 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
         intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String temp0 = intl.Intl.pluralLogic(
+    String _temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       other: '$amountString Users',
       one: '1 User',
     );
-    return temp0;
+    return '$_temp0';
   }
 
   @override
@@ -374,4 +374,36 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get yearly => 'Yearly';
+
+  @override
+  String get uah => 'UAH';
+
+  @override
+  String get discount => 'Discount';
+
+  @override
+  String get subscriptionType => 'Subscription Type';
+
+  @override
+  String get cardHolderName => 'Card Holder Name';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get month => 'Month';
+
+  @override
+  String get creditCardNumber => 'Credit Card Number';
+
+  @override
+  String get cvv => 'CVV';
+
+  @override
+  String subscriptionExpiresOn(Object date) {
+    return 'Subscription expires on $date.';
+  }
 }

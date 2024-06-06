@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/utils/extensions/subscription_type_extension.dart';
 
 class SubscriptionTile extends StatelessWidget {
@@ -22,7 +23,7 @@ class SubscriptionTile extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyLarge,
             children: [
               TextSpan(
-                text: ' (${subscription.price.toInt()}) UAH',
+                text: ' (${subscription.price.toInt()}) ${context.strings.uah}',
                 style: const TextStyle(fontWeight: FontWeight.w600),
               ),
             ],
@@ -30,7 +31,7 @@ class SubscriptionTile extends StatelessWidget {
         ),
         if (subscription.discount != null)
           Text(
-            'Discount ${subscription.discount?.toInt()}%',
+            '${context.strings.discount}: ${subscription.discount?.toInt()}%',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w900,
                 ),
