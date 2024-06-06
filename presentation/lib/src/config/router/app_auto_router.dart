@@ -186,5 +186,9 @@ class AppAutoRouter extends $AppAutoRouter {
       customRouteBuilder: bottomSheetRouteBuilder,
       opaque: false,
     ),
+    AutoRoute(
+      page: SubscriptionRoute.page,
+      path: '/home/profile/subscription',
+    ),
   ];
 }

@@ -32,9 +32,7 @@ class ProfileTab extends StatelessWidget implements AutoRouteWrapper {
       NavigationTile(
         leading: Icon(MdiIcons.accountCash),
         title: Text(context.strings.subscription),
-        onPressed: () {
-          //TODO: Add navigation to edit
-        },
+        onPressed: context.appRouter.pushSubscriptionPage,
       ),
       NavigationTile(
         leading: Icon(HomePageTabType.locations.iconData),

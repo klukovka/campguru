@@ -40,8 +40,8 @@ class _FavoriteLocationsPageState extends State<FavoriteLocationsPage> {
     return BlocBuilder<FavoriteLocationsPageCubit, FavoriteLocationsPageState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: DefaultAppBar(
-            onPop: context.appRouter.pop,
+          appBar: AppBar(
+            title: Text(context.strings.favoriteLocations),
           ),
           body: Column(
             children: [
