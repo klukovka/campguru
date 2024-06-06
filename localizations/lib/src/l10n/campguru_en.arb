@@ -144,5 +144,26 @@
     "ukrainian": "Українська",
     "system": "System",
     "light": "Light",
-    "dark": "Dark"
+    "dark": "Dark",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "uah": "UAH",
+    "discount": "Discount",
+    "subscriptionType": "Subscription Type",
+    "cardHolderName": "Card Holder Name",
+    "phone": "Phone",
+    "year": "Year",
+    "month": "Month",
+    "creditCardNumber": "Credit Card Number",
+    "cvv": "CVV",
+    "subscriptionExpiresOn": "Subscription expires on\n{date}.",
+    "@subscriptionExpiresOn": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d MMMM yyyy",
+                "isCustomDateFormat": "true"
+            }
+        }
+    }
 }

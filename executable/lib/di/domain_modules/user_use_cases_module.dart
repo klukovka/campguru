@@ -18,18 +18,6 @@ abstract class UserUseCasesModule {
       );
 
   @lazySingleton
-  GetUserSubscriptionStatusUseCase getUserSubscriptionStatus(
-    UsersRepository usersRepository,
-    LocationsOutputPort locationsOutputPort,
-    ErrorHandlerOutputPort errorHandlerOutputPort,
-  ) =>
-      GetUserSubscriptionStatusUseCase(
-        usersRepository: usersRepository,
-        locationsOutputPort: locationsOutputPort,
-        errorHandlerOutputPort: errorHandlerOutputPort,
-      );
-
-  @lazySingleton
   SignUpUseCase signUpUseCase(
     PreferencesRepository preferencesRepository,
     AuthRepository authRepository,

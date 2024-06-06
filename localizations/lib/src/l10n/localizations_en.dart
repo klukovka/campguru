@@ -368,4 +368,46 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get dark => 'Dark';
+
+  @override
+  String get monthly => 'Monthly';
+
+  @override
+  String get yearly => 'Yearly';
+
+  @override
+  String get uah => 'UAH';
+
+  @override
+  String get discount => 'Discount';
+
+  @override
+  String get subscriptionType => 'Subscription Type';
+
+  @override
+  String get cardHolderName => 'Card Holder Name';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get month => 'Month';
+
+  @override
+  String get creditCardNumber => 'Credit Card Number';
+
+  @override
+  String get cvv => 'CVV';
+
+  @override
+  String subscriptionExpiresOn(DateTime date) {
+    final intl.DateFormat dateDateFormat =
+        intl.DateFormat('d MMMM yyyy', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Subscription expires on\n$dateString.';
+  }
 }

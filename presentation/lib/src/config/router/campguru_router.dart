@@ -95,5 +95,8 @@ class CampguruRouter extends BaseRouter {
   Future<void> pushEditProfilePage() => push(const EditProfileRoute());
 
   Future<void> pushLanguageDialog() => push(const LanguageRoute());
+
   Future<void> pushThemeDialog() => push(const ThemeRoute());
+
+  Future<void> pushSubscriptionPage() => push(const SubscriptionRoute());
 }

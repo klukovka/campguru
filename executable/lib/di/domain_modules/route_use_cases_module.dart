@@ -117,10 +117,12 @@ abstract class RouteUseCasesModule {
   GetCachedRoutesUseCase getCachedRoutesUseCase(
     CacheRepository cacheRepository,
     RoutesOutputPort routesOutputPort,
+    UsersRepository usersRepository,
   ) =>
       GetCachedRoutesUseCase(
         cacheRepository: cacheRepository,
         routesOutputPort: routesOutputPort,
+        usersRepository: usersRepository,
       );
 
   @lazySingleton

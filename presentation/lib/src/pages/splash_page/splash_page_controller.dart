@@ -13,6 +13,7 @@ class SplashPageController {
   final GetMyOwnRoutesUseCase getMyOwnRoutesUseCase;
   final GetCachedRoutesUseCase getCachedRoutesUseCase;
   final GetInitialSettingsUseCase getInitialSettingsUseCase;
+  final GetAvailableSubscriptionsUseCase getAvailableSubscriptionsUseCase;
 
   SplashPageController({
     required this.isAuthorizedUseCase,
@@ -27,6 +28,7 @@ class SplashPageController {
     required this.getMyOwnRoutesUseCase,
     required this.getCachedRoutesUseCase,
     required this.getInitialSettingsUseCase,
+    required this.getAvailableSubscriptionsUseCase,
   });
 
   void getSettings() => getInitialSettingsUseCase();
@@ -34,6 +36,7 @@ class SplashPageController {
   void checkIfAuthorized() => isAuthorizedUseCase();
 
   void preloadData() {
+    getAvailableSubscriptionsUseCase();
     getLocationsAvailableFiltersUseCase();
     getRoutesAvailableFiltersUseCase();
     getAllLocationsUseCase(const Filter());

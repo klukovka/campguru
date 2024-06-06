@@ -13,6 +13,7 @@ class UserDto extends Dto<User> {
   final String name;
   final String surname;
   final String? photo;
+  final DateTime? premiumExpirationDate;
 
   UserDto({
     required this.id,
@@ -20,6 +21,7 @@ class UserDto extends Dto<User> {
     required this.name,
     required this.surname,
     required this.photo,
+    this.premiumExpirationDate,
   });
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
@@ -32,5 +34,6 @@ class UserDto extends Dto<User> {
         name: name,
         surname: surname,
         photo: photo != null ? base64.decode(photo!) : null,
+        premiumExpirationDate: premiumExpirationDate,
       );
 }

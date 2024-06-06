@@ -12,6 +12,9 @@ abstract class PresentersModule {
     SignUpPageCubit signUpPageCubit,
     StartPageCubit startPageCubit,
     EditProfilePageCubit editProfilePageCubit,
+    LocationsFiltersPageCubit locationsFiltersPageCubit,
+    RoutesFiltersPageCubit routesFiltersPageCubit,
+    SubscriptionPageCubit subscriptionPageCubit,
   ) =>
       CurrentUserPresenter(
         splashPageCubit: splashPageCubit,
@@ -20,6 +23,9 @@ abstract class PresentersModule {
         signUpPageCubit: signUpPageCubit,
         startPageCubit: startPageCubit,
         editProfilePageCubit: editProfilePageCubit,
+        locationsFiltersPageCubit: locationsFiltersPageCubit,
+        routesFiltersPageCubit: routesFiltersPageCubit,
+        subscriptionPageCubit: subscriptionPageCubit,
       );
 
   @lazySingleton
@@ -135,4 +141,10 @@ abstract class PresentersModule {
     TripChatPageCubit tripChatPageCubit,
   ) =>
       ChatsPresenter(tripChatPageCubit: tripChatPageCubit);
+
+  @lazySingleton
+  SubscriptionsOutputPort subscriptionsOutputPort(
+    SubscriptionPageCubit subscriptionPageCubit,
+  ) =>
+      SubscriptionsPresenter(subscriptionPageCubit: subscriptionPageCubit);
 }

@@ -18,6 +18,7 @@ abstract class ControllersModule {
     GetMyOwnRoutesUseCase getMyOwnRoutesUseCase,
     GetCachedRoutesUseCase getCachedRoutesUseCase,
     GetInitialSettingsUseCase getInitialSettingsUseCase,
+    GetAvailableSubscriptionsUseCase getAvailableSubscriptionsUseCase,
   ) =>
       SplashPageController(
         isAuthorizedUseCase: isAuthorizedUseCase,
@@ -33,6 +34,7 @@ abstract class ControllersModule {
         getMyOwnRoutesUseCase: getMyOwnRoutesUseCase,
         getCachedRoutesUseCase: getCachedRoutesUseCase,
         getInitialSettingsUseCase: getInitialSettingsUseCase,
+        getAvailableSubscriptionsUseCase: getAvailableSubscriptionsUseCase,
       );
 
   @lazySingleton
@@ -254,4 +256,10 @@ abstract class ControllersModule {
     EditProfileUseCase editProfileUseCase,
   ) =>
       EditProfilePageController(editProfileUseCase);
+
+  @lazySingleton
+  SubscriptionPageController subscriptionPageController(
+    CreateSubscriptionUseCase createSubscriptionUseCase,
+  ) =>
+      SubscriptionPageController(createSubscriptionUseCase);
 }

@@ -7,7 +7,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:localizations/localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/presentation.dart';
-import 'package:presentation/src/pages/start_page/views/auth_buttons.dart';
+import 'package:presentation/src/pages/auth/start_page/views/auth_buttons.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 
 enum StartPageField {

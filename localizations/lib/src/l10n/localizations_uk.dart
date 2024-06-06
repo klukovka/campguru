@@ -372,4 +372,46 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String get dark => 'Темна';
+
+  @override
+  String get monthly => 'Місячна';
+
+  @override
+  String get yearly => 'Річна';
+
+  @override
+  String get uah => 'грн.';
+
+  @override
+  String get discount => 'Знижка';
+
+  @override
+  String get subscriptionType => 'Тип підписки';
+
+  @override
+  String get cardHolderName => 'Імʼя власника картки';
+
+  @override
+  String get phone => 'Телефон';
+
+  @override
+  String get year => 'Рік';
+
+  @override
+  String get month => 'Місяць';
+
+  @override
+  String get creditCardNumber => 'Номер кредитної картки';
+
+  @override
+  String get cvv => 'CVV';
+
+  @override
+  String subscriptionExpiresOn(DateTime date) {
+    final intl.DateFormat dateDateFormat =
+        intl.DateFormat('d MMMM yyyy', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Підписка активна до:\n$dateString.';
+  }
 }

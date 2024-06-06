@@ -123,11 +123,6 @@ class RoutesPresenter extends RoutesOutputPort {
   }
 
   @override
-  void updatePremiumStatus(bool hasPremium) {
-    routesFiltersPageCubit.updatePremiumStatus(hasPremium);
-  }
-
-  @override
   void updateCacheProgress({
     required double cacheProgress,
     required bool isCompleted,

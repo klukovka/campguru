@@ -141,5 +141,25 @@
     "searchTrips": "Шукати поїздки",
     "system": "Системна",
     "light": "Світла",
-    "dark": "Темна"
+    "dark": "Темна",
+    "monthly": "Місячна",
+    "yearly": "Річна",
+    "uah": "грн.",
+    "discount": "Знижка",
+    "subscriptionType": "Тип підписки",
+    "cardHolderName": "Імʼя власника картки",
+    "phone": "Телефон",
+    "year": "Рік",
+    "month": "Місяць",
+    "creditCardNumber": "Номер кредитної картки",
+    "subscriptionExpiresOn": "Підписка активна до:\n{date}.",
+    "@subscriptionExpiresOn": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d MMMM yyyy",
+                "isCustomDateFormat": "true"
+            }
+        }
+    }
 }
