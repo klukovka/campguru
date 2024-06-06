@@ -410,4 +410,10 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
     return 'Subscription expires on\n$dateString.';
   }
+
+  @override
+  String get pickImagesFromGallery => 'Pick Images from Gallery';
+
+  @override
+  String get review => 'Review';
 }

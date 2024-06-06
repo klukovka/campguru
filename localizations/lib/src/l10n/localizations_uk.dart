@@ -414,4 +414,10 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
     return 'Підписка активна до:\n$dateString.';
   }
+
+  @override
+  String get pickImagesFromGallery => 'Оберіть фото з галереї';
+
+  @override
+  String get review => 'Відгук';
 }

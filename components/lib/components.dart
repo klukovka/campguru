@@ -18,6 +18,7 @@ export 'src/carousel/carousel.dart';
 export 'src/carousel/photos_info_carousel.dart';
 export 'src/default_app_bar.dart';
 export 'src/fields/avatar_picker_form_field.dart';
+export 'src/fields/images_picker_field.dart';
 export 'src/fields/search_field.dart';
 export 'src/images/avatar.dart';
 export 'src/images/avatar_picker.dart';
