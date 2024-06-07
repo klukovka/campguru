@@ -54,7 +54,12 @@ class CampguruApp extends StatelessWidget {
                       context.showError(state.failue!);
                     }
                   },
-                  child: child,
+                  child: MediaQuery(
+                    data: MediaQuery.of(context).copyWith(
+                      textScaler: const TextScaler.linear(1),
+                    ),
+                    child: child!,
+                  ),
                 );
               },
             ),

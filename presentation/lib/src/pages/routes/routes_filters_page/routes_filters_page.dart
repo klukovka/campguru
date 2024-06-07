@@ -90,7 +90,7 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
         fillColor: Colors.transparent,
         labelText: context.strings.sortBy,
       ),
-      options: [SortBy.rating, SortBy.routes, SortBy.reviews]
+      options: [SortBy.rating, SortBy.distance, SortBy.reviews]
           .map(
             (item) => FormBuilderFieldOption(
               value: item,
