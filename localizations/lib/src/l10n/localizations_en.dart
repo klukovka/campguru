@@ -416,4 +416,7 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get review => 'Review';
+
+  @override
+  String get labels => 'Labels';
 }

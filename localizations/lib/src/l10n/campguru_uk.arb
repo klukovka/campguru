@@ -163,5 +163,6 @@
         }
     },
     "pickImagesFromGallery": "Оберіть фото з галереї",
-    "review": "Відгук"
+    "review": "Відгук",
+    "labels": "Мітки"
 }

@@ -420,4 +420,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String get review => 'Відгук';
+
+  @override
+  String get labels => 'Мітки';
 }

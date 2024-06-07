@@ -806,6 +806,12 @@ abstract class CampguruLocalizations {
   /// In en, this message translates to:
   /// **'Review'**
   String get review;
+
+  /// No description provided for @labels.
+  ///
+  /// In en, this message translates to:
+  /// **'Labels'**
+  String get labels;
 }
 
 class _CampguruLocalizationsDelegate extends LocalizationsDelegate<CampguruLocalizations> {

@@ -167,5 +167,6 @@
         }
     },
     "pickImagesFromGallery": "Pick Images from Gallery",
-    "review": "Review"
+    "review": "Review",
+    "labels": "Labels"
 }
