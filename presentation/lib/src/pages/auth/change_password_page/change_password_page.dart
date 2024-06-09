@@ -10,48 +10,49 @@ import 'package:presentation/presentation.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
 import 'package:presentation/src/utils/extensions/credentials_validation_extension.dart';
 
-enum SignUpPageField {
-  photo,
-  name,
-  surname,
-  email,
-  password,
+enum ChangePasswordPageField {
+  oldPassword,
+  newPassword,
   confirmPassword,
 }
 
 @RoutePage()
-class SignUpPage extends StatefulWidget implements AutoRouteWrapper {
-  const SignUpPage({super.key});
+class ChangePasswordPage extends StatefulWidget implements AutoRouteWrapper {
+  const ChangePasswordPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<ChangePasswordPage> createState() => _ChangePasswordPageState();
 
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: context.locator<SignUpPageCubit>(),
+      value: context.locator<ChangePasswordPageCubit>(),
       child: this,
     );
   }
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final _fbKey = GlobalKey<FormBuilderState>();
 
   FormBuilderState? get _fbState => _fbKey.currentState;
   Map<String, dynamic> get _fbValues => _fbState?.value ?? {};
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignUpPageCubit, SignUpPageState>(
+    return BlocConsumer<ChangePasswordPageCubit, ChangePasswordPageState>(
       listener: (context, state) {
-        if (state.status == SignUpPageStatus.success) {
-          context.appRouter.replaceToSplashPage();
+        if (state.status == ChangePasswordPageStatus.success) {
+          context
+            ..toasts.showSuccess(
+              message: context.strings.passwordWasSuccessfullyUpdated,
+            )
+            ..appRouter.pop();
         }
       },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(context.strings.signUp),
+            title: Text(context.strings.changePassword),
           ),
           body: AutovalidateModeNotificationBuilder(
             builder: (context, autovalidateMode, child) => FormBuilder(
@@ -70,18 +71,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: Column(
                           children: [
                             const Spacer(),
-                            AvatarPickerFormField(
-                              name: SignUpPageField.photo.name,
-                              radius: 52,
-                            ),
-                            const SizedBox(height: 32),
-                            _buildNameField(),
+                            _buildOldPasswordField(),
                             const SizedBox(height: 12),
-                            _buildSurnameField(),
-                            const SizedBox(height: 12),
-                            _buildEmailField(),
-                            const SizedBox(height: 12),
-                            _buildPasswordField(),
+                            _buildNewPasswordField(),
                             const SizedBox(height: 12),
                             _buildConfirmPasswordField(),
                             const SizedBox(height: 12),
@@ -89,8 +81,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             Builder(
                               builder: (context) => _buildSaveButton(
                                 context,
-                                isLoading:
-                                    state.status == SignUpPageStatus.loading,
+                                isLoading: state.status ==
+                                    ChangePasswordPageStatus.loading,
                               ),
                             ),
                           ],
@@ -107,9 +99,9 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildNameField() {
+  Widget _buildOldPasswordField() {
     return FormBuilderTextField(
-      name: SignUpPageField.name.name,
+      name: ChangePasswordPageField.oldPassword.name,
       validator: (value) {
         if (value?.isEmpty ?? true) {
           return context.strings.fieldRequired;
@@ -117,47 +109,15 @@ class _SignUpPageState extends State<SignUpPage> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: context.strings.name,
-        prefixIcon: Icon(MdiIcons.account),
+        labelText: context.strings.oldPassword,
+        prefixIcon: Icon(MdiIcons.key),
       ),
     );
   }
 
-  Widget _buildSurnameField() {
+  Widget _buildNewPasswordField() {
     return FormBuilderTextField(
-      name: SignUpPageField.surname.name,
-      validator: (value) {
-        if (value?.isEmpty ?? true) {
-          return context.strings.fieldRequired;
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: context.strings.surname,
-        prefixIcon: Icon(MdiIcons.account),
-      ),
-    );
-  }
-
-  Widget _buildEmailField() {
-    return FormBuilderTextField(
-      name: SignUpPageField.email.name,
-      validator: (value) => switch (value) {
-        String? x when x == null || x.isEmpty =>
-          context.strings.emailAddressRequired,
-        String? x when !x!.isValidEmail => context.strings.emailMustBeValid,
-        _ => null,
-      },
-      decoration: InputDecoration(
-        labelText: context.strings.email,
-        prefixIcon: Icon(MdiIcons.email),
-      ),
-    );
-  }
-
-  Widget _buildPasswordField() {
-    return FormBuilderTextField(
-      name: SignUpPageField.password.name,
+      name: ChangePasswordPageField.newPassword.name,
       onChanged: (value) => _fbState?.save(),
       obscureText: true,
       validator: (value) => switch (value) {
@@ -181,10 +141,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildConfirmPasswordField() {
     return FormBuilderTextField(
-      name: SignUpPageField.confirmPassword.name,
+      name: ChangePasswordPageField.confirmPassword.name,
       obscureText: true,
       validator: (value) {
-        if (value != _fbValues[SignUpPageField.password.name]) {
+        if (value != _fbValues[ChangePasswordPageField.newPassword.name]) {
           return context.strings.passwordsNotMatch;
         }
         return null;
@@ -212,13 +172,12 @@ class _SignUpPageState extends State<SignUpPage> {
             AutovalidateMode.onUserInteraction,
           ).dispatch(context);
           if (_fbState?.saveAndValidate() ?? false) {
-            context.locator<SignUpPageController>()(
-              NewUser(
-                email: _fbValues[SignUpPageField.email.name],
-                password: _fbValues[SignUpPageField.password.name],
-                name: _fbValues[SignUpPageField.name.name],
-                surname: _fbValues[SignUpPageField.surname.name],
-                photo: _fbValues[SignUpPageField.photo.name],
+            context.locator<ChangePasswordPageController>()(
+              PatchPassword(
+                newPassword:
+                    _fbValues[ChangePasswordPageField.newPassword.name],
+                oldPassword:
+                    _fbValues[ChangePasswordPageField.oldPassword.name],
               ),
             );
           }

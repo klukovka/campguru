@@ -14,10 +14,12 @@ class ApiAuthRepository implements AuthRepository {
   Future<FailureOrResult<AuthenticationDetails>> refreshToken(
     String refreshToken,
   ) async {
-    //TODO: Implement
-    return FailureOrResult.failure(
-      ApplicationFailure(type: ApplicationErrorType.general),
+    final response = await client.post(
+      '/auth/refresh-token',
+      data: {'refresh_jwt_token': refreshToken},
     );
+
+    return response.toFailureOrResult(AuthenticationDetailsDto.fromJson);
   }
 
   @override
@@ -44,6 +46,12 @@ class ApiAuthRepository implements AuthRepository {
   @override
   Future<FailureOrResult<void>> resetPassword(String email) {
     // TODO: implement resetPassword
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<FailureOrResult<void>> changePassword(PatchPassword patchPassword) {
+    // TODO: implement changePassword
     throw UnimplementedError();
   }
 }

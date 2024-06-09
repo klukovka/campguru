@@ -71,6 +71,10 @@ class AppAutoRouter extends $AppAutoRouter {
       page: ResetPasswordRoute.page,
       path: '/reset_password',
     ),
+    AutoRoute(
+      page: ChangePasswordRoute.page,
+      path: '/change_password',
+    ),
     AutoRoute(page: StartRoute.page, path: '/start'),
     AutoRoute(page: HomeRoute.page, path: '/home/', children: [
       AutoRoute(

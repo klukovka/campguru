@@ -176,7 +176,7 @@
         }
     },
     "changePassword": "Змінити пароль",
-    "temporaryPasswordWasSentToEmail": "Тимчасовий пароль було відправлено на {email}",
+    "temporaryPasswordWasSentToEmail": "Тимчасовий пароль було відправлено на {email}.",
     "@temporaryPasswordWasSentToEmail": {
         "placeholders": {
             "email": {
@@ -185,5 +185,9 @@
         }
     },
     "resetPassword": "Відновлення паролю",
-    "enterYourEmailToReceiveTemporaryPassword": "Введіть вашу пошту для отримання тимчасового паролю"
+    "enterYourEmailToReceiveTemporaryPassword": "Введіть вашу пошту для отримання тимчасового паролю.",
+    "confirmPassword": "Підтвердіть пароль",
+    "newPassword": "Новий пароль",
+    "oldPassword": "Старий пароль",
+    "passwordWasSuccessfullyUpdated": "Пароль було успішно оновлено."
 }

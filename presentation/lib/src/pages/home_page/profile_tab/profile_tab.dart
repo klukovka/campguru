@@ -32,9 +32,7 @@ class ProfileTab extends StatelessWidget implements AutoRouteWrapper {
       NavigationTile(
         leading: Icon(MdiIcons.key),
         title: Text(context.strings.changePassword),
-        onPressed: () {
-          //TODO: Navigate to change password page
-        },
+        onPressed: context.appRouter.pushChangePasswordPage,
       ),
       NavigationTile(
         leading: Icon(MdiIcons.accountCash),

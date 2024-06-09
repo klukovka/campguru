@@ -40,4 +40,15 @@ class ProxyTestAuthRepository extends ProxyTestRepository
       testRequest: () async => await testAuthRepository.resetPassword(email),
     );
   }
+
+  @override
+  Future<FailureOrResult<void>> changePassword(
+      PatchPassword patchPassword) async {
+    return await makeSafeRequest(
+      apiRequest: () async =>
+          await apiAuthRepository.changePassword(patchPassword),
+      testRequest: () async =>
+          await testAuthRepository.changePassword(patchPassword),
+    );
+  }
 }

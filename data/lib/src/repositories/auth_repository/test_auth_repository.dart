@@ -42,4 +42,11 @@ class TestAuthRepository implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1000));
     return FailureOrResult.success(null);
   }
+
+  @override
+  Future<FailureOrResult<void>> changePassword(
+      PatchPassword patchPassword) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(null);
+  }
 }
