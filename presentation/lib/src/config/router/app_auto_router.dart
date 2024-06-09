@@ -206,5 +206,9 @@ class AppAutoRouter extends $AppAutoRouter {
       page: CreateRouteReviewRoute.page,
       path: '/home/routes/:id/reviews/create',
     ),
+    AutoRoute(
+      page: TouristTipsRoute.page,
+      path: '/home/tourist_tips',
+    ),
   ];
 }
