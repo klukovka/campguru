@@ -16,9 +16,7 @@ class AuthButtons extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerLeft,
             child: TextButton(
-              onPressed: () {
-                //TODO: Add forgot password
-              },
+              onPressed: context.appRouter.pushResetPasswordPage,
               child: Text(context.strings.forgotPassword),
             ),
           ),
