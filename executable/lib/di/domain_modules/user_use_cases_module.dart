@@ -86,4 +86,16 @@ abstract class UserUseCasesModule {
         currentUserOutputPort: currentUserOutputPort,
         errorHandlerOutputPort: errorHandlerOutputPort,
       );
+
+  @lazySingleton
+  ResetPasswordUseCase resetPasswordUseCase(
+    AuthRepository authRepository,
+    CurrentUserOutputPort currentUserOutputPort,
+    ErrorHandlerOutputPort errorHandlerOutputPort,
+  ) =>
+      ResetPasswordUseCase(
+        authRepository: authRepository,
+        currentUserOutputPort: currentUserOutputPort,
+        errorHandlerOutputPort: errorHandlerOutputPort,
+      );
 }

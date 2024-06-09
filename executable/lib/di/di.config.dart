@@ -633,6 +633,12 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.UsersRepository>(),
             gh<_i8.CurrentUserOutputPort>(),
           ));
+  gh.lazySingleton<_i8.ResetPasswordUseCase>(
+      () => userUseCasesModule.resetPasswordUseCase(
+            gh<_i8.AuthRepository>(),
+            gh<_i8.CurrentUserOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i5.CachedRoutesTabController>(
       () => controllersModule.cachedRoutesTabController(
             gh<_i8.GetCachedRoutesUseCase>(),

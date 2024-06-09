@@ -40,4 +40,10 @@ class ApiAuthRepository implements AuthRepository {
     );
     return response.toFailureOrResult(AuthenticationDetailsDto.fromJson);
   }
+
+  @override
+  Future<FailureOrResult<void>> resetPassword(String email) {
+    // TODO: implement resetPassword
+    throw UnimplementedError();
+  }
 }
