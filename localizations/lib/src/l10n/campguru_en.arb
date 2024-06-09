@@ -188,5 +188,6 @@
             }
         }
     },
-    "resetPassword": "Reset Password"
+    "resetPassword": "Reset Password",
+    "enterYourEmailToReceiveTemporaryPassword": "Enter your email to receive temporary password"
 }

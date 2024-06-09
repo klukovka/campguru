@@ -439,4 +439,8 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get resetPassword => 'Reset Password';
+
+  @override
+  String get enterYourEmailToReceiveTemporaryPassword =>
+      'Enter your email to receive temporary password';
 }

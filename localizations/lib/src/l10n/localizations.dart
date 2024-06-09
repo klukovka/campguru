@@ -840,6 +840,12 @@ abstract class CampguruLocalizations {
   /// In en, this message translates to:
   /// **'Reset Password'**
   String get resetPassword;
+
+  /// No description provided for @enterYourEmailToReceiveTemporaryPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email to receive temporary password'**
+  String get enterYourEmailToReceiveTemporaryPassword;
 }
 
 class _CampguruLocalizationsDelegate
