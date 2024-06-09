@@ -846,6 +846,24 @@ abstract class CampguruLocalizations {
   /// In en, this message translates to:
   /// **'Enter your email to receive temporary password'**
   String get enterYourEmailToReceiveTemporaryPassword;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get newPassword;
+
+  /// No description provided for @oldPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Old Password'**
+  String get oldPassword;
 }
 
 class _CampguruLocalizationsDelegate

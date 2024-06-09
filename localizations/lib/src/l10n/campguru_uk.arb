@@ -185,5 +185,8 @@
         }
     },
     "resetPassword": "Відновлення паролю",
-    "enterYourEmailToReceiveTemporaryPassword": "Введіть вашу пошту для отримання тимчасового паролю"
+    "enterYourEmailToReceiveTemporaryPassword": "Введіть вашу пошту для отримання тимчасового паролю",
+    "confirmPassword": "Підтвердіть пароль",
+    "newPassword": "Новий пароль",
+    "oldPassword": "Старий пароль"
 }

@@ -190,7 +190,7 @@ class _SignUpPageState extends State<SignUpPage> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: 'Confirm Password',
+        labelText: context.strings.confirmPassword,
         prefixIcon: Icon(MdiIcons.key),
       ),
     );

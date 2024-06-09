@@ -447,4 +447,13 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
   @override
   String get enterYourEmailToReceiveTemporaryPassword =>
       'Введіть вашу пошту для отримання тимчасового паролю';
+
+  @override
+  String get confirmPassword => 'Підтвердіть пароль';
+
+  @override
+  String get newPassword => 'Новий пароль';
+
+  @override
+  String get oldPassword => 'Старий пароль';
 }
