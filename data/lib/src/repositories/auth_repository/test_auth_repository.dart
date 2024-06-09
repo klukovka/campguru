@@ -26,7 +26,8 @@ class TestAuthRepository implements AuthRepository {
 
   @override
   Future<FailureOrResult<AuthenticationDetails>> login(
-      LoginUser loginUser) async {
+    LoginUser loginUser,
+  ) async {
     return FailureOrResult.success(
       const AuthenticationDetails(
         userId: 1,
@@ -34,5 +35,11 @@ class TestAuthRepository implements AuthRepository {
         refreshJwtToken: 'refreshJwtToken',
       ),
     );
+  }
+
+  @override
+  Future<FailureOrResult<void>> resetPassword(String email) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    return FailureOrResult.success(null);
   }
 }

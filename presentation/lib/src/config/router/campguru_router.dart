@@ -105,4 +105,6 @@ class CampguruRouter extends BaseRouter {
 
   Future<void> pushCreateRouteReviewPage(int id) =>
       push(CreateRouteReviewRoute(id: id));
+
+  Future<void> pushResetPasswordPage() => push(const ResetPasswordRoute());
 }

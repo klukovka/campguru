@@ -98,6 +98,7 @@ export 'src/use_cases/users/is_authorized_use_case.dart';
 export 'src/use_cases/users/login_use_case.dart';
 export 'src/use_cases/users/logout_use_case.dart';
 export 'src/use_cases/users/remove_user_from_creating_trip_use_case.dart';
+export 'src/use_cases/users/reset_password_use_case.dart';
 export 'src/use_cases/users/sign_up_use_case.dart';
 export 'src/utils/list_extension.dart';
 export 'src/utils/merge_details_extension.dart';

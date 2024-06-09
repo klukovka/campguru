@@ -32,4 +32,12 @@ class ProxyTestAuthRepository extends ProxyTestRepository
   ) async {
     return await apiAuthRepository.login(loginUser);
   }
+
+  @override
+  Future<FailureOrResult<void>> resetPassword(String email) async {
+    return await makeSafeRequest(
+      apiRequest: () async => await apiAuthRepository.resetPassword(email),
+      testRequest: () async => await testAuthRepository.resetPassword(email),
+    );
+  }
 }
