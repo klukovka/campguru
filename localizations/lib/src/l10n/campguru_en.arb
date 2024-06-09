@@ -179,5 +179,14 @@
             }
         }
     },
-    "changePassword": "Change Password"
+    "changePassword": "Change Password",
+    "temporaryPasswordWasSentToEmail": "Temporary password was sent to {email}",
+    "@temporaryPasswordWasSentToEmail": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "resetPassword": "Reset Password"
 }

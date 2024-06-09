@@ -175,5 +175,14 @@
             }
         }
     },
-    "changePassword": "Змінити пароль"
+    "changePassword": "Змінити пароль",
+    "temporaryPasswordWasSentToEmail": "Тимчасовий пароль було відправлено на {email}",
+    "@temporaryPasswordWasSentToEmail": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "resetPassword": "Відновлення паролю"
 }
