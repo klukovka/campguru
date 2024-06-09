@@ -1,6 +1,7 @@
 library domain;
 
 export 'src/entities/auth/authentication_details.dart';
+export 'src/entities/auth/patch_password.dart';
 export 'src/entities/chat/message.dart';
 export 'src/entities/chat/new_message.dart';
 export 'src/entities/core/application_error_type.dart';
@@ -92,6 +93,7 @@ export 'src/use_cases/trips/create_trip_use_case.dart';
 export 'src/use_cases/trips/get_trip_details_use_case.dart';
 export 'src/use_cases/trips/get_trips_use_case.dart';
 export 'src/use_cases/trips/set_trip_route_use_case.dart';
+export 'src/use_cases/users/change_password_use_case.dart';
 export 'src/use_cases/users/edit_profile_use_case.dart';
 export 'src/use_cases/users/get_user_by_email_use_case.dart';
 export 'src/use_cases/users/is_authorized_use_case.dart';

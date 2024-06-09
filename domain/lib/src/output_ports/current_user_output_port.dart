@@ -17,4 +17,8 @@ abstract class CurrentUserOutputPort {
   void startResetPassword();
   void resetPasswordFailed();
   void resetPasswordCompleted();
+
+  void startChangePassword();
+  void changePasswordCompleted();
+  void changePasswordFailed();
 }

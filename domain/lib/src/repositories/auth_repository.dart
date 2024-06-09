@@ -10,4 +10,6 @@ abstract class AuthRepository {
   Future<FailureOrResult<AuthenticationDetails>> login(LoginUser loginUser);
 
   Future<FailureOrResult<void>> resetPassword(String email);
+
+  Future<FailureOrResult<void>> changePassword(PatchPassword patchPassword);
 }
