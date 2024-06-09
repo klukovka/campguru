@@ -7,7 +7,7 @@ class Filter extends Equatable {
   final String? search;
   final SortBy? sortBy;
   final Direction? direction;
-  final List<FilterLabel>? labels;
+  final List<PremiumBasedFilterLabel>? labels;
   final (double, double)? distanceRange;
 
   const Filter({
@@ -44,7 +44,7 @@ class Filter extends Equatable {
     String? search,
     Nullable<SortBy>? sortBy,
     Direction? direction,
-    Nullable<List<FilterLabel>>? labels,
+    Nullable<List<PremiumBasedFilterLabel>>? labels,
     Nullable<(double, double)>? distanceRange,
   }) {
     return Filter(

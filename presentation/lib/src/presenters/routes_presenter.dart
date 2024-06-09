@@ -120,6 +120,7 @@ class RoutesPresenter extends RoutesOutputPort {
   @override
   void updateRoutesAvailableFilters(List<PremiumBasedFilterLabel> labels) {
     routesFiltersPageCubit.updateLabels(labels);
+    createRoutePageCubit.updateAvailableLabels(labels);
   }
 
   @override

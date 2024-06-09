@@ -8,7 +8,7 @@ class LocationFiltersPageController {
   void setFilters(
     Filter currentFilter,
     SortBy? sortBy,
-    List<FilterLabel>? labels,
+    List<PremiumBasedFilterLabel>? labels,
   ) {
     final filter = currentFilter.copyWith(
       page: 0,

@@ -83,7 +83,7 @@ class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
   }
 
   Widget _buildFiltersField(LocationsFiltersPageState state) {
-    final List<FilterLabel> values =
+    final List<PremiumBasedFilterLabel> values =
         _fbValues[_LocationsFiltersPageField.filters.name] ?? [];
     return FormBuilderCheckboxGroup(
       name: _LocationsFiltersPageField.filters.name,
@@ -105,11 +105,11 @@ class _LocationsFiltersPageState extends State<LocationsFiltersPage> {
             : context.strings.onlyThreeFiltersSimultaneously,
         helperMaxLines: 2,
       ),
-      options: state.filterLabels
+      options: state.labels
           .map((e) => FormBuilderFieldOption(
                 value: e,
                 child: Text(
-                    '${e.getLabel(context)}${state.isLabelAvailable(e) ? '' : ' (${context.strings.premium})'}'),
+                    '${e.name.getLabel(context)}${state.isLabelAvailable(e) ? '' : ' (${context.strings.premium})'}'),
               ))
           .toList(),
     );

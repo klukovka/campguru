@@ -420,4 +420,19 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String get review => 'Відгук';
+
+  @override
+  String get labels => 'Мітки';
+
+  @override
+  String tripDate(DateTime date) {
+    final intl.DateFormat dateDateFormat =
+        intl.DateFormat('d MMMM yyyy', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Дата: $dateString.';
+  }
+
+  @override
+  String get changePassword => 'Змінити пароль';
 }

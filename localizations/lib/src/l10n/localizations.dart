@@ -806,6 +806,24 @@ abstract class CampguruLocalizations {
   /// In en, this message translates to:
   /// **'Review'**
   String get review;
+
+  /// No description provided for @labels.
+  ///
+  /// In en, this message translates to:
+  /// **'Labels'**
+  String get labels;
+
+  /// No description provided for @tripDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date: {date}.'**
+  String tripDate(DateTime date);
+
+  /// No description provided for @changePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get changePassword;
 }
 
 class _CampguruLocalizationsDelegate extends LocalizationsDelegate<CampguruLocalizations> {

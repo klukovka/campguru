@@ -6,11 +6,13 @@ class CreateRoutePageState extends Equatable {
   final bool hasError;
   final String? preview;
   final int? routeId;
+  final List<PremiumBasedFilterLabel> labels;
 
   const CreateRoutePageState({
     this.isSaving = false,
     this.isPreviewLoading = false,
     this.hasError = false,
+    this.labels = const [],
     this.preview,
     this.routeId,
   });
@@ -21,6 +23,7 @@ class CreateRoutePageState extends Equatable {
     Nullable<String>? preview,
     bool? hasError,
     Nullable<int>? routeId,
+    List<PremiumBasedFilterLabel>? labels,
   }) {
     return CreateRoutePageState(
       isSaving: isSaving ?? this.isSaving,
@@ -28,6 +31,7 @@ class CreateRoutePageState extends Equatable {
       preview: preview != null ? preview.value : this.preview,
       hasError: hasError ?? this.hasError,
       routeId: routeId != null ? routeId.value : this.routeId,
+      labels: labels ?? this.labels,
     );
   }
 
@@ -38,5 +42,6 @@ class CreateRoutePageState extends Equatable {
         preview,
         hasError,
         routeId,
+        labels,
       ];
 }

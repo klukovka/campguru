@@ -167,5 +167,17 @@
         }
     },
     "pickImagesFromGallery": "Pick Images from Gallery",
-    "review": "Review"
+    "review": "Review",
+    "labels": "Labels",
+    "tripDate": "Date: {date}.",
+    "@tripDate": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d MMMM yyyy",
+                "isCustomDateFormat": "true"
+            }
+        }
+    },
+    "changePassword": "Change Password"
 }

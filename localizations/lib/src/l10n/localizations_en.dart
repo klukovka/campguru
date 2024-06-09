@@ -416,4 +416,19 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get review => 'Review';
+
+  @override
+  String get labels => 'Labels';
+
+  @override
+  String tripDate(DateTime date) {
+    final intl.DateFormat dateDateFormat =
+        intl.DateFormat('d MMMM yyyy', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Date: $dateString.';
+  }
+
+  @override
+  String get changePassword => 'Change Password';
 }

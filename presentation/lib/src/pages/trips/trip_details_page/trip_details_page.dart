@@ -70,6 +70,15 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
               SliverPadding(
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                 sliver: SliverToBoxAdapter(
+                  child: Text(
+                    context.strings.tripDate(state.trip.date),
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                sliver: SliverToBoxAdapter(
                   child: ArrowButton.large(
                     onPressed: () => context.appRouter.pushRouteLocationsPage(
                       state.route.id,

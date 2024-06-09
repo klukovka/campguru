@@ -8,12 +8,14 @@ import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/routes/create_route_page/views/locations_selector_form_field.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
+import 'package:presentation/src/utils/extensions/filter_label_extension.dart';
 
 enum CreateRoutePageField {
   name,
   description,
   private,
   locations,
+  labels,
 }
 
 @RoutePage()
@@ -70,6 +72,8 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
                           _buildNameField(),
                           const SizedBox(height: 12),
                           _buildDescriptionField(),
+                          const SizedBox(height: 12),
+                          _buildLabelsField(state),
                           const SizedBox(height: 12),
                           _buildPrivateField(),
                           const Spacer(),
@@ -144,6 +148,27 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
     );
   }
 
+  Widget _buildLabelsField(CreateRoutePageState state) {
+    return FormBuilderCheckboxGroup(
+      name: CreateRoutePageField.labels.name,
+      decoration: InputDecoration(labelText: context.strings.labels),
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return context.strings.fieldRequired;
+        }
+        return null;
+      },
+      options: state.labels
+          .map(
+            (e) => FormBuilderFieldOption(
+              value: e,
+              child: Text(e.name.getLabel(context)),
+            ),
+          )
+          .toList(),
+    );
+  }
+
   Widget _buildPrivateField() {
     return FormBuilderCheckbox(
       name: CreateRoutePageField.private.name,
@@ -183,6 +208,11 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
                     _fbValues[CreateRoutePageField.description.name] ?? '',
                 isPrivate:
                     _fbValues[CreateRoutePageField.private.name] ?? false,
+                labels: (_fbValues[CreateRoutePageField.labels.name]
+                            as List<PremiumBasedFilterLabel>?)
+                        ?.map((e) => e.id)
+                        .toList() ??
+                    [],
               ),
             );
           }
