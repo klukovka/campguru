@@ -168,5 +168,15 @@
     },
     "pickImagesFromGallery": "Pick Images from Gallery",
     "review": "Review",
-    "labels": "Labels"
+    "labels": "Labels",
+    "tripDate": "Date: {date}.",
+    "@tripDate": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d MMMM yyyy",
+                "isCustomDateFormat": "true"
+            }
+        }
+    }
 }

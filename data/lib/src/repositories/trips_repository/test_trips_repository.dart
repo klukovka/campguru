@@ -16,7 +16,7 @@ class TestTripsRepository implements TripsRepository {
   @override
   Future<FailureOrResult<Trip>> getTripDetails(int id) async {
     await Future.delayed(const Duration(milliseconds: 1000));
-    final trip = await _dataSource.getTripDetails(0);
+    final trip = await _dataSource.getTripDetails(id);
     final user1 = (await client.get('/api/user/email/emma.stone@gmail.com'))
         .toFailureOrResult(UserDto.fromJson);
     final user2 = (await client.get('/api/user/email/ryan.gosling@gmail.com'))

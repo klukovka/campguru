@@ -4,7 +4,7 @@ import 'localizations.dart';
 
 /// The translations for Ukrainian (`uk`).
 class CampguruLocalizationsUk extends CampguruLocalizations {
-  CampguruLocalizationsUk([super.locale = 'uk']);
+  CampguruLocalizationsUk([String locale = 'uk']) : super(locale);
 
   @override
   String get languageName => 'Українська';
@@ -118,8 +118,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
   String get passwordRequired => 'Пароль обов\'язковий.';
 
   @override
-  String get passwordRequirements =>
-      'Пароль повинен містити щонайменше 8 символів, поєднуючи малі та великі літери, цифри та символи.';
+  String get passwordRequirements => 'Пароль повинен містити щонайменше 8 символів, поєднуючи малі та великі літери, цифри та символи.';
 
   @override
   String get passwordTooSimple => 'Пароль занадто простий';
@@ -176,8 +175,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
   String get filterBy => 'Фільтрувати за';
 
   @override
-  String get onlyThreeFiltersSimultaneously =>
-      '* користувачі без підписки можуть обрати лише 3 фільтри одночасно';
+  String get onlyThreeFiltersSimultaneously => '* користувачі без підписки можуть обрати лише 3 фільтри одночасно';
 
   @override
   String get premium => 'преміум';
@@ -186,16 +184,14 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
   String get distanceMertes => 'Відстань (м)';
 
   @override
-  String get onlyForUsersWithSubscription =>
-      '* доступно лише для користувачів з підпискою';
+  String get onlyForUsersWithSubscription => '* доступно лише для користувачів з підпискою';
 
   @override
   String amountReviews(int amount) {
-    final intl.NumberFormat amountNumberFormat =
-        intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String temp0 = intl.Intl.pluralLogic(
+    String _temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       many: '$amountString Відгуків',
@@ -203,13 +199,12 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
       other: '$amountString Відгуки',
       one: '$amountString Відгук',
     );
-    return temp0;
+    return '$_temp0';
   }
 
   @override
   String reviewsAmount(int amount) {
-    final intl.NumberFormat amountNumberFormat =
-        intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Відгуки ($amountString)';
@@ -235,8 +230,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String locationsAmount(int amount) {
-    final intl.NumberFormat amountNumberFormat =
-        intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Локації ($amountString)';
@@ -259,8 +253,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String usersAmount(int amount) {
-    final intl.NumberFormat amountNumberFormat =
-        intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Користувачі ($amountString)';
@@ -268,11 +261,10 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String amountUsers(int amount) {
-    final intl.NumberFormat amountNumberFormat =
-        intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String temp0 = intl.Intl.pluralLogic(
+    String _temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       many: '$amountString Користувачів',
@@ -280,7 +272,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
       other: '$amountString Користувачі',
       one: '$amountString Користувач',
     );
-    return temp0;
+    return '$_temp0';
   }
 
   @override
@@ -299,19 +291,16 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
   String get serverErrorOccured => 'Виникла помилка сервера!';
 
   @override
-  String get toSaveMoreRoutesBuyPremiumError =>
-      'Купіть преміум, щоб зберегти більше маршрутів!';
+  String get toSaveMoreRoutesBuyPremiumError => 'Купіть преміум, щоб зберегти більше маршрутів!';
 
   @override
   String get geolocatorServiceDisabledError => 'Сервіс геолокації вимкнено.';
 
   @override
-  String get permissionDeniedError =>
-      'Дозвіл відхилено. Будь ласка, увімкніть його в налаштуваннях телефону.';
+  String get permissionDeniedError => 'Дозвіл відхилено. Будь ласка, увімкніть його в налаштуваннях телефону.';
 
   @override
-  String get permissionDeniedForeverError =>
-      'Дозвіл відхилено назавжди. Будь ласка, увімкніть його в налаштуваннях телефону.';
+  String get permissionDeniedForeverError => 'Дозвіл відхилено назавжди. Будь ласка, увімкніть його в налаштуваннях телефону.';
 
   @override
   String get today => 'Сьогодні';
@@ -408,8 +397,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String subscriptionExpiresOn(DateTime date) {
-    final intl.DateFormat dateDateFormat =
-        intl.DateFormat('d MMMM yyyy', localeName);
+    final intl.DateFormat dateDateFormat = intl.DateFormat('d MMMM yyyy', localeName);
     final String dateString = dateDateFormat.format(date);
 
     return 'Підписка активна до:\n$dateString.';
@@ -423,4 +411,12 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String get labels => 'Мітки';
+
+  @override
+  String tripDate(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat('d MMMM yyyy', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Дата: $dateString.';
+  }
 }

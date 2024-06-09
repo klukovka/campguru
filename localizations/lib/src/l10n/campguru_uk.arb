@@ -164,5 +164,15 @@
     },
     "pickImagesFromGallery": "Оберіть фото з галереї",
     "review": "Відгук",
-    "labels": "Мітки"
+    "labels": "Мітки",
+    "tripDate": "Дата: {date}.",
+    "@tripDate": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d MMMM yyyy",
+                "isCustomDateFormat": "true"
+            }
+        }
+    }
 }

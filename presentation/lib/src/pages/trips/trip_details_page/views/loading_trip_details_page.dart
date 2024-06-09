@@ -35,6 +35,15 @@ class LoadingTripDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
+              SliverPadding(
+                padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                sliver: SliverToBoxAdapter(
+                  child: Text(
+                    context.strings.tripDate(trip.date),
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
+              ),
               Skeletonizer.sliver(
                 child: SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
