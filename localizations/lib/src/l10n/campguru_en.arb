@@ -180,7 +180,7 @@
         }
     },
     "changePassword": "Change Password",
-    "temporaryPasswordWasSentToEmail": "Temporary password was sent to {email}",
+    "temporaryPasswordWasSentToEmail": "Temporary password was sent to {email}.",
     "@temporaryPasswordWasSentToEmail": {
         "placeholders": {
             "email": {
@@ -189,8 +189,9 @@
         }
     },
     "resetPassword": "Reset Password",
-    "enterYourEmailToReceiveTemporaryPassword": "Enter your email to receive temporary password",
+    "enterYourEmailToReceiveTemporaryPassword": "Enter your email to receive temporary password.",
     "confirmPassword": "Confirm Password",
     "newPassword": "New Password",
-    "oldPassword": "Old Password"
+    "oldPassword": "Old Password",
+    "passwordWasSuccessfullyUpdated": "Password was successfully updated."
 }

@@ -832,7 +832,7 @@ abstract class CampguruLocalizations {
   /// No description provided for @temporaryPasswordWasSentToEmail.
   ///
   /// In en, this message translates to:
-  /// **'Temporary password was sent to {email}'**
+  /// **'Temporary password was sent to {email}.'**
   String temporaryPasswordWasSentToEmail(String email);
 
   /// No description provided for @resetPassword.
@@ -844,7 +844,7 @@ abstract class CampguruLocalizations {
   /// No description provided for @enterYourEmailToReceiveTemporaryPassword.
   ///
   /// In en, this message translates to:
-  /// **'Enter your email to receive temporary password'**
+  /// **'Enter your email to receive temporary password.'**
   String get enterYourEmailToReceiveTemporaryPassword;
 
   /// No description provided for @confirmPassword.
@@ -864,6 +864,12 @@ abstract class CampguruLocalizations {
   /// In en, this message translates to:
   /// **'Old Password'**
   String get oldPassword;
+
+  /// No description provided for @passwordWasSuccessfullyUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Password was successfully updated.'**
+  String get passwordWasSuccessfullyUpdated;
 }
 
 class _CampguruLocalizationsDelegate

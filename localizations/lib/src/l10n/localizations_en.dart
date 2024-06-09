@@ -434,7 +434,7 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String temporaryPasswordWasSentToEmail(String email) {
-    return 'Temporary password was sent to $email';
+    return 'Temporary password was sent to $email.';
   }
 
   @override
@@ -442,7 +442,7 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get enterYourEmailToReceiveTemporaryPassword =>
-      'Enter your email to receive temporary password';
+      'Enter your email to receive temporary password.';
 
   @override
   String get confirmPassword => 'Confirm Password';
@@ -452,4 +452,8 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String get oldPassword => 'Old Password';
+
+  @override
+  String get passwordWasSuccessfullyUpdated =>
+      'Password was successfully updated.';
 }
