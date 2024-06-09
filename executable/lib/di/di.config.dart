@@ -20,7 +20,7 @@ import 'package:package_info_plus/package_info_plus.dart' as _i4;
 import 'package:presentation/presentation.dart' as _i5;
 
 import 'data_modules/app_settings_repository_module.dart' as _i19;
-import 'data_modules/auth_repository_module.dart' as _i36;
+import 'data_modules/auth_repository_module.dart' as _i37;
 import 'data_modules/cache_repository_module.dart' as _i21;
 import 'data_modules/chats_repository_module.dart' as _i25;
 import 'data_modules/data_packages_module.dart' as _i11;
@@ -32,16 +32,17 @@ import 'data_modules/locations_repository_module.dart' as _i22;
 import 'data_modules/preferences_repository_module.dart' as _i18;
 import 'data_modules/reviews_repository_module.dart' as _i24;
 import 'data_modules/routes_repository_module.dart' as _i23;
-import 'data_modules/subscriptions_repository_module.dart' as _i34;
-import 'data_modules/trips_repository_module.dart' as _i39;
-import 'data_modules/users_repository_module.dart' as _i38;
+import 'data_modules/subscriptions_repository_module.dart' as _i35;
+import 'data_modules/trips_repository_module.dart' as _i40;
+import 'data_modules/users_repository_module.dart' as _i39;
+import 'domain_modules/auth_use_cases_module.dart' as _i34;
 import 'domain_modules/chats_use_cases_module.dart' as _i33;
 import 'domain_modules/geoposition_use_cases_module.dart' as _i28;
 import 'domain_modules/location_use_cases_module.dart' as _i29;
 import 'domain_modules/review_use_cases_module.dart' as _i26;
-import 'domain_modules/route_use_cases_module.dart' as _i35;
+import 'domain_modules/route_use_cases_module.dart' as _i36;
 import 'domain_modules/settings_use_cases_module.dart' as _i32;
-import 'domain_modules/subscriptions_use_cases_module.dart' as _i37;
+import 'domain_modules/subscriptions_use_cases_module.dart' as _i38;
 import 'domain_modules/trip_use_cases_module.dart' as _i27;
 import 'domain_modules/user_use_cases_module.dart' as _i20;
 import 'presentation_modules/auto_router_module.dart' as _i12;
@@ -87,6 +88,7 @@ Future<_i1.GetIt> $configureDependencies(
   final controllersModule = _$ControllersModule();
   final settingsUseCasesModule = _$SettingsUseCasesModule();
   final chatsUseCasesModule = _$ChatsUseCasesModule();
+  final authUseCasesModule = _$AuthUseCasesModule();
   final subscriptionsRepositoryModule = _$SubscriptionsRepositoryModule();
   final routeUseCasesModule = _$RouteUseCasesModule();
   final authRepositoryModule = _$AuthRepositoryModule();
@@ -155,6 +157,8 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.createReviewPageCubit);
   gh.lazySingleton<_i5.ResetPasswordPageCubit>(
       () => blocModule.resetPasswordPageCubit);
+  gh.lazySingleton<_i5.ChangePasswordPageCubit>(
+      () => blocModule.changePasswordPageCubit);
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -179,6 +183,20 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i5.CampguruRouter>(
       () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
+  gh.lazySingleton<_i8.CurrentUserOutputPort>(
+      () => presentersModule.getCurrentUserOutputPort(
+            gh<_i5.SplashPageCubit>(),
+            gh<_i5.HomePageCubit>(),
+            gh<_i5.ProfileTabCubit>(),
+            gh<_i5.SignUpPageCubit>(),
+            gh<_i5.StartPageCubit>(),
+            gh<_i5.EditProfilePageCubit>(),
+            gh<_i5.LocationsFiltersPageCubit>(),
+            gh<_i5.RoutesFiltersPageCubit>(),
+            gh<_i5.SubscriptionPageCubit>(),
+            gh<_i5.ResetPasswordPageCubit>(),
+            gh<_i5.ChangePasswordPageCubit>(),
+          ));
   gh.lazySingleton<_i8.ErrorHandlerOutputPort>(() =>
       presentersModule.getErrorHandlerOutputPort(gh<_i5.AppControlCubit>()));
   gh.lazySingleton<_i8.SubscriptionsOutputPort>(() => presentersModule
@@ -215,19 +233,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.TripDetailsPageCubit>(),
             gh<_i5.CreateTripPageCubit>(),
             gh<_i5.TripChatPageCubit>(),
-          ));
-  gh.lazySingleton<_i8.CurrentUserOutputPort>(
-      () => presentersModule.getCurrentUserOutputPort(
-            gh<_i5.SplashPageCubit>(),
-            gh<_i5.HomePageCubit>(),
-            gh<_i5.ProfileTabCubit>(),
-            gh<_i5.SignUpPageCubit>(),
-            gh<_i5.StartPageCubit>(),
-            gh<_i5.EditProfilePageCubit>(),
-            gh<_i5.LocationsFiltersPageCubit>(),
-            gh<_i5.RoutesFiltersPageCubit>(),
-            gh<_i5.SubscriptionPageCubit>(),
-            gh<_i5.ResetPasswordPageCubit>(),
           ));
   gh.lazySingleton<_i8.LocationsOutputPort>(
       () => presentersModule.getLocationsOutputPort(
@@ -383,7 +388,7 @@ Future<_i1.GetIt> $configureDependencies(
       .getLocationsTabController(gh<_i8.GetAllLocationsUseCase>()));
   gh.lazySingleton<_i5.LocationFiltersPageController>(() => controllersModule
       .getLocationFiltersPageController(gh<_i8.GetAllLocationsUseCase>()));
-  gh.lazySingleton<_i8.LogoutUseCase>(() => userUseCasesModule.logoutUseCase(
+  gh.lazySingleton<_i8.LogoutUseCase>(() => authUseCasesModule.logoutUseCase(
         gh<_i8.PreferencesRepository>(),
         gh<_i8.CacheRepository>(),
       ));
@@ -514,12 +519,6 @@ Future<_i1.GetIt> $configureDependencies(
           ));
   gh.lazySingleton<_i5.RouteLocationsPageController>(() => controllersModule
       .getRouteLocationsController(gh<_i8.GetRouteLocationsUseCase>()));
-  gh.lazySingleton<_i5.ProfileTabController>(
-      () => controllersModule.profileTabController(
-            gh<_i8.LogoutUseCase>(),
-            gh<_i8.ChangeLocaleUseCase>(),
-            gh<_i8.ChangeThemeModeUseCase>(),
-          ));
   gh.lazySingleton<_i5.RouteDetailsPageController>(() => controllersModule
       .getRouteDetailsPageController(gh<_i8.GetRouteDetailsUseCase>()));
   gh.lazySingleton<_i5.FavoriteLocationsPageController>(() =>
@@ -593,22 +592,26 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.GetPreviousMessagesPageUseCase>(),
             gh<_i8.GetNewMessagesStreamUseCase>(),
           ));
-  gh.lazySingleton<_i8.SignUpUseCase>(() => userUseCasesModule.signUpUseCase(
+  gh.lazySingleton<_i8.LoginUseCase>(() => authUseCasesModule.loginUseCase(
         gh<_i8.PreferencesRepository>(),
         gh<_i8.AuthRepository>(),
         gh<_i8.CurrentUserOutputPort>(),
         gh<_i8.ErrorHandlerOutputPort>(),
       ));
-  gh.lazySingleton<_i8.LoginUseCase>(() => userUseCasesModule.loginUseCase(
+  gh.lazySingleton<_i8.SignUpUseCase>(() => authUseCasesModule.signUpUseCase(
         gh<_i8.PreferencesRepository>(),
         gh<_i8.AuthRepository>(),
         gh<_i8.CurrentUserOutputPort>(),
         gh<_i8.ErrorHandlerOutputPort>(),
       ));
+  gh.lazySingleton<_i5.ProfileTabController>(
+      () => controllersModule.profileTabController(
+            gh<_i8.LogoutUseCase>(),
+            gh<_i8.ChangeLocaleUseCase>(),
+            gh<_i8.ChangeThemeModeUseCase>(),
+          ));
   gh.lazySingleton<_i5.MyOwnRoutesTabController>(() => controllersModule
       .myOwnRoutesTabController(gh<_i8.GetMyOwnRoutesUseCase>()));
-  gh.lazySingleton<_i5.SignUpPageController>(
-      () => controllersModule.signUpPageController(gh<_i8.SignUpUseCase>()));
   gh.lazySingleton<_i5.RoutesTabController>(() =>
       controllersModule.getRoutesTabController(gh<_i8.GetAllRoutesUseCase>()));
   gh.lazySingleton<_i5.RouteFiltersPageController>(() => controllersModule
@@ -630,14 +633,20 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.CreateNewRouteUseCase>(),
           ));
   gh.lazySingleton<_i8.IsAuthorizedUseCase>(
-      () => userUseCasesModule.getIsAuthorizedUseCase(
+      () => authUseCasesModule.getIsAuthorizedUseCase(
             gh<_i8.PreferencesRepository>(),
             gh<_i8.AuthRepository>(),
             gh<_i8.UsersRepository>(),
             gh<_i8.CurrentUserOutputPort>(),
           ));
+  gh.lazySingleton<_i8.ChangePasswordUseCase>(
+      () => authUseCasesModule.changePasswordUseCase(
+            gh<_i8.AuthRepository>(),
+            gh<_i8.CurrentUserOutputPort>(),
+            gh<_i8.ErrorHandlerOutputPort>(),
+          ));
   gh.lazySingleton<_i8.ResetPasswordUseCase>(
-      () => userUseCasesModule.resetPasswordUseCase(
+      () => authUseCasesModule.resetPasswordUseCase(
             gh<_i8.AuthRepository>(),
             gh<_i8.CurrentUserOutputPort>(),
             gh<_i8.ErrorHandlerOutputPort>(),
@@ -647,8 +656,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.GetCachedRoutesUseCase>(),
             gh<_i8.DeleteCachedRouteUseCase>(),
           ));
-  gh.lazySingleton<_i5.StartPageController>(
-      () => controllersModule.startPageController(gh<_i8.LoginUseCase>()));
+  gh.lazySingleton<_i5.ChangePasswordPageController>(() => controllersModule
+      .changePasswordPageController(gh<_i8.ChangePasswordUseCase>()));
   gh.lazySingleton<_i8.EditProfileUseCase>(
       () => userUseCasesModule.editProfileUseCase(
             gh<_i8.UsersRepository>(),
@@ -662,8 +671,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.CacheRepository>(),
             gh<_i8.UsersRepository>(),
           ));
-  gh.lazySingleton<_i5.ResetPasswordPageController>(() => controllersModule
-      .resetPasswordPageController(gh<_i8.ResetPasswordUseCase>()));
   gh.lazySingleton<_i8.GetUserByEmailUseCase>(
       () => userUseCasesModule.getUserByEmailUseCase(
             gh<_i8.UsersRepository>(),
@@ -676,6 +683,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.GetRouteDetailsUseCase>(),
             gh<_i8.GetGeopositionUseCase>(),
           ));
+  gh.lazySingleton<_i5.SignUpPageController>(
+      () => controllersModule.signUpPageController(gh<_i8.SignUpUseCase>()));
   gh.lazySingleton<_i8.GetTripsUseCase>(
       () => tripUseCasesModule.getAllTripsUseCase(
             gh<_i8.TripsRepository>(),
@@ -694,6 +703,26 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.ErrorHandlerOutputPort>(),
             gh<_i8.TripsOutputPort>(),
           ));
+  gh.lazySingleton<_i5.SplashPageController>(
+      () => controllersModule.getSplashPageController(
+            gh<_i8.IsAuthorizedUseCase>(),
+            gh<_i8.GetAllLocationsUseCase>(),
+            gh<_i8.GetAllRoutesUseCase>(),
+            gh<_i8.GetLocationsAvailableFiltersUseCase>(),
+            gh<_i8.GetRoutesAvailableFiltersUseCase>(),
+            gh<_i8.GetAppVersion>(),
+            gh<_i8.GetTripsUseCase>(),
+            gh<_i8.GetFavoriteLocationsUseCase>(),
+            gh<_i8.GetFavoriteRoutesUseCase>(),
+            gh<_i8.GetMyOwnRoutesUseCase>(),
+            gh<_i8.GetCachedRoutesUseCase>(),
+            gh<_i8.GetInitialSettingsUseCase>(),
+            gh<_i8.GetAvailableSubscriptionsUseCase>(),
+          ));
+  gh.lazySingleton<_i5.ResetPasswordPageController>(() => controllersModule
+      .resetPasswordPageController(gh<_i8.ResetPasswordUseCase>()));
+  gh.lazySingleton<_i5.StartPageController>(
+      () => controllersModule.startPageController(gh<_i8.LoginUseCase>()));
   gh.lazySingleton<_i5.EditProfilePageController>(() => controllersModule
       .editProfilePageController(gh<_i8.EditProfileUseCase>()));
   gh.lazySingleton<_i5.CreateTripPageController>(
@@ -712,22 +741,6 @@ Future<_i1.GetIt> $configureDependencies(
       () => controllersModule.getTripsTabController(gh<_i8.GetTripsUseCase>()));
   gh.lazySingleton<_i5.TripFiltersPageController>(() => controllersModule
       .getTripFiltersPageController(gh<_i8.GetTripsUseCase>()));
-  gh.lazySingleton<_i5.SplashPageController>(
-      () => controllersModule.getSplashPageController(
-            gh<_i8.IsAuthorizedUseCase>(),
-            gh<_i8.GetAllLocationsUseCase>(),
-            gh<_i8.GetAllRoutesUseCase>(),
-            gh<_i8.GetLocationsAvailableFiltersUseCase>(),
-            gh<_i8.GetRoutesAvailableFiltersUseCase>(),
-            gh<_i8.GetAppVersion>(),
-            gh<_i8.GetTripsUseCase>(),
-            gh<_i8.GetFavoriteLocationsUseCase>(),
-            gh<_i8.GetFavoriteRoutesUseCase>(),
-            gh<_i8.GetMyOwnRoutesUseCase>(),
-            gh<_i8.GetCachedRoutesUseCase>(),
-            gh<_i8.GetInitialSettingsUseCase>(),
-            gh<_i8.GetAvailableSubscriptionsUseCase>(),
-          ));
   return getIt;
 }
 
@@ -777,15 +790,17 @@ class _$SettingsUseCasesModule extends _i32.SettingsUseCasesModule {}
 
 class _$ChatsUseCasesModule extends _i33.ChatsUseCasesModule {}
 
+class _$AuthUseCasesModule extends _i34.AuthUseCasesModule {}
+
 class _$SubscriptionsRepositoryModule
-    extends _i34.SubscriptionsRepositoryModule {}
+    extends _i35.SubscriptionsRepositoryModule {}
 
-class _$RouteUseCasesModule extends _i35.RouteUseCasesModule {}
+class _$RouteUseCasesModule extends _i36.RouteUseCasesModule {}
 
-class _$AuthRepositoryModule extends _i36.AuthRepositoryModule {}
+class _$AuthRepositoryModule extends _i37.AuthRepositoryModule {}
 
-class _$SubscriptionsUseCasesModule extends _i37.SubscriptionsUseCasesModule {}
+class _$SubscriptionsUseCasesModule extends _i38.SubscriptionsUseCasesModule {}
 
-class _$UsersRepositoryModule extends _i38.UsersRepositoryModule {}
+class _$UsersRepositoryModule extends _i39.UsersRepositoryModule {}
 
-class _$TripsRepositoryModule extends _i39.TripsRepositoryModule {}
+class _$TripsRepositoryModule extends _i40.TripsRepositoryModule {}
