@@ -13,8 +13,6 @@ class RoutesFiltersPageState extends Equatable {
     this.hasPremium = false,
   });
 
-  List<FilterLabel> get filterLabels => labels.map((e) => e.name).toList();
-
   RangeValues? get distance => filter.distanceRange != null
       ? RangeValues(
           filter.distanceRange!.$1,
@@ -22,23 +20,21 @@ class RoutesFiltersPageState extends Equatable {
         )
       : null;
 
-  List<FilterLabel> getDisabledLabels(List<FilterLabel> selectedLabels) {
+  List<PremiumBasedFilterLabel> getDisabledLabels(
+      List<PremiumBasedFilterLabel> selectedLabels) {
     if (hasPremium) return [];
     if (selectedLabels.length < 3) {
-      return labels
-          .where((element) => element.isPremium)
-          .map((e) => e.name)
-          .toList();
+      return labels.where((element) => element.isPremium).toList();
     }
 
-    return filterLabels
+    return labels
         .where((element) => !selectedLabels.contains(element))
         .toList();
   }
 
-  bool isLabelAvailable(FilterLabel label) {
+  bool isLabelAvailable(PremiumBasedFilterLabel label) {
     if (hasPremium) return true;
-    return !labels.singleWhere((element) => element.name == label).isPremium;
+    return !label.isPremium;
   }
 
   @override

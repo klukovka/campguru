@@ -308,7 +308,8 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
               cardExpMonth: _fbValues[SubscriptionPageField.cardExpMonth.name],
               cardExpYear: _fbValues[SubscriptionPageField.cardExpYear.name],
               cardCvv: _fbValues[SubscriptionPageField.cardCvv.name],
-              cardHolderName: _fbValues[SubscriptionPageField.cardHolderName.name],
+              cardHolderName:
+                  _fbValues[SubscriptionPageField.cardHolderName.name],
               subscription: _fbValues[SubscriptionPageField.subscription.name],
             );
           }

@@ -102,7 +102,7 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
   }
 
   Widget _buildFiltersField(RoutesFiltersPageState state) {
-    final List<FilterLabel> values =
+    final List<PremiumBasedFilterLabel> values =
         _fbValues[_RoutesFiltersPageField.filters.name] ?? [];
     return FormBuilderCheckboxGroup(
       name: _RoutesFiltersPageField.filters.name,
@@ -124,11 +124,11 @@ class _RoutesFiltersPageState extends State<RoutesFiltersPage> {
             : context.strings.onlyThreeFiltersSimultaneously,
         helperMaxLines: 2,
       ),
-      options: state.filterLabels
+      options: state.labels
           .map((e) => FormBuilderFieldOption(
                 value: e,
                 child: Text(
-                    '${e.getLabel(context)}${state.isLabelAvailable(e) ? '' : ' (${context.strings.premium})'}'),
+                    '${e.name.getLabel(context)}${state.isLabelAvailable(e) ? '' : ' (${context.strings.premium})'}'),
               ))
           .toList(),
     );
