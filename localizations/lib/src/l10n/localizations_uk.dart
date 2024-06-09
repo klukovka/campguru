@@ -4,7 +4,7 @@ import 'localizations.dart';
 
 /// The translations for Ukrainian (`uk`).
 class CampguruLocalizationsUk extends CampguruLocalizations {
-  CampguruLocalizationsUk([super.locale = 'uk']);
+  CampguruLocalizationsUk([String locale = 'uk']) : super(locale);
 
   @override
   String get languageName => 'Українська';
@@ -195,7 +195,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
         intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String temp0 = intl.Intl.pluralLogic(
+    String _temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       many: '$amountString Відгуків',
@@ -203,7 +203,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
       other: '$amountString Відгуки',
       one: '$amountString Відгук',
     );
-    return temp0;
+    return '$_temp0';
   }
 
   @override
@@ -272,7 +272,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
         intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String temp0 = intl.Intl.pluralLogic(
+    String _temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       many: '$amountString Користувачів',
@@ -280,7 +280,7 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
       other: '$amountString Користувачі',
       one: '$amountString Користувач',
     );
-    return temp0;
+    return '$_temp0';
   }
 
   @override
@@ -459,4 +459,78 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
 
   @override
   String get passwordWasSuccessfullyUpdated => 'Пароль було успішно оновлено.';
+
+  @override
+  String get adequatePreparation => 'Адекватна підготовка';
+
+  @override
+  String get adequatePreparationDescription =>
+      'Ретельно сплануйте свою поїздку та підготуйте необхідне спорядження: намет, спальник, ізоляційний килимок, посуд, засоби для розпалювання вогнища тощо. Перевірте прогноз погоди та упакуйте відповідний одяг.';
+
+  @override
+  String get choosingCampsite => 'Вибір місця для кемпінгу';
+
+  @override
+  String get choosingCampsiteDescription =>
+      'Обирайте безпечні та дозволені місця для розташування наметового табору. Уникайте небезпечних районів, таких як рідколісся чи схили, та поважайте правила місцевості.';
+
+  @override
+  String get drinkingWaterAndFood => 'Питна вода та їжа';
+
+  @override
+  String get drinkingWaterAndFoodDescription =>
+      'Забезпечте достатню кількість питної води та їжі під час кемпінгу. Якщо є можливість, візьміть з собою фільтр для води або таблетки для очищення води.';
+
+  @override
+  String get safetyAndOrientation => 'Безпека та орієнтація';
+
+  @override
+  String get safetyAndOrientationDescription =>
+      'Візьміть з собою компас, GPS-навігатор або карту місцевості, щоб не заблукати. Повідомте друзів чи родичів про маршрут та орієнтовний час повернення.';
+
+  @override
+  String get campfireManagement => 'Догляд за вогнищем';
+
+  @override
+  String get campfireManagementDescription =>
+      'Якщо ви розпалюєте вогнище, дотримуйтесь правил безпеки та не залишайте його без нагляду. Перевіряйте місцеві обмеження та правила щодо розпалювання вогнищ.';
+
+  @override
+  String get respectNature => 'Шанобливе ставлення до природи';
+
+  @override
+  String get respectNatureDescription =>
+      'Дотримуйтесь принципу \"Не залишай сліду\" та не забруднюйте природу. Прибирайте за собою сміття та поважайте місцеву флору та фауну.';
+
+  @override
+  String get sunscreenAndInsectRepellent => 'Сонцезахисний крем та репелент';
+
+  @override
+  String get sunscreenAndInsectRepellentDescription =>
+      'Захищайте шкіру від сонячних опіків, використовуючи сонцезахисний крем з високим ступенем захисту. Також візьміть з собою репелент для захисту від комарів та інших комах.';
+
+  @override
+  String get firstAidKit => 'Аптечка першої допомоги';
+
+  @override
+  String get firstAidKitDescription =>
+      'Упакуйте аптечку першої допомоги з необхідними медикаментами, бинтами та засобами для дезінфекції на випадок травм чи поранень.';
+
+  @override
+  String get lightingAndPowerSources => 'Освітлення та джерела енергії';
+
+  @override
+  String get lightingAndPowerSourcesDescription =>
+      'Візьміть з собою ліхтарики, налобні ліхтарі або інші джерела освітлення, а також запасні батарейки або зарядні пристрої для електроніки.';
+
+  @override
+  String get firstAidKnowledge => 'Знання першої допомоги';
+
+  @override
+  String get firstAidKnowledgeDescription =>
+      'Ознайомтесь з основами надання першої допомоги та навчіться, як діяти в екстрених ситуаціях під час кемпінгу.';
+
+  @override
+  String get theseTipsHelpYou =>
+      'Ці поради допоможуть вам насолодитися кемпінгом та залишитися в безпеці на природі.';
 }

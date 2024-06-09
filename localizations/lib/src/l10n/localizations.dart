@@ -870,6 +870,132 @@ abstract class CampguruLocalizations {
   /// In en, this message translates to:
   /// **'Password was successfully updated.'**
   String get passwordWasSuccessfullyUpdated;
+
+  /// No description provided for @adequatePreparation.
+  ///
+  /// In en, this message translates to:
+  /// **'Adequate Preparation'**
+  String get adequatePreparation;
+
+  /// No description provided for @adequatePreparationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Carefully plan your trip and prepare the necessary equipment: tent, sleeping bag, insulation mat, utensils, fire-starting materials, etc. Check the weather forecast and pack appropriate clothing.'**
+  String get adequatePreparationDescription;
+
+  /// No description provided for @choosingCampsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Choosing a Campsite'**
+  String get choosingCampsite;
+
+  /// No description provided for @choosingCampsiteDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Select safe and permitted areas for setting up your camp. Avoid dangerous locations, such as dense forests or slopes, and respect the rules and regulations of the area'**
+  String get choosingCampsiteDescription;
+
+  /// No description provided for @drinkingWaterAndFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Drinking Water and Food'**
+  String get drinkingWaterAndFood;
+
+  /// No description provided for @drinkingWaterAndFoodDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Ensure you have an adequate supply of drinking water and food while camping. If possible, bring a water filter or purification tablets.'**
+  String get drinkingWaterAndFoodDescription;
+
+  /// No description provided for @safetyAndOrientation.
+  ///
+  /// In en, this message translates to:
+  /// **'Safety and Orientation'**
+  String get safetyAndOrientation;
+
+  /// No description provided for @safetyAndOrientationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Carry a compass, GPS device, or map of the area to avoid getting lost. Inform friends or family about your planned route and expected return time.'**
+  String get safetyAndOrientationDescription;
+
+  /// No description provided for @campfireManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Campfire Management'**
+  String get campfireManagement;
+
+  /// No description provided for @campfireManagementDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'If you build a campfire, follow safety rules and never leave it unattended. Check local restrictions and regulations regarding campfires.'**
+  String get campfireManagementDescription;
+
+  /// No description provided for @respectNature.
+  ///
+  /// In en, this message translates to:
+  /// **'Respect for Nature'**
+  String get respectNature;
+
+  /// No description provided for @respectNatureDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice the \"Leave No Trace\" principle and avoid littering or polluting the environment. Clean up after yourself and respect the local flora and fauna.'**
+  String get respectNatureDescription;
+
+  /// No description provided for @sunscreenAndInsectRepellent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunscreen and Insect Repellent'**
+  String get sunscreenAndInsectRepellent;
+
+  /// No description provided for @sunscreenAndInsectRepellentDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect your skin from sunburn by using a high-SPF sunscreen. Also, bring insect repellent to protect against mosquitoes and other insects.'**
+  String get sunscreenAndInsectRepellentDescription;
+
+  /// No description provided for @firstAidKit.
+  ///
+  /// In en, this message translates to:
+  /// **'First Aid Kit'**
+  String get firstAidKit;
+
+  /// No description provided for @firstAidKitDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack a first aid kit with essential medications, bandages, and disinfectants in case of injuries or accidents.'**
+  String get firstAidKitDescription;
+
+  /// No description provided for @lightingAndPowerSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Lighting and Power Sources'**
+  String get lightingAndPowerSources;
+
+  /// No description provided for @lightingAndPowerSourcesDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring flashlights, headlamps, or other lighting sources, as well as spare batteries or charging devices for electronics.'**
+  String get lightingAndPowerSourcesDescription;
+
+  /// No description provided for @firstAidKnowledge.
+  ///
+  /// In en, this message translates to:
+  /// **'First Aid Knowledge:'**
+  String get firstAidKnowledge;
+
+  /// No description provided for @firstAidKnowledgeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Familiarize yourself with basic first aid techniques and learn how to handle emergencies while camping.'**
+  String get firstAidKnowledgeDescription;
+
+  /// No description provided for @theseTipsHelpYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Following these tips will help you enjoy camping and stay safe in the great outdoors.'**
+  String get theseTipsHelpYou;
 }
 
 class _CampguruLocalizationsDelegate
