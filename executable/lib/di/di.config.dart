@@ -153,6 +153,8 @@ Future<_i1.GetIt> $configureDependencies(
       () => blocModule.subscriptionPageCubit);
   gh.lazySingleton<_i5.CreateReviewPageCubit>(
       () => blocModule.createReviewPageCubit);
+  gh.lazySingleton<_i5.ResetPasswordPageCubit>(
+      () => blocModule.resetPasswordPageCubit);
   await gh.lazySingletonAsync<_i6.HiveDataSource>(
     () => dataSourceModule.getHiveDataSource(),
     preResolve: true,
@@ -174,18 +176,6 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.LocationReviewsPageCubit>(),
             gh<_i5.RouteReviewsPageCubit>(),
             gh<_i5.CreateReviewPageCubit>(),
-          ));
-  gh.lazySingleton<_i8.CurrentUserOutputPort>(
-      () => presentersModule.getCurrentUserOutputPort(
-            gh<_i5.SplashPageCubit>(),
-            gh<_i5.HomePageCubit>(),
-            gh<_i5.ProfileTabCubit>(),
-            gh<_i5.SignUpPageCubit>(),
-            gh<_i5.StartPageCubit>(),
-            gh<_i5.EditProfilePageCubit>(),
-            gh<_i5.LocationsFiltersPageCubit>(),
-            gh<_i5.RoutesFiltersPageCubit>(),
-            gh<_i5.SubscriptionPageCubit>(),
           ));
   gh.lazySingleton<_i5.CampguruRouter>(
       () => autoRouterModule.router(gh<_i5.AppAutoRouter>()));
@@ -225,6 +215,19 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i5.TripDetailsPageCubit>(),
             gh<_i5.CreateTripPageCubit>(),
             gh<_i5.TripChatPageCubit>(),
+          ));
+  gh.lazySingleton<_i8.CurrentUserOutputPort>(
+      () => presentersModule.getCurrentUserOutputPort(
+            gh<_i5.SplashPageCubit>(),
+            gh<_i5.HomePageCubit>(),
+            gh<_i5.ProfileTabCubit>(),
+            gh<_i5.SignUpPageCubit>(),
+            gh<_i5.StartPageCubit>(),
+            gh<_i5.EditProfilePageCubit>(),
+            gh<_i5.LocationsFiltersPageCubit>(),
+            gh<_i5.RoutesFiltersPageCubit>(),
+            gh<_i5.SubscriptionPageCubit>(),
+            gh<_i5.ResetPasswordPageCubit>(),
           ));
   gh.lazySingleton<_i8.LocationsOutputPort>(
       () => presentersModule.getLocationsOutputPort(
@@ -659,6 +662,8 @@ Future<_i1.GetIt> $configureDependencies(
             gh<_i8.CacheRepository>(),
             gh<_i8.UsersRepository>(),
           ));
+  gh.lazySingleton<_i5.ResetPasswordPageController>(() => controllersModule
+      .resetPasswordPageController(gh<_i8.ResetPasswordUseCase>()));
   gh.lazySingleton<_i8.GetUserByEmailUseCase>(
       () => userUseCasesModule.getUserByEmailUseCase(
             gh<_i8.UsersRepository>(),

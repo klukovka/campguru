@@ -106,4 +106,7 @@ abstract class BlocModule {
 
   @lazySingleton
   CreateReviewPageCubit get createReviewPageCubit => CreateReviewPageCubit();
+
+  @lazySingleton
+  ResetPasswordPageCubit get resetPasswordPageCubit => ResetPasswordPageCubit();
 }

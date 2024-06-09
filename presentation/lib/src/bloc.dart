@@ -1,4 +1,5 @@
 export 'core/app_control/cubit/app_control_cubit.dart';
+export 'pages/auth/reset_password_page/cubit/reset_password_page_cubit.dart';
 export 'pages/auth/sign_up_page/cubit/sign_up_page_cubit.dart';
 export 'pages/auth/start_page/cubit/start_page_cubit.dart';
 export 'pages/home_page/cubit/home_page_cubit.dart';

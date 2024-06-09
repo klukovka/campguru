@@ -1,3 +1,4 @@
+export 'pages/auth/reset_password_page/reset_password_page_controller.dart';
 export 'pages/auth/sign_up_page/sign_up_page_controller.dart';
 export 'pages/auth/start_page/start_page_controller.dart';
 export 'pages/home_page/locations_tab/locations_tab_controller.dart';

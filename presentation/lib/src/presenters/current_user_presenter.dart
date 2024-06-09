@@ -11,6 +11,7 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
   final LocationsFiltersPageCubit locationsFiltersPageCubit;
   final RoutesFiltersPageCubit routesFiltersPageCubit;
   final SubscriptionPageCubit subscriptionPageCubit;
+  final ResetPasswordPageCubit resetPasswordPageCubit;
 
   CurrentUserPresenter({
     required this.splashPageCubit,
@@ -22,6 +23,7 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
     required this.locationsFiltersPageCubit,
     required this.routesFiltersPageCubit,
     required this.subscriptionPageCubit,
+    required this.resetPasswordPageCubit,
   });
   @override
   void setCurrentUser(User? user) {
@@ -79,5 +81,20 @@ class CurrentUserPresenter implements CurrentUserOutputPort {
   @override
   void startEditProfile() {
     editProfilePageCubit.startEditProfile();
+  }
+
+  @override
+  void resetPasswordCompleted() {
+    resetPasswordPageCubit.resetPasswordCompleted();
+  }
+
+  @override
+  void resetPasswordFailed() {
+    resetPasswordPageCubit.resetPasswordFailed();
+  }
+
+  @override
+  void startResetPassword() {
+    resetPasswordPageCubit.startResetPassword();
   }
 }

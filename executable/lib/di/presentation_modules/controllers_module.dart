@@ -268,4 +268,10 @@ abstract class ControllersModule {
     CreateReviewUseCase createReviewUseCase,
   ) =>
       CreateReviewPageController(createReviewUseCase);
+
+  @lazySingleton
+  ResetPasswordPageController resetPasswordPageController(
+    ResetPasswordUseCase resetPasswordUseCase,
+  ) =>
+      ResetPasswordPageController(resetPasswordUseCase);
 }
