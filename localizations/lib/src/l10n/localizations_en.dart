@@ -4,7 +4,7 @@ import 'localizations.dart';
 
 /// The translations for English (`en`).
 class CampguruLocalizationsEn extends CampguruLocalizations {
-  CampguruLocalizationsEn([String locale = 'en']) : super(locale);
+  CampguruLocalizationsEn([super.locale = 'en']);
 
   @override
   String get languageName => 'English';
@@ -118,7 +118,8 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
   String get passwordRequired => 'Password is required';
 
   @override
-  String get passwordRequirements => 'Passwords must include at least 8 characters combining lower and uppercase letters, numbers, and symbols.';
+  String get passwordRequirements =>
+      'Passwords must include at least 8 characters combining lower and uppercase letters, numbers, and symbols.';
 
   @override
   String get passwordTooSimple => 'Password is too simple';
@@ -175,7 +176,8 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
   String get filterBy => 'Filter By';
 
   @override
-  String get onlyThreeFiltersSimultaneously => '* users without subscription can select only 3 filters simultaneously';
+  String get onlyThreeFiltersSimultaneously =>
+      '* users without subscription can select only 3 filters simultaneously';
 
   @override
   String get premium => 'premium';
@@ -184,25 +186,28 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
   String get distanceMertes => 'Distance (m)';
 
   @override
-  String get onlyForUsersWithSubscription => '* available only for users with subscription';
+  String get onlyForUsersWithSubscription =>
+      '* available only for users with subscription';
 
   @override
   String amountReviews(int amount) {
-    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String _temp0 = intl.Intl.pluralLogic(
+    String temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       other: '$amountString Reviews',
       one: '1 Review',
     );
-    return '$_temp0';
+    return temp0;
   }
 
   @override
   String reviewsAmount(int amount) {
-    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Reviews ($amountString)';
@@ -228,7 +233,8 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String locationsAmount(int amount) {
-    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Locations ($amountString)';
@@ -251,7 +257,8 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String usersAmount(int amount) {
-    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Users ($amountString)';
@@ -259,16 +266,17 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String amountUsers(int amount) {
-    final intl.NumberFormat amountNumberFormat = intl.NumberFormat.decimalPattern(localeName);
+    final intl.NumberFormat amountNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String _temp0 = intl.Intl.pluralLogic(
+    String temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       other: '$amountString Users',
       one: '1 User',
     );
-    return '$_temp0';
+    return temp0;
   }
 
   @override
@@ -287,16 +295,19 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
   String get serverErrorOccured => 'Server error has occured!';
 
   @override
-  String get toSaveMoreRoutesBuyPremiumError => 'Buy premium to save more routes!';
+  String get toSaveMoreRoutesBuyPremiumError =>
+      'Buy premium to save more routes!';
 
   @override
   String get geolocatorServiceDisabledError => 'Geolocator Service Disabled.';
 
   @override
-  String get permissionDeniedError => 'Permission is denied. Please, turn on it in phone settings.';
+  String get permissionDeniedError =>
+      'Permission is denied. Please, turn on it in phone settings.';
 
   @override
-  String get permissionDeniedForeverError => 'Permission is forever denied. Please, turn on it in phone settings.';
+  String get permissionDeniedForeverError =>
+      'Permission is forever denied. Please, turn on it in phone settings.';
 
   @override
   String get today => 'Today';
@@ -393,7 +404,8 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String subscriptionExpiresOn(DateTime date) {
-    final intl.DateFormat dateDateFormat = intl.DateFormat('d MMMM yyyy', localeName);
+    final intl.DateFormat dateDateFormat =
+        intl.DateFormat('d MMMM yyyy', localeName);
     final String dateString = dateDateFormat.format(date);
 
     return 'Subscription expires on\n$dateString.';
@@ -410,9 +422,13 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
 
   @override
   String tripDate(DateTime date) {
-    final intl.DateFormat dateDateFormat = intl.DateFormat('d MMMM yyyy', localeName);
+    final intl.DateFormat dateDateFormat =
+        intl.DateFormat('d MMMM yyyy', localeName);
     final String dateString = dateDateFormat.format(date);
 
     return 'Date: $dateString.';
   }
+
+  @override
+  String get changePassword => 'Change Password';
 }

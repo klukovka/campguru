@@ -174,5 +174,6 @@
                 "isCustomDateFormat": "true"
             }
         }
-    }
+    },
+    "changePassword": "Змінити пароль"
 }

@@ -178,5 +178,6 @@
                 "isCustomDateFormat": "true"
             }
         }
-    }
+    },
+    "changePassword": "Change Password"
 }
