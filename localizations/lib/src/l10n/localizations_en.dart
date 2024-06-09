@@ -4,7 +4,7 @@ import 'localizations.dart';
 
 /// The translations for English (`en`).
 class CampguruLocalizationsEn extends CampguruLocalizations {
-  CampguruLocalizationsEn([super.locale = 'en']);
+  CampguruLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
   String get languageName => 'English';
@@ -195,13 +195,13 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
         intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String temp0 = intl.Intl.pluralLogic(
+    String _temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       other: '$amountString Reviews',
       one: '1 Review',
     );
-    return temp0;
+    return '$_temp0';
   }
 
   @override
@@ -270,13 +270,13 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
         intl.NumberFormat.decimalPattern(localeName);
     final String amountString = amountNumberFormat.format(amount);
 
-    String temp0 = intl.Intl.pluralLogic(
+    String _temp0 = intl.Intl.pluralLogic(
       amount,
       locale: localeName,
       other: '$amountString Users',
       one: '1 User',
     );
-    return temp0;
+    return '$_temp0';
   }
 
   @override
@@ -456,4 +456,78 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
   @override
   String get passwordWasSuccessfullyUpdated =>
       'Password was successfully updated.';
+
+  @override
+  String get adequatePreparation => 'Adequate Preparation';
+
+  @override
+  String get adequatePreparationDescription =>
+      'Carefully plan your trip and prepare the necessary equipment: tent, sleeping bag, insulation mat, utensils, fire-starting materials, etc. Check the weather forecast and pack appropriate clothing.';
+
+  @override
+  String get choosingCampsite => 'Choosing a Campsite';
+
+  @override
+  String get choosingCampsiteDescription =>
+      'Select safe and permitted areas for setting up your camp. Avoid dangerous locations, such as dense forests or slopes, and respect the rules and regulations of the area';
+
+  @override
+  String get drinkingWaterAndFood => 'Drinking Water and Food';
+
+  @override
+  String get drinkingWaterAndFoodDescription =>
+      'Ensure you have an adequate supply of drinking water and food while camping. If possible, bring a water filter or purification tablets.';
+
+  @override
+  String get safetyAndOrientation => 'Safety and Orientation';
+
+  @override
+  String get safetyAndOrientationDescription =>
+      'Carry a compass, GPS device, or map of the area to avoid getting lost. Inform friends or family about your planned route and expected return time.';
+
+  @override
+  String get campfireManagement => 'Campfire Management';
+
+  @override
+  String get campfireManagementDescription =>
+      'If you build a campfire, follow safety rules and never leave it unattended. Check local restrictions and regulations regarding campfires.';
+
+  @override
+  String get respectNature => 'Respect for Nature';
+
+  @override
+  String get respectNatureDescription =>
+      'Practice the \"Leave No Trace\" principle and avoid littering or polluting the environment. Clean up after yourself and respect the local flora and fauna.';
+
+  @override
+  String get sunscreenAndInsectRepellent => 'Sunscreen and Insect Repellent';
+
+  @override
+  String get sunscreenAndInsectRepellentDescription =>
+      'Protect your skin from sunburn by using a high-SPF sunscreen. Also, bring insect repellent to protect against mosquitoes and other insects.';
+
+  @override
+  String get firstAidKit => 'First Aid Kit';
+
+  @override
+  String get firstAidKitDescription =>
+      'Pack a first aid kit with essential medications, bandages, and disinfectants in case of injuries or accidents.';
+
+  @override
+  String get lightingAndPowerSources => 'Lighting and Power Sources';
+
+  @override
+  String get lightingAndPowerSourcesDescription =>
+      'Bring flashlights, headlamps, or other lighting sources, as well as spare batteries or charging devices for electronics.';
+
+  @override
+  String get firstAidKnowledge => 'First Aid Knowledge:';
+
+  @override
+  String get firstAidKnowledgeDescription =>
+      'Familiarize yourself with basic first aid techniques and learn how to handle emergencies while camping.';
+
+  @override
+  String get theseTipsHelpYou =>
+      'Following these tips will help you enjoy camping and stay safe in the great outdoors.';
 }
