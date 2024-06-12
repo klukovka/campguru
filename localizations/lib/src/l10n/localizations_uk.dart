@@ -533,4 +533,22 @@ class CampguruLocalizationsUk extends CampguruLocalizations {
   @override
   String get theseTipsHelpYou =>
       'Ці поради допоможуть вам насолодитися кемпінгом та залишитися в безпеці на природі.';
+
+  @override
+  String get historical => 'Історичний';
+
+  @override
+  String get cultural => 'Культурний';
+
+  @override
+  String get hiking => 'Піші прогулянки';
+
+  @override
+  String get skiing => 'Катання на лижах';
+
+  @override
+  String get lakes => 'Озера';
+
+  @override
+  String get waterfall => 'Водоспад';
 }

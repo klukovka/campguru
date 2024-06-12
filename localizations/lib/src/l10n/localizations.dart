@@ -996,6 +996,42 @@ abstract class CampguruLocalizations {
   /// In en, this message translates to:
   /// **'Following these tips will help you enjoy camping and stay safe in the great outdoors.'**
   String get theseTipsHelpYou;
+
+  /// No description provided for @historical.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical'**
+  String get historical;
+
+  /// No description provided for @cultural.
+  ///
+  /// In en, this message translates to:
+  /// **'Cultural'**
+  String get cultural;
+
+  /// No description provided for @hiking.
+  ///
+  /// In en, this message translates to:
+  /// **'Hiking'**
+  String get hiking;
+
+  /// No description provided for @skiing.
+  ///
+  /// In en, this message translates to:
+  /// **'Skiing'**
+  String get skiing;
+
+  /// No description provided for @lakes.
+  ///
+  /// In en, this message translates to:
+  /// **'Lakes'**
+  String get lakes;
+
+  /// No description provided for @waterfall.
+  ///
+  /// In en, this message translates to:
+  /// **'Waterfall'**
+  String get waterfall;
 }
 
 class _CampguruLocalizationsDelegate

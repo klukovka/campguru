@@ -10,4 +10,10 @@ enum FilterLabel {
   cafe,
   wc,
   showUncompleted,
+  historical,
+  cultural,
+  hiking,
+  skiing,
+  lakes,
+  waterfall
 }

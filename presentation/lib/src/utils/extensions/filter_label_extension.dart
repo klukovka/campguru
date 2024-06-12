@@ -14,5 +14,11 @@ extension FilterLabelExtension on FilterLabel {
         FilterLabel.cafe => context.strings.cafe,
         FilterLabel.wc => context.strings.wc,
         FilterLabel.showUncompleted => context.strings.showUncompleted,
+        FilterLabel.historical => context.strings.historical,
+        FilterLabel.cultural => context.strings.cultural,
+        FilterLabel.hiking => context.strings.hiking,
+        FilterLabel.skiing => context.strings.skiing,
+        FilterLabel.lakes => context.strings.lakes,
+        FilterLabel.waterfall => context.strings.waterfall,
       };
 }

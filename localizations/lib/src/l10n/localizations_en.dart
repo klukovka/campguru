@@ -530,4 +530,22 @@ class CampguruLocalizationsEn extends CampguruLocalizations {
   @override
   String get theseTipsHelpYou =>
       'Following these tips will help you enjoy camping and stay safe in the great outdoors.';
+
+  @override
+  String get historical => 'Historical';
+
+  @override
+  String get cultural => 'Cultural';
+
+  @override
+  String get hiking => 'Hiking';
+
+  @override
+  String get skiing => 'Skiing';
+
+  @override
+  String get lakes => 'Lakes';
+
+  @override
+  String get waterfall => 'Waterfall';
 }

@@ -55,7 +55,7 @@ class TestLocationsRepository implements LocationsRepository {
 
     return FailureOrResult.success([
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 0,
         name: FilterLabel.showNearest,
         isPremium: true,
       ),
@@ -65,23 +65,53 @@ class TestLocationsRepository implements LocationsRepository {
         isPremium: false,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 2,
         name: FilterLabel.forest,
         isPremium: false,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 3,
         name: FilterLabel.mountains,
         isPremium: false,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 4,
         name: FilterLabel.nature,
         isPremium: false,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 5,
         name: FilterLabel.river,
+        isPremium: true,
+      ),
+      PremiumBasedFilterLabel(
+        id: 6,
+        name: FilterLabel.historical,
+        isPremium: true,
+      ),
+      PremiumBasedFilterLabel(
+        id: 7,
+        name: FilterLabel.cultural,
+        isPremium: false,
+      ),
+      PremiumBasedFilterLabel(
+        id: 8,
+        name: FilterLabel.hiking,
+        isPremium: true,
+      ),
+      PremiumBasedFilterLabel(
+        id: 9,
+        name: FilterLabel.skiing,
+        isPremium: true,
+      ),
+      PremiumBasedFilterLabel(
+        id: 10,
+        name: FilterLabel.lakes,
+        isPremium: false,
+      ),
+      PremiumBasedFilterLabel(
+        id: 11,
+        name: FilterLabel.waterfall,
         isPremium: true,
       ),
     ]);
