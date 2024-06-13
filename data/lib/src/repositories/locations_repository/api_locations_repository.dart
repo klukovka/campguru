@@ -1,3 +1,6 @@
+import 'package:data/src/core/handle_response_extension.dart';
+import 'package:data/src/filters/filter_serializer.dart';
+import 'package:data/src/models/locations/locations_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
@@ -7,15 +10,18 @@ class ApiLocationsRepository implements LocationsRepository {
   ApiLocationsRepository(this.client);
 
   @override
-  Future<FailureOrResult<void>> addLocationToFavorites(int id) {
-    // TODO: implement addLocationToFavorites
-    throw UnimplementedError();
+  Future<FailureOrResult<void>> addLocationToFavorites(int id) async {
+    final response = await client.post('/api/locations/$id/add-to-favourites');
+    return response.toFailureOrResult((json) => null);
   }
 
   @override
-  Future<FailureOrResult<Chunk<Location>>> getAllLocations(Filter filter) {
-    // TODO: implement getAllLocations
-    throw UnimplementedError();
+  Future<FailureOrResult<Chunk<Location>>> getAllLocations(
+    Filter filter,
+  ) async {
+    final query = FilterSerializer(filter).toString();
+    final response = await client.get('/api/locations?$query');
+    return response.toFailureOrResult(LocationsDto.fromJson);
   }
 
   @override
@@ -45,8 +51,10 @@ class ApiLocationsRepository implements LocationsRepository {
   }
 
   @override
-  Future<FailureOrResult<void>> removeLocationFromFavorites(int id) {
-    // TODO: implement removeLocationFromFavorites
-    throw UnimplementedError();
+  Future<FailureOrResult<void>> removeLocationFromFavorites(int id) async {
+    final response = await client.post(
+      '/api/locations/$id/remove-from-favourites',
+    );
+    return response.toFailureOrResult((json) => null);
   }
 }

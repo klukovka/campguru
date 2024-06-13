@@ -9,6 +9,7 @@ import 'package:presentation/src/pages/locations/location_details_page/views/loc
 import 'package:presentation/src/pages/reviews/views/more_reviews_button.dart';
 import 'package:presentation/src/pages/reviews/views/reviews_list.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
+import 'package:presentation/src/utils/extensions/filter_label_extension.dart';
 
 @RoutePage()
 class LocationDetailsPage extends StatefulWidget implements AutoRouteWrapper {
@@ -85,7 +86,9 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                 SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
-                    child: StyledChips(labels: labels),
+                    child: StyledChips(
+                      labels: labels.map((e) => e.getLabel(context)).toList(),
+                    ),
                   ),
                 ),
               if (state.location.reviewsAmount != 0)

@@ -11,7 +11,7 @@ class TripFiltersPageController {
     List<PremiumBasedFilterLabel>? labels,
   ) {
     final filter = currentFilter.copyWith(
-      page: 0,
+      page: 1,
       sortBy: Nullable(sortBy),
       labels: Nullable(labels),
     );

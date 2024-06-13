@@ -12,7 +12,7 @@ class TripsTabController {
   void search(Filter currentFilter, String searchValue) {
     getTripsUseCase(currentFilter.copyWith(
       search: searchValue,
-      page: 0,
+      page: 1,
     ));
   }
 }

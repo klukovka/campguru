@@ -21,7 +21,7 @@ class MyOwnRoutesTabController {
   }) {
     getMyOwnRoutesUseCase(currentFilter.copyWith(
       search: searchValue,
-      page: 0,
+      page: 1,
     ));
   }
 }

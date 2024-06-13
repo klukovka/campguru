@@ -21,7 +21,7 @@ class FavoriteLocationsPageController {
   }) {
     getFavoriteLocationsUseCase(currentFilter.copyWith(
       search: searchValue,
-      page: 0,
+      page: 1,
     ));
   }
 }
