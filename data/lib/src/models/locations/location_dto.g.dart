@@ -1,0 +1,19 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'location_dto.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+LocationDto _$LocationDtoFromJson(Map<String, dynamic> json) => LocationDto(
+      id: (json['id'] as num).toInt(),
+      images:
+          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+      name: json['name'] as String,
+      mark: (json['mark'] as num).toDouble(),
+      reviewsAmount: (json['reviewsAmount'] as num).toInt(),
+      isFavorite: json['isFavorite'] as bool,
+      long: (json['long'] as num).toDouble(),
+      lat: (json['lat'] as num).toDouble(),
+    );

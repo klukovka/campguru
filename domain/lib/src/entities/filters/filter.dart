@@ -11,8 +11,8 @@ class Filter extends Equatable {
   final (double, double)? distanceRange;
 
   const Filter({
-    this.page = 0,
-    this.size = 20,
+    this.page = 1,
+    this.size = 10,
     this.search,
     this.sortBy,
     this.direction,
@@ -20,7 +20,7 @@ class Filter extends Equatable {
     this.distanceRange,
   });
 
-  bool get append => page > 0;
+  bool get append => page > 1;
 
   bool get isNotEmpty =>
       sortBy != null || direction != null || (labels?.isNotEmpty ?? false);
