@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'location_dto.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class LocationDto extends Dto<Location> {
   final int id;
   final List<String> images;

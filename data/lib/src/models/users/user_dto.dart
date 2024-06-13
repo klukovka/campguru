@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'user_dto.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class UserDto extends Dto<User> {
   final int id;
   final String email;

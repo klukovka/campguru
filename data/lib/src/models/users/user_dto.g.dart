@@ -12,7 +12,7 @@ UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
       name: json['name'] as String,
       surname: json['surname'] as String,
       photo: json['photo'] as String?,
-      premiumExpirationDate: json['premiumExpirationDate'] == null
+      premiumExpirationDate: json['premium_expiration_date'] == null
           ? null
-          : DateTime.parse(json['premiumExpirationDate'] as String),
+          : DateTime.parse(json['premium_expiration_date'] as String),
     );

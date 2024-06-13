@@ -12,8 +12,8 @@ LocationDto _$LocationDtoFromJson(Map<String, dynamic> json) => LocationDto(
           (json['images'] as List<dynamic>).map((e) => e as String).toList(),
       name: json['name'] as String,
       mark: (json['mark'] as num).toDouble(),
-      reviewsAmount: (json['reviewsAmount'] as num).toInt(),
-      isFavorite: json['isFavorite'] as bool,
+      reviewsAmount: (json['reviews_amount'] as num).toInt(),
+      isFavorite: json['is_favorite'] as bool,
       long: (json['long'] as num).toDouble(),
       lat: (json['lat'] as num).toDouble(),
     );
