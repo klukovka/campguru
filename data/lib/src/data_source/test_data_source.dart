@@ -110,7 +110,7 @@ class TestDataSource {
         createdAt: DateTime.now()
             .toUtc()
             .subtract(Duration(days: index + allUploadedReviews)),
-        photos: _images.take(index).toList(),
+        photos: const [],
       ),
     );
 

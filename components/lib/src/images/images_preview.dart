@@ -1,10 +1,13 @@
+import 'dart:typed_data';
+
 import 'package:components/components.dart';
 import 'package:components/src/core/widget_list_extension.dart';
+import 'package:components/src/images/custom_memory_image.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ImagesPreview extends StatelessWidget {
-  final List<String> images;
+  final List<Uint8List> images;
   final double separator;
   final int maxAmount;
 
@@ -26,15 +29,15 @@ class ImagesPreview extends StatelessWidget {
           ...images
               .take(maxAmount - 1)
               .map<Widget>(
-                (url) => SkeletonReplacement(
+                (bytes) => SkeletonReplacement(
                   width: size,
                   height: size,
                   borderRadius: borderRadius,
-                  child: CustomNetworkImage(
+                  child: CustomMemoryImage(
                     width: size,
                     borderRadius: borderRadius,
                     height: size,
-                    imageUrl: url,
+                    bytes: bytes,
                   ),
                 ),
               )

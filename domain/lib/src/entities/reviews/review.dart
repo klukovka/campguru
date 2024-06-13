@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:domain/domain.dart';
 import 'package:equatable/equatable.dart';
 
@@ -7,7 +9,7 @@ class Review extends Equatable {
   final double mark;
   final String review;
   final DateTime createdAt;
-  final List<String> photos;
+  final List<Uint8List> photos;
 
   Review({
     required this.id,

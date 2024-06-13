@@ -16,4 +16,10 @@ LocationDto _$LocationDtoFromJson(Map<String, dynamic> json) => LocationDto(
       isFavorite: json['is_favorite'] as bool,
       long: (json['long'] as num).toDouble(),
       lat: (json['lat'] as num).toDouble(),
+      description: json['description'] as String?,
+      labels:
+          (json['labels'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      reviews: (json['reviews'] as List<dynamic>?)
+          ?.map((e) => ReviewDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );

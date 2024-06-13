@@ -1,5 +1,6 @@
 import 'package:data/src/core/handle_response_extension.dart';
 import 'package:data/src/filters/filter_serializer.dart';
+import 'package:data/src/models/locations/location_dto.dart';
 import 'package:data/src/models/locations/locations_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
@@ -31,9 +32,9 @@ class ApiLocationsRepository implements LocationsRepository {
   }
 
   @override
-  Future<FailureOrResult<Location>> getLocationDetails(int id) {
-    // TODO: implement getLocationDetails
-    throw UnimplementedError();
+  Future<FailureOrResult<Location>> getLocationDetails(int id) async {
+    final response = await client.get('/api/locations/$id');
+    return response.toFailureOrResult(LocationDto.fromJson);
   }
 
   @override

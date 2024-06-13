@@ -1,4 +1,6 @@
 import 'package:data/src/core/dto.dart';
+import 'package:data/src/filters/filter_label_ext.dart';
+import 'package:data/src/models/reviews/review_dto.dart';
 import 'package:domain/domain.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -14,6 +16,9 @@ class LocationDto extends Dto<Location> {
   final bool isFavorite;
   final double long;
   final double lat;
+  final String? description;
+  final List<String>? labels;
+  final List<ReviewDto>? reviews;
 
   LocationDto({
     required this.id,
@@ -24,20 +29,36 @@ class LocationDto extends Dto<Location> {
     required this.isFavorite,
     required this.long,
     required this.lat,
+    this.description,
+    this.labels,
+    this.reviews,
   });
 
   factory LocationDto.fromJson(Map<String, dynamic> json) =>
       _$LocationDtoFromJson(json);
 
   @override
-  Location toDomain() => Location(
-        id: id,
-        images: images,
-        name: name,
-        mark: mark,
-        reviewsAmount: reviewsAmount,
-        isFavorite: isFavorite,
-        lat: lat,
-        lng: long,
-      );
+  Location toDomain() {
+    final filterLabels = <FilterLabel>[];
+    for (final label in labels ?? []) {
+      final filterLabel = FilterLabel.values
+          .firstWhereOrNull((element) => element.apiValue == label);
+      if (filterLabel != null) {
+        filterLabels.add(filterLabel);
+      }
+    }
+    return Location(
+      id: id,
+      images: images,
+      name: name,
+      mark: mark,
+      reviewsAmount: reviewsAmount,
+      isFavorite: isFavorite,
+      lat: lat,
+      lng: long,
+      description: description,
+      reviews: reviews?.map((e) => e.toDomain()).toList(),
+      labels: filterLabels,
+    );
+  }
 }

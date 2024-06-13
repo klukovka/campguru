@@ -8,7 +8,7 @@ abstract class EntitiesSkeletonizerUtils {
     mark: 5,
     review: SkeletonUtils.longText,
     createdAt: DateTime(2, 2, 2002),
-    photos: const ['', '', ''],
+    photos: const [],
   );
 
   static const user = User(
