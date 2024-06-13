@@ -70,16 +70,12 @@ class TestDataSource {
       description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       labels: const [
-        'Nature',
-        'River',
-        'Mountains',
-        'Forest',
-        'Random',
-        'Trees',
-        'Wildlife',
-        'Animals',
+        FilterLabel.nature,
+        FilterLabel.river,
+        FilterLabel.mountains,
+        FilterLabel.forest,
       ],
-      reviews: generateReviews(size: 5, page: 0).values,
+      reviews: generateReviews(size: 5, page: 1).values,
       lat: 49.09,
       lng: 35.52,
     );
@@ -114,7 +110,7 @@ class TestDataSource {
         createdAt: DateTime.now()
             .toUtc()
             .subtract(Duration(days: index + allUploadedReviews)),
-        photos: _images.take(index).toList(),
+        photos: const [],
       ),
     );
 
@@ -177,7 +173,7 @@ class TestDataSource {
         'Wildlife',
         'Animals',
       ],
-      reviews: generateReviews(size: 5, page: 0).values,
+      reviews: generateReviews(size: 5, page: 1).values,
       locationsAmount: 3,
       polyline: const [
         LatLng(49.096619, 35.528852),

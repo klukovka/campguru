@@ -13,7 +13,7 @@ class RouteFiltersPageController {
     RangeValues? distanceRange,
   ) {
     final filter = currentFilter.copyWith(
-      page: 0,
+      page: 1,
       sortBy: Nullable(sortBy),
       labels: Nullable(labels),
       distanceRange: Nullable(distanceRange == null || distanceRange.end == 0

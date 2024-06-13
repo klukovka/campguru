@@ -5,11 +5,11 @@ class Location extends FavoriteTableItem<Location> {
   final String name;
   final double mark;
   final int reviewsAmount;
-  final String? description;
-  final List<String>? labels;
-  final List<Review>? reviews;
   final double lng;
   final double lat;
+  final String? description;
+  final List<FilterLabel>? labels;
+  final List<Review>? reviews;
 
   LatLng get latLng => LatLng(lat, lng);
 
@@ -36,7 +36,7 @@ class Location extends FavoriteTableItem<Location> {
     int? reviewsAmount,
     bool? isFavorite,
     String? description,
-    List<String>? labels,
+    List<FilterLabel>? labels,
     List<Review>? reviews,
     double? lat,
     double? lng,

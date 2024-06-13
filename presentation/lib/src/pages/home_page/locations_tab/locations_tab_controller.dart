@@ -12,7 +12,7 @@ class LocationsTabController {
   void search(Filter currentFilter, String searchValue) {
     getAllLocationsUseCase(currentFilter.copyWith(
       search: searchValue,
-      page: 0,
+      page: 1,
     ));
   }
 }
