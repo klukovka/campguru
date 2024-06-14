@@ -43,7 +43,7 @@ class ApiRoutesRepository implements RoutesRepository {
   }
 
   @override
-  Future<FailureOrResult<String>> getRoutePreview(List<LatLng> points) {
+  Future<FailureOrResult<String>> getRoutePreview(List<int> locations) {
     // TODO: implement getRoutePreview
     throw UnimplementedError();
   }

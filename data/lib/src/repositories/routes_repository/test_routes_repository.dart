@@ -91,7 +91,7 @@ class TestRoutesRepository extends RoutesRepository {
   }
 
   @override
-  Future<FailureOrResult<String>> getRoutePreview(List<LatLng> points) async {
+  Future<FailureOrResult<String>> getRoutePreview(List<int> locations) async {
     await Future.delayed(const Duration(milliseconds: 1000));
     return FailureOrResult.success(
       _dataSource.getRouteDetails(100).mapUrl,

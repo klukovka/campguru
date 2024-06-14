@@ -11,9 +11,9 @@ class GetRoutePreviewUseCase {
     required this.routesOutputPort,
   });
 
-  Future<void> call(List<LatLng> points) async {
+  Future<void> call(List<int> locations) async {
     routesOutputPort.startPreviewLoading();
-    final preview = await routesRepository.getRoutePreview(points);
+    final preview = await routesRepository.getRoutePreview(locations);
     if (preview.hasFailed) {
       errorHandlerOutputPort.setError(preview.failure!);
       routesOutputPort.stopPreviewLoading();

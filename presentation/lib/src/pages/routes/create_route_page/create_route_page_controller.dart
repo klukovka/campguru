@@ -10,7 +10,7 @@ class CreateRoutePageController {
   });
 
   void getPreview(List<Location>? locations) {
-    getRoutePreviewUseCase(locations?.map((e) => e.latLng).toList() ?? []);
+    getRoutePreviewUseCase(locations?.map((e) => e.id).toList() ?? []);
   }
 
   void createRoute(NewRoute newRoute) {

@@ -1,6 +1,5 @@
 import 'package:data/data.dart';
 import 'package:data/src/core/proxy_test_repository.dart';
-import 'package:data/src/repositories/routes_repository/api_routes_repository.dart';
 import 'package:data/src/repositories/routes_repository/test_routes_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
@@ -67,11 +66,12 @@ class ProxyTestRoutesRepository extends ProxyTestRepository
   }
 
   @override
-  Future<FailureOrResult<String>> getRoutePreview(List<LatLng> points) async {
+  Future<FailureOrResult<String>> getRoutePreview(List<int> locations) async {
     return await makeSafeRequest(
-      apiRequest: () async => await apiRoutesRepository.getRoutePreview(points),
+      apiRequest: () async =>
+          await apiRoutesRepository.getRoutePreview(locations),
       testRequest: () async =>
-          await testRoutesRepository.getRoutePreview(points),
+          await testRoutesRepository.getRoutePreview(locations),
     );
   }
 
