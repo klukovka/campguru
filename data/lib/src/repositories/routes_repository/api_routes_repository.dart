@@ -1,7 +1,9 @@
 import 'package:data/src/core/handle_response_extension.dart';
+import 'package:data/src/filters/filter_serializer.dart';
 import 'package:data/src/models/routes/new_route_dto.dart';
 import 'package:data/src/models/routes/route_dto.dart';
 import 'package:data/src/models/routes/route_preview_dto.dart';
+import 'package:data/src/models/routes/routes_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
@@ -11,9 +13,9 @@ class ApiRoutesRepository implements RoutesRepository {
   ApiRoutesRepository(this.client);
 
   @override
-  Future<FailureOrResult<void>> addRouteToFavorites(int id) {
-    // TODO: implement addRouteToFavorites
-    throw UnimplementedError();
+  Future<FailureOrResult<void>> addRouteToFavorites(int id) async {
+    final response = await client.post('/api/routes/$id/add-to-favourites');
+    return response.toFailureOrResult((json) => null);
   }
 
   @override
@@ -26,27 +28,30 @@ class ApiRoutesRepository implements RoutesRepository {
   }
 
   @override
-  Future<FailureOrResult<Chunk<Route>>> getAllRoutes(Filter filter) {
-    // TODO: implement getAllRoutes
-    throw UnimplementedError();
+  Future<FailureOrResult<Chunk<Route>>> getAllRoutes(Filter filter) async {
+    final query = FilterSerializer(filter).toString();
+    final response = await client.get('/api/routes?$query');
+    return response.toFailureOrResult(RoutesDto.fromJson);
   }
 
   @override
-  Future<FailureOrResult<Chunk<Route>>> getFavoriteRoutes(Filter filter) {
-    // TODO: implement getFavoriteRoutes
-    throw UnimplementedError();
+  Future<FailureOrResult<Chunk<Route>>> getFavoriteRoutes(Filter filter) async {
+    final query = FilterSerializer(filter).toString();
+    final response = await client.get('/api/routes/favourites?$query');
+    return response.toFailureOrResult(RoutesDto.fromJson);
   }
 
   @override
-  Future<FailureOrResult<Chunk<Route>>> getMyOwnRoutes(Filter filter) {
-    // TODO: implement getMyOwnRoutes
-    throw UnimplementedError();
+  Future<FailureOrResult<Chunk<Route>>> getMyOwnRoutes(Filter filter) async {
+    final query = FilterSerializer(filter).toString();
+    final response = await client.get('/api/routes/my-own?$query');
+    return response.toFailureOrResult(RoutesDto.fromJson);
   }
 
   @override
-  Future<FailureOrResult<Route>> getRouteDetails(int id) {
-    // TODO: implement getRouteDetails
-    throw UnimplementedError();
+  Future<FailureOrResult<Route>> getRouteDetails(int id) async {
+    final response = await client.get('/api/routes/$id');
+    return response.toFailureOrResult(RouteDto.fromJson);
   }
 
   @override
@@ -68,8 +73,9 @@ class ApiRoutesRepository implements RoutesRepository {
   }
 
   @override
-  Future<FailureOrResult<void>> removeRouteFromFavorites(int id) {
-    // TODO: implement removeRouteFromFavorites
-    throw UnimplementedError();
+  Future<FailureOrResult<void>> removeRouteFromFavorites(int id) async {
+    final response =
+        await client.post('/api/routes/$id/remove-from-favourites');
+    return response.toFailureOrResult((json) => null);
   }
 }
