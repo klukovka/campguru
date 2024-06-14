@@ -66,7 +66,8 @@ class ProxyTestRoutesRepository extends ProxyTestRepository
   }
 
   @override
-  Future<FailureOrResult<String>> getRoutePreview(List<int> locations) async {
+  Future<FailureOrResult<RoutePreview>> getRoutePreview(
+      List<int> locations) async {
     return await makeSafeRequest(
       apiRequest: () async =>
           await apiRoutesRepository.getRoutePreview(locations),

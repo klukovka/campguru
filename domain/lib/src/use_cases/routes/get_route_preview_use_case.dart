@@ -20,6 +20,6 @@ class GetRoutePreviewUseCase {
       return;
     }
 
-    routesOutputPort.updateRoutePreview(preview.result!);
+    routesOutputPort.updateRoutePreview(preview.result!.mapUrl);
   }
 }

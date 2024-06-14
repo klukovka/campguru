@@ -1,3 +1,5 @@
+import 'package:data/src/core/handle_response_extension.dart';
+import 'package:data/src/models/routes/route_preview_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
@@ -43,9 +45,14 @@ class ApiRoutesRepository implements RoutesRepository {
   }
 
   @override
-  Future<FailureOrResult<String>> getRoutePreview(List<int> locations) {
-    // TODO: implement getRoutePreview
-    throw UnimplementedError();
+  Future<FailureOrResult<RoutePreview>> getRoutePreview(
+    List<int> locations,
+  ) async {
+    final response = await client.get(
+      '/api/routes/preview',
+      data: {'locations': locations},
+    );
+    return response.toFailureOrResult(RoutePreviewDto.fromJson);
   }
 
   @override

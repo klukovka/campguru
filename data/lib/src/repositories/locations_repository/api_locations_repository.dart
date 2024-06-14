@@ -26,9 +26,13 @@ class ApiLocationsRepository implements LocationsRepository {
   }
 
   @override
-  Future<FailureOrResult<Chunk<Location>>> getFavoriteLocations(Filter filter) {
+  Future<FailureOrResult<Chunk<Location>>> getFavoriteLocations(
+    Filter filter,
+  ) async {
     // TODO: implement getFavoriteLocations
-    throw UnimplementedError();
+    final query = FilterSerializer(filter).toString();
+    final response = await client.get('/api/locations?$query');
+    return response.toFailureOrResult(LocationsDto.fromJson);
   }
 
   @override

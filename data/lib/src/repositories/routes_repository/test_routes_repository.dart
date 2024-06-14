@@ -91,10 +91,11 @@ class TestRoutesRepository extends RoutesRepository {
   }
 
   @override
-  Future<FailureOrResult<String>> getRoutePreview(List<int> locations) async {
+  Future<FailureOrResult<RoutePreview>> getRoutePreview(
+      List<int> locations) async {
     await Future.delayed(const Duration(milliseconds: 1000));
     return FailureOrResult.success(
-      _dataSource.getRouteDetails(100).mapUrl,
+      RoutePreview(mapUrl: _dataSource.getRouteDetails(100).mapUrl),
     );
   }
 
