@@ -50,9 +50,12 @@ class ApiLocationsRepository implements LocationsRepository {
 
   @override
   Future<FailureOrResult<Chunk<Location>>> getRouteLocations(
-      int routeId, Filter filter) {
-    // TODO: implement getRouteLocations
-    throw UnimplementedError();
+    int routeId,
+    Filter filter,
+  ) async {
+    final query = FilterSerializer(filter).toString();
+    final response = await client.get('/api/routes/$routeId/locations?$query');
+    return response.toFailureOrResult(LocationsDto.fromJson);
   }
 
   @override
