@@ -6,6 +6,7 @@ import 'package:localizations/localizations.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/src/pages/routes/route_details_page/views/route_details_sliver_app_bar.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
+import 'package:presentation/src/utils/extensions/filter_label_extension.dart';
 
 @RoutePage()
 class CachedRouteDetailsPage extends StatefulWidget
@@ -76,7 +77,9 @@ class _CachedRouteDetailsPageState extends State<CachedRouteDetailsPage> {
                 SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
-                    child: StyledChips(labels: labels),
+                    child: StyledChips(
+                      labels: labels.map((e) => e.getLabel(context)).toList(),
+                    ),
                   ),
                 ),
             ],

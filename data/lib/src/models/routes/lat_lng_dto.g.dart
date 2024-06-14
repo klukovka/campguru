@@ -42,3 +42,12 @@ class LatLngDtoAdapter extends TypeAdapter<LatLngDto> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+LatLngDto _$LatLngDtoFromJson(Map<String, dynamic> json) => LatLngDto(
+      latitude: (json['lat'] as num).toDouble(),
+      longitude: (json['long'] as num).toDouble(),
+    );

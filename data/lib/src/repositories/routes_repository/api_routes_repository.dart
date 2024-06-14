@@ -1,4 +1,6 @@
 import 'package:data/src/core/handle_response_extension.dart';
+import 'package:data/src/models/routes/new_route_dto.dart';
+import 'package:data/src/models/routes/route_dto.dart';
 import 'package:data/src/models/routes/route_preview_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
@@ -15,9 +17,12 @@ class ApiRoutesRepository implements RoutesRepository {
   }
 
   @override
-  Future<FailureOrResult<Route>> createRoute(NewRoute newRoute) {
-    // TODO: implement createRoute
-    throw UnimplementedError();
+  Future<FailureOrResult<Route>> createRoute(NewRoute newRoute) async {
+    final response = await client.get(
+      '/api/routes/preview',
+      data: NewRouteDto.fromDomain(newRoute).toJson(),
+    );
+    return response.toFailureOrResult(RouteDto.fromJson);
   }
 
   @override
