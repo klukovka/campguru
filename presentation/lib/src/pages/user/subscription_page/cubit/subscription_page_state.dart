@@ -12,7 +12,7 @@ class SubscriptionPageState extends Equatable {
   });
 
   @override
-  List<Object?> get props => [user, subscriptions];
+  List<Object?> get props => [user, subscriptions, isLoading];
 
   SubscriptionPageState copyWith({
     Nullable<User>? user,

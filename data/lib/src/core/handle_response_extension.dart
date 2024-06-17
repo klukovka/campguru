@@ -17,6 +17,24 @@ extension HandleResponseExtension on Response {
       return FailureOrResult.success(null);
     }
 
+    return handleError<T>();
+  }
+
+  FailureOrResult<List<T>> toFailureOrResultList<T>(
+    Dto<T>? Function(Map<String, dynamic> json) parse, [
+    int successCode = 200,
+  ]) {
+    if (statusCode == successCode) {
+      if (data is List<dynamic>) {
+        return FailureOrResult.success(data.map((e) => parse(e)!.toDomain()));
+      }
+      return FailureOrResult.success(null);
+    }
+
+    return handleError<List<T>>();
+  }
+
+  FailureOrResult<T> handleError<T>() {
     try {
       final result = data is String ? jsonDecode(data) : data;
       final response = ErrorDto.fromJson(result);

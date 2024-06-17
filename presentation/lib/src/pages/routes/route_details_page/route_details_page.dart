@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:presentation/src/pages/reviews/views/reviews_list.dart';
 import 'package:presentation/src/pages/routes/route_details_page/views/loading_route_details_page.dart';
 import 'package:presentation/src/pages/routes/route_details_page/views/route_details_sliver_app_bar.dart';
 import 'package:presentation/src/utils/extensions/build_context_extension.dart';
+import 'package:presentation/src/utils/extensions/filter_label_extension.dart';
 
 @RoutePage()
 class RouteDetailsPage extends StatefulWidget implements AutoRouteWrapper {
@@ -52,6 +55,7 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
         final description = state.route.description ?? '';
         final labels = state.route.labels ?? [];
         final reviews = state.route.reviews ?? [];
+        log(state.route.polyline.toString());
         return Scaffold(
           body: CustomScrollView(
             slivers: [
@@ -70,8 +74,8 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                 sliver: SliverToBoxAdapter(
                   child: Text(
-                    '${state.route.distance.toStringAsFixed(2)} ${context.strings.km} '
-                    '(${state.route.duration.toStringAsFixed(2)} ${context.strings.h})',
+                    '${state.route.distance.getDistance(context)} '
+                    '(${state.route.duration.getDuration(context)})',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
@@ -94,22 +98,22 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
                 SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   sliver: SliverToBoxAdapter(
-                    child: StyledChips(labels: labels),
-                  ),
-                ),
-              if (state.route.reviewsAmount != 0)
-                SliverPadding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-                  sliver: SliverToBoxAdapter(
-                    child: MoreReviewsButton(
-                      reviewsAmount: state.route.reviewsAmount,
-                      onMorePressed: () =>
-                          context.appRouter.pushRouteReviewsPage(
-                        widget.routeId,
-                      ),
+                    child: StyledChips(
+                      labels: labels.map((e) => e.getLabel(context)).toList(),
                     ),
                   ),
                 ),
+              SliverPadding(
+                padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                sliver: SliverToBoxAdapter(
+                  child: MoreReviewsButton(
+                    reviewsAmount: state.route.reviewsAmount,
+                    onMorePressed: () => context.appRouter.pushRouteReviewsPage(
+                      widget.routeId,
+                    ),
+                  ),
+                ),
+              ),
               if (reviews.isNotEmpty) ReviewsList.sliver(reviews: reviews),
             ],
           ),

@@ -38,8 +38,8 @@ class RouteTile extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${route.distance.toStringAsFixed(2)} ${context.strings.km} '
-            '(${route.duration.toStringAsFixed(2)} ${context.strings.h})',
+            '${route.distance.getDistance(context)} '
+            '(${route.duration.getDuration(context)})',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 8),

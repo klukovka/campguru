@@ -5,6 +5,8 @@ class FailureOrResult<T> extends Equatable {
   final Failure? failure;
   final T? result;
 
+  FailureOrResult({this.failure, this.result});
+
   FailureOrResult.failure(this.failure) : result = null;
 
   FailureOrResult.success(this.result) : failure = null;

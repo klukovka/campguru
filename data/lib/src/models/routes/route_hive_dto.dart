@@ -1,5 +1,6 @@
 import 'package:data/src/core/dto.dart';
 import 'package:data/src/data_source/hive_type_id.dart';
+import 'package:data/src/filters/filter_label_ext.dart';
 import 'package:data/src/models/routes/lat_lng_dto.dart';
 import 'package:domain/domain.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -65,7 +66,7 @@ class RouteHiveDto extends Dto<Route> {
         reviewsAmount: route.reviewsAmount,
         locationsAmount: route.locationsAmount,
         description: route.description,
-        labels: route.labels,
+        labels: route.labels?.map((e) => e.apiValue).toList(),
         locations: route.locations
             ?.map((latLng) => LatLngDto.fromDomain(latLng))
             .toList(),
@@ -76,20 +77,30 @@ class RouteHiveDto extends Dto<Route> {
       );
 
   @override
-  Route toDomain() => Route(
-        id: id,
-        name: name,
-        mark: mark,
-        mapUrl: mapUrl,
-        distance: distance,
-        duration: duration,
-        isFavorite: isFavorite,
-        reviewsAmount: reviewsAmount,
-        locations: locations?.map((e) => e.toDomain()).toList(),
-        description: description,
-        labels: labels,
-        locationsAmount: locationsAmount,
-        polyline: polyline?.map((e) => e.toDomain()).toList(),
-        isMine: isMine,
-      );
+  Route toDomain() {
+    final filterLabels = <FilterLabel>[];
+    for (final label in labels ?? []) {
+      final filterLabel = FilterLabel.values
+          .firstWhereOrNull((element) => element.apiValue == label);
+      if (filterLabel != null) {
+        filterLabels.add(filterLabel);
+      }
+    }
+    return Route(
+      id: id,
+      name: name,
+      mark: mark,
+      mapUrl: mapUrl,
+      distance: distance,
+      duration: duration,
+      isFavorite: isFavorite,
+      reviewsAmount: reviewsAmount,
+      locations: locations?.map((e) => e.toDomain()).toList(),
+      description: description,
+      labels: filterLabels,
+      locationsAmount: locationsAmount,
+      polyline: polyline?.map((e) => e.toDomain()).toList(),
+      isMine: isMine,
+    );
+  }
 }
