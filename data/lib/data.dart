@@ -16,7 +16,8 @@ export 'src/repositories/preferences_repository/proxy_test_preferences_repositor
 export 'src/repositories/preferences_repository/stable_preferences_repository.dart';
 export 'src/repositories/reviews_repository/api_reviews_repository.dart';
 export 'src/repositories/reviews_repository/proxy_test_reviews_repository.dart';
-export 'src/repositories/routes_repository/test_routes_repository.dart';
+export 'src/repositories/routes_repository/api_routes_repository.dart';
+export 'src/repositories/routes_repository/proxy_test_routes_repository.dart';
 export 'src/repositories/subscriptions_repository/api_subscriptions_repository.dart';
 export 'src/repositories/subscriptions_repository/proxy_test_subscriptions_repository.dart';
 export 'src/repositories/trips_repository/test_trips_repository.dart';

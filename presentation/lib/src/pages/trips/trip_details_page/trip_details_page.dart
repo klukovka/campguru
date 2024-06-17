@@ -61,8 +61,8 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 sliver: SliverToBoxAdapter(
                   child: Text(
-                    '${state.route.distance.toStringAsFixed(2)} ${context.strings.km} '
-                    '(${state.route.duration.toStringAsFixed(2)} ${context.strings.h})',
+                    '${state.route.distance.getDistance(context)} '
+                    '(${state.route.duration.getDuration(context)})',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),

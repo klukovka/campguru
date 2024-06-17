@@ -16,6 +16,7 @@ export 'src/cards/navigation_tile.dart';
 export 'src/cards/settings_tile.dart';
 export 'src/carousel/carousel.dart';
 export 'src/carousel/photos_info_carousel.dart';
+export 'src/core/double_extension.dart';
 export 'src/default_app_bar.dart';
 export 'src/fields/avatar_picker_form_field.dart';
 export 'src/fields/images_picker_field.dart';

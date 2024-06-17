@@ -42,7 +42,7 @@ class TestRoutesRepository extends RoutesRepository {
 
     return FailureOrResult.success([
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 0,
         name: FilterLabel.animals,
         isPremium: false,
       ),
@@ -52,32 +52,32 @@ class TestRoutesRepository extends RoutesRepository {
         isPremium: false,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 2,
         name: FilterLabel.mountains,
         isPremium: false,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 3,
         name: FilterLabel.nature,
         isPremium: false,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 4,
         name: FilterLabel.river,
         isPremium: true,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 5,
         name: FilterLabel.hasInternet,
         isPremium: true,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 6,
         name: FilterLabel.cafe,
         isPremium: false,
       ),
       PremiumBasedFilterLabel(
-        id: 1,
+        id: 7,
         name: FilterLabel.wc,
         isPremium: true,
       ),
@@ -91,10 +91,11 @@ class TestRoutesRepository extends RoutesRepository {
   }
 
   @override
-  Future<FailureOrResult<String>> getRoutePreview(List<LatLng> points) async {
+  Future<FailureOrResult<RoutePreview>> getRoutePreview(
+      List<int> locations) async {
     await Future.delayed(const Duration(milliseconds: 1000));
     return FailureOrResult.success(
-      _dataSource.getRouteDetails(100).mapUrl,
+      RoutePreview(mapUrl: _dataSource.getRouteDetails(100).mapUrl),
     );
   }
 

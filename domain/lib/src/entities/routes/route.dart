@@ -10,7 +10,7 @@ class Route extends FavoriteTableItem<Route> {
   final bool isMine;
   final int? locationsAmount;
   final String? description;
-  final List<String>? labels;
+  final List<FilterLabel>? labels;
   final List<Review>? reviews;
   final List<LatLng>? locations;
   final List<LatLng>? polyline;
@@ -67,7 +67,7 @@ class Route extends FavoriteTableItem<Route> {
     int? reviewsAmount,
     int? locationsAmount,
     String? description,
-    List<String>? labels,
+    List<FilterLabel>? labels,
     List<Review>? reviews,
     List<LatLng>? polyline,
     List<LatLng>? locations,

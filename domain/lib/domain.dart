@@ -23,6 +23,7 @@ export 'src/entities/reviews/review_type.dart';
 export 'src/entities/routes/lat_lng.dart';
 export 'src/entities/routes/new_route.dart';
 export 'src/entities/routes/route.dart';
+export 'src/entities/routes/route_preview.dart';
 export 'src/entities/subscription/payment.dart';
 export 'src/entities/subscription/subscription.dart';
 export 'src/entities/subscription/subscription_type.dart';

@@ -1,5 +1,6 @@
 import 'package:data/src/core/handle_response_extension.dart';
 import 'package:data/src/filters/filter_serializer.dart';
+import 'package:data/src/filters/premium_based_filter_label_dto.dart';
 import 'package:data/src/models/locations/location_dto.dart';
 import 'package:data/src/models/locations/locations_dto.dart';
 import 'package:dio/dio.dart';
@@ -26,9 +27,13 @@ class ApiLocationsRepository implements LocationsRepository {
   }
 
   @override
-  Future<FailureOrResult<Chunk<Location>>> getFavoriteLocations(Filter filter) {
+  Future<FailureOrResult<Chunk<Location>>> getFavoriteLocations(
+    Filter filter,
+  ) async {
     // TODO: implement getFavoriteLocations
-    throw UnimplementedError();
+    final query = FilterSerializer(filter).toString();
+    final response = await client.get('/api/locations?$query');
+    return response.toFailureOrResult(LocationsDto.fromJson);
   }
 
   @override
@@ -39,16 +44,19 @@ class ApiLocationsRepository implements LocationsRepository {
 
   @override
   Future<FailureOrResult<List<PremiumBasedFilterLabel>>>
-      getLocationsFilterLabels() {
-    // TODO: implement getLocationsFilterLabels
-    throw UnimplementedError();
+      getLocationsFilterLabels() async {
+    final response = await client.get('/api/locations/labels');
+    return response.toFailureOrResultList(PremiumBasedFilterLabelDto.fromJson);
   }
 
   @override
   Future<FailureOrResult<Chunk<Location>>> getRouteLocations(
-      int routeId, Filter filter) {
-    // TODO: implement getRouteLocations
-    throw UnimplementedError();
+    int routeId,
+    Filter filter,
+  ) async {
+    final query = FilterSerializer(filter).toString();
+    final response = await client.get('/api/routes/$routeId/locations?$query');
+    return response.toFailureOrResult(LocationsDto.fromJson);
   }
 
   @override

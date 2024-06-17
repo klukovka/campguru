@@ -12,7 +12,10 @@ class ProxyTestSubscriptionRepository extends ProxyTestRepository
   ProxyTestSubscriptionRepository({
     required SubscriptionsDataSource source,
     required Dio client,
-  })  : testSubscriptionRepository = TestSubscriptionRepository(source: source),
+  })  : testSubscriptionRepository = TestSubscriptionRepository(
+          source: source,
+          client: client,
+        ),
         apiSubscriptionRepository =
             ApiSubscriptionRepository(source: source, client: client);
 
