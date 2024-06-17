@@ -91,19 +91,18 @@ class _LocationDetailsPageState extends State<LocationDetailsPage> {
                     ),
                   ),
                 ),
-              if (state.location.reviewsAmount != 0)
-                SliverPadding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-                  sliver: SliverToBoxAdapter(
-                    child: MoreReviewsButton(
-                      reviewsAmount: state.location.reviewsAmount,
-                      onMorePressed: () =>
-                          context.appRouter.pushLocationReviewsPage(
-                        widget.locationId,
-                      ),
+              SliverPadding(
+                padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                sliver: SliverToBoxAdapter(
+                  child: MoreReviewsButton(
+                    reviewsAmount: state.location.reviewsAmount,
+                    onMorePressed: () =>
+                        context.appRouter.pushLocationReviewsPage(
+                      widget.locationId,
                     ),
                   ),
                 ),
+              ),
               if (reviews.isNotEmpty) ReviewsList.sliver(reviews: reviews),
             ],
           ),

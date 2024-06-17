@@ -26,7 +26,7 @@ RouteDto _$RouteDtoFromJson(Map<String, dynamic> json) => RouteDto(
       locations: (json['locations'] as List<dynamic>?)
           ?.map((e) => LatLngDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      polyline: (json['polyline'] as List<dynamic>?)
+      polylines: (json['polylines'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
     );

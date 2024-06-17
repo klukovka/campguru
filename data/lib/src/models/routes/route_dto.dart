@@ -23,7 +23,7 @@ class RouteDto extends Dto<Route> {
   final List<String>? labels;
   final List<ReviewDto>? reviews;
   final List<LatLngDto>? locations;
-  final List<String>? polyline;
+  final List<String>? polylines;
 
   RouteDto({
     required this.id,
@@ -40,7 +40,7 @@ class RouteDto extends Dto<Route> {
     required this.labels,
     required this.reviews,
     required this.locations,
-    required this.polyline,
+    required this.polylines,
   });
 
   factory RouteDto.fromJson(Map<String, dynamic> json) =>
@@ -71,7 +71,7 @@ class RouteDto extends Dto<Route> {
       labels: filterLabels,
       locationsAmount: locationsAmount,
       reviews: reviews?.map((e) => e.toDomain()).toList(),
-      polyline: polyline
+      polyline: polylines
           ?.expand((element) => decodeEncodedPolyline(element))
           .toList(),
     );
