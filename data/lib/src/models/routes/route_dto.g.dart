@@ -13,7 +13,7 @@ RouteDto _$RouteDtoFromJson(Map<String, dynamic> json) => RouteDto(
       mark: (json['mark'] as num).toDouble(),
       mapUrl: json['map_url'] as String,
       distance: (json['distance'] as num).toDouble(),
-      duration: (json['duration'] as num).toDouble(),
+      duration: json['duration'] as String,
       reviewsAmount: (json['reviews_amount'] as num).toInt(),
       isMine: json['is_mine'] as bool,
       locationsAmount: (json['locations_amount'] as num?)?.toInt(),

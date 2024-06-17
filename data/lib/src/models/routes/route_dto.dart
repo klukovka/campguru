@@ -15,7 +15,7 @@ class RouteDto extends Dto<Route> {
   final double mark;
   final String mapUrl;
   final double distance;
-  final double duration;
+  final String duration;
   final int reviewsAmount;
   final bool isMine;
   final int? locationsAmount;
@@ -62,7 +62,7 @@ class RouteDto extends Dto<Route> {
       mark: mark,
       mapUrl: mapUrl,
       distance: distance,
-      duration: duration,
+      duration: double.tryParse(duration.replaceAll('s', '')) ?? 0,
       isFavorite: isFavorite,
       reviewsAmount: reviewsAmount,
       isMine: isMine,

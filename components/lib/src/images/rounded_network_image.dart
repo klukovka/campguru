@@ -48,23 +48,20 @@ class RoundedNetworkImage extends StatelessWidget {
               )
             : null,
       ),
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 200),
-        child: isLoading
-            ? SpinKitThreeBounce(
-                color: Theme.of(context).colorScheme.onPrimary,
-                size: 16,
-              )
-            : imageUrl == null
-                ? Text(
-                    context.strings.notAvailable,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                  )
-                : null,
-      ),
+      child: isLoading
+          ? SpinKitThreeBounce(
+              color: Theme.of(context).colorScheme.onPrimary,
+              size: 16,
+            )
+          : imageUrl == null
+              ? Text(
+                  context.strings.notAvailable,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                )
+              : null,
     );
   }
 }

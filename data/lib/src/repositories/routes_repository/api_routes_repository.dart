@@ -20,8 +20,8 @@ class ApiRoutesRepository implements RoutesRepository {
 
   @override
   Future<FailureOrResult<Route>> createRoute(NewRoute newRoute) async {
-    final response = await client.get(
-      '/api/routes/preview',
+    final response = await client.post(
+      '/api/routes/',
       data: NewRouteDto.fromDomain(newRoute).toJson(),
     );
     return response.toFailureOrResult(RouteDto.fromJson);

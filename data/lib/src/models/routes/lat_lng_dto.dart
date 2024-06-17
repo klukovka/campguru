@@ -13,7 +13,7 @@ class LatLngDto extends Dto<LatLng> {
   @JsonKey(name: 'lat')
   final double latitude;
   @HiveField(1)
-  @JsonKey(name: 'long')
+  @JsonKey(name: 'lng')
   final double longitude;
 
   LatLngDto({
