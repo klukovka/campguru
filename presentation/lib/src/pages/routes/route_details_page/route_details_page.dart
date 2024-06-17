@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +53,6 @@ class _RouteDetailsPageState extends State<RouteDetailsPage> {
         final description = state.route.description ?? '';
         final labels = state.route.labels ?? [];
         final reviews = state.route.reviews ?? [];
-        log(state.route.polyline.toString());
         return Scaffold(
           body: CustomScrollView(
             slivers: [
