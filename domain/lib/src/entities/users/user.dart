@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:domain/domain.dart';
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
@@ -25,9 +26,38 @@ class User extends Equatable {
     final expirationDate = premiumExpirationDate;
 
     if (expirationDate == null) return false;
-    return DateTime.now().compareTo(expirationDate) < 1;
+    return DateTime.now().toUtc().compareTo(expirationDate) < 1;
   }
 
   @override
-  List<Object?> get props => [id, email, name, photo, surname];
+  List<Object?> get props {
+    return [
+      id,
+      email,
+      name,
+      surname,
+      photo,
+      premiumExpirationDate,
+    ];
+  }
+
+  User copyWith({
+    int? id,
+    String? email,
+    String? name,
+    String? surname,
+    Nullable<Uint8List>? photo,
+    Nullable<DateTime>? premiumExpirationDate,
+  }) {
+    return User(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      name: name ?? this.name,
+      surname: surname ?? this.surname,
+      photo: photo != null ? photo.value : this.photo,
+      premiumExpirationDate: premiumExpirationDate != null
+          ? premiumExpirationDate.value
+          : this.premiumExpirationDate,
+    );
+  }
 }
