@@ -1,5 +1,6 @@
 import 'package:data/src/core/handle_response_extension.dart';
 import 'package:data/src/filters/filter_serializer.dart';
+import 'package:data/src/filters/premium_based_filter_label_dto.dart';
 import 'package:data/src/models/locations/location_dto.dart';
 import 'package:data/src/models/locations/locations_dto.dart';
 import 'package:dio/dio.dart';
@@ -43,9 +44,9 @@ class ApiLocationsRepository implements LocationsRepository {
 
   @override
   Future<FailureOrResult<List<PremiumBasedFilterLabel>>>
-      getLocationsFilterLabels() {
-    // TODO: implement getLocationsFilterLabels
-    throw UnimplementedError();
+      getLocationsFilterLabels() async {
+    final response = await client.get('/api/locations/labels');
+    return response.toFailureOrResultList(PremiumBasedFilterLabelDto.fromJson);
   }
 
   @override

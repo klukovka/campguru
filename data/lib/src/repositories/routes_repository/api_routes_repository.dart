@@ -1,5 +1,6 @@
 import 'package:data/src/core/handle_response_extension.dart';
 import 'package:data/src/filters/filter_serializer.dart';
+import 'package:data/src/filters/premium_based_filter_label_dto.dart';
 import 'package:data/src/models/routes/new_route_dto.dart';
 import 'package:data/src/models/routes/route_dto.dart';
 import 'package:data/src/models/routes/route_preview_dto.dart';
@@ -67,9 +68,9 @@ class ApiRoutesRepository implements RoutesRepository {
 
   @override
   Future<FailureOrResult<List<PremiumBasedFilterLabel>>>
-      getRoutesFilterLabels() {
-    // TODO: implement getRoutesFilterLabels
-    throw UnimplementedError();
+      getRoutesFilterLabels() async {
+    final response = await client.get('/api/routes/labels');
+    return response.toFailureOrResultList(PremiumBasedFilterLabelDto.fromJson);
   }
 
   @override
